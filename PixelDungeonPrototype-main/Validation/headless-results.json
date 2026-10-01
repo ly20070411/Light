@@ -1,0 +1,63 @@
+{
+    "unityVersion": "2022.3.62f3c1",
+    "scene": "PixelRoom",
+    "passed": true,
+    "completedUtc": "2026-10-01T16:44:57.0756545Z",
+    "checks": [
+        {
+            "name": "Required player and camera components",
+            "passed": true,
+            "observed": "Scene component lookup"
+        },
+        {
+            "name": "Feet collider and zero gravity",
+            "passed": true,
+            "observed": "Rigidbody2D and CapsuleCollider2D"
+        },
+        {
+            "name": "Horizontal movement at configured speed",
+            "passed": true,
+            "observed": "Distance=2.400; expected=2.400"
+        },
+        {
+            "name": "Diagonal speed is normalized",
+            "passed": true,
+            "observed": "Diagonal=2.400; horizontal=2.400"
+        },
+        {
+            "name": "Releasing input stops movement",
+            "passed": true,
+            "observed": "Velocity=(0.00, 0.00)"
+        },
+        {
+            "name": "Outer wall blocks character",
+            "passed": true,
+            "observed": "Stopped at=(0.00, -8.72)"
+        },
+        {
+            "name": "Table feet collider blocks character",
+            "passed": true,
+            "observed": "Stopped at=(0.00, 0.80)"
+        },
+        {
+            "name": "Camera follows and settles",
+            "passed": true,
+            "observed": "Travel=3.600; target error=0.000"
+        },
+        {
+            "name": "Camera viewport stays within room",
+            "passed": true,
+            "observed": "Camera=(7.50, 4.38, -10.00); half extents=7.5, 5.625"
+        },
+        {
+            "name": "Orthographic pixel camera baseline",
+            "passed": true,
+            "observed": "Projection and anti-alias settings"
+        },
+        {
+            "name": "Pixel Perfect Camera installed",
+            "passed": true,
+            "observed": "UnityEngine.U2D.PixelPerfectCamera"
+        }
+    ]
+}
