@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "unity-mcp": {
+      "command": "node",
+      "args": ["./Server/build/index.js"],
+      "cwd": ".",
+      "env": {
+        "NODE_ENV": "production",
+        "UNITY_PORT": "8090"
+      },
+      "description": "Unity Editor integration for Windsurf IDE",
+      "enabled": true
+    }
+  }
+}

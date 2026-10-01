@@ -1,0 +1,39 @@
+{
+  "name": "com.unity.mcp-server",
+  "version": "1.0.0",
+  "displayName": "Unity MCP Server",
+  "description": "Free open-source Model Context Protocol (MCP) server integration for seamless Unity Editor control from any MCP-compatible client. Enables natural language commands to manipulate Unity projects, scenes, assets, and build settings through AI assistance. A free alternative to official Unity AI MCP (no subscription required).",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "https://github.com/isekream/Unity_MCP#readme",
+  "changelogUrl": "https://github.com/isekream/Unity_MCP/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/isekream/Unity_MCP/blob/main/LICENSE",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp",
+    "ai",
+    "unity-editor",
+    "automation",
+    "anthropic",
+    "ai",
+    "automation",
+    "ide",
+    "productivity",
+    "editor",
+    "tools"
+  ],
+  "author": {
+    "name": "Unity MCP Team",
+    "url": "https://github.com/isekream/Unity_MCP"
+  },
+  "type": "tool",
+  "hideInEditor": false,
+  "testables": [
+    "com.unity.mcp-server"
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+} 

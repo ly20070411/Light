@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: Server/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Server
+        run: npm ci
+
+      - name: Build TypeScript
+        working-directory: Server
+        run: npm run build
+
+      - name: Lint
+        working-directory: Server
+        run: npm run lint
+
+      # Note: No test step — Jest configuration was removed as no tests existed.

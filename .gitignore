@@ -1,0 +1,47 @@
+# Unity generated folders
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# IDE and editor state
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity/OS transient files
+sysinfo.txt
+crashlytics-build.properties
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local MCP dependencies and logs; package manifests/build output remain versioned
+.mcp/**/node_modules/
+.mcp/**/logs/
+*.log
+
+# Local builds and exported packages
+*.apk
+*.aab
+*.unitypackage
+*.app
