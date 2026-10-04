@@ -15,6 +15,9 @@ namespace Emerge.PixelMap
         public float DefaultZ => defaultZ;
         public string MapRootName => string.IsNullOrWhiteSpace(mapRootName) ? "Pixel Map" : mapRootName;
         public IReadOnlyList<MapBlockDefinition> Blocks => blocks;
+        [SerializeField] private Emerge.Props.PropLibrary propLibrary;
+        public Emerge.Props.PropLibrary PropLibrary => propLibrary;
+        public void SetPropLibrary(Emerge.Props.PropLibrary value) { propLibrary = value; }
 
         public bool Add(MapBlockDefinition definition)
         {

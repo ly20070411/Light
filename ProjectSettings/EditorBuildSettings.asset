@@ -6,6 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PixelRoom.unity
+    guid: d277ddc391b493c4b9b3e9089dc7e452
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PropsDemo.unity
+    guid: b5807ebf15dc60341a5a94570c09720e
+  - enabled: 1
+    path: Assets/Scenes/ChecksDemo.unity
+    guid: 3d8fa555c59cc33419161dcb985f32ef
+  - enabled: 1
+    path: Assets/Scenes/BattleSingleDemo.unity
+    guid: f4fb1e998253f91478938aca646bd721
+  - enabled: 1
+    path: Assets/Scenes/BattleDualDemo.unity
+    guid: 0a7e5be8553ce95469b72ac6c648c775
+  - enabled: 1
+    path: Assets/Scenes/BattleTripleDemo.unity
+    guid: d21b846acd529324fa4b376984a50a03
+  - enabled: 1
+    path: Assets/Scenes/BattleDefenseDemo.unity
+    guid: e6623cde0f492eb408374d2f48943e51
+  - enabled: 1
+    path: Assets/Scenes/BattleBossDemo.unity
+    guid: 66b9d38ef344c2f419864883580808ed
   m_configObjects: {}

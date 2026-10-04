@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Emerge.PixelMap.Editor
 {
-    internal sealed class PixelMapEditorWindow : EditorWindow
+    internal sealed partial class PixelMapEditorWindow : EditorWindow
     {
         private enum BrushTool
         {
@@ -45,12 +45,14 @@ namespace Emerge.PixelMap.Editor
             library = PixelMapAssetFactory.EnsureDefaultLibrary();
             if (library != null) placementZ = library.DefaultZ;
             FindMapRoot();
+            RefreshPropLibrary();
             SceneView.duringSceneGui += OnSceneGUI;
         }
 
         private void OnDisable()
         {
             SceneView.duringSceneGui -= OnSceneGUI;
+            if (propInspector != null) DestroyImmediate(propInspector);
         }
 
         private MapBlockDefinition SelectedDefinition
@@ -67,6 +69,7 @@ namespace Emerge.PixelMap.Editor
         {
             DrawHeader();
             EditorGUILayout.Space(4f);
+            DrawPropModeSelector();
             DrawBrushSettings();
             EditorGUILayout.Space(4f);
 
@@ -138,6 +141,7 @@ namespace Emerge.PixelMap.Editor
 
         private void DrawPalette()
         {
+            if (propsMode) { DrawPropPalette(); return; }
             using (new EditorGUILayout.VerticalScope(GUILayout.Width(Mathf.Max(190f, position.width * 0.38f))))
             {
                 EditorGUILayout.LabelField("地图素材", EditorStyles.boldLabel);
@@ -175,6 +179,7 @@ namespace Emerge.PixelMap.Editor
 
         private void DrawDefinitionInspector()
         {
+            if (propsMode) { DrawPropInspector(); return; }
             using (new EditorGUILayout.VerticalScope())
             {
                 EditorGUILayout.LabelField("方块属性（实时同步）", EditorStyles.boldLabel);
@@ -332,6 +337,7 @@ namespace Emerge.PixelMap.Editor
 
         private void DrawPreview(Vector3 position)
         {
+            if (propsMode) { DrawPropPreview(position); return; }
             var definition = SelectedDefinition;
             Vector2 size = definition != null ? definition.Size : (library != null ? library.GridSize : Vector2.one);
             Color color = brushTool == BrushTool.Erase ? new Color(1f, 0.25f, 0.2f, 0.9f) :
@@ -369,6 +375,7 @@ namespace Emerge.PixelMap.Editor
 
         private void PlaceAt(Vector3 position)
         {
+            if (propsMode) { PlacePropAt(position); return; }
             var definition = SelectedDefinition;
             if (definition == null) return;
             EnsureMapRoot(true);
@@ -418,6 +425,7 @@ namespace Emerge.PixelMap.Editor
 
         private void EraseAt(Vector3 world)
         {
+            if (propsMode) { ErasePropAt(world); return; }
             EnsureMapRoot(false);
             if (mapRoot == null) return;
 
