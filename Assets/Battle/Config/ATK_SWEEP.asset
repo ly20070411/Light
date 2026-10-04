@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccc60d6b0c0e94b9d000c6993a66fd, type: 3}
+  m_Name: ATK_SWEEP
+  m_EditorClassIdentifier: 
+  id: ATK_SWEEP
+  displayName: "\u8361\u79FD\u6A2A\u626B"
+  family: 0
+  target: 2
+  effect: 0
+  mpCost: 12
+  power: 14
+  description: "\u6240\u6709\u654C\u4EBA\u4F24\u5BB3 14"
+  appliesVulnerability: 0
+  regenerationTicks: 3
+  alwaysAvailable: 0
+  maximumUses: 2
+

@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a00238764e6be847b734a5f61d6948b, type: 3}
+  m_Name: ObservationGate
+  m_EditorClassIdentifier: 
+  eventId: observation-gate
+  title: "\u5931\u6548\u7684\u9694\u79BB\u95E8"
+  speaker: "\u89C2\u6D4B\u7AD9\u7EC8\u7AEF"
+  intro: "\u9694\u79BB\u95E8\u4ECD\u5728\u9501\u5B9A\u3002\u7EC8\u7AEF\u80FD\u63A5\u6536\u901A\u884C\u7533\u8BF7\uFF0C\u4E5F\u53EF\u4EE5\u4FEE\u590D\u63A7\u5236\u5668\uFF0C\u6216\u5F3A\u884C\u5207\u65AD\u95E8\u9501\u3002\u4F60\u51C6\u5907\u600E\u6837\u884C\u52A8\uFF1F"
+  completedText: "\u9694\u79BB\u95E8\u4E8B\u4EF6\u5DF2\u7ECF\u5904\u7406\u3002\u6CBF\u5927\u95E8\u6216\u521A\u53D1\u73B0\u7684\u4FA7\u8DEF\u7EE7\u7EED\u524D\u8FDB\u3002"
+  revealDifficultyBeforeChoice: 0
+  useDivination: 1
+  divinationMonth: "巳月"
+  divinationDay: "戊子日"
+  useFixedDivinationSeed: 0
+  divinationSeed: 0
+  options:
+  - id: communicate
+    label: "\u63D0\u4EA4\u901A\u884C\u7533\u8BF7"
+    behavior: 4
+    targetValue: 8
+    requiredFlags: []
+    requiredItemKey: 
+    requiredItemAmount: 1
+    consumeRequiredItem: 0
+    success:
+      text: "\u8EAB\u4EFD\u8BF4\u660E\u901A\u8FC7\u9A8C\u8BC1\u3002\u9694\u79BB\u95E8\u7F13\u7F13\u6253\u5F00\u3002"
+      continuation: "\u4F60\u8FDB\u5165\u89C2\u6D4B\u7AD9\uFF0C\u5BFB\u627E\u5931\u8054\u7684\u7814\u7A76\u5458\u3002"
+      grantedFlags:
+      - check-gate-open
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+    failure:
+      text: "\u7533\u8BF7\u672A\u83B7\u901A\u8FC7\u3002\u7EC8\u7AEF\u63D0\u4F9B\u4E86\u5899\u8FB9\u68C0\u4FEE\u901A\u9053\u7684\u4F4D\u7F6E\u3002"
+      continuation: "\u4F60\u6539\u8D70\u68C0\u4FEE\u4FA7\u8DEF\uFF0C\u7EE7\u7EED\u8C03\u67E5\u5931\u8054\u7684\u7814\u7A76\u5458\u3002"
+      grantedFlags:
+      - check-side-route
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+  - id: repair
+    label: "\u4FEE\u590D\u95E8\u63A7\u7EBF\u8DEF"
+    behavior: 1
+    targetValue: 9
+    requiredFlags: []
+    requiredItemKey: repair-kit
+    requiredItemAmount: 1
+    consumeRequiredItem: 1
+    success:
+      text: "\u4F60\u7528\u7EF4\u4FEE\u5305\u66FF\u6362\u4E86\u70E7\u6BC1\u7684\u7EBF\u8DEF\uFF0C\u95E8\u63A7\u6062\u590D\u6B63\u5E38\u3002"
+      continuation: "\u9694\u79BB\u95E8\u6253\u5F00\u3002\u4F60\u8FDB\u5165\u89C2\u6D4B\u7AD9\u3002"
+      grantedFlags:
+      - check-gate-open
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+    failure:
+      text: "\u66F4\u6362\u7EBF\u8DEF\u540E\uFF0C\u65E7\u63A7\u5236\u5668\u4ECD\u65E0\u6CD5\u542F\u52A8\u3002\u62C6\u5F00\u9762\u677F\u65F6\uFF0C\u4F60\u627E\u5230\u4E86\u4E00\u6761\u68C0\u4FEE\u901A\u9053\u3002"
+      continuation: "\u7EF4\u4FEE\u5305\u5DF2\u7ECF\u4F7F\u7528\u3002\u4F60\u6539\u8D70\u68C0\u4FEE\u4FA7\u8DEF\uFF0C\u7EE7\u7EED\u8C03\u67E5\u3002"
+      grantedFlags:
+      - check-side-route
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+  - id: force
+    label: "\u5F3A\u884C\u5207\u65AD\u95E8\u9501"
+    behavior: 3
+    targetValue: 12
+    requiredFlags: []
+    requiredItemKey: 
+    requiredItemAmount: 1
+    consumeRequiredItem: 0
+    success:
+      text: "\u95E8\u9501\u88AB\u5207\u65AD\uFF0C\u9694\u79BB\u95E8\u8131\u79BB\u4E86\u9501\u5B9A\u3002"
+      continuation: "\u4F60\u6CBF\u5927\u95E8\u8FDB\u5165\u89C2\u6D4B\u7AD9\u3002"
+      grantedFlags:
+      - check-gate-open
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+    failure:
+      text: "\u95E8\u9501\u5F39\u51FA\u4FB5\u67D3\u6DB2\uFF01\u4F60\u540E\u9000\u65F6\u53D1\u73B0\u5899\u8FB9\u6709\u4E00\u6761\u68C0\u4FEE\u4FA7\u8DEF\u3002"
+      continuation: "\u4FB5\u67D3\u589E\u52A0 15\u3002\u4F60\u6539\u8D70\u4FA7\u8DEF\uFF0C\u4ECD\u80FD\u7EE7\u7EED\u8C03\u67E5\u3002"
+      grantedFlags:
+      - check-side-route
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 15

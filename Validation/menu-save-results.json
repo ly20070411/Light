@@ -1,0 +1,409 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "Assets/Scenes/PropsDemo.unity",
+    "completedUtc": "2026-10-04T04:43:15.6582781Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_550dc9ab2143490e97a2011b50a916a0\\Session",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Gameplay demo is included in build scenes",
+            "passed": true,
+            "observed": "Assets/Scenes/PropsDemo.unity"
+        },
+        {
+            "name": "Demo player provides the prop backpack and interactor",
+            "passed": true,
+            "observed": "PlayerMovement / PlayerInteractor / PropGameState"
+        },
+        {
+            "name": "Demo contains the configured fruit and handover guide",
+            "passed": true,
+            "observed": "Tests use actual editable Fruit.asset and Guide.asset"
+        },
+        {
+            "name": "Placed prop identities are stable and unique",
+            "passed": true,
+            "observed": "Includes invisible picked-item restore data"
+        },
+        {
+            "name": "Startup opens a paused main menu",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Continue is disabled without saves",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Verification uses a new isolated save directory",
+            "passed": true,
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_550dc9ab2143490e97a2011b50a916a0\\Session"
+        },
+        {
+            "name": "Empty storage has no continue checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Manual checksum save is written",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Checksummed JSON roundtrip includes backpack and hidden world prop",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Atomic replacement keeps a previous backup",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Atomic commit leaves no temporary save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Corrupt primary recovers the validated backup",
+            "passed": true,
+            "observed": "主存档不可用，已恢复上一份备份。"
+        },
+        {
+            "name": "Nonfinite actor position cannot overwrite existing storage",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Invalid backpack quantities are rejected",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Nonfinite prop transform is rejected",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Duplicate world prop identities are rejected",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Continue chooses the newest validated slot",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New game opens the playable prop scene",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New game immediately creates its initial automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New game starts with an empty backpack and available fruit",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Settings pauses gameplay and disables game input",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Paused gameplay rejects prop interaction and pickup",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Resume Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual fruit pickup fills backpack and hides its stable world instance",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI manual save captures backpack and picked fruit visibility",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Save-and-return opens the paused main menu",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Saved progress enables Continue",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Continue Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Continue restores the player position",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Continue restores backpack fruit and keeps the world fruit hidden",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Scene reload retains persistent guide identity",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Restored fruit unlocks the real guide handover choice",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Declining the handover uses its edited dialogue and preserves fruit",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Accepting and completing dialogue consumes fruit and saves quest completion",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Continue Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Save-and-continue persists delivered fruit and completion flag",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Restored completion opens the post-delivery dialogue without repeating rewards",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Periodic automatic checkpoint runs",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Focus loss writes an automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Application suspension writes an automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Application quit callback writes an automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Load Saves",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Load Auto",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Automatic save selection restores quest and world state",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Load Saves",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Load Manual",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Manual save selection restores quest and world state",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Existing progress requires new-game confirmation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Cancel New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Cancel preserves the existing save selection",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New game resets backpack, quest, spawn and world fruit",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New game preserves the prior manual save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Repeated scene loads retain exactly one persistent controller",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Failed save keeps the paused game and its progress",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Resume Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Game remains resumable after save failure",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Saving recovers after storage obstruction is removed",
+            "passed": true,
+            "observed": ""
+        }
+    ]
+}

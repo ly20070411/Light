@@ -1,0 +1,39 @@
+Generation tool: built-in image_gen
+
+Use case: ui-mockup.
+Generate ONE landscape 16:9 Chinese turn-based RPG combat UI layout concept image, high resolution 1920x1080 or similar. This is a GAME SCREEN mockup using simple replaceable placeholder art, not final illustration, not a desktop/window screenshot, not a poster. All UI text in clear, legible simplified Chinese. Low-to-medium fidelity clean flat UI, restrained dark slate-blue panels, thin muted-gold outlines, pale white text, red health bars and blue mana bars. Avoid ornate borders, photorealism, detailed character art or excessive decorative effects.
+
+Layout must prioritize the user's specified battlefield and full-width bottom command panel:
+Upper 65% is a dedicated battle scene, distinct from an exploration map. Simple subdued blue-gray misty arena with a faint floor plane. On the middle LEFT one large full-body upright human silhouette cutout labelled “主角”, a simple gray-blue placeholder standee. On the RIGHT three upright enemy silhouette cutouts arranged horizontally, with clear spacing and no overlap, labelled “海蚀影”, “护壳体”, “扰识体”. First enemy is the selected target: bright gold outline around the entire standee, small gold downward marker above it and “当前目标” tag. Other enemies have no selected outline. Character standees are sizable and prominent; preserve central empty space for an action popup. Under EACH of all FOUR standees there is one horizontal RED HP bar and one BLUE MP bar, with small clear numbers: hero “HP 100/100”, “MP 22/30”; first enemy “HP 60/60”, “MP 12/12”; second “HP 90/90”, “MP 12/12”; third “HP 55/55”, “MP 12/12”. Simple placeholders, no detailed fantasy costumes. Small header “第 1 轮 · 玩家回合”. Near hero's feet show a faint motion arrow/ghost silhouette and a small slash-shaped glow as a restrained action-animation illustration, without hiding HP/MP bars.
+
+Bottom 35% is ONE full-width dark command panel. Along its upper edge four navigation tabs with simple placeholder icons and exact labels “技能”, “背包”, “交涉”, “逃跑”; ONLY “技能” is selected with gold accent. Tabs are actual page selectors, not four simultaneously expanded pages. In the active skill page group skills by five vertical columns with category headings “官鬼”, “父母”, “妻财”, “子孙”, “兄弟”, in that exact left-to-right order. Each skill button shows ONLY its skill NAME, no cost, effect, icon or description on the buttons:
+官鬼 column: “普攻”, “破甲重击”, “荡秽横扫”.
+父母 column: “护身符阵”, “固守结界”.
+妻财 column: “归元”, “生息”.
+子孙 column: “调息”, “清心”.
+兄弟 column: “封诀”, “缚灵”.
+A mouse pointer hovers over “破甲重击” and that button has a subtle gold hover outline. Keep the columns and all eleven button names readable. Persistent footer outside the page tabs, far bottom-right a conspicuous but simple “结束回合” button. Bottom-left a short label “选择目标后可连续行动 · MP 足够即可继续”.
+
+Show the following popups as ANNOTATED INTERACTION PREVIEWS on this same single screen, with small “悬停示意” or “触发时显示” labels so it is clear they illustrate conditional states and are not always all open:
+1. Hover skill tooltip floating directly ABOVE the bottom skill panel in unused central-left space, not covering hero or enemy standees or bars. Main tooltip exact readable text:
+“破甲重击”
+“官鬼 · 单体攻击”
+“消耗：8 MP”
+“基础伤害：20”
+“定卦后按官鬼卦势计算倍率。”
+“卦势 ≥ 0：造成伤害后施加易伤。”
+Immediately ATTACHED BELOW this skill tooltip, a second distinct smaller status tooltip with NO gap between them. Exact text:
+“易伤”
+“后续受到的直接伤害 +20%。”
+“持续 2 次命中；代表爻为动爻时 3 次。”
+“重复施加刷新，不叠加。”
+Keep both boxes stacked directly touching and visually separate, anchored above the hovered heavy strike.
+2. Above the selected enemy, a compact intent tooltip, not obscuring the standee, text:
+“敌方意图”
+“撕裂重击”
+“对主角造成 18 点基础伤害。”
+“消耗 6 MP”
+Small caption “悬停敌人时显示”.
+3. In the CENTRAL empty arena space between player and enemies, a compact floating modal PREVIEW labelled “定卦 · 触发时显示”. Show THREE simple round copper coins mid-toss, with light motion arcs or ghosts, six short bottom-to-top yao marks in a small result area, and readable result text “官鬼 +1” and “技能倍率 ×1.2”. The modal should appear centered relative to the battlefield, not the entire screen and should not cover the standees, health bars or bottom skill names.
+
+Small subtle note near nonselected tabs can say “交涉：剧情占位” and “逃跑：返回战前状态”, but do not expand extra panels or add a mini map, quest log, chat log, inventory grid, shop, skill cooldowns or action points. Backpack tab icon indicates usable consumable items. The combat mechanics allow multiple skill/item uses until explicit end turn; do not imply one action per turn. Maintain clear hierarchy: prominent left hero / right enemy standees, HP/MP underneath, bottom full-width grouped skill panel, simple icons. This is one coherent interface layout mockup with conditional-state previews, clean and practical for later Unity implementation. No watermark, no fake app chrome, no code, no explanatory paragraphs outside the game screen.

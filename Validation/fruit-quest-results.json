@@ -1,0 +1,213 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "PropsDemo",
+    "completedUtc": "2026-10-04T04:43:08.7510414Z",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Fruit and guide are persistent editable definitions",
+            "passed": true,
+            "observed": "Assets/Props/Library/Definitions/Fruit.asset / Assets/Props/Library/Definitions/Guide.asset"
+        },
+        {
+            "name": "Both editors share a library containing fruit and guide",
+            "passed": true,
+            "observed": "Default map library links to the same serialized prop library"
+        },
+        {
+            "name": "Fruit has the edited pickup quantity, inventory key and sprite",
+            "passed": true,
+            "observed": "Fruit quantity=1; inventory key=fruit; pickup hides the world item"
+        },
+        {
+            "name": "Guide stores the configured fruit handover",
+            "passed": true,
+            "observed": "Item key, amount, completion flag and two choice labels are serialized"
+        },
+        {
+            "name": "All five guide dialogue branches are editable",
+            "passed": true,
+            "observed": "Offer / accepted / declined / missing / completed"
+        },
+        {
+            "name": "The playable demo places the same fruit and guide assets",
+            "passed": true,
+            "observed": "Scene instances reference editable definitions"
+        },
+        {
+            "name": "Demo player shares the editable prop library and backpack",
+            "passed": true,
+            "observed": "E interaction / I backpack"
+        },
+        {
+            "name": "Runtime uses configured Fruit.asset and Guide.asset",
+            "passed": true,
+            "observed": "Uses the same assets shown in both editors"
+        },
+        {
+            "name": "Fruit and guide have independent persistent instance IDs",
+            "passed": true,
+            "observed": "No runtime mutation of asset IDs"
+        },
+        {
+            "name": "Fruit instance displays its edited sprite",
+            "passed": true,
+            "observed": "Configured sprite used by runtime instance"
+        },
+        {
+            "name": "Three guide responses are configured differently",
+            "passed": true,
+            "observed": "No fruit / decline / accept have distinct lines"
+        },
+        {
+            "name": "Without fruit the guide starts the missing-item branch",
+            "passed": true,
+            "observed": "Inventory is empty"
+        },
+        {
+            "name": "Missing-item dialogue matches the editor configuration",
+            "passed": true,
+            "observed": "Compared every line and speaker against the saved definition"
+        },
+        {
+            "name": "Missing-item dialogue grants no completion or reward",
+            "passed": true,
+            "observed": "No choice or consumption without fruit"
+        },
+        {
+            "name": "Picking up fruit stores it in the backpack",
+            "passed": true,
+            "observed": "Inventory fruit=1"
+        },
+        {
+            "name": "Picked fruit hides and records its consumed identity",
+            "passed": true,
+            "observed": "World item removed after pickup"
+        },
+        {
+            "name": "A second pickup cannot duplicate fruit",
+            "passed": true,
+            "observed": "Pickup event fires once"
+        },
+        {
+            "name": "Backpack fruit survives a save-and-restore round trip",
+            "passed": true,
+            "observed": "Backpack quantity and consumed world item are both persisted"
+        },
+        {
+            "name": "Fruit unlocks the guide's editable offer dialogue",
+            "passed": true,
+            "observed": "Offer lines end with an explicit choice"
+        },
+        {
+            "name": "Continue cannot bypass the give-or-decline choice",
+            "passed": true,
+            "observed": "Explicit choice is required"
+        },
+        {
+            "name": "Declining selects its own dialogue without consuming fruit",
+            "passed": true,
+            "observed": "Decline action selected"
+        },
+        {
+            "name": "Declined dialogue matches the editor configuration",
+            "passed": true,
+            "observed": "Compared every line and speaker against the saved definition"
+        },
+        {
+            "name": "Finishing a declined exchange preserves backpack and quest",
+            "passed": true,
+            "observed": "Declining fires no completion event"
+        },
+        {
+            "name": "The guide can be asked again after declining",
+            "passed": true,
+            "observed": "Offer lines end with an explicit choice"
+        },
+        {
+            "name": "Accepting starts dialogue before committing the exchange",
+            "passed": true,
+            "observed": "Pending acceptance is reversible"
+        },
+        {
+            "name": "Accepted branch displays the first configured line",
+            "passed": true,
+            "observed": "谢谢你，这颗果实正好能让我恢复体力。"
+        },
+        {
+            "name": "Cancelling accepted dialogue keeps fruit and restores movement",
+            "passed": true,
+            "observed": "Cancellation does not commit the handover"
+        },
+        {
+            "name": "The guide can be asked again after cancellation",
+            "passed": true,
+            "observed": "Offer lines end with an explicit choice"
+        },
+        {
+            "name": "The explicit give choice can be selected again",
+            "passed": true,
+            "observed": "Accept selected"
+        },
+        {
+            "name": "Accepted dialogue matches the editor configuration",
+            "passed": true,
+            "observed": "Compared every line and speaker against the saved definition"
+        },
+        {
+            "name": "Only finished acceptance consumes one fruit and completes the quest",
+            "passed": true,
+            "observed": "Fruit=0; completionFlag=guide_fruit_given; completionEvents=1"
+        },
+        {
+            "name": "Completed delivery survives save and restore",
+            "passed": true,
+            "observed": "Quest flag and fruit consumption persisted"
+        },
+        {
+            "name": "Completed guide interaction opens new dialogue",
+            "passed": true,
+            "observed": "Completion flag selects the post-delivery branch"
+        },
+        {
+            "name": "Post-delivery dialogue matches the editor configuration",
+            "passed": true,
+            "observed": "Compared every line and speaker against the saved definition"
+        },
+        {
+            "name": "Repeated conversation cannot hand over or reward again",
+            "passed": true,
+            "observed": "No repeated completion event"
+        },
+        {
+            "name": "Restoring the earlier backpack checkpoint restores one fruit",
+            "passed": true,
+            "observed": "Backpack rolls back while the picked world fruit stays consumed"
+        },
+        {
+            "name": "Restored checkpoint returns to the give-or-decline branch",
+            "passed": true,
+            "observed": "Offer lines end with an explicit choice"
+        },
+        {
+            "name": "Restoring the completed checkpoint restores the new dialogue state",
+            "passed": true,
+            "observed": "Stored quest progress determines the branch"
+        },
+        {
+            "name": "Restored completed progress opens completed dialogue",
+            "passed": true,
+            "observed": "Same persisted asset, restored state"
+        },
+        {
+            "name": "Restored completed dialogue remains configured",
+            "passed": true,
+            "observed": "Compared every line and speaker against the saved definition"
+        },
+        {
+            "name": "Restoring and talking does not emit duplicate completion",
+            "passed": true,
+            "observed": "Completion event count remains one"
+        }
+    ]
+}

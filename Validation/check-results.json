@@ -1,0 +1,294 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "Assets/Scenes/ChecksDemo.unity",
+    "completedUtc": "2026-10-04T04:41:28.2334539Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\CheckSaveTest_d5642b8708f242bb9503a40e274c9c5e",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Persistent event has three valid configured actions",
+            "passed": true,
+            "observed": "Assets/Checks/Demo/ObservationGate.asset"
+        },
+        {
+            "name": "Terminal points to the editable check event",
+            "passed": true,
+            "observed": "Assets/Checks/Demo/ObservationTerminal.asset"
+        },
+        {
+            "name": "Demo is available to new-game loading",
+            "passed": true,
+            "observed": "Assets/Scenes/ChecksDemo.unity"
+        },
+        {
+            "name": "Playable scene contains a saved player, check terminal and repair pickup",
+            "passed": true,
+            "observed": "Tests first use actual serialized demo objects"
+        },
+        {
+            "name": "Entry opens the real dialogue and disables movement",
+            "passed": true,
+            "observed": "PropInstance.Interact → CheckEncounter → PlayerInteractor"
+        },
+        {
+            "name": "Casting, chart and modifier stages remain explicit placeholders",
+            "passed": true,
+            "observed": "Six modifiers are zero; no random casting"
+        },
+        {
+            "name": "Cancel before choice keeps the prepared session and releases movement",
+            "passed": true,
+            "observed": "No cost or outcome before selection"
+        },
+        {
+            "name": "Reopening shares the original attribute snapshot",
+            "passed": true,
+            "observed": "Changing live attributes cannot reprepare this event"
+        },
+        {
+            "name": "Missing repair kit produces a disabled actionable choice",
+            "passed": true,
+            "observed": "Repair prerequisite appears in the choice list"
+        },
+        {
+            "name": "Difficulty is hidden before choosing",
+            "passed": true,
+            "observed": "revealDifficultyBeforeChoice=false"
+        },
+        {
+            "name": "Unknown and disabled choice submissions have no effect",
+            "passed": true,
+            "observed": "No result or outcome for invalid choices"
+        },
+        {
+            "name": "Equality succeeds through the real choice callback",
+            "passed": true,
+            "observed": "8 + 0 >= 8"
+        },
+        {
+            "name": "Successful choice applies its flag and event once",
+            "passed": true,
+            "observed": "Outcome commits at selection"
+        },
+        {
+            "name": "Result dialogue reveals the actual comparison",
+            "passed": true,
+            "observed": "兄弟 / 同化：基础 8 + 加值 0 = 8 ≥ 目标 8"
+        },
+        {
+            "name": "Duplicate callback and direct resolution cannot repeat effects",
+            "passed": true,
+            "observed": "Session is sealed"
+        },
+        {
+            "name": "Success branch continues the story then completes the session",
+            "passed": true,
+            "observed": "Result → branch → continuation → movement restored"
+        },
+        {
+            "name": "Completed entry shows its previous result without another event",
+            "passed": true,
+            "observed": "Re-entry is read-only"
+        },
+        {
+            "name": "Failure scenario opens independently",
+            "passed": true,
+            "observed": "A fresh actor and context"
+        },
+        {
+            "name": "Force fails against its higher difficulty",
+            "passed": true,
+            "observed": "10 + 0 < 12"
+        },
+        {
+            "name": "Failure creates the side route and adds contamination once",
+            "passed": true,
+            "observed": "Failure still offers a continuation"
+        },
+        {
+            "name": "Cancel after choice retains committed failure without a refund",
+            "passed": true,
+            "observed": "Cancellation stops presentation, preserving selection"
+        },
+        {
+            "name": "Reopen after selection presents the same failure",
+            "passed": true,
+            "observed": "No new choice or reroll"
+        },
+        {
+            "name": "Failure continuation remains playable",
+            "passed": true,
+            "observed": "Continue along a different route"
+        },
+        {
+            "name": "Insufficient inventory cannot resolve directly",
+            "passed": true,
+            "observed": "Prerequisites also apply outside the UI"
+        },
+        {
+            "name": "Actual kit pickup enters the backpack once",
+            "passed": true,
+            "observed": "Uses the existing prop pickup flow"
+        },
+        {
+            "name": "Repair becomes enabled after pickup",
+            "passed": true,
+            "observed": "Requirements are rebuilt on re-entry"
+        },
+        {
+            "name": "Requirements are rechecked when inventory changes during choice",
+            "passed": true,
+            "observed": "Visible enabled choice cannot bypass changed inventory"
+        },
+        {
+            "name": "Repair equality succeeds and spends one kit on selection",
+            "passed": true,
+            "observed": "9 + 0 >= 9; kit cost commits once"
+        },
+        {
+            "name": "Cancel and reopen do not consume a second kit",
+            "passed": true,
+            "observed": "Committed repair is never charged twice"
+        },
+        {
+            "name": "Resolved sessions, contamination and frozen attributes survive a JSON round trip",
+            "passed": true,
+            "observed": "Separate check and prop snapshots"
+        },
+        {
+            "name": "Restored prepared context returns the same session and cannot replay",
+            "passed": true,
+            "observed": "Persistent context and commit state"
+        },
+        {
+            "name": "Captured and restored snapshots do not alias live state",
+            "passed": true,
+            "observed": "Deep copied snapshots"
+        },
+        {
+            "name": "Inconsistent saved arithmetic is rejected atomically",
+            "passed": true,
+            "observed": "A corrupt result cannot replace valid live state"
+        },
+        {
+            "name": "Unselected session is valid in a save",
+            "passed": true,
+            "observed": "Cancelled entry can persist"
+        },
+        {
+            "name": "Foreign sessions and unknown action IDs are rejected",
+            "passed": true,
+            "observed": "Ownership and action identity"
+        },
+        {
+            "name": "Flag prerequisite blocks an otherwise successful action",
+            "passed": true,
+            "observed": "Outcome rewards require permission"
+        },
+        {
+            "name": "Reward items are applied once on a permitted success",
+            "passed": true,
+            "observed": "Reward token ×2 is sealed with the session"
+        },
+        {
+            "name": "Duplicate action IDs are rejected during authoring",
+            "passed": true,
+            "observed": "Selections remain unambiguous"
+        },
+        {
+            "name": "Overflow never commits a partial core result",
+            "passed": true,
+            "observed": "int.MaxValue + 1 is rejected before changing state"
+        },
+        {
+            "name": "One point below target fails",
+            "passed": true,
+            "observed": "7 < 8"
+        },
+        {
+            "name": "Existing boolean choice dialogue still begins",
+            "passed": true,
+            "observed": "Previous item-handover choice API"
+        },
+        {
+            "name": "Existing boolean selection is independent of generic options",
+            "passed": true,
+            "observed": "Legacy bool callback remains available"
+        },
+        {
+            "name": "Legacy dialogue completion releases movement",
+            "passed": true,
+            "observed": "No generic-option regression"
+        },
+        {
+            "name": "Disable-owner scenario opens a pending check choice",
+            "passed": true,
+            "observed": "Actual PropInstance owner and option dialogue"
+        },
+        {
+            "name": "Disabling check owner cancels immediately and restores movement",
+            "passed": true,
+            "observed": "No Update or extra frame was required after SetActive(false)"
+        },
+        {
+            "name": "Inactive check owner prevents stale choice submission",
+            "passed": true,
+            "observed": "No result, cost or outcome survives the cancelled callback"
+        },
+        {
+            "name": "Re-enabled check owner reopens its same unselected session",
+            "passed": true,
+            "observed": "Owner lifecycle does not prepare another session"
+        },
+        {
+            "name": "Reopened owner supports one fresh valid selection",
+            "passed": true,
+            "observed": "Cancellation clears stale controls, while normal interaction remains usable"
+        },
+        {
+            "name": "Game save store writes and reads check progression",
+            "passed": true,
+            "observed": "Uses real checksummed version-2 save format in isolated test storage"
+        },
+        {
+            "name": "Older version-2 saves without check state remain readable",
+            "passed": true,
+            "observed": "Optional new field supports existing saves"
+        },
+        {
+            "name": "Actual old-format payload omits checkState entirely",
+            "passed": true,
+            "observed": "Serialized the original actor DTO, rather than setting a new field to null"
+        },
+        {
+            "name": "Original legacy checksum envelope is accepted by the real save reader",
+            "passed": true,
+            "observed": "Reads original version-2 fields with a valid SHA-256 envelope; no backup exists"
+        },
+        {
+            "name": "Legacy-format reader still enforces checksum verification",
+            "passed": true,
+            "observed": "Same original payload with an invalid checksum is rejected; no backup can mask rejection"
+        },
+        {
+            "name": "Game save rejects invalid check data",
+            "passed": true,
+            "observed": "Malformed success flag cannot enter a save"
+        },
+        {
+            "name": "Real game save writes and reads an unselected Ready session",
+            "passed": true,
+            "observed": "Write=True; read=True; "
+        },
+        {
+            "name": "Ready save restoration preserves session identity and frozen values",
+            "passed": true,
+            "observed": "The save preserves prepared attributes independently of changed live attributes"
+        },
+        {
+            "name": "Restored Ready session can submit and apply its outcome exactly once",
+            "passed": true,
+            "observed": "Saved Ready → success at frozen 8 → sealed result"
+        }
+    ]
+}

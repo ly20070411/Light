@@ -45,3 +45,13 @@ Thumbs.db
 *.aab
 *.unitypackage
 *.app
+
+# Local validation commands, isolated saves and runtime traces
+/Validation/*
+!/Validation/*-results.json
+!/Validation/*-report.json
+!/Validation/*.png
+
+# Regenerable Unity MCP project index
+/Assets/Editor/UnityMCP/Memory/project-model.json
+/Assets/Editor/UnityMCP/Memory/project-model.json.meta

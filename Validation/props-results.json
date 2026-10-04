@@ -1,0 +1,168 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "PropsDemo",
+    "completedUtc": "2026-10-02T13:17:04.7322008Z",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Map library links to prop library",
+            "passed": true,
+            "observed": "Serialized asset reference"
+        },
+        {
+            "name": "Definitions have distinct stable asset IDs",
+            "passed": true,
+            "observed": "Default library definitions"
+        },
+        {
+            "name": "Demo player has interactor and inventory state",
+            "passed": true,
+            "observed": "Playable input integration"
+        },
+        {
+            "name": "Grid placement stores coordinates and definition",
+            "passed": true,
+            "observed": "Same placement service used by map brush"
+        },
+        {
+            "name": "Placement supports Undo",
+            "passed": true,
+            "observed": "Undo removes prop hierarchy"
+        },
+        {
+            "name": "Placement supports Redo with same instance ID",
+            "passed": true,
+            "observed": "Stable save identity after redo"
+        },
+        {
+            "name": "Duplicated instances get independent save IDs",
+            "passed": true,
+            "observed": "Original identity preserved"
+        },
+        {
+            "name": "Non-solid props can be erased without colliders",
+            "passed": true,
+            "observed": "Sprite bounds picking"
+        },
+        {
+            "name": "Erase supports Undo",
+            "passed": true,
+            "observed": "Restores erased prop"
+        },
+        {
+            "name": "Non-solid prop has no blocking collider",
+            "passed": true,
+            "observed": "Pickup interaction uses prop registry"
+        },
+        {
+            "name": "Nearest interaction finds non-solid props",
+            "passed": true,
+            "observed": "No trigger collider is required"
+        },
+        {
+            "name": "Out-of-range interaction is rejected",
+            "passed": true,
+            "observed": "Distance gate"
+        },
+        {
+            "name": "Story condition blocks pickup",
+            "passed": true,
+            "observed": "Missing test_read flag"
+        },
+        {
+            "name": "Dialogue begins and freezes movement",
+            "passed": true,
+            "observed": "Movement disabled during dialogue"
+        },
+        {
+            "name": "Dialogue advances without premature reward",
+            "passed": true,
+            "observed": "Two-line sequence"
+        },
+        {
+            "name": "Cancelled dialogue restores movement without reward",
+            "passed": true,
+            "observed": "No flags, pickups or events on cancel"
+        },
+        {
+            "name": "Completed dialogue grants flag and event once",
+            "passed": true,
+            "observed": "Dialogue completion"
+        },
+        {
+            "name": "Pickup adds configured quantity and hides instance",
+            "passed": true,
+            "observed": "Quantity=2"
+        },
+        {
+            "name": "Repeated pickup cannot duplicate inventory",
+            "passed": true,
+            "observed": "Consumed instance ID"
+        },
+        {
+            "name": "Dialogue-pickup combination cancels atomically",
+            "passed": true,
+            "observed": "No pickup on cancellation"
+        },
+        {
+            "name": "Dialogue-pickup combination completes in order",
+            "passed": true,
+            "observed": "Pickup happens after dialogue"
+        },
+        {
+            "name": "Required inventory is consumed on completion",
+            "passed": true,
+            "observed": "Consumes exactly two test_item"
+        },
+        {
+            "name": "Single-use custom action rejects a second interaction",
+            "passed": true,
+            "observed": "Same instance cannot spend again"
+        },
+        {
+            "name": "Inventory flags and consumed IDs round-trip",
+            "passed": true,
+            "observed": "Versioned JSON snapshot"
+        },
+        {
+            "name": "Invalid save preserves existing state",
+            "passed": true,
+            "observed": "Malformed input is rejected"
+        },
+        {
+            "name": "Restored consumed pickup stays hidden",
+            "passed": true,
+            "observed": "Scene instances use stable IDs"
+        },
+        {
+            "name": "Restoring earlier checkpoint re-enables pickups",
+            "passed": true,
+            "observed": "Hidden instances retained for rollback"
+        },
+        {
+            "name": "Solid props block real Rigidbody2D movement",
+            "passed": true,
+            "observed": "Player X=51.280; wall center=52"
+        },
+        {
+            "name": "Non-solid props allow passage",
+            "passed": true,
+            "observed": "Player X=53.600"
+        },
+        {
+            "name": "Demo includes frame animation assets",
+            "passed": true,
+            "observed": "Existing point-filtered sprite art"
+        },
+        {
+            "name": "Frame animation advances in Play Mode",
+            "passed": true,
+            "observed": "Frame=1"
+        },
+        {
+            "name": "Animation preserves collider shape",
+            "passed": true,
+            "observed": "Independent feet collision"
+        }
+    ]
+}

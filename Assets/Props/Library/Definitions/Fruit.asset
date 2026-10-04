@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Fruit
+  m_EditorClassIdentifier: 
+  id: 40b179a316834795934aace88fffc740
+  displayName: "\u679C\u5B9E"
+  category: "\u4EFB\u52A1\u7269\u54C1"
+  description: "\u9C9C\u7EA2\u7684\u679C\u5B9E\u3002\u62FE\u53D6\u540E\u653E\u5165\u80CC\u5305\uFF0C\u53EF\u4EA4\u7ED9\u5411\u5BFC\uFF1B\u4E5F\u53EF\u4EE5\u9009\u62E9\u6682\u65F6\u4FDD\u7559\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 3f63107511828454a809491b092e2176, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  worldSize: {x: 0.85, y: 0.85}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 0
+  isSolid: 0
+  colliderSize: {x: 0.8, y: 0.5}
+  colliderOffset: {x: 0, y: 0.15}
+  physicsMaterial: {fileID: 0}
+  actions: 2
+  interactionRange: 1.5
+  interactionLabel: "\u62FE\u53D6"
+  singleUse: 1
+  cooldown: 0.3
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  inventoryKey: fruit
+  pickupAmount: 1
+  hideAfterPickup: 1
+  requiredFlags: []
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u5C1A\u672A\u6EE1\u8DB3\u4EA4\u4E92\u6761\u4EF6"

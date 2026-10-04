@@ -1,0 +1,772 @@
+{
+    "passed": true,
+    "unityVersion": "2022.3.12f1",
+    "completedUtc": "2026-10-04T04:56:56.5810676Z",
+    "checks": [
+        {
+            "name": "Catalog validates",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Initial authored counts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All actions cost energy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Three permanent skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Advanced skills are finite",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strong attacks have small whole-battle quotas",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Five score multipliers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Positive midpoint rounding",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Encounter sizes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Increased ordinary enemy HP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Boss has telegraphed charge and cooldown",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Replaceable placeholders remain installed",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Start gates actions behind round casting",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Opening cannot consume items or skills or end",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cannot resolve an incomplete round",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Round reveal costs no MP and opens three distinct skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Offers guarantee offense and utility",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed casting cannot replay",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Locked command is rejected without payment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Basic is immediate and always x1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Multiple actions share round coins without reroll",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actions do not change enemy intention",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Defense is fixed 35 percent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Duplicate guard and invalid target consume nothing",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No free infinite attacks",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Item continues same turn without skill use",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Only explicit end advances enemy phase",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy uses base damage with player defense",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "New round restores natural MP and clears defense",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "AoE pays once and hits all enemies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Whole-battle cap rejects third sweep",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dead enemy skips exactly one cursor position",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Spent skill disappears from later offers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Advanced uses known round multiplier",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Second heavy retains exact multiplier",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reload keeps remaining whole-battle uses",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exhausted advanced pool preserves permanent basic commands",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Mana skill invests now and restores next round",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Delayed mana pays once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Regen has no immediate HP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Regen pays three times then expires",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Burn ticks at player end and ignores guard",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Permanent finite cleanse removes all negative states",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Repeated empty cleanse is blocked",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cleanse consumable has same status semantics",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Burn gives a full player cleansing window",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exposure survives into next player phase",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exposure amplifies next direct hit",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exposure expires after following enemy phase",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Heavy vulnerability amplifies subsequent hit",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strong bind skips action and gives determination",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Boss stun resistance converts to weakening",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Charge telegraphs next-round release without damage",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Release respects guard and exposes boss",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Seal downgrades release and consumes charge",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy intentions vary across seeds",
+            "observed": "unique=12",
+            "passed": true
+        },
+        {
+            "name": "Team raw burst budget applies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Heavy cooldown prevents consecutive specials",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Partial round snapshot validates",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Restore freezes round coins without payment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reload opens identical offers and multipliers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Immediate action snapshot has no pending replay",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy cursor reload never repeats enemy actions",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tampered coins rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tampered use count rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tampered offers rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Invalid MP rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Null enemy rejected safely",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Balance revisions do not mix snapshots",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Checksummed disk save round-trips v2 battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Victory records current/best rounds and counts once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "First and swift achievements are persisted",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Loading completed victory cannot duplicate record",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Victory records survive checksummed disk saves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Slower victory updates last and preserves best",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Progress snapshot validates and restores",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Defeat never awards a victory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Attempt seed remains locked until outcome",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed attempt accepts new randomness",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "New battle is full with same inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "v1 paid per-skill cast stays readable",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "v1 pending action resolves once under old flow",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Old inventory JSON without progress remains readable",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Adaptive kit strategy wins ENC01",
+            "observed": "phase=Victory; rounds=2",
+            "passed": true
+        },
+        {
+            "name": "Complete battle snapshot validates ENC01",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All action boundaries validate across seeded fights ENC01",
+            "observed": "transitions=396",
+            "passed": true
+        },
+        {
+            "name": "Adaptive kit strategy wins ENC02",
+            "observed": "phase=Victory; rounds=2",
+            "passed": true
+        },
+        {
+            "name": "Complete battle snapshot validates ENC02",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All action boundaries validate across seeded fights ENC02",
+            "observed": "transitions=716",
+            "passed": true
+        },
+        {
+            "name": "Adaptive kit strategy wins ENC03",
+            "observed": "phase=Victory; rounds=5",
+            "passed": true
+        },
+        {
+            "name": "Complete battle snapshot validates ENC03",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All action boundaries validate across seeded fights ENC03",
+            "observed": "transitions=1507",
+            "passed": true
+        },
+        {
+            "name": "Adaptive kit strategy wins ENC04",
+            "observed": "phase=Victory; rounds=3",
+            "passed": true
+        },
+        {
+            "name": "Complete battle snapshot validates ENC04",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All action boundaries validate across seeded fights ENC04",
+            "observed": "transitions=973",
+            "passed": true
+        },
+        {
+            "name": "Adaptive kit strategy wins ENC05",
+            "observed": "phase=Victory; rounds=7",
+            "passed": true
+        },
+        {
+            "name": "Complete battle snapshot validates ENC05",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All action boundaries validate across seeded fights ENC05",
+            "observed": "transitions=1254",
+            "passed": true
+        },
+        {
+            "name": "Actual controller starts authored triple encounter",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle gates world movement and prop interaction",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Round-casting result lists unlocked skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy click selects a gold highlighted portrait",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Every portrait has red HP and blue MP bars",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Skill buttons show only names",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual hover shows cost, effect and attached status values",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Status tooltip is immediately below main tooltip",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Leaving skill hides tooltip",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy hover exposes frozen intention",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tab click activates backpack and hides skill page",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Backpack button consumes item and leaves player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Negotiation page is a placeholder",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Escape page and persistent end-turn are available",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual skill UI immediately attacks selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Round-mode action does not open another coin modal",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Immediate action still animates portrait effects",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual end-turn button switches phases",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy action moves portrait and displays hit image",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Controller restores round-casting UI",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Runtime victory UI applies outcome and round record",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Closing result unlocks world",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle save carries valid independent return point",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Invalid return point is rejected without changing battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Legacy battle save remains readable with escape disabled",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Escape restores local inventory, position, props and flags",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing prop interaction enters battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Combat and pause canvases share camera with menu above combat",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Pause blocks combat commands and world input",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Paused combat cannot mutate state",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Paused UI raycast reaches menu before combat",
+            "observed": "Save And Return order=1000, Settings Card order=1000, Settings Card Border order=1000, Settings Modal order=1000, 定卦遮幕 order=500",
+            "passed": true
+        },
+        {
+            "name": "Real pause menu saves pending battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual scene reload restores battle and original cast",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Item consumption can be saved with resolved battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reload preserves inventory consumption without demo replenishment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real scene reload retains prebattle world and plot snapshot",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Nested battle return graphs are rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Escape after battle reload restores world, story and consumed items",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Escape automatically saves restored exploration without battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save-and-return keeps resumable battle",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene is in build: BattleSingleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene opens correct playable encounter: BattleSingleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene handles defeat and returns to map: BattleSingleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene is in build: BattleDualDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene opens correct playable encounter: BattleDualDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene handles defeat and returns to map: BattleDualDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene is in build: BattleTripleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene opens correct playable encounter: BattleTripleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene handles defeat and returns to map: BattleTripleDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene is in build: BattleDefenseDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene opens correct playable encounter: BattleDefenseDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene handles defeat and returns to map: BattleDefenseDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene is in build: BattleBossDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene opens correct playable encounter: BattleBossDemo",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored scene handles defeat and returns to map: BattleBossDemo",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

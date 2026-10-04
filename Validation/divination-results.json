@@ -1,0 +1,301 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "Assets/Scenes/ChecksDemo.unity",
+    "completedUtc": "2026-10-04T04:42:07.7026246Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\DivinationSaveTest_91a9fa88f05e413dbec47e76a84bfc68",
+    "passed": true,
+    "exhaustiveCases": 4096,
+    "hexagramCount": 64,
+    "checks": [
+        {
+            "name": "Every three-coin face pattern maps to the correct yao value",
+            "observed": "0=back=2; 1=front=3; six bottom-to-top triples",
+            "passed": true
+        },
+        {
+            "name": "Fair three-coin outcome weights are 1:3:3:1",
+            "observed": "Eight equally weighted patterns produce 6/7/8/9",
+            "passed": true
+        },
+        {
+            "name": "A fixed seed reproduces the independent document fixture",
+            "observed": "Seed 12637 → 9,8,7,6,9,8",
+            "passed": true
+        },
+        {
+            "name": "Repeated seed uses exactly the same eighteen stored faces",
+            "observed": "Reproducibility across repeated preparation",
+            "passed": true
+        },
+        {
+            "name": "Casting copies its input and rejects contradictory stored totals",
+            "observed": "Caller edits cannot change a prepared cast",
+            "passed": true
+        },
+        {
+            "name": "Stored coin-face and yao disagreement is invalid",
+            "observed": "The eighteen faces determine all six totals",
+            "passed": true
+        },
+        {
+            "name": "Invalid coin input is rejected",
+            "observed": "Null, wrong length, and nonbinary faces",
+            "passed": true
+        },
+        {
+            "name": "Document fixture has the expected original and changed hexagrams",
+            "observed": "Independent bottom-to-top fixture",
+            "passed": true
+        },
+        {
+            "name": "Document fixture fixes palace, shi and ying",
+            "observed": "Shi is third yao; ying is sixth",
+            "passed": true
+        },
+        {
+            "name": "Document fixture has the independently expected original najia",
+            "observed": "Six original branches, elements and relationships",
+            "passed": true
+        },
+        {
+            "name": "Changed relationships continue to use the original palace",
+            "observed": "Changed hexagram uses original water palace for liuqin",
+            "passed": true
+        },
+        {
+            "name": "Document fixture has expected six spirits and moving positions",
+            "observed": "Day stem determines spirit offset; only 6 and 9 move",
+            "passed": true
+        },
+        {
+            "name": "Document fixture preserves the negative maximum and missing class zero",
+            "observed": "Modifiers are [-1,0,0,0,0,0], not clamped to zero",
+            "passed": true
+        },
+        {
+            "name": "Independent static qian scoring fixture matches all six expected values",
+            "observed": "Month/day only, no moving lines; Self is shi score +1",
+            "passed": true
+        },
+        {
+            "name": "Independent static kun fixture retains negative offspring and Self",
+            "observed": "Self takes sixth/shi yao -1",
+            "passed": true
+        },
+        {
+            "name": "Calendar forms normalize without changing scores",
+            "observed": "Explicit month and stem/branch day",
+            "passed": true
+        },
+        {
+            "name": "Malformed chart input fails before calculation",
+            "observed": "Illegal lengths, values and calendar inputs",
+            "passed": true
+        },
+        {
+            "name": "Human-readable chart output contains both named hexagrams",
+            "observed": "Reusable chart printout",
+            "passed": true
+        },
+        {
+            "name": "All 4096 legal six-yao combinations produce valid charts",
+            "observed": "4^6 cases; first invalid input: ",
+            "passed": true
+        },
+        {
+            "name": "The complete sixty-four-hexagram table is covered",
+            "observed": "Distinct original hexagrams = 64",
+            "passed": true
+        },
+        {
+            "name": "Every chart preserves bottom-to-top yin/yang, moving lines, shi and ying",
+            "observed": "All 4096 inputs",
+            "passed": true
+        },
+        {
+            "name": "Every repeated liuqin uses its highest score, with missing classes zero",
+            "observed": "Exhaustive cases include absent classes and all-negative classes",
+            "passed": true
+        },
+        {
+            "name": "Self equals its original shi yao score in every chart",
+            "observed": "All 4096 inputs",
+            "passed": true
+        },
+        {
+            "name": "Real pipeline creates one frozen Preparing cast without early modifiers",
+            "observed": "Real providers are the default",
+            "passed": true
+        },
+        {
+            "name": "Unfinished preparation cannot resolve or become Ready",
+            "observed": "No choice before six completed throws",
+            "passed": true
+        },
+        {
+            "name": "Only completed throws reveal one bottom-up line each",
+            "observed": "Two reveals use six of the eighteen already-frozen faces",
+            "passed": true
+        },
+        {
+            "name": "Reopening keeps revealed lines, original calendar, seed and attributes",
+            "observed": "Live definition edits cannot reroll this event",
+            "passed": true
+        },
+        {
+            "name": "Partially revealed Preparing sessions are valid saved data",
+            "observed": "Serializes null result/chart correctly",
+            "passed": true
+        },
+        {
+            "name": "Corrupt stored faces are rejected without replacing live data",
+            "observed": "Face/yao disagreement",
+            "passed": true
+        },
+        {
+            "name": "Out-of-range reveal progress is rejected",
+            "observed": "Seven reveals cannot belong to a six-line cast",
+            "passed": true
+        },
+        {
+            "name": "Preparing sessions cannot smuggle ready modifiers",
+            "observed": "Modifiers must remain zero until chart completion",
+            "passed": true
+        },
+        {
+            "name": "Saved calendar values must already be normalized",
+            "observed": "A save stores 巳月, rather than a shorthand that changes on restore",
+            "passed": true
+        },
+        {
+            "name": "Real game save writes and reads partially revealed divination",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save restoration resumes the same two revealed lines without reroll",
+            "observed": "Same context and session identity",
+            "passed": true
+        },
+        {
+            "name": "The resumed six-line cast computes the independent fixture modifiers",
+            "observed": "Stored calendar and faces drive the chart",
+            "passed": true
+        },
+        {
+            "name": "Repeated preparation confirmation neither rerolls nor repeats chart logs",
+            "observed": "Idempotent Ready preparation",
+            "passed": true
+        },
+        {
+            "name": "Corrupt per-yao chart scores fail independent recomputation",
+            "observed": "Derived chart details are verified at save boundaries",
+            "passed": true
+        },
+        {
+            "name": "Ready confirmation and submission reject modifiers inconsistent with its chart",
+            "observed": "Both entry points enforce chart/modifier agreement",
+            "passed": true
+        },
+        {
+            "name": "Prepared negative modifier enters the normal >= resolver",
+            "observed": "8 - 1 = 7 >= 7",
+            "passed": true
+        },
+        {
+            "name": "Real divination outcome is applied exactly once",
+            "observed": "Selection seals the persisted session",
+            "passed": true
+        },
+        {
+            "name": "Serialized observation-gate demo enables the real divination pipeline",
+            "observed": "The playable scene's existing terminal uses the new preparation flow",
+            "passed": true
+        },
+        {
+            "name": "Real demo player is available for the casting UI test",
+            "observed": "Serialized ChecksDemo player",
+            "passed": true
+        },
+        {
+            "name": "Real event entrance opens casting before action choices",
+            "observed": "Prop interaction → Preparing → casting UI",
+            "passed": true
+        },
+        {
+            "name": "Confirmation before six casts and duplicate animation clicks are blocked",
+            "observed": "Animation changes presentation only",
+            "passed": true
+        },
+        {
+            "name": "First animation reveals only the already prepared bottom line",
+            "observed": "No extra random outcome from animation frames",
+            "passed": true
+        },
+        {
+            "name": "Cancelling mid-animation preserves completed lines and releases movement",
+            "observed": "The unfinished visual throw was never revealed",
+            "passed": true
+        },
+        {
+            "name": "Re-entry resumes the same cast rather than preparing new random faces",
+            "observed": "One session per physical encounter",
+            "passed": true
+        },
+        {
+            "name": "Quick cast begins from the saved reveal count",
+            "observed": "Only remaining five lines are animated",
+            "passed": true
+        },
+        {
+            "name": "Quick mode finishes all remaining lines and computes real chart modifiers",
+            "observed": "Six throws → chart and modifiers; choice still requires confirmation",
+            "passed": true
+        },
+        {
+            "name": "Casting UI hands off to normal choices only after confirmation",
+            "observed": "The dialogue owns the movement lock after handoff",
+            "passed": true
+        },
+        {
+            "name": "Actual action labels display the computed negative modifier and total",
+            "observed": "研究门控记录 · 父母 / 强化 8 − 1 = 7",
+            "passed": true
+        },
+        {
+            "name": "Old casting controls cannot submit another animation or handoff",
+            "observed": "Closed view has no live actions",
+            "passed": true
+        },
+        {
+            "name": "Real choice callback resolves equality using the computed modifier",
+            "observed": "Real casting UI → real PlayerInteractor callback → >= result",
+            "passed": true
+        },
+        {
+            "name": "Real result and continuation complete the session and restore movement",
+            "observed": "Success branch and subsequent story",
+            "passed": true
+        },
+        {
+            "name": "Runtime logic chain preserves stage order and sequential entries",
+            "observed": "事件入口 → 起卦输入 → 投掷 → 填爻 → 排盘 → 爻加值 → 行为加值 → 准备确认 → 选择行动 → 提交行动 → 判定 → 应用后果 → 结果分支 → 继续剧情 → 剧情完成",
+            "passed": true
+        },
+        {
+            "name": "Logic logs count completed throws and calculations once, independent of animation frames",
+            "observed": "Includes cancellation and reopened casting without duplicate logical throws",
+            "passed": true
+        },
+        {
+            "name": "Each session trace entry is also written to the runtime JSONL log",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\RuntimeLogs\\check-logic.jsonl",
+            "passed": true
+        },
+        {
+            "name": "The same real chart also supports a normal failure comparison",
+            "observed": "10 + 0 < 12; failure has a continuation",
+            "passed": true
+        }
+    ]
+}

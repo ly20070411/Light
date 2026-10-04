@@ -1,0 +1,113 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "PixelRoom",
+    "passed": true,
+    "completedUtc": "2026-10-02T13:19:47.0251421Z",
+    "checks": [
+        {
+            "name": "Required player and camera components",
+            "passed": true,
+            "observed": "Scene component lookup"
+        },
+        {
+            "name": "Feet collider and zero gravity",
+            "passed": true,
+            "observed": "Rigidbody2D and CapsuleCollider2D"
+        },
+        {
+            "name": "Physics interpolation and continuous collision",
+            "passed": true,
+            "observed": "Interpolated rendering and continuous collision detection"
+        },
+        {
+            "name": "Adjacent wall tiles share composite geometry",
+            "passed": true,
+            "observed": "Merged paths=2"
+        },
+        {
+            "name": "Feet collision has no friction or bounce",
+            "passed": true,
+            "observed": "Feet physics material"
+        },
+        {
+            "name": "Horizontal movement at configured speed",
+            "passed": true,
+            "observed": "Distance=2.400; expected=2.400"
+        },
+        {
+            "name": "Walking diagonal speed is normalized",
+            "passed": true,
+            "observed": "Distance=2.400"
+        },
+        {
+            "name": "Holding sprint multiplies movement speed",
+            "passed": true,
+            "observed": "Distance=4.800; multiplier=2"
+        },
+        {
+            "name": "Releasing sprint immediately restores walking speed",
+            "passed": true,
+            "observed": "Speed=4.000"
+        },
+        {
+            "name": "Sprinting diagonal speed is normalized",
+            "passed": true,
+            "observed": "Distance=4.800"
+        },
+        {
+            "name": "Holding sprint without input does not move",
+            "passed": true,
+            "observed": "Velocity=(0.00, 0.00)"
+        },
+        {
+            "name": "Releasing movement stops the character",
+            "passed": true,
+            "observed": "Velocity=(0.00, 0.00)"
+        },
+        {
+            "name": "Sprinting into the wall does not tunnel",
+            "passed": true,
+            "observed": "Stopped at=(0.00, -8.71)"
+        },
+        {
+            "name": "Diagonal sprint slides across wall tile seams",
+            "passed": true,
+            "observed": "Travel=6.788; stalled physics frames=0"
+        },
+        {
+            "name": "Sprint remains inside the room corner",
+            "passed": true,
+            "observed": "Stopped at=(13.67, -8.71)"
+        },
+        {
+            "name": "Sprinting into table feet stays blocked",
+            "passed": true,
+            "observed": "Stopped at=(0.00, 0.80)"
+        },
+        {
+            "name": "Camera has no follow lag while walking and sprinting",
+            "passed": true,
+            "observed": "Max error=0.000000; rendered samples=578/467"
+        },
+        {
+            "name": "Rendered character stays centred without pixel jitter",
+            "passed": true,
+            "observed": "Max viewport error=0.000000"
+        },
+        {
+            "name": "Camera follows the character at room edges",
+            "passed": true,
+            "observed": "Camera=(13.00, 8.00, -10.00)"
+        },
+        {
+            "name": "Orthographic camera retains pixel texture baseline",
+            "passed": true,
+            "observed": "Projection and anti-alias settings"
+        },
+        {
+            "name": "Camera pixel-grid quantization is disabled",
+            "passed": true,
+            "observed": "Smooth follow uses the character's interpolated position"
+        }
+    ]
+}
