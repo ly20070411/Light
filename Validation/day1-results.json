@@ -1,0 +1,1059 @@
+{
+    "unityVersion": "2022.3.12f1",
+    "scene": "Assets/Scenes/Day1ResearchStation.unity",
+    "completedUtc": "2026-10-05T17:22:50.4557875Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_ddaa2d7494db4927a7fe1608c0d24c65\\Saves",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Day1 scene provides the real story controller",
+            "observed": "Assets/Scenes/Day1ResearchStation.unity",
+            "passed": true
+        },
+        {
+            "name": "Day1 scene is available for new game and saved scene reload",
+            "observed": "Assets/Scenes/Day1ResearchStation.unity",
+            "passed": true
+        },
+        {
+            "name": "Day1 uses a two dimensional orthographic camera",
+            "observed": "PixelRoom camera direction; no 2.5D tilt",
+            "passed": true
+        },
+        {
+            "name": "Player has dialogue, inventory and a stable save identity",
+            "observed": "Existing player and save integration",
+            "passed": true
+        },
+        {
+            "name": "Placed props have unique and stable save identities",
+            "observed": "17 placed props",
+            "passed": true
+        },
+        {
+            "name": "All planned interaction locations are present",
+            "observed": "Rules, Environment, Supplies, LinXi, Diagnosis, Hydrologist, Geologist, Plant, YangYinglong, Threat, SeaGate, ContainmentResearcher, Repair, Mechanic, Tools, Parts, Power",
+            "passed": true
+        },
+        {
+            "name": "Four collection and repair points use actual divination events",
+            "observed": "Diagnosis / Plant / Repair / Parts",
+            "passed": true
+        },
+        {
+            "name": "The teaching encounter belongs to the local valid battle catalog",
+            "observed": "Real BattleController encounter lookup and victory flag",
+            "passed": true
+        },
+        {
+            "name": "Six teammates reference the existing placeholder character assets",
+            "observed": "Existing CharacterDefinition references",
+            "passed": true
+        },
+        {
+            "name": "Validation starts in the paused main menu",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Test saves are isolated from existing player saves",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_ddaa2d7494db4927a7fe1608c0d24c65\\Saves",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: New Game",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Day1 new game enters the five-attribute creation page",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Allocate Day1 starting attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Confirm Attributes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Day1 starts with the eight points confirmed in character creation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A new game starts with admission incomplete and no identity card",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The admission test offers a review response",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Select an incorrect admission answer through the actual dialogue interface",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "An incorrect admission answer does not pass the question or grant a card",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling admission leaves the stage and inventory uncommitted",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm an admission question",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm an admission question",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm an admission question",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Three completed answers grant exactly one identity card",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Group admission does not count as six personal introductions",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Environment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Environment records cannot be claimed before rules are read",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling the rules speech keeps it available",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed rules disperse the team and retain the environment objective",
+            "observed": "读取环境监测台，将数据档案收入背包",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Supplies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Supplies cannot be claimed before the environment notification",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Environment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling the environment report does not issue the archive",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Environment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The completed environment interaction saves one archive and the supply objective",
+            "observed": "前往生活区，领取餐桌上的生活物资",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Supplies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelled supply collection does not trigger the shadow",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Supplies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Supply receipt and shadow completion have separate saved stages",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Settings Button",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Paused settings suspend the shadow rather than completing it",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Save Game",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A real manual save captures an interrupted shadow",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reload retains collected supplies without a duplicate reward",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The resumed shadow remains unnamed and the protagonist attributes it to faulty lighting",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The completed shadow releases the movement lock",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Supplies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Repeated supplies neither issue items nor replay the shadow",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Exterior to buffer",
+            "observed": "Door center (-9.00, 4.50); crossed distance 1.51",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Buffer to control",
+            "observed": "Door center (-3.00, 4.50); crossed distance 1.16",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Control to living area",
+            "observed": "Door center (1.50, 5.00); crossed distance 1.48",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Control to machine room",
+            "observed": "Door center (-3.00, -0.50); crossed distance 1.48",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Control to chemical laboratory",
+            "observed": "Door center (1.50, -3.00); crossed distance 1.48",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Control to storage",
+            "observed": "Door center (7.00, 0.50); crossed distance 1.47",
+            "passed": true
+        },
+        {
+            "name": "Physics2D passage: Exterior to dock",
+            "observed": "Door center (-16.50, -10.00); crossed distance 1.48",
+            "passed": true
+        },
+        {
+            "name": "Day1 cannot finish while preparation tasks are outstanding",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The actual close out option is disabled until required preparation is complete",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Keep exploring through the close out dialogue",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene correctly rejects locked interaction: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A task check is inaccessible before accepting its task",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Select a task offer before cancelling its response",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling an accepted task response commits neither the task nor the personal introduction",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: LinXi/later",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Meeting Lin Xi and postponing the task are separate states",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: LinXi/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Revisiting Lin Xi allows later task acceptance",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Diagnosis opens the real three coin casting interface",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reveal a real diagnosis cast",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling a partial cast retains progress and releases movement without granting a deliverable",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save a partially revealed actual cast",
+            "observed": "游戏已保存 · 01:22:35",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene reload reuses the exact same cast, session and revealed line",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual casting view is open",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Begin actual sequential six coin reveals",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm the real completed divination chart",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Submit diagnosis through the real action option",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The actual check applies its outcome once before the result dialogue finishes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save a resolved check before closing its result dialogue",
+            "observed": "游戏已保存 · 01:22:36",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Resolved check reload opens its saved result without recasting or issuing rewards again",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Finishing the restored result completes its existing check session",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Select a task return before cancelling its response",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling a task return does not prematurely complete the task",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: LinXi/handover",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The completed diagnosis can be reported to Lin Xi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed check and NPC do not recast or repeat rewards: Diagnosis",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Hydrologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Hydrologist/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Water sampling is accepted without pretending a sample was collected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: SeaGate",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelled sea side dialogue does not defer the task early",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: SeaGate",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Sea side refusal schedules water sampling for Day2 without failing it",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Hydrologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reporting the delay completes preparation while actual water sampling stays pending",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Geologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Geologist/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Plant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual casting view is open",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Begin actual sequential six coin reveals",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm the real completed divination chart",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Submit real check action: Plant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed real six coin check: Plant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Geologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Geologist/handover",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Plant check and return complete the geologist task",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Plant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Geologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed check and NPC do not recast or repeat rewards: Plant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: ContainmentResearcher",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: ContainmentResearcher/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Repair",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual casting view is open",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Begin actual sequential six coin reveals",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm the real completed divination chart",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Submit real check action: Repair",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed real six coin check: Repair",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A real failed repair check still records the researcher's assisted repair",
+            "observed": "Unskilled test actor; real six coin result and configured failure continuation",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: ContainmentResearcher",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: ContainmentResearcher/handover",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A failed teaching repair remains reportable and cannot lock Day1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Repair",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: ContainmentResearcher",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed check and NPC do not recast or repeat rewards: Repair",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Mechanic",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Mechanic/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Power",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dock power shows its incomplete state before task delivery",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Tools",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Searching the real tool point grants one task tool",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Tools",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Repeated tool search does not duplicate the task tool",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual casting view is open",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Begin actual sequential six coin reveals",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Confirm the real completed divination chart",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Submit real check action: Parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed real six coin check: Parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Mechanic",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Mechanic/handover",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Mechanic delivery consumes the tool and keeps separately rewarded spare parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Power",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dock power changes state after mechanic delivery",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Mechanic",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Completed check and NPC do not recast or repeat rewards: Parts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: YangYinglong",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: YangYinglong/accept",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Threat",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The threat point opens the real battle interface",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The real normal attack button receives the UI raycast after the casting overlay closes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save a real active teaching battle",
+            "observed": "游戏已保存 · 01:22:44",
+            "passed": true
+        },
+        {
+            "name": "Scene reload restores the same battle session and fixed round cast",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Escaping the saved teaching battle restores prior story progress without a victory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Threat",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Unmodified teaching encounter is winnable through real normal attack buttons",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle applies its victory flag while retaining the world input lock until return",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real battle UI victory closes the result and unlocks exploration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: YangYinglong",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: YangYinglong/handover",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "The actual threat victory can be reported to Yang Yinglong",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: SeaGate",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Winning the peripheral battle does not open Day1 water sampling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All six personal introductions and preparation task returns persist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Day1 completion requires preparation and deferral, never an impossible water sample",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Choose the actual Day1 close out option",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cancelling the final confirmation does not prematurely end Day1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dialogue choice: Rules/finish",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Explicit close out ends only Day1 and retains the unresolved Day2 sample",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save the finished Day1 checkpoint",
+            "observed": "游戏已保存 · 01:22:47",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Settings Button",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Save And Return",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Continue Game",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Continue reload preserves Day1 close out, all introductions, pending water and inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Environment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Supplies",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Tools",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: LinXi",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Geologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: ContainmentResearcher",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Mechanic",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: YangYinglong",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Hydrologist",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Scene interaction available: Rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Revisiting completed dialogue and collection points after reload does not repeat rewards",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Repeated Day1 reloads keep exactly one persistent session controller",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Settings Button",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual menu button is available: Save And Return",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing player save files remain byte for byte unchanged",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

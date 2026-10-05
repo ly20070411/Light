@@ -9,6 +9,7 @@ namespace Emerge.PixelMap
         [SerializeField] private MapBlockDefinition definition;
         [SerializeField] private MapPlacementMode placementMode;
         [SerializeField] private Vector2Int gridCoordinate;
+        private bool pendingRefresh;
 
         public MapBlockDefinition Definition => definition;
         public MapPlacementMode PlacementMode => placementMode;
@@ -24,6 +25,7 @@ namespace Emerge.PixelMap
 
         public void ApplyDefinition()
         {
+            pendingRefresh = false;
             if (definition == null) return;
 
             gameObject.layer = definition.UnityLayer;
@@ -78,7 +80,11 @@ namespace Emerge.PixelMap
 
         private void OnValidate()
         {
-            ApplyDefinition();
+            // Unity also invokes OnValidate while restoring serialized scenes. Layer,
+            // collider and renderer changes must wait until its consistency check ends.
+            pendingRefresh = true;
         }
+        private void OnEnable() { pendingRefresh = true; }
+        private void Update() { if (pendingRefresh) ApplyDefinition(); }
     }
 }

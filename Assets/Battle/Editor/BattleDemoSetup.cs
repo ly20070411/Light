@@ -59,7 +59,7 @@ namespace Emerge.Battle.Editor
                 ES("shock", "扰识冲击", EnemyEffect.Damage, 0, 8, 30),
                 new EnemySkillDefinition { id = "mind", displayName = "蚀念", effect = EnemyEffect.Weaken, mpCost = 6, power = 6, weakness = .2f, weight = 25, cooldownRounds = 1 },
                 ES("ember", "秽火", EnemyEffect.Burn, 4, 5, 25, 1), ES("mark", "破绽印", EnemyEffect.Exposure, 4, 4, 20, 1) });
-            var boss = Enemy("B01", "死海残响", 270, 20, 6, true, new[] {
+            var boss = Enemy("B01", "死海残响", 400, 20, 6, true, new[] {
                 ES("tide", "海潮", EnemyEffect.Damage, 0, 18, 45), ES("break", "断界", EnemyEffect.Damage, 8, 30, 20, 1),
                 new EnemySkillDefinition { id = "heal", displayName = "重聚", effect = EnemyEffect.Heal, mpCost = 8, power = 24, weight = 10, maximumHealthFraction = .35f, maximumUses = 2, cooldownRounds = 1 },
                 ES("charge", "残响蓄势", EnemyEffect.Charge, 0, 0, 25, 1), ES("release", "残响迸发", EnemyEffect.ChargedDamage, 10, 42, 1) });
@@ -70,7 +70,7 @@ namespace Emerge.Battle.Editor
                 Encounter("ENC02", "攻击与干扰", "海蚀影与扰识体。测试目标切换、清心和封诀。", new[] { Slot(e1), Slot(e3) }),
                 Encounter("ENC03", "三敌遭遇", "两只海蚀影与扰识体。测试群攻、敌方顺序和护盾。", new[] { Slot(e1), Slot(e1), Slot(e3) }),
                 Encounter("ENC04", "防御遭遇", "护壳体与海蚀影。测试护壳、易伤和防御时点。", new[] { Slot(e2), Slot(e1) }),
-                Encounter("ENC05", "首领 · 死海残响", "270 HP 首领，抵抗眩晕；低血量可重聚两次。测试 MP 规划与续航。", new[] { Slot(boss) }) };
+                Encounter("ENC05", "首领 · 死海残响", "400 HP，潮棘反震实际伤害的 60%，致命攻击也触发。用减伤、护盾和治疗规划攻势；抵抗眩晕，低血量可重聚两次。", new[] { Slot(boss) }) };
             var catalog = AssetDatabase.LoadAssetAtPath<BattleCatalog>(CatalogPath);
             if (catalog == null)
             {
@@ -103,7 +103,7 @@ namespace Emerge.Battle.Editor
         private static EnemySkillDefinition ES(string id, string name, EnemyEffect effect, int cost, int power, int weight, int cooldown = 0)
             => new EnemySkillDefinition { id = id, displayName = name, effect = effect, mpCost = cost, power = power, weight = weight, cooldownRounds = cooldown };
         private static BattleEnemyDefinition Enemy(string id, string name, int hp, int mp, int recovery, bool resists, EnemySkillDefinition[] skills)
-            => Asset<BattleEnemyDefinition>(id, e => { e.id = id; e.displayName = name; e.maxHP = hp; e.maxMP = mp; e.roundMana = recovery; e.resistsStun = resists; e.skills = skills; });
+            => Asset<BattleEnemyDefinition>(id, e => { e.id = id; e.displayName = name; e.maxHP = hp; e.maxMP = mp; e.roundMana = recovery; e.resistsStun = resists; e.retaliation = id == "B01" ? .6f : 0; e.skills = skills; });
         private static BattleItemDefinition Item(string id, string name, BattleItemEffect effect, int power, string description)
             => Asset<BattleItemDefinition>(id, e => { e.id = id; e.inventoryKey = id; e.displayName = name; e.effect = effect; e.power = power; e.description = description; });
         private static BattleEnemySlot Slot(BattleEnemyDefinition enemy, int hp = 0) => new BattleEnemySlot { enemy = enemy, healthOverride = hp };

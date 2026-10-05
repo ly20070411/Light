@@ -187,7 +187,7 @@ namespace Emerge.Checks
             if (ready)
             {
                 float cellWidth = (contentWidth - 20) / 3;
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < (session.attributeRulesVersion >= SixKinAttributes.RulesVersion ? SixKinAttributes.Count : 6); i++)
                 {
                     int bonus = session.modifiers[i];
                     var cell = new Rect(8 + i % 3 * cellWidth, 465 + i / 3 * 40, cellWidth - 8, 32);

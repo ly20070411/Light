@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: ENC05
   displayName: "\u9996\u9886 \xB7 \u6B7B\u6D77\u6B8B\u54CD"
-  description: "270 HP \u9996\u9886\uFF0C\u62B5\u6297\u7729\u6655\uFF1B\u4F4E\u8840\u91CF\u53EF\u91CD\u805A\u4E24\u6B21\u3002\u6D4B\u8BD5
-    MP \u89C4\u5212\u4E0E\u7EED\u822A\u3002"
+  description: "400 HP，潮棘反震实际 HP 伤害的 60%，致命攻击也触发。减伤、护盾和治疗可应对；首领抵抗眩晕，低血量可重聚两次。"
   month: "\u5DF3\u6708"
   day: "\u620A\u5B50\u65E5"
   enemies:

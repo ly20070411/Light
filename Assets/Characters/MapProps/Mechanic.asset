@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Mechanic
+  m_EditorClassIdentifier: 
+  id: 84a2cef8911e45ecac62ff3129aadae9
+  displayName: "\u673A\u68B0\u5E08"
+  category: "\u89D2\u8272"
+  character: {fileID: 11400000, guid: 33b1149a1c489a640b8d396157a88eb8, type: 2}
+  description: 
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: d6ae21c44d0037f439446a09d608db13, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  worldSize: {x: 0.8, y: 1.2}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 0
+  isSolid: 1
+  colliderSize: {x: 0.45, y: 0.2}
+  colliderOffset: {x: 0, y: 0.08}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 0
+  interactionRange: 1.5
+  interactionLabel: "\u4EA4\u8C08"
+  singleUse: 0
+  cooldown: 0.3
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 0}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 1
+  requiredFlags: []
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u5C1A\u672A\u6EE1\u8DB3\u4EA4\u4E92\u6761\u4EF6"

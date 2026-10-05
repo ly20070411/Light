@@ -313,7 +313,7 @@ namespace Emerge.Checks.Tests
             Add("Runtime logic chain preserves stage order and sequential entries", sequence && ordered, string.Join(" → ", chain));
             Add("Logic logs count completed throws and calculations once, independent of animation frames", trace.Count(entry => entry.stage == "事件入口") == 1 &&
                 trace.Count(entry => entry.stage == "起卦输入") == 1 && trace.Count(entry => entry.stage == "投掷") == 6 && trace.Count(entry => entry.stage == "填爻") == 6 &&
-                trace.Count(entry => entry.stage == "排盘") == 1 && trace.Count(entry => entry.stage == "爻加值") == 6 && trace.Count(entry => entry.stage == "行为加值") == 6 &&
+                trace.Count(entry => entry.stage == "排盘") == 1 && trace.Count(entry => entry.stage == "爻加值") == 6 && trace.Count(entry => entry.stage == "行为加值") == SixKinAttributes.Count &&
                 trace.Count(entry => entry.stage == "判定") == 1 && trace.Count(entry => entry.stage == "应用后果") == 1, "Includes cancellation and reopened casting without duplicate logical throws");
             var rows = File.Exists(CheckLogicTrace.LogPath) ? File.ReadLines(CheckLogicTrace.LogPath).Where(line => line.Contains(session.sessionId))
                 .Select(line => JsonUtility.FromJson<LogRow>(line)).ToArray() : new LogRow[0];
@@ -444,7 +444,16 @@ namespace Emerge.Checks.Tests
         private void Add(string name, bool passed, string observed)
         { report.checks.Add(new Check { name = name, passed = passed, observed = observed }); Debug.Log("DIVINATION_CHECK " + (passed ? "PASS " : "FAIL ") + name + ": " + observed); WriteReport(); }
         private void WriteReport()
-        { string path = ProjectPath("Validation/divination-results.json"); Directory.CreateDirectory(Path.GetDirectoryName(path)); File.WriteAllText(path, JsonUtility.ToJson(report, true)); }
+        {
+            string path = ProjectPath("Validation/divination-results.json");
+            string backups = ProjectPath("Temp/DivinationReports");
+            Directory.CreateDirectory(Path.GetDirectoryName(path)); Directory.CreateDirectory(backups);
+            string temporary = Path.Combine(backups, Guid.NewGuid().ToString("N") + ".tmp");
+            File.WriteAllText(temporary, JsonUtility.ToJson(report, true));
+            // A report viewer may hold a mapped file; replace it without truncating its data.
+            if (File.Exists(path)) File.Replace(temporary, path, Path.Combine(backups, Guid.NewGuid().ToString("N") + ".json"));
+            else File.Move(temporary, path);
+        }
         private static string ProjectPath(string path) => Path.GetFullPath(Path.Combine(Application.dataPath, "../" + path));
     }
 }

@@ -22,6 +22,7 @@ namespace Emerge.Props.Editor
             EditorGUI.BeginChangeCheck();
             using (new EditorGUI.DisabledScope(true)) Field("id", "道具 ID（存档键）");
             Section("基本属性"); Field("displayName", "名称"); Field("category", "分类"); Field("description", "说明 / 查看文本");
+            Field("character", "关联角色（可选）");
             Section("外观与动画"); Field("visualMode", "表现形式"); Field("sprite", "外形贴图"); Field("visualPrefab", "可选外观预制体");
             Field("worldSize", "世界尺寸"); Field("tint", "颜色");
             var mode = (PropVisualMode)serializedObject.FindProperty("visualMode").enumValueIndex;

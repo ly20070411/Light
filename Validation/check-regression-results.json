@@ -1,16 +1,16 @@
 {
-    "id": "battle-v3-original-integrations",
+    "id": "settings-reallocation-d06facfa70004b09ba70eef1ab268596",
     "verb": "run",
     "state": "complete",
-    "startedUtc": "2026-10-04T04:43:04.4908929Z",
-    "completedUtc": "2026-10-04T04:43:16.1722869Z",
+    "startedUtc": "2026-10-05T17:51:21.9490148Z",
+    "completedUtc": "2026-10-05T17:51:34.5814725Z",
     "message": "果实交付与菜单存档回归通过，原场景已恢复。",
     "passed": true,
     "suites": [
         {
             "name": "果实交付",
             "reportPath": "Validation/fruit-quest-results.json",
-            "completedUtc": "2026-10-04T04:43:08.7510414Z",
+            "completedUtc": "2026-10-05T17:51:26.4142253Z",
             "error": "",
             "fresh": true,
             "passed": true,
@@ -19,11 +19,11 @@
         {
             "name": "菜单与存档",
             "reportPath": "Validation/menu-save-results.json",
-            "completedUtc": "2026-10-04T04:43:15.6582781Z",
+            "completedUtc": "2026-10-05T17:51:34.0504338Z",
             "error": "",
             "fresh": true,
             "passed": true,
-            "checkCount": 80
+            "checkCount": 176
         }
     ]
 }

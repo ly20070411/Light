@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Emerge.Checks.Divination;
+using Emerge.Checks;
 using Emerge.Props;
 using UnityEngine;
 
@@ -15,17 +16,21 @@ namespace Emerge.Battle
         private BattleSession state;
         private BattleLegacyEngine legacy;
         private bool committing;
+        public bool EmitRuntimeLogs { get; set; } = true;
         public BattleSession State => legacy != null ? legacy.State : state;
         public bool IsCommitting => committing || (legacy?.IsCommitting ?? false);
         public event Action Changed;
         public BattleEngine(BattleCatalog catalog, PropGameState inventory)
         { string error = null; if (catalog == null || !catalog.Validate(out error)) throw new ArgumentException(error ?? "缺少配置"); Catalog = catalog; Inventory = inventory; }
-        public void Start(BattleEncounterDefinition encounter, int seed, string contextId = null)
+        public void Start(BattleEncounterDefinition encounter, int seed, string contextId = null, ActorCheckAttributes attributes = null)
         {
             if (encounter == null || Catalog.Encounter(encounter.id) != encounter || IsCommitting) throw new ArgumentException("未知遭遇或行动未完成");
-            legacy = null; state = new BattleSession { version = 2, balanceVersion = Catalog.rules.balanceVersion, seed = seed, sessionId = Guid.NewGuid().ToString("N"), encounterId = encounter.id, contextId = contextId ?? encounter.id,
+            var build = attributes ?? SixKinAttributes.DefaultBuild();
+            if (!SixKinAttributes.IsValidBuild(build)) throw new ArgumentException("五亲点数必须非负且合计为 8。");
+            legacy = null; state = new BattleSession { version = BattleBuildRules.Version, attributes = build.Clone(), balanceVersion = Catalog.rules.balanceVersion, seed = seed, sessionId = Guid.NewGuid().ToString("N"), encounterId = encounter.id, contextId = contextId ?? encounter.id,
                 player = new BattlePlayerState { hp = Catalog.rules.maxHP, mp = Catalog.rules.maxMP } };
             foreach (var slot in encounter.enemies) { int hp = slot.healthOverride > 0 ? slot.healthOverride : slot.enemy.maxHP; state.enemies.Add(new BattleEnemyState { definitionId = slot.enemy.id, hp = hp, maxHP = hp, mp = slot.enemy.maxMP }); }
+            Log("属性快照 · " + string.Join("、", Enumerable.Range(0, SixKinAttributes.Count).Select(i => SixKinAttributes.Get((CheckBehavior)i).name + " " + build.Get((CheckBehavior)i))) + "；每点基础效果 +10%；种子 " + seed);
             BeginRound(); Log("战斗开始 · " + encounter.displayName); Changed?.Invoke();
         }
         public static int CastSeed(int seed, int serial) => BattleLegacyEngine.CastSeed(seed, serial);
@@ -35,21 +40,27 @@ namespace Emerge.Battle
         public int RemainingUses(string id)
         { var skill = Catalog.Skill(id); return skill == null ? 0 : State?.version == 1 || skill.maximumUses == 0 ? int.MaxValue : Math.Max(0, skill.maximumUses - (State?.skillUses.Find(x => x.skillId == id)?.count ?? 0)); }
         public float SkillMultiplier(string id)
-        { var skill = Catalog.Skill(id); return skill == null || skill.alwaysAvailable || State?.roundDivination == null ? 1 : Catalog.rules.Multiplier(FamilyScore(State.roundDivination, skill.family)); }
+        {
+            var skill = Catalog.Skill(id);
+            if (skill == null || State == null) return 1;
+            if (State.version >= BattleBuildRules.Version) return BattleBuildRules.Multiplier(BattleBuildRules.Points(State.attributes, skill.family));
+            return skill.alwaysAvailable || State.roundDivination == null ? 1 : Catalog.rules.Multiplier(FamilyScore(State.roundDivination, skill.family));
+        }
         public bool CanUseSkill(string id, int target, out string reason)
         {
             if (legacy != null) return legacy.CanUseSkill(id, target, out reason);
             reason = ""; var skill = Catalog.Skill(id);
             if (committing || state?.phase != BattlePhase.Player) reason = "请等待当前行动完成";
             else if (skill == null) reason = "技能不存在";
+            else if (state.version >= 3 && !skill.alwaysAvailable && BattleBuildRules.Points(state.attributes, skill.family) == 0) reason = BattleRules.FamilyName(skill.family) + "为 0 点，无法解锁该类高级技能";
             else if (RemainingUses(id) == 0) reason = "本场次数已耗尽";
             else if (!skill.alwaysAvailable && !state.unlockedSkills.Contains(id)) reason = "本轮未解锁";
             else if (state.player.mp < skill.mpCost) reason = "MP 不足";
             else if (skill.target == BattleTarget.Enemy && (target < 0 || target >= state.enemies.Count || state.enemies[target].hp <= 0)) reason = "请选择存活敌人";
             else if (skill.effect == BattleEffect.Heal && state.player.hp >= Catalog.rules.maxHP) reason = "HP 已满";
             else if (skill.effect == BattleEffect.Shield && state.player.shield >= Catalog.rules.shieldCap) reason = "护盾已达上限";
-            else if (skill.effect == BattleEffect.Reduction && state.player.reduction >= skill.power) reason = "已处于守御状态";
-            else if (skill.effect == BattleEffect.Cleanse && !HasNegativeState(state.player) && state.player.nextMana >= skill.power) reason = "已清心，无需重复施加";
+            else if (skill.effect == BattleEffect.Reduction && state.player.reduction >= (state.version >= 3 ? Math.Min(Catalog.rules.reductionCap, skill.power * SkillMultiplier(id)) : skill.power)) reason = "已处于守御状态";
+            else if (skill.effect == BattleEffect.Cleanse && !HasNegativeState(state.player) && state.player.nextMana >= (state.version >= 3 ? Math.Min(Catalog.rules.nextManaCap, BattleRules.Round(skill.power * SkillMultiplier(id))) : skill.power)) reason = "已清心，无需重复施加";
             return reason.Length == 0;
         }
         public bool CommitSkill(string id, int target, out string reason)
@@ -62,16 +73,25 @@ namespace Emerge.Battle
                 var action = new BattleAction { serial = ++state.actionSerial, round = state.round, skillId = id, skillName = skill.displayName,
                     targetIndex = skill.target == BattleTarget.Enemy ? target : 0, family = skill.family, target = skill.target, effect = skill.effect, power = skill.power,
                     appliesVulnerability = skill.appliesVulnerability, regenerationTicks = skill.regenerationTicks, divination = state.roundDivination };
-                Grade(action, skill, Catalog.rules); state.player.mp -= skill.mpCost;
+                Grade(action, skill, Catalog.rules, state.version >= 3 ? state.attributes : null); state.player.mp -= skill.mpCost;
                 var used = state.skillUses.Find(x => x.skillId == id); if (used == null) { used = new EnemySkillUses { skillId = id }; state.skillUses.Add(used); } used.count++; used.lastRound = state.round;
                 ApplySkill(action); state.lastAction = action;
-                Log(action.skillName + " · ×" + action.multiplier.ToString("0.0") + " · 基础效果 " + action.value); CheckOutcome();
+                if (state.version >= 3) Log("结算状态 · HP " + state.player.hp + "；MP " + state.player.mp + "；护盾 " + state.player.shield + "；减伤 " + state.player.reduction.ToString("P0") + "；下轮额外回气 " + state.player.nextMana);
+                Log(action.skillName + (state.version >= 3 ? " · " + BattleRules.FamilyName(skill.family) + " " + action.score + " 点；固定倍率 " : " · 卦势倍率 ") + "×" + action.multiplier.ToString("0.0") + " · 基础 " + action.power + " → " + action.value); CheckOutcome();
             }
             finally { committing = false; }
             Changed?.Invoke(); return true;
         }
-        private static void Grade(BattleAction action, BattleSkillDefinition skill, BattleRules rules)
+        private static void Grade(BattleAction action, BattleSkillDefinition skill, BattleRules rules, ActorCheckAttributes attributes = null)
         {
+            if (attributes != null)
+            {
+                action.score = BattleBuildRules.Points(attributes, skill.family);
+                action.multiplier = BattleBuildRules.Multiplier(action.score);
+                action.value = BattleRules.Round(action.power * action.multiplier);
+                action.movingLine = false;
+                return;
+            }
             action.score = skill.alwaysAvailable ? 0 : FamilyScore(action.divination, skill.family); action.multiplier = skill.alwaysAvailable ? 1 : rules.Multiplier(action.score);
             action.value = BattleRules.Round(action.power * action.multiplier);
             string family = BattleRules.FamilyName(skill.family); var representative = action.divination.chart.yaos.Where(x => x.benLiuqin == family).OrderByDescending(x => x.wangshuaiScore).ThenBy(x => x.index).FirstOrDefault();
@@ -83,15 +103,25 @@ namespace Emerge.Battle
             switch (a.effect)
             {
                 case BattleEffect.Damage:
-                    foreach (int i in Targets(a.target, a.targetIndex)) { HitEnemy(i, a.power * a.multiplier * (1 - p.weakness)); var e = state.enemies[i]; if (e.hp > 0 && a.appliesVulnerability && a.score >= 0) { e.vulnerability = r.vulnerability; e.vulnerabilityHits = r.vulnerabilityHits + (a.movingLine ? 1 : 0); } } break;
+                    foreach (int i in Targets(a.target, a.targetIndex)) { HitEnemy(i, a.power * a.multiplier * (1 - p.weakness)); var e = state.enemies[i]; if (e.hp > 0 && a.appliesVulnerability && (state.version >= 3 || a.score >= 0)) { e.vulnerability = r.vulnerability; e.vulnerabilityHits = r.vulnerabilityHits + (state.version < 3 && a.movingLine ? 1 : 0); } if (p.hp == 0) break; } break;
                 case BattleEffect.Shield: p.shield = Math.Min(r.shieldCap, p.shield + a.value); break;
                 case BattleEffect.Reduction: p.reduction = Math.Max(p.reduction, Math.Min(r.reductionCap, a.power * a.multiplier)); break;
                 case BattleEffect.Heal: p.hp = Math.Min(r.maxHP, p.hp + a.value); break;
                 case BattleEffect.Regeneration: p.regeneration = Math.Max(p.regeneration, a.value); p.regenerationTicks = a.regenerationTicks; break;
                 case BattleEffect.NextMana: p.nextMana = Math.Min(r.nextManaCap, Math.Max(p.nextMana, a.value)); break;
                 case BattleEffect.Cleanse: Cleanse(p); p.nextMana = Math.Min(r.nextManaCap, Math.Max(p.nextMana, a.value)); break;
-                case BattleEffect.Silence: if (a.score < 0) Weaken(a.targetIndex, .1f); else state.enemies[a.targetIndex].silenced = true; break;
-                case BattleEffect.Bind: var e2 = state.enemies[a.targetIndex]; if (a.score < 2) Weaken(a.targetIndex, a.score < 0 ? .1f : a.score == 0 ? .2f : .3f); else if (e2.determined || Catalog.Enemy(e2.definitionId).resistsStun) Weaken(a.targetIndex, r.bossWeakness); else e2.stunned = true; break;
+                case BattleEffect.Silence: if (state.version < 3 && a.score < 0) Weaken(a.targetIndex, .1f); else state.enemies[a.targetIndex].silenced = true; break;
+                case BattleEffect.Bind:
+                    var e2 = state.enemies[a.targetIndex];
+                    if (state.version >= 3)
+                    {
+                        if (e2.determined || Catalog.Enemy(e2.definitionId).resistsStun) Weaken(a.targetIndex, Math.Min(.5f, .2f * a.multiplier));
+                        else e2.stunned = true;
+                    }
+                    else if (a.score < 2) Weaken(a.targetIndex, a.score < 0 ? .1f : a.score == 0 ? .2f : .3f);
+                    else if (e2.determined || Catalog.Enemy(e2.definitionId).resistsStun) Weaken(a.targetIndex, r.bossWeakness);
+                    else e2.stunned = true;
+                    break;
             }
         }
         public bool RevealLine()
@@ -104,7 +134,8 @@ namespace Emerge.Battle
         public bool ResolveRound()
         {
             if (legacy != null || committing || state?.phase != BattlePhase.RoundCasting || state.roundDivination.revealedLines != 6) return false;
-            state.unlockedSkills = SelectOffers(Catalog, state.roundDivination, state.roundStartUses);
+            state.unlockedSkills = state.version >= 3 ? BattleBuildRules.SelectOffers(Catalog, state.roundDivination, state.roundStartUses, state.attributes, Log) : SelectOffers(Catalog, state.roundDivination, state.roundStartUses);
+            if (state.unlockedSkills.Count == 0) Log("有效高级技能已耗尽，本轮使用常驻技能。");
             state.phase = BattlePhase.Player; Log("本轮解锁 · " + string.Join("、", state.unlockedSkills.Select(id => Catalog.Skill(id).displayName))); Changed?.Invoke(); return true;
         }
         public static List<string> SelectOffers(BattleCatalog catalog, DivinationRecord record, List<EnemySkillUses> baseline)
@@ -127,6 +158,7 @@ namespace Emerge.Battle
         {
             var d = Catalog.Encounter(state.encounterId); var coins = CoinCasting.Cast(RoundSeed(state.seed, state.round));
             state.roundDivination = new DivinationRecord { month = d.month, day = d.day, casting = coins, chart = new LiuYaoPaiPan().PaiPan(d.month, d.day, coins.yaoValues) };
+            if (state.version >= 3) Log("第 " + state.round + " 轮定卦 · " + state.roundDivination.chart.benGuaName + "；种子 " + coins.seed + "；爻数 " + string.Join("、", Enum.GetValues(typeof(BattleFamily)).Cast<BattleFamily>().Select(f => BattleRules.FamilyName(f) + "=" + state.roundDivination.chart.yaos.Count(y => y.benLiuqin == BattleRules.FamilyName(f)))) + "；仅用于技能解锁");
             state.roundStartUses = state.skillUses.Select(x => new EnemySkillUses { skillId = x.skillId, count = x.count, lastRound = x.lastRound }).ToList();
             state.unlockedSkills.Clear(); state.lastAction = null; state.phase = BattlePhase.RoundCasting; PrepareIntents();
         }
@@ -150,7 +182,7 @@ namespace Emerge.Battle
             try
             {
                 if (!Inventory.RemoveItem(item.inventoryKey, 1)) return false;
-                switch (item.effect) { case BattleItemEffect.Heal: state.player.hp = Math.Min(Catalog.rules.maxHP, state.player.hp + item.power); break; case BattleItemEffect.Mana: state.player.mp = Math.Min(Catalog.rules.maxMP, state.player.mp + item.power); break; case BattleItemEffect.Cleanse: Cleanse(state.player); break; case BattleItemEffect.DamageAll: foreach (int i in Targets(BattleTarget.AllEnemies, 0)) HitEnemy(i, item.power); break; }
+                switch (item.effect) { case BattleItemEffect.Heal: state.player.hp = Math.Min(Catalog.rules.maxHP, state.player.hp + item.power); break; case BattleItemEffect.Mana: state.player.mp = Math.Min(Catalog.rules.maxMP, state.player.mp + item.power); break; case BattleItemEffect.Cleanse: Cleanse(state.player); break; case BattleItemEffect.DamageAll: foreach (int i in Targets(BattleTarget.AllEnemies, 0)) { HitEnemy(i, item.power); if (state.player.hp == 0) break; } break; }
                 Log("使用 " + item.displayName); CheckOutcome();
             }
             finally { committing = false; }
@@ -247,12 +279,51 @@ namespace Emerge.Battle
         private static EnemySkillDefinition Fallback(BattleEnemyDefinition d) => d.skills.First(s => s.effect == EnemyEffect.Damage && s.mpCost == 0 && s.maximumHealthFraction == 1 && s.maximumUses == 0 && s.cooldownRounds == 0);
         private IEnumerable<int> Targets(BattleTarget target, int index) { for (int i = 0; i < state.enemies.Count; i++) if (state.enemies[i].hp > 0 && (target == BattleTarget.AllEnemies || i == index)) yield return i; }
         private void HitEnemy(int index, float raw)
-        { var e = state.enemies[index]; int damage = BattleRules.Round(raw * (1 + (e.vulnerabilityHits > 0 ? e.vulnerability : 0))); int absorbed = Math.Min(e.shield, damage); e.shield -= absorbed; e.hp = Math.Max(0, e.hp - damage + absorbed); if (e.vulnerabilityHits > 0 && --e.vulnerabilityHits == 0) e.vulnerability = 0; }
+        {
+            var e = state.enemies[index]; int damage = EnemyDamage(e, raw), absorbed = Math.Min(e.shield, damage);
+            int healthDamage = Math.Min(e.hp, damage - absorbed); e.shield -= absorbed; e.hp -= healthDamage;
+            if (e.vulnerabilityHits > 0 && --e.vulnerabilityHits == 0) e.vulnerability = 0;
+            var definition = Catalog.Enemy(e.definitionId);
+            if (state.version >= 3)
+            {
+                Log("命中 " + definition.displayName + "；输入 " + raw.ToString("0.##") + " → 修正伤害 " + damage + "；护盾抵消 " + absorbed + "；剩余 HP " + e.hp);
+                if (healthDamage > 0 && definition.retaliation > 0)
+                {
+                    int beforeHP = state.player.hp, beforeShield = state.player.shield;
+                    HitPlayer(healthDamage * definition.retaliation);
+                    Log("潮棘反震 · 实际 HP 伤害 " + healthDamage + " ×" + definition.retaliation.ToString("P0") + "；护盾抵消 " + (beforeShield - state.player.shield) + "；主角损失 " + (beforeHP - state.player.hp) + " HP；剩余 " + state.player.hp);
+                }
+            }
+        }
+        private static int EnemyDamage(BattleEnemyState e, float raw)
+            => BattleRules.Round(raw * (1 + (e.vulnerabilityHits > 0 ? e.vulnerability : 0)));
+        public bool HasRetaliationTarget(BattleTarget target, int index)
+            => State?.version >= 3 && State.enemies.Where((e, i) => e.hp > 0 && (target == BattleTarget.AllEnemies || target == BattleTarget.Enemy && i == index)).Any(e => Catalog.Enemy(e.definitionId).retaliation > 0);
+        public int ForecastRetaliation(string id, int index, bool item = false)
+        {
+            if (State?.version < 3 || State == null) return 0;
+            var skill = item ? null : Catalog.Skill(id); var consumable = item ? Catalog.Item(id) : null;
+            if (item ? consumable == null || consumable.effect != BattleItemEffect.DamageAll : skill == null || skill.effect != BattleEffect.Damage) return 0;
+            var target = item ? BattleTarget.AllEnemies : skill.target;
+            float raw = item ? consumable.power : skill.power * SkillMultiplier(id) * (1 - State.player.weakness);
+            int total = 0, shield = State.player.shield;
+            foreach (var e in State.enemies.Where((e, i) => e.hp > 0 && (target == BattleTarget.AllEnemies || i == index)))
+            {
+                int healthDamage = Math.Min(e.hp, Math.Max(0, EnemyDamage(e, raw) - e.shield));
+                int reflected = BattleRules.Round(healthDamage * Catalog.Enemy(e.definitionId).retaliation * (1 - State.player.reduction) * (1 + State.player.exposure));
+                int absorbed = Math.Min(shield, reflected); shield -= absorbed; total += reflected - absorbed;
+            }
+            return Math.Min(total, State.player.hp);
+        }
         private void HitPlayer(float raw)
         { var p = state.player; int damage = BattleRules.Round(raw * (1 - p.reduction) * (1 + p.exposure)); int absorbed = Math.Min(p.shield, damage); p.shield -= absorbed; p.hp = Math.Max(0, p.hp - damage + absorbed); }
         private void Weaken(int target, float weakness) { state.enemies[target].weakness = Math.Max(state.enemies[target].weakness, weakness); }
         private void CheckOutcome() { if (state.player.hp <= 0) state.phase = BattlePhase.Defeat; else if (state.enemies.All(e => e.hp <= 0)) state.phase = BattlePhase.Victory; }
-        private void Log(string text) { state.log.Add(text); if (state.log.Count > 80) state.log.RemoveAt(0); }
+        private void Log(string text)
+        {
+            state.log.Add(text); if (state.log.Count > 80) state.log.RemoveAt(0);
+            if (EmitRuntimeLogs) { Debug.Log("[战斗链] " + text); BattleLogicTrace.Record(state, text); }
+        }
         public void ApplyOutcome()
         {
             var s = State; if (s == null || s.outcomeApplied || (s.phase != BattlePhase.Victory && s.phase != BattlePhase.Defeat)) return; committing = true;
@@ -272,7 +343,7 @@ namespace Emerge.Battle
             finally { committing = false; }
         }
         public BattleSnapshot Capture()
-        { if (IsCommitting) throw new InvalidOperationException("行动提交期间不能保存"); return new BattleSnapshot { session = State == null ? null : JsonUtility.FromJson<BattleSession>(JsonUtility.ToJson(State)) }; }
+        { if (IsCommitting) throw new InvalidOperationException("行动提交期间不能保存"); return new BattleSnapshot { catalogPath = Catalog.SaveResourcePath, session = State == null ? null : JsonUtility.FromJson<BattleSession>(JsonUtility.ToJson(State)) }; }
         public bool Restore(BattleSnapshot snapshot)
         {
             if (IsCommitting || !ValidateSnapshot(snapshot, Catalog)) return false;
@@ -282,14 +353,13 @@ namespace Emerge.Battle
         }
         public static bool ValidateSnapshot(BattleSnapshot snapshot, BattleCatalog catalog = null)
         {
-            if (snapshot == null || snapshot.version != 1 || snapshot.catalogPath != BattleCatalog.ResourcePath ||
+            if (snapshot == null || snapshot.version != 1 ||
                 (snapshot.returnPoint != null && (!BattleReturnPoint.Validate(snapshot.returnPoint) || snapshot.session == null))) return false;
+            if (!BattleCatalog.TryResolveSaveCatalog(snapshot.catalogPath, catalog, out catalog)) return false;
             if (snapshot.session == null) return true;
-            if (catalog == null) catalog = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
-            if (catalog == null || !catalog.Validate(out _)) return false;
             if (snapshot.session.version == 1) return BattleLegacyEngine.ValidateSnapshot(snapshot, catalog);
             var s = snapshot.session; var p = s.player; var r = catalog.rules; var d = catalog.Encounter(s.encounterId);
-            if (s.version != 2 || s.balanceVersion != r.balanceVersion || string.IsNullOrWhiteSpace(s.sessionId) || string.IsNullOrWhiteSpace(s.contextId) || s.round < 1 || s.actionSerial < 0 || d == null || p == null ||
+            if ((s.version != 2 && s.version != 3) || (s.version == 3 && !SixKinAttributes.IsValidBuild(s.attributes)) || s.balanceVersion != r.balanceVersion || string.IsNullOrWhiteSpace(s.sessionId) || string.IsNullOrWhiteSpace(s.contextId) || s.round < 1 || s.actionSerial < 0 || d == null || p == null ||
                 !Enum.IsDefined(typeof(BattlePhase), s.phase) || s.phase == BattlePhase.Casting || s.pending != null ||
                 p.hp < 0 || p.hp > r.maxHP || p.mp < 0 || p.mp > r.maxMP || p.shield < 0 || p.shield > r.shieldCap || !Fraction(p.reduction, r.reductionCap) || !Fraction(p.weakness, 1) ||
                 !Fraction(p.exposure, r.exposure) || p.exposureUntilRound < 0 || p.exposureUntilRound > s.round + 1 || (p.exposure > 0 && p.exposureUntilRound < s.round) || ((p.exposure == 0) != (p.exposureUntilRound == 0)) ||
@@ -301,7 +371,7 @@ namespace Emerge.Battle
                 !ValidRecord(s.roundDivination, s, d, s.round) || s.unlockedSkills == null || s.unlockedSkills.Distinct().Count() != s.unlockedSkills.Count) return false;
             bool opening = s.phase == BattlePhase.RoundCasting;
             if ((!opening && s.roundDivination.revealedLines != 6) || (opening && s.unlockedSkills.Count != 0) ||
-                (!opening && !s.unlockedSkills.SequenceEqual(SelectOffers(catalog, s.roundDivination, s.roundStartUses))) ||
+                (!opening && !s.unlockedSkills.SequenceEqual(s.version >= 3 ? BattleBuildRules.SelectOffers(catalog, s.roundDivination, s.roundStartUses, s.attributes) : SelectOffers(catalog, s.roundDivination, s.roundStartUses))) ||
                 (s.phase == BattlePhase.Victory && (p.hp <= 0 || s.enemies.Any(e => e.hp > 0))) || (s.phase == BattlePhase.Defeat && p.hp != 0) ||
                 ((opening || s.phase == BattlePhase.Player || s.phase == BattlePhase.Enemy) && (p.hp == 0 || s.enemies.All(e => e.hp <= 0))) ||
                 (s.outcomeApplied && s.phase != BattlePhase.Victory && s.phase != BattlePhase.Defeat)) return false;
@@ -318,7 +388,7 @@ namespace Emerge.Battle
             if (skill == null || a.round != s.round || a.serial != s.actionSerial || a.power != skill.power || a.family != skill.family || a.effect != skill.effect || a.target != skill.target ||
                 a.targetIndex < 0 || a.targetIndex >= s.enemies.Count || a.appliesVulnerability != skill.appliesVulnerability || a.regenerationTicks != skill.regenerationTicks || a.skillName != skill.displayName ||
                 !ValidRecord(a.divination, s, d, a.round) || a.divination.revealedLines != 6 || (!skill.alwaysAvailable && !s.unlockedSkills.Contains(skill.id))) return false;
-            var expected = new BattleAction { family = a.family, power = a.power, divination = a.divination }; Grade(expected, skill, r);
+            var expected = new BattleAction { family = a.family, power = a.power, divination = a.divination }; Grade(expected, skill, r, s.version >= 3 ? s.attributes : null);
             return a.score == expected.score && a.multiplier == expected.multiplier && a.value == expected.value && a.movingLine == expected.movingLine;
         }
         private static bool ValidUses(List<EnemySkillUses> uses, BattleCatalog c, int round)

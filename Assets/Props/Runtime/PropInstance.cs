@@ -30,6 +30,7 @@ namespace Emerge.Props
         private bool hiddenByState;
         private float nextInteraction;
         public PropDefinition Definition => definition;
+        public Emerge.Characters.CharacterDefinition Character => definition != null ? definition.character : null;
         public string InstanceId => instanceId;
         public MapPlacementMode PlacementMode => placementMode;
         public Vector2Int GridCoordinate => gridCoordinate;

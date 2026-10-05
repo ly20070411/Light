@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a00238764e6be847b734a5f61d6948b, type: 3}
+  m_Name: DiagnosisCheck
+  m_EditorClassIdentifier: 
+  eventId: day1.diagnosis
+  title: "\u603B\u63A7\u5BA4\u8BBE\u5907\u68C0\u67E5"
+  speaker: "\u8BCA\u65AD\u7EC8\u7AEF"
+  intro: "\u8BFB\u53D6\u7EC8\u7AEF\u72B6\u6001\uFF0C\u518D\u6574\u7406\u5404\u8DEF\u4FE1\u606F\u3002"
+  completedText: "\u68C0\u67E5\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6797\u6EAA\u3002"
+  revealDifficultyBeforeChoice: 1
+  useDivination: 1
+  divinationMonth: "\u5DF3\u6708"
+  divinationDay: "\u620A\u5B50\u65E5"
+  useFixedDivinationSeed: 0
+  divinationSeed: 0
+  options:
+  - id: perform
+    label: "\u6574\u7406\u7EC8\u7AEF\u8BB0\u5F55"
+    behavior: 0
+    targetValue: 7
+    requiredFlags:
+    - day1.free_roam
+    - day1.quest.lin-xi
+    requiredItemKey: 
+    requiredItemAmount: 1
+    consumeRequiredItem: 0
+    success:
+      text: "\u4F60\u4ECE\u4EA4\u9519\u7684\u6570\u636E\u4E2D\u6574\u7406\u51FA\u4E86\u53EF\u7528\u4E8E\u540E\u7EED\u68C0\u67E5\u7684\u8BB0\u5F55\u3002"
+      continuation: "\u68C0\u67E5\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6797\u6EAA\u3002"
+      grantedFlags:
+      - day1.diagnosis_done
+      - day1.diagnosis_success
+      rewardItemKey: day1.calibration-note
+      rewardItemName: "\u6821\u9A8C\u8BB0\u5F55"
+      rewardItemAmount: 1
+      contaminationDelta: 0
+    failure:
+      text: "\u4F60\u53D6\u5F97\u4E86\u57FA\u7840\u68C0\u67E5\u7ED3\u679C\uFF0C\u4F46\u672A\u80FD\u6574\u7406\u51FA\u989D\u5916\u53EF\u7528\u7684\u8BB0\u5F55\u3002"
+      continuation: "\u68C0\u67E5\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6797\u6EAA\u3002"
+      grantedFlags:
+      - day1.diagnosis_done
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0

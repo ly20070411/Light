@@ -36,5 +36,5 @@ namespace Emerge.GameFlow
         public List<SavedProp> props = new List<SavedProp>();
     }
     public enum SaveSlot { Manual, Auto }
-    public enum GameSessionPhase { MainMenu, Loading, Playing, Settings }
+    public enum GameSessionPhase { MainMenu, Loading, Playing, Settings, CharacterCreation }
 }

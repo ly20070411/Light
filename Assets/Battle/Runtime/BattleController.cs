@@ -9,6 +9,8 @@ namespace Emerge.Battle
     public sealed class BattleController : MonoBehaviour
     {
         public BattleCatalog catalog;
+        [Tooltip("可选的战斗主角外观引用；未指定时沿用战斗演示默认外观。")]
+        public Emerge.Characters.CharacterDefinition character;
         public BattleEngine Engine { get; private set; }
         public static BattleController Active { get; private set; }
         public static bool AnyBattleActive => Active != null && Active.Engine?.State != null;
@@ -21,10 +23,16 @@ namespace Emerge.Battle
         private void Awake() { EnsureEngine(); }
         private void EnsureEngine()
         {
-            if (Engine != null) return;
             if (catalog == null) catalog = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
             if (catalog == null) return;
-            Engine = new BattleEngine(catalog, GetComponent<PropGameState>());
+            if (Engine != null && (Engine.Catalog == catalog || Engine.State != null)) return;
+            SetEngine(new BattleEngine(catalog, GetComponent<PropGameState>()));
+        }
+        private void SetEngine(BattleEngine engine)
+        {
+            if (Engine != null) Engine.Changed -= OnChanged;
+            Engine = engine;
+            catalog = engine.Catalog;
             Engine.Changed += OnChanged;
         }
         public bool TryBegin(BattleEncounterDefinition encounter, string contextId = null)
@@ -36,9 +44,16 @@ namespace Emerge.Battle
             string context = contextId ?? encounter.id;
             int proposedSeed = encounter.useFixedSeed ? encounter.fixedSeed : unchecked((int)DateTime.UtcNow.Ticks ^ Guid.NewGuid().GetHashCode());
             int seed = GetComponent<PropGameState>().LockBattleSeed(context, encounter.id, proposedSeed);
+            var attributes = GetComponent<Emerge.Checks.CheckActorState>()?.attributes;
+            if (!Emerge.Checks.SixKinAttributes.IsValidBuild(attributes))
+            {
+                if (GameSessionController.Instance != null) { Debug.LogWarning("[战斗链] 请先完成五亲 8 点分配。"); return false; }
+                attributes = Emerge.Checks.SixKinAttributes.DefaultBuild();
+                Debug.Log("[战斗链] 独立演示使用默认五亲 8 点配置。");
+            }
             returnPoint = BattleReturnPoint.Capture(this);
             Active = this; ShowView();
-            Engine.Start(encounter, seed, contextId); nextStep = Time.time + .35f; return true;
+            Engine.Start(encounter, seed, contextId, attributes); nextStep = Time.time + .35f; return true;
         }
         private void ShowView()
         {
@@ -73,7 +88,7 @@ namespace Emerge.Battle
             }
         }
         public void UseSkill(string id, int target)
-        { if (GameSessionController.SessionInputAllowed && Engine.CommitSkill(id, target, out _)) { if (Engine.State.version == 2) View?.ShowSkillResult(Engine.State.lastAction); nextStep = Time.time + .3f; } }
+        { if (GameSessionController.SessionInputAllowed && Engine.CommitSkill(id, target, out _)) { if (Engine.State.version >= 2) View?.ShowSkillResult(Engine.State.lastAction); nextStep = Time.time + .3f; } }
         public void UseItem(string id)
         { if (GameSessionController.SessionInputAllowed && Engine.UseItem(id, out _)) View?.PlayItemAction(id); }
         public void EndTurn() { if (GameSessionController.SessionInputAllowed && Engine.EndTurn()) nextStep = Time.time + .4f; }
@@ -100,7 +115,7 @@ namespace Emerge.Battle
         public void CloseResult()
         {
             if (!GameSessionController.SessionInputAllowed || (Engine?.State?.phase != BattlePhase.Victory && Engine?.State?.phase != BattlePhase.Defeat)) return;
-            Engine.ApplyOutcome(); Engine.Restore(new BattleSnapshot()); Active = null;
+            Engine.ApplyOutcome(); Engine.Restore(new BattleSnapshot { catalogPath = Engine.Catalog.SaveResourcePath }); Active = null;
             returnPoint = null;
             if (View != null) View.gameObject.SetActive(false); Closed?.Invoke();
         }
@@ -113,8 +128,21 @@ namespace Emerge.Battle
         }
         public bool RestoreSnapshot(BattleSnapshot snapshot)
         {
-            EnsureEngine(); if (Engine == null) return snapshot == null;
-            if (!Engine.Restore(snapshot ?? new BattleSnapshot())) return false;
+            EnsureEngine();
+            if (snapshot != null && (Engine == null || Engine.Catalog.SaveResourcePath != snapshot.catalogPath))
+            {
+                if (!BattleCatalog.TryResolveSaveCatalog(snapshot.catalogPath, null, out var savedCatalog) ||
+                    !BattleEngine.ValidateSnapshot(snapshot, savedCatalog)) return false;
+                // Prepare and validate the replacement before touching the current battle or UI.
+                var restored = new BattleEngine(savedCatalog, GetComponent<PropGameState>());
+                if (!restored.Restore(snapshot)) return false;
+                SetEngine(restored);
+            }
+            else
+            {
+                if (Engine == null) return snapshot == null;
+                if (!Engine.Restore(snapshot ?? new BattleSnapshot { catalogPath = Engine.Catalog.SaveResourcePath })) return false;
+            }
             returnPoint = snapshot?.returnPoint == null ? null : JsonUtility.FromJson<BattleReturnPoint>(JsonUtility.ToJson(snapshot.returnPoint));
             if (Engine.State != null)
             { Active = this; ShowView(); OnChanged(); nextStep = Time.time + .5f; }

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a00238764e6be847b734a5f61d6948b, type: 3}
+  m_Name: PartsCheck
+  m_EditorClassIdentifier: 
+  eventId: day1.parts
+  title: "\u7801\u5934\u96F6\u4EF6\u641C\u5BFB"
+  speaker: "\u96F6\u4EF6\u7BB1"
+  intro: "\u6838\u5BF9\u73B0\u6709\u96F6\u4EF6\uFF0C\u627E\u51FA\u53EF\u4F9B\u68C0\u4FEE\u7684\u66FF\u6362\u4EF6\u3002"
+  completedText: "\u6240\u9700\u96F6\u4EF6\u5DF2\u627E\u5230\uFF0C\u5DE5\u5177\u9F50\u5907\u540E\u53EF\u4EE5\u4EA4\u7ED9\u673A\u68B0\u5E08\u3002"
+  revealDifficultyBeforeChoice: 1
+  useDivination: 1
+  divinationMonth: "\u5DF3\u6708"
+  divinationDay: "\u620A\u5B50\u65E5"
+  useFixedDivinationSeed: 0
+  divinationSeed: 0
+  options:
+  - id: perform
+    label: "\u8FA8\u8BA4\u5E76\u6574\u7406\u96F6\u4EF6"
+    behavior: 3
+    targetValue: 10
+    requiredFlags:
+    - day1.free_roam
+    - day1.quest.mechanic
+    requiredItemKey: 
+    requiredItemAmount: 1
+    consumeRequiredItem: 0
+    success:
+      text: "\u4F60\u627E\u5230\u4E86\u4E00\u4EF6\u72B6\u51B5\u826F\u597D\u7684\u5907\u7528\u96F6\u4EF6\u3002"
+      continuation: "\u6240\u9700\u96F6\u4EF6\u5DF2\u627E\u5230\uFF0C\u5DE5\u5177\u9F50\u5907\u540E\u53EF\u4EE5\u4EA4\u7ED9\u673A\u68B0\u5E08\u3002"
+      grantedFlags:
+      - day1.parts_collected
+      - day1.parts_success
+      rewardItemKey: day1.spare-part
+      rewardItemName: "\u5907\u7528\u96F6\u4EF6"
+      rewardItemAmount: 1
+      contaminationDelta: 0
+    failure:
+      text: "\u4F60\u627E\u5230\u4E86\u53EF\u7528\u4E8E\u68C0\u4FEE\u7684\u96F6\u4EF6\uFF0C\u4F46\u6CA1\u6709\u627E\u5230\u989D\u5916\u7684\u5B8C\u597D\u5907\u4EF6\u3002"
+      continuation: "\u6240\u9700\u96F6\u4EF6\u5DF2\u627E\u5230\uFF0C\u5DE5\u5177\u9F50\u5907\u540E\u53EF\u4EE5\u4EA4\u7ED9\u673A\u68B0\u5E08\u3002"
+      grantedFlags:
+      - day1.parts_collected
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0

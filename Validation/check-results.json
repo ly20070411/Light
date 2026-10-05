@@ -1,8 +1,8 @@
 {
     "unityVersion": "2022.3.12f1",
     "scene": "Assets/Scenes/ChecksDemo.unity",
-    "completedUtc": "2026-10-04T04:41:28.2334539Z",
-    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\CheckSaveTest_d5642b8708f242bb9503a40e274c9c5e",
+    "completedUtc": "2026-10-05T16:19:55.6016618Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\CheckSaveTest_1db0459b72f64392a32fd4b4f47a6a42",
     "passed": true,
     "checks": [
         {

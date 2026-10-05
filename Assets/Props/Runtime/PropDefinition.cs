@@ -9,8 +9,11 @@ namespace Emerge.Props
     [Serializable] public sealed class PropDialogueLine
     {
         public string speaker;
+        public Emerge.Characters.CharacterDefinition character;
         [TextArea(2, 5)] public string text;
         public Sprite portrait;
+        public string SpeakerName => !string.IsNullOrWhiteSpace(speaker) ? speaker : character != null ? character.DisplayName : "";
+        public Sprite Portrait => portrait != null ? portrait : character != null ? character.portrait : null;
     }
 
     [Serializable] public sealed class PropDialogueChoice
@@ -43,6 +46,7 @@ namespace Emerge.Props
         [SerializeField] private string id = Guid.NewGuid().ToString("N");
         public string displayName = "新道具";
         public string category = "通用";
+        public Emerge.Characters.CharacterDefinition character;
         [TextArea] public string description;
         public PropVisualMode visualMode;
         public Sprite sprite;
@@ -86,7 +90,7 @@ namespace Emerge.Props
         public string lockedHint = "尚未满足交互条件";
 
         public string Id => id;
-        public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? name : displayName;
+        public string DisplayName => character != null ? character.DisplayName : string.IsNullOrWhiteSpace(displayName) ? name : displayName;
         public string InventoryKey => string.IsNullOrWhiteSpace(inventoryKey) ? id : inventoryKey;
         public bool HasAction(PropActions action) => (actions & action) != 0;
         public void RenewIdentity() { id = Guid.NewGuid().ToString("N"); }

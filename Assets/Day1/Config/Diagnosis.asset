@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Diagnosis
+  m_EditorClassIdentifier: 
+  id: f86069973b514291b024f7a854f16802
+  displayName: "\u8BBE\u5907\u8BCA\u65AD\u7EC8\u7AEF"
+  category: "Day1 / \u68C0\u5B9A"
+  character: {fileID: 0}
+  description: "P07 \u5B9E\u9645\u516D\u723B\u4FE1\u606F\u6574\u7406\u68C0\u5B9A\u3002\u3010\u5360\u4F4D\u3011\u7236\u6BCD\u76EE\u6807
+    7\uFF0C\u4F7F\u7528\u73B0\u6709\u6F14\u793A\u6708\u65E5\uFF1B\u6210\u529F\u5956\u52B1\u6821\u9A8C\u8BB0\u5F55\uFF0C\u5931\u8D25\u4ECD\u4FDD\u5B58\u57FA\u7840\u68C0\u67E5\u7ED3\u679C\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 6e5168431e5b8004b806bd61b57747a3, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 0.64, g: 0.83, b: 1, a: 1}
+  worldSize: {x: 1.8, y: 1.8}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 1
+  colliderSize: {x: 0.75, y: 0.35}
+  colliderOffset: {x: 0, y: 0.12}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u68C0\u67E5\u7EC8\u7AEF\u72B6\u6001"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 11400000, guid: f0241716dc6a7c049a0bff4118cf13f0, type: 2}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  - day1.quest.lin-xi
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5411\u6797\u6EAA\u63A5\u53D6\u68C0\u67E5\u4EFB\u52A1"

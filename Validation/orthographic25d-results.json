@@ -1,0 +1,36 @@
+{
+    "passed": true,
+    "completedUtc": "2026-10-05T15:05:53.7679445Z",
+    "checks": [
+        {
+            "name": "Orthographic camera and diagonal view",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Player is a 2D sprite with 3D collision",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Preview does not start the real game or touch user saves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Right key moves right on the screen",
+            "observed": "(1.49, -0.04, -1.49)",
+            "passed": true
+        },
+        {
+            "name": "Player climbs actual steps and reaches the platform",
+            "observed": "(0.50, 1.61, 2.68)",
+            "passed": true
+        },
+        {
+            "name": "Solid wall blocks movement",
+            "observed": "(3.37, 0.01, 5.28)",
+            "passed": true
+        }
+    ]
+}

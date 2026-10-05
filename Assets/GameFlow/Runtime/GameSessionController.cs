@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Emerge.Props;
+using Emerge.Checks;
 using PixelPrototype;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,13 @@ namespace Emerge.GameFlow
         private float nextAutoSave;
         private bool hasStartedGame;
         private bool restoringBattleWorld;
+        private CharacterAttributeAllocation allocation;
+        private GameSaveData reallocationSave;
+        private SaveSlot? reallocationSlot;
+        private bool changingAttributes;
+        public bool IsReallocating => reallocationSave != null;
+        public bool IsChangingAttributes => changingAttributes;
+        public bool CanChangeAttributes => phase == GameSessionPhase.Settings && hasStartedGame && !Emerge.Battle.BattleController.AnyBattleActive;
         public static GameSessionController Instance { get; private set; }
         public static bool SessionInputAllowed => Instance == null || Instance.phase == GameSessionPhase.Playing;
         public static bool GameplayInputAllowed => SessionInputAllowed && !Emerge.Battle.BattleController.AnyBattleActive;
@@ -33,6 +41,8 @@ namespace Emerge.GameFlow
         public GameSaveStore Store => store;
         public bool IsTransitioning => phase == GameSessionPhase.Loading;
         public bool IsReady { get; private set; }
+        public int AllocationRemaining => allocation?.Remaining ?? SixKinAttributes.StartingPoints;
+        public int AllocatedPoints(CheckBehavior attribute) => allocation?.Get(attribute) ?? 0;
 
         private void Awake()
         {
@@ -62,7 +72,8 @@ namespace Emerge.GameFlow
                 }
             }
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
-            if (menu.HasSecondaryPage) menu.CloseSecondaryPage();
+            if (phase == GameSessionPhase.CharacterCreation) CancelCharacterCreation();
+            else if (menu.HasSecondaryPage) menu.CloseSecondaryPage();
             else if (phase == GameSessionPhase.Playing)
             {
                 var dialogue = FindObjectsOfType<PlayerInteractor>().FirstOrDefault(actor => actor.IsInDialogue);
@@ -72,30 +83,127 @@ namespace Emerge.GameFlow
         }
         public void BeginNewGame()
         {
-            if (!IsReady || IsTransitioning) return;
+            if (!IsReady || phase != GameSessionPhase.MainMenu) return;
             if (!Application.CanStreamedLevelBeLoaded(gameScenePath)) { Notify("游戏场景未加入 Build Settings。"); return; }
-            StartCoroutine(EnterGame(null));
+            allocation = new CharacterAttributeAllocation();
+            reallocationSave = null;
+            reallocationSlot = null;
+            changingAttributes = false;
+            hasStartedGame = false; phase = GameSessionPhase.CharacterCreation; Time.timeScale = 0;
+            menu.ShowCharacterCreation();
+        }
+        public bool AdjustAttribute(CheckBehavior attribute, int delta)
+        {
+            if (phase != GameSessionPhase.CharacterCreation || allocation == null || !allocation.TryChange(attribute, delta)) return false;
+            menu.RefreshAttributeAllocation(); return true;
+        }
+        public bool BeginAttributeReallocation()
+        {
+            if (!CanChangeAttributes) { Notify("请在战斗结束后，通过设置重新分配点数。"); return false; }
+            var checks = MainPlayer()?.GetComponent<CheckActorState>();
+            if (checks == null || !SixKinAttributes.IsValidBuild(checks.attributes)) { Notify("当前角色的五亲点数无效，无法重新分配。"); return false; }
+            allocation = new CharacterAttributeAllocation(checks.attributes);
+            reallocationSave = null; reallocationSlot = null; changingAttributes = true;
+            phase = GameSessionPhase.CharacterCreation; Time.timeScale = 0; menu.ShowCharacterCreation();
+            return true;
+        }
+        public void ResetAttributeAllocation()
+        {
+            if (phase != GameSessionPhase.CharacterCreation || allocation == null) return;
+            allocation.Reset(); menu.RefreshAttributeAllocation();
+        }
+        public bool ConfirmCharacterCreation()
+        {
+            if (phase != GameSessionPhase.CharacterCreation || allocation == null || !allocation.IsComplete) return false;
+            var attributes = allocation.ToAttributes();
+            if (changingAttributes) return ConfirmAttributeReallocation(attributes);
+            var saved = reallocationSave;
+            var sourceSlot = reallocationSlot;
+            if (saved != null) UpgradePlayerAttributes(saved, attributes);
+            reallocationSave = null;
+            reallocationSlot = null;
+            allocation = null;
+            StartCoroutine(EnterGame(saved, newAttributes: saved == null ? attributes : null, upgradeSlot: sourceSlot));
+            return true;
+        }
+        public void CancelCharacterCreation()
+        {
+            if (phase != GameSessionPhase.CharacterCreation) return;
+            if (changingAttributes)
+            {
+                allocation = null; changingAttributes = false; phase = GameSessionPhase.Settings; Time.timeScale = 0; menu.ShowSettings();
+                return;
+            }
+            allocation = null; reallocationSave = null; reallocationSlot = null; phase = GameSessionPhase.MainMenu; Time.timeScale = 0; menu.ShowMainMenu();
+        }
+        private bool ConfirmAttributeReallocation(ActorCheckAttributes attributes)
+        {
+            if (!hasStartedGame || Emerge.Battle.BattleController.AnyBattleActive || !SixKinAttributes.IsValidBuild(attributes)) return false;
+            var checks = MainPlayer()?.GetComponent<CheckActorState>();
+            if (checks == null) { Notify("没有可重新加点的角色。"); return false; }
+            try
+            {
+                var data = CaptureGame("角色重新加点");
+                UpgradePlayerAttributes(data, attributes, "角色重新加点");
+                // Persist the complete world first. On a write failure, the live build and draft stay intact.
+                if (!store.TryWrite(SaveSlot.Auto, data, out var error)) { Notify(error); return false; }
+                checks.TrySetAllocatedAttributes(attributes);
+            }
+            catch (Exception exception) { Notify("重新加点保存失败：" + exception.Message); return false; }
+            allocation = null; changingAttributes = false; phase = GameSessionPhase.Settings; Time.timeScale = 0;
+            menu.ShowSettings(); Notify("已重新分配五亲点数并自动保存；新的检定和战斗使用新加点。");
+            Debug.Log("[角色加点] 设置中重新分配：父母 " + attributes.parent + "，子孙 " + attributes.offspring + "，官鬼 " + attributes.officer + "，妻财 " + attributes.wealth + "，兄弟 " + attributes.sibling);
+            return true;
+        }
+        private static PlayerMovement MainPlayer()
+        {
+            var players = FindObjectsOfType<PlayerMovement>(true).Where(actor => actor.gameObject.scene == SceneManager.GetActiveScene()).ToArray();
+            return players.FirstOrDefault(actor => actor.CompareTag("Player")) ?? players.FirstOrDefault();
         }
         public void ContinueGame()
         {
-            if (!IsReady || IsTransitioning) return;
-            if (!store.TryLatest(out var data, out _, out string message)) { Notify(message); return; }
-            LoadData(data, message);
+            if (!IsReady || IsTransitioning || phase == GameSessionPhase.CharacterCreation) return;
+            if (!store.TryLatest(out var data, out var slot, out string message)) { Notify(message); return; }
+            LoadData(data, message, slot);
         }
         public void LoadManual() { LoadSlot(SaveSlot.Manual); }
         public void LoadAutomatic() { LoadSlot(SaveSlot.Auto); }
         private void LoadSlot(SaveSlot slot)
         {
-            if (!IsReady || IsTransitioning) return;
+            if (!IsReady || IsTransitioning || phase == GameSessionPhase.CharacterCreation) return;
             if (!store.TryRead(slot, out var data, out string message)) { Notify(message); return; }
-            LoadData(data, message);
+            LoadData(data, message, slot);
         }
-        private void LoadData(GameSaveData data, string warning)
+        private void LoadData(GameSaveData data, string warning, SaveSlot slot)
         {
             if (!Application.CanStreamedLevelBeLoaded(data.scenePath)) { Notify("存档中的场景未加入 Build Settings，无法加载。"); return; }
+            var player = data.actors.Find(actor => actor.id == data.playerId);
+            if (player.checkState == null || player.checkState.attributeRulesVersion != SixKinAttributes.RulesVersion)
+            {
+                reallocationSave = JsonUtility.FromJson<GameSaveData>(JsonUtility.ToJson(data));
+                reallocationSlot = slot;
+                allocation = new CharacterAttributeAllocation(); hasStartedGame = false;
+                phase = GameSessionPhase.CharacterCreation; Time.timeScale = 0; menu.ShowCharacterCreation();
+                return;
+            }
             StartCoroutine(EnterGame(data, warning));
         }
-        private IEnumerator EnterGame(GameSaveData data, string warning = null)
+        private static void UpgradePlayerAttributes(GameSaveData data, ActorCheckAttributes attributes, string reason = "五亲规则升级")
+        {
+            data.reason = reason;
+            var player = data.actors.Find(actor => actor.id == data.playerId);
+            if (player.checkState == null) player.checkState = new CheckActorState.Snapshot();
+            player.checkState.attributes = attributes.Clone();
+            player.checkState.attributeRulesVersion = SixKinAttributes.RulesVersion;
+            var point = player.battleState?.returnPoint;
+            if (point != null)
+            {
+                if (point.checkState == null) point.checkState = new CheckActorState.Snapshot();
+                point.checkState.attributes = attributes.Clone(); point.checkState.attributeRulesVersion = SixKinAttributes.RulesVersion;
+                if (point.world != null) UpgradePlayerAttributes(point.world, attributes, reason);
+            }
+        }
+        private IEnumerator EnterGame(GameSaveData data, string warning = null, ActorCheckAttributes newAttributes = null, SaveSlot? upgradeSlot = null)
         {
             CancelDialogues();
             phase = GameSessionPhase.Loading; hasStartedGame = false; Time.timeScale = 0;
@@ -110,11 +218,34 @@ namespace Emerge.GameFlow
             string restoreError = null;
             if (data != null)
                 try { RestoreGame(data); } catch (Exception exception) { restoreError = "恢复存档失败：" + exception.Message; }
+            else
+                try { ApplyCreatedAttributes(newAttributes); } catch (Exception exception) { restoreError = "创建角色失败：" + exception.Message; }
             if (restoreError != null) { phase = GameSessionPhase.MainMenu; menu.ShowMainMenu(); Notify(restoreError); yield break; }
             phase = GameSessionPhase.Playing; hasStartedGame = true; Time.timeScale = 1;
             menu.ShowGameplay(); nextAutoSave = Time.unscaledTime + Mathf.Max(1, autoSaveInterval);
             if (data == null) SaveAutomatic("新游戏初始存档");
-            else Notify((string.IsNullOrEmpty(warning) ? "已读取存档" : warning) + " · " + new DateTime(data.savedUtcTicks, DateTimeKind.Utc).ToLocalTime().ToString("MM-dd HH:mm:ss"));
+            else
+            {
+                Notify((string.IsNullOrEmpty(warning) ? "已读取存档" : warning) + " · " + new DateTime(data.savedUtcTicks, DateTimeKind.Utc).ToLocalTime().ToString("MM-dd HH:mm:ss"));
+                if (upgradeSlot.HasValue)
+                {
+                    if (!store.TryWrite(upgradeSlot.Value, data, out var upgradeError)) Notify(upgradeError);
+                    SaveAutomatic("五亲规则升级");
+                }
+            }
+        }
+        private void ApplyCreatedAttributes(ActorCheckAttributes attributes)
+        {
+            if (attributes == null) throw new InvalidOperationException("尚未确认六亲基础点数。");
+            var players = FindObjectsOfType<PlayerMovement>(true).Where(actor => actor.gameObject.scene == SceneManager.GetActiveScene()).ToArray();
+            var main = players.FirstOrDefault(actor => actor.CompareTag("Player")) ?? players.FirstOrDefault();
+            if (main == null) throw new InvalidOperationException("当前场景没有可创建的主角。");
+            var checks = main.GetComponent<CheckActorState>();
+            if (checks == null) checks = main.gameObject.AddComponent<CheckActorState>();
+            if (!checks.RestoreSnapshot(new CheckActorState.Snapshot { attributeRulesVersion = SixKinAttributes.RulesVersion, attributes = attributes.Clone() }))
+                throw new InvalidOperationException("六亲基础点数无效。");
+            Debug.Log("[角色创建] 六亲基础点数已确认：父母 " + attributes.parent + "，子孙 " + attributes.offspring +
+                "，官鬼 " + attributes.officer + "，妻财 " + attributes.wealth + "，兄弟 " + attributes.sibling + "；每点技能基础效果 +10%。");
         }
         public void OpenSettings()
         {
@@ -132,7 +263,7 @@ namespace Emerge.GameFlow
         public bool SaveAutomatic(string reason) => Save(SaveSlot.Auto, reason);
         private bool Save(SaveSlot slot, string reason)
         {
-            if (!hasStartedGame || IsTransitioning || phase == GameSessionPhase.MainMenu || restoringBattleWorld) return false;
+            if (!hasStartedGame || IsTransitioning || phase == GameSessionPhase.MainMenu || phase == GameSessionPhase.CharacterCreation || restoringBattleWorld) return false;
             try
             {
                 if (!store.TryWrite(slot, CaptureGame(reason), out string error)) { Notify(error); return false; }

@@ -1,8 +1,8 @@
 {
     "unityVersion": "2022.3.12f1",
     "scene": "Assets/Scenes/ChecksDemo.unity",
-    "completedUtc": "2026-10-04T04:42:07.7026246Z",
-    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\DivinationSaveTest_91a9fa88f05e413dbec47e76a84bfc68",
+    "completedUtc": "2026-10-05T16:29:12.7263199Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\DivinationSaveTest_269a4356adf54b708e9f6bf8b2f0f4ac",
     "passed": true,
     "exhaustiveCases": 4096,
     "hexagramCount": 64,

@@ -1,0 +1,111 @@
+{
+    "success": true,
+    "completedUtc": "2026-10-04T11:57:16.9711072Z",
+    "checks": [
+        {
+            "name": "Runtime Resources catalog loads all eight roles",
+            "observed": "7 current-team members and Tan Yue",
+            "passed": true
+        },
+        {
+            "name": "Stable IDs are unique and searchable",
+            "observed": "Lookup uses fixed IDs",
+            "passed": true
+        },
+        {
+            "name": "Current and previous teams remain separate",
+            "observed": "Tan Yue is outside the seven-person party",
+            "passed": true
+        },
+        {
+            "name": "Four unnamed members retain profession labels",
+            "observed": "No invented names",
+            "passed": true
+        },
+        {
+            "name": "Narrative roles and gender match the supplied roster",
+            "observed": "Player / main / supporting / NPC",
+            "passed": true
+        },
+        {
+            "name": "All role definitions are available in the map brush",
+            "observed": "Existing prop library integration",
+            "passed": true
+        },
+        {
+            "name": "Sprites and portraits import as pixel sprites",
+            "observed": "Sprite import, Point filtering, no mipmaps",
+            "passed": true
+        },
+        {
+            "name": "Planning fields contain the supplied data",
+            "observed": "Identity / power / Day1",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders huan-yujian",
+            "observed": "桓玉鉴",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders lin-xi",
+            "observed": "林溪",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders hydrologist",
+            "observed": "水文学家",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders geologist",
+            "observed": "地质学家",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders yang-yinglong",
+            "observed": "杨应隆",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders containment-researcher",
+            "observed": "收容部安保",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders mechanic",
+            "observed": "机械师",
+            "passed": true
+        },
+        {
+            "name": "Prefab loads and renders tan-yue",
+            "observed": "谭礿",
+            "passed": true
+        },
+        {
+            "name": "Real dialogue resolves a referenced name and portrait",
+            "observed": "PlayerInteractor uses role references",
+            "passed": true
+        },
+        {
+            "name": "Dialogue overrides support concealed identities",
+            "observed": "Explicit speaker and portrait take priority",
+            "passed": true
+        },
+        {
+            "name": "Existing string-based dialogue remains usable",
+            "observed": "No character reference required",
+            "passed": true
+        },
+        {
+            "name": "Renaming updates references without changing story keys",
+            "observed": "Runtime name resolution",
+            "passed": true
+        },
+        {
+            "name": "Spawning the same role gives independent save identities",
+            "observed": "Same character ID, distinct prop instance IDs",
+            "passed": true
+        }
+    ]
+}

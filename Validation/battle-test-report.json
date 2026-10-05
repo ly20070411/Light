@@ -1,7 +1,7 @@
 {
     "passed": true,
     "unityVersion": "2022.3.12f1",
-    "completedUtc": "2026-10-04T04:56:56.5810676Z",
+    "completedUtc": "2026-10-05T17:53:07.9941572Z",
     "checks": [
         {
             "name": "Catalog validates",
@@ -84,7 +84,7 @@
             "passed": true
         },
         {
-            "name": "Offers guarantee offense and utility",
+            "name": "Offers use the build-weighted pool",
             "observed": "",
             "passed": true
         },
@@ -99,7 +99,7 @@
             "passed": true
         },
         {
-            "name": "Basic is immediate and always x1",
+            "name": "Basic uses fixed attribute multiplier",
             "observed": "",
             "passed": true
         },
@@ -114,7 +114,7 @@
             "passed": true
         },
         {
-            "name": "Defense is fixed 35 percent",
+            "name": "Defense includes fixed parent bonus",
             "observed": "",
             "passed": true
         },
@@ -349,7 +349,7 @@
             "passed": true
         },
         {
-            "name": "Checksummed disk save round-trips v2 battle",
+            "name": "Checksummed disk save round-trips v3 battle",
             "observed": "",
             "passed": true
         },
@@ -419,8 +419,268 @@
             "passed": true
         },
         {
+            "name": "Single-family build excludes all zero-point skills: Officer",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build has 1.8 multiplier: Officer",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle keeps an independent attribute snapshot: Officer",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Zero-point skill cannot be manually submitted: Officer",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build excludes all zero-point skills: Parent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build has 1.8 multiplier: Parent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle keeps an independent attribute snapshot: Parent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Zero-point skill cannot be manually submitted: Parent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build excludes all zero-point skills: Wealth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build has 1.8 multiplier: Wealth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle keeps an independent attribute snapshot: Wealth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Zero-point skill cannot be manually submitted: Wealth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build excludes all zero-point skills: Offspring",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build has 1.8 multiplier: Offspring",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle keeps an independent attribute snapshot: Offspring",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Zero-point skill cannot be manually submitted: Offspring",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build excludes all zero-point skills: Sibling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Single-family build has 1.8 multiplier: Sibling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle keeps an independent attribute snapshot: Sibling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Zero-point skill cannot be manually submitted: Sibling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Eight attack points produce fixed 36 heavy damage",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Heavy has fixed two-hit vulnerability without a moving-line bonus",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "High defense respects the cap and blocks redundant guard",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Bind stuns ordinary enemies independently of chart score",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Resistant bind has fixed attribute-scaled weakening",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Seal works independently of chart score",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Different hexagrams never change damage or multiplier",
+            "observed": "distinct chart scores=5",
+            "passed": true
+        },
+        {
+            "name": "First-offer sampling matches family probability: Officer",
+            "observed": "expected=48.78%; observed=48.78%; trials=20000",
+            "passed": true
+        },
+        {
+            "name": "First-offer sampling matches family probability: Parent",
+            "observed": "expected=24.39%; observed=24.39%; trials=20000",
+            "passed": true
+        },
+        {
+            "name": "First-offer sampling matches family probability: Wealth",
+            "observed": "expected=14.63%; observed=14.63%; trials=20000",
+            "passed": true
+        },
+        {
+            "name": "First-offer sampling matches family probability: Offspring",
+            "observed": "expected=12.20%; observed=12.21%; trials=20000",
+            "passed": true
+        },
+        {
+            "name": "First-offer sampling matches family probability: Sibling",
+            "observed": "expected=0.00%; observed=0.00%; trials=20000",
+            "passed": true
+        },
+        {
+            "name": "Increasing attack allocation increases attack offer frequency",
+            "observed": "4 points=9755; 1 point=2439",
+            "passed": true
+        },
+        {
+            "name": "Zero control allocation stays impossible across 20000 seeds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Attribute battle snapshot restores",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reload freezes build, lottery and multipliers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Removed self attribute is rejected in v3 saves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Invalid point budget is rejected in v3 saves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Injected zero-point offer is rejected on load",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing v2 round-casting battle remains readable",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing v2 battle retains original basic multiplier",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Boss uses the counterplay balance revision",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Unprotected hit reflects actual HP damage and matches preview",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Retaliation is recorded in the logic chain",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Retaliation damage survives save and load",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Guard and shield protect against immediate retaliation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy shield absorption does not trigger retaliation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Retaliation preview includes weakness, vulnerability and exposure",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Damage items cannot bypass retaliation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Lethal hit still reflects only the remaining HP, simultaneous death loses",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Version two battles do not acquire the new retaliation rule",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Attack-only impossibility holds even with unlimited MP and the starter healing budget",
+            "observed": "minimum reflected HP=222; maximum HP budget=170",
+            "passed": true
+        },
+        {
             "name": "Adaptive kit strategy wins ENC01",
-            "observed": "phase=Victory; rounds=2",
+            "observed": "phase=Victory; rounds=1",
             "passed": true
         },
         {
@@ -430,12 +690,12 @@
         },
         {
             "name": "All action boundaries validate across seeded fights ENC01",
-            "observed": "transitions=396",
+            "observed": "transitions=279",
             "passed": true
         },
         {
             "name": "Adaptive kit strategy wins ENC02",
-            "observed": "phase=Victory; rounds=2",
+            "observed": "phase=Victory; rounds=3",
             "passed": true
         },
         {
@@ -445,12 +705,12 @@
         },
         {
             "name": "All action boundaries validate across seeded fights ENC02",
-            "observed": "transitions=716",
+            "observed": "transitions=517",
             "passed": true
         },
         {
             "name": "Adaptive kit strategy wins ENC03",
-            "observed": "phase=Victory; rounds=5",
+            "observed": "phase=Victory; rounds=3",
             "passed": true
         },
         {
@@ -460,7 +720,7 @@
         },
         {
             "name": "All action boundaries validate across seeded fights ENC03",
-            "observed": "transitions=1507",
+            "observed": "transitions=1175",
             "passed": true
         },
         {
@@ -475,12 +735,12 @@
         },
         {
             "name": "All action boundaries validate across seeded fights ENC04",
-            "observed": "transitions=973",
+            "observed": "transitions=750",
             "passed": true
         },
         {
             "name": "Adaptive kit strategy wins ENC05",
-            "observed": "phase=Victory; rounds=7",
+            "observed": "phase=Victory; rounds=16",
             "passed": true
         },
         {
@@ -490,7 +750,7 @@
         },
         {
             "name": "All action boundaries validate across seeded fights ENC05",
-            "observed": "transitions=1254",
+            "observed": "transitions=2100",
             "passed": true
         },
         {
@@ -624,6 +884,31 @@
             "passed": true
         },
         {
+            "name": "Actual controller opens the revised boss encounter",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Boss hover explains retaliation and its defenses",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Attack hover gives the current retaliation HP forecast",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real boss UI attack applies the displayed retaliation loss",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Boss battle save remains valid and escape restores exploration",
+            "observed": "",
+            "passed": true
+        },
+        {
             "name": "Existing prop interaction enters battle",
             "observed": "",
             "passed": true
@@ -639,13 +924,18 @@
             "passed": true
         },
         {
+            "name": "Battle settings disable reallocation and direct calls cannot change its frozen build",
+            "observed": "",
+            "passed": true
+        },
+        {
             "name": "Paused combat cannot mutate state",
             "observed": "",
             "passed": true
         },
         {
             "name": "Paused UI raycast reaches menu before combat",
-            "observed": "Save And Return order=1000, Settings Card order=1000, Settings Card Border order=1000, Settings Modal order=1000, 定卦遮幕 order=500",
+            "observed": "Settings Card order=1000, Settings Card Border order=1000, Settings Modal order=1000, 定卦遮幕 order=500",
             "passed": true
         },
         {

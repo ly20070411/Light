@@ -32,7 +32,7 @@ namespace Emerge.Battle.Editor
         public static void Run() => Begin("manual-" + Guid.NewGuid().ToString("N"), "validate");
         [MenuItem("Tools/战斗系统/捕获战斗界面")]
         public static void Preview() => Begin("manual-" + Guid.NewGuid().ToString("N"), "preview");
-        [MenuItem("Tools/战斗系统/运行无物品数值模拟")]
+        [MenuItem("Tools/战斗系统/运行流派与物品数值模拟")]
         public static void Balance() => Begin("manual-" + Guid.NewGuid().ToString("N"), "balance");
 
         private static void Begin(string id, string verb)
@@ -77,6 +77,12 @@ namespace Emerge.Battle.Editor
                 BattleSelfTest.Completed -= Complete;
                 BattleSelfTest.PreviewCompleted -= Complete;
                 var runner = new GameObject("战斗系统验证（临时）").AddComponent<BattleSelfTest>();
+                // WaitForEndOfFrame captures only advance while the Game view is selected.
+                if (SessionState.GetString(Prefix + "Verb", "validate") != "balance")
+                {
+                    var gameViewType = typeof(EditorWindow).Assembly.GetType("UnityEditor.GameView");
+                    if (gameViewType != null) EditorWindow.GetWindow(gameViewType).Focus();
+                }
                 if (SessionState.GetString(Prefix + "Verb", "validate") == "balance")
                 {
                     BattleBalanceTest.Completed += Complete;

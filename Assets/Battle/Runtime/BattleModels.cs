@@ -36,6 +36,7 @@ namespace Emerge.Battle
     {
         public int version = 1, seed, round = 1, actionSerial, enemyCursor;
         public string sessionId, encounterId, contextId, balanceVersion;
+        public Emerge.Checks.ActorCheckAttributes attributes;
         public BattlePhase phase;
         public BattlePlayerState player = new BattlePlayerState();
         public List<BattleEnemyState> enemies = new List<BattleEnemyState>();

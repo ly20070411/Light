@@ -60,6 +60,11 @@ namespace Emerge.GameFlow.Editor
                 started = EditorApplication.timeSinceStartup;
                 SessionState.SetBool(StartedKey, true);
                 Application.runInBackground = true;
+                if (!Application.isBatchMode)
+                {
+                    var gameView = typeof(EditorWindow).Assembly.GetType("UnityEditor.GameView");
+                    if (gameView != null) EditorWindow.GetWindow(gameView).Focus();
+                }
                 GameFlowSmokeChecks.Completed += Complete;
                 var runner = new GameObject("菜单与存档移植自动验证").AddComponent<GameFlowSmokeChecks>();
                 runner.Initialize(SessionState.GetString(ReportKey, ""));
@@ -104,9 +109,7 @@ namespace Emerge.GameFlow.Editor
         { report.checks.Add(new GameFlowSmokeChecks.CheckResult { name = name, passed = passed, observed = observed }); }
         private static void WriteReport(GameFlowSmokeChecks.Report report)
         {
-            string path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Validation/menu-save-results.json"));
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            File.WriteAllText(path, JsonUtility.ToJson(report, true));
+            GameFlowSmokeChecks.WriteReport(report);
         }
     }
 }

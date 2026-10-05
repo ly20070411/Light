@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd65b8ab8036fa24d9594b551d3b2eca, type: 3}
+  m_Name: Day1MapLibrary
+  m_EditorClassIdentifier: 
+  gridSize: {x: 1, y: 1}
+  defaultZ: 0
+  mapRootName: Pixel Map
+  blocks:
+  - {fileID: 11400000, guid: 9c96adbd2dd5c114fa19514c14d0e082, type: 2}
+  - {fileID: 11400000, guid: fd6e3bfde7894dc4390c19982b66360f, type: 2}
+  - {fileID: 11400000, guid: ac1ee14adab52424ba3eb94eb65e5981, type: 2}
+  - {fileID: 11400000, guid: 7a41cff66bd28734ea893f7eaac6c5e0, type: 2}
+  - {fileID: 11400000, guid: 313d220f94afec145b56450cab76df84, type: 2}
+  - {fileID: 11400000, guid: 310da92b741e6fb4ca304c6e2234bdbc, type: 2}
+  - {fileID: 11400000, guid: 0ad5a281b201b974c96e1c35b4faf690, type: 2}
+  - {fileID: 11400000, guid: 61a7cec6d620c0a4b8be748a18e56d37, type: 2}
+  - {fileID: 11400000, guid: d43f4aa3aaf3ad24f8541f64a5331bfe, type: 2}
+  - {fileID: 11400000, guid: a933e034c16afba47b3f4701bd5083b5, type: 2}
+  - {fileID: 11400000, guid: 4ff47593326672246b820985cb427c5d, type: 2}
+  propLibrary: {fileID: 11400000, guid: 82a8931c83ea7a340ae00e8334f93748, type: 2}

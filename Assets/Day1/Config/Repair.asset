@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Repair
+  m_EditorClassIdentifier: 
+  id: d6224f94ddf34aa5a3140dd532698a2d
+  displayName: "\u88C5\u5907\u7EF4\u4FEE\u5DE5\u4F5C\u53F0"
+  category: "Day1 / \u68C0\u5B9A"
+  character: {fileID: 0}
+  description: "P15 \u5B9E\u9645\u516D\u723B\u7EF4\u4FEE\u68C0\u5B9A\u3002\u3010\u5360\u4F4D\u3011\u5B50\u5B59\u76EE\u6807
+    9\uFF1B\u5931\u8D25\u7531\u7814\u7A76\u5458\u534F\u52A9\u5B8C\u6210\u57FA\u7840\u4FEE\u590D\uFF0C\u4E0D\u9501\u6B7B\u6559\u5B66\uFF1B\u65E0\u989D\u5916\u5956\u52B1\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 6e5168431e5b8004b806bd61b57747a3, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 0.93, g: 0.68, b: 0.45, a: 1}
+  worldSize: {x: 1.8, y: 1.8}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 1
+  colliderSize: {x: 0.75, y: 0.35}
+  colliderOffset: {x: 0, y: 0.12}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u68C0\u4FEE\u4F5C\u6218\u8BBE\u5907"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 11400000, guid: f24b5afadd597f840aa174265b38e2a2, type: 2}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  - day1.quest.containment-researcher
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5411\u6536\u5BB9\u90E8\u5B89\u4FDD\u63A5\u53D6\u7EF4\u4FEE\u4EFB\u52A1"

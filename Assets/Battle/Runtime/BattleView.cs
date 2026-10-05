@@ -80,7 +80,8 @@ namespace Emerge.Battle
             title = Label(root, 530, 22, 610, 38, "", 24, Color.white); title.alignment = TextAnchor.MiddleCenter;
             var guidance = Label(root, 530, 65, 610, 28, "点击选敌 · 悬停查看意图", 18, new Color(.65f, .75f, .82f)); guidance.alignment = TextAnchor.MiddleCenter;
             roundInfo = Label(root, 500, 170, 410, 270, "", 19, new Color(.72f, .8f, .85f)); roundInfo.alignment = TextAnchor.MiddleCenter;
-            hero = FighterAt("主角立绘", 110, 130, 290, 350, art?.heroPortrait, -1);
+            hero = FighterAt("主角立绘", 110, 130, 290, 350,
+                controller.character != null ? controller.character.portrait : art?.heroPortrait, -1);
             for (int i = 0; i < 3; i++) enemies.Add(FighterAt("敌人立绘 " + (i + 1), 950 + i * 200, 170, 185, 310, art?.defaultEnemyPortrait, i));
             BuildCommands(); BuildTooltip(); BuildCasting();
             result = PanelAt(root, "结果遮幕", 0, 0, 1600, 900, new Color(0, 0, 0, .65f), true);
@@ -142,7 +143,7 @@ namespace Emerge.Battle
             f.outline = f.portrait.gameObject.AddComponent<Outline>(); f.outline.effectColor = Gold; f.outline.effectDistance = new Vector2(3, -3); f.outline.enabled = false;
             f.marker = Label(f.root, 0, -35, w, 28, "▼ 当前目标", 20, Gold); f.marker.alignment = TextAnchor.MiddleCenter;
             f.marker.gameObject.SetActive(false);
-            f.name = Label(f.root, 0, h + 1, w, 28, index < 0 ? "主角" : "", 23, Color.white); f.name.alignment = TextAnchor.MiddleCenter;
+            f.name = Label(f.root, 0, h + 1, w, 28, index < 0 ? (owner.character != null ? owner.character.DisplayName : "主角") : "", 23, Color.white); f.name.alignment = TextAnchor.MiddleCenter;
             f.hpFill = Bar(f.root, "红色血条", w, h + 32, new Color(.78f, .20f, .24f), out f.hp);
             f.mpFill = Bar(f.root, "蓝色法力条", w, h + 57, new Color(.16f, .48f, .85f), out f.mp);
             f.status = Label(f.root, 0, h + 82, w, 52, "", 16, Gold); f.status.alignment = TextAnchor.UpperCenter;
@@ -183,16 +184,32 @@ namespace Emerge.Battle
         {
             if (owner.Engine.State?.phase != BattlePhase.Player || !GameSessionController.SessionInputAllowed) return;
             var d = owner.catalog.Skill(id); if (d == null) return;
-            string content = BattleDescriptions.Skill(d, owner.catalog.rules);
-            if (owner.Engine.State.version == 2) content += "\n本轮倍率：×" + owner.Engine.SkillMultiplier(id).ToString("0.0") + "\n本场剩余：" + (owner.Engine.RemainingUses(id) == int.MaxValue ? "不限次数" : owner.Engine.RemainingUses(id) + " / " + d.maximumUses + " 次") + (d.alwaysAvailable ? "\n常驻技能" : "\n高级技能 · 每轮定卦解锁");
+            string content = BattleDescriptions.Skill(d, owner.catalog.rules, owner.Engine.State.version >= 3);
+            if (owner.Engine.State.version >= 2) content += (owner.Engine.State.version >= 3 ? "\n属性固定倍率：×" : "\n本轮倍率：×") + owner.Engine.SkillMultiplier(id).ToString("0.0") + "\n本场剩余：" + (owner.Engine.RemainingUses(id) == int.MaxValue ? "不限次数" : owner.Engine.RemainingUses(id) + " / " + d.maximumUses + " 次") + (d.alwaysAvailable ? "\n常驻技能" : "\n高级技能 · 每轮定卦解锁");
+            if (owner.Engine.State.version >= 3)
+            {
+                float multiplier = owner.Engine.SkillMultiplier(id); int value = BattleRules.Round(d.power * multiplier);
+                var p = owner.Engine.State.player; var rules = owner.catalog.rules;
+                string effect = d.effect == BattleEffect.Reduction ? "实际减伤 " + Mathf.Min(rules.reductionCap, d.power * multiplier).ToString("P0") :
+                    d.effect == BattleEffect.Shield ? "本次新增护盾 " + Mathf.Min(rules.shieldCap - p.shield, value) :
+                    d.effect == BattleEffect.Heal ? "本次回复 HP " + Mathf.Min(rules.maxHP - p.hp, value) :
+                    d.effect == BattleEffect.Damage ? "基础伤害 " + value :
+                    d.effect == BattleEffect.NextMana || d.effect == BattleEffect.Cleanse ? "下轮额外回气 " + Mathf.Min(rules.nextManaCap, value) :
+                    d.effect == BattleEffect.Regeneration ? "每轮回复 HP " + value : "控制持续一次行动";
+                content += "\n" + effect;
+                if (d.effect == BattleEffect.Damage && owner.Engine.HasRetaliationTarget(d.target, target))
+                    content += "\n触发反震，当前预计损失 " + owner.Engine.ForecastRetaliation(id, target) + " HP。";
+            }
             if (!owner.Engine.CanUseSkill(id, target, out var reason)) content += "\n" + reason;
-            ShowTooltip(content, BattleDescriptions.SkillStatuses(d, owner.catalog.rules), pointer);
+            ShowTooltip(content, BattleDescriptions.SkillStatuses(d, owner.catalog.rules, owner.Engine.State.version >= 3), pointer);
         }
         public void ShowItemTooltip(string id, Vector2 pointer)
         {
             if (owner.Engine.State?.phase != BattlePhase.Player || !GameSessionController.SessionInputAllowed) return;
             var d = owner.catalog.Item(id); if (d == null) return;
             string content = BattleDescriptions.Item(d);
+            if (d.effect == BattleItemEffect.DamageAll && owner.Engine.HasRetaliationTarget(BattleTarget.AllEnemies, target))
+                content += "\n触发反震，当前预计损失 " + owner.Engine.ForecastRetaliation(id, target, true) + " HP。";
             if (!owner.Engine.CanUseItem(id, out var reason)) content += "\n" + reason;
             ShowTooltip(content, d.effect == BattleItemEffect.DamageAll ? "易伤\n散灵符的直接伤害同样受目标易伤影响，并消耗一次命中次数。" : "", pointer);
         }
@@ -200,7 +217,7 @@ namespace Emerge.Battle
         {
             var s = owner.Engine.State;
             if (s == null || s.phase == BattlePhase.Casting || s.phase == BattlePhase.RoundCasting || index < 0 || index >= s.enemies.Count || !GameSessionController.SessionInputAllowed) return;
-            var e = s.enemies[index]; ShowTooltip(BattleDescriptions.Intent(owner.catalog.Enemy(e.definitionId), e, owner.catalog.rules), "", pointer);
+            var e = s.enemies[index]; ShowTooltip(BattleDescriptions.Intent(owner.catalog.Enemy(e.definitionId), e, owner.catalog.rules, s.version >= 3), "", pointer);
         }
         private void ShowTooltip(string content, string status, Vector2 pointer)
         {
@@ -235,7 +252,7 @@ namespace Emerge.Battle
                 else { var y = r.chart.yaos[i]; lines.Add(y.benSymbol + "  " + y.yaowei + " " + y.benLiuqin + " " + y.wangshuaiScore.ToString("+0;-0;0") + (y.isDongYao ? " 动" : "")); }
             }
             castLines.text = string.Join("\n", lines);
-            castResult.text = resolved ? r.chart.benGuaName + " → " + r.chart.bianGuaName + "\n评分 " + action.score + " · 倍率 ×" + action.multiplier.ToString("0.0") : "已揭示 " + r.revealedLines + " / 6";
+            castResult.text = resolved ? r.chart.benGuaName + " → " + r.chart.bianGuaName + "\n评分 " + action.score + (owner.Engine.State.version >= 3 ? " 点 · 固定倍率 ×" : " · 倍率 ×") + action.multiplier.ToString("0.0") : "已揭示 " + r.revealedLines + " / 6";
             quickText.text = resolved ? "继续" : "快速定卦";
             if (resolved) for (int i = 0; i < coins.Count; i++) { coins[i].rectTransform.anchoredPosition = coinHomes[i]; coins[i].transform.localScale = Vector3.one; coins[i].transform.localRotation = Quaternion.identity; SetCoinFace(i, 5); }
         }
@@ -246,7 +263,7 @@ namespace Emerge.Battle
             var s = owner.Engine.State;
             shownCast = new BattleAction { skillName = "第 " + s.round + " 轮", divination = s.roundDivination };
             RenderCast(shownCast, resolved); castTitle.text = "第 " + s.round + " 轮 · 定卦";
-            if (resolved) { castResult.text = s.roundDivination.chart.benGuaName + " → " + s.roundDivination.chart.bianGuaName + "\n本轮技能与倍率已确定"; quickText.text = "开始行动"; }
+            if (resolved) { castResult.text = s.roundDivination.chart.benGuaName + " → " + s.roundDivination.chart.bianGuaName + (s.version >= 3 ? "\n本轮高级技能已解锁 · 效果由加点固定" : "\n本轮技能与倍率已确定"); quickText.text = "开始行动"; }
         }
         public void ShowRoundResult()
         { castUntil = Time.time + .65f; HideTooltip(); RenderRound(true); castLayer.gameObject.SetActive(true); }
@@ -288,7 +305,7 @@ namespace Emerge.Battle
                 (p.weakness > 0 ? " 削弱 " + p.weakness.ToString("P0") : "") + (p.regenerationTicks > 0 ? "\n生息 " + p.regeneration + " × " + p.regenerationTicks : "") + (p.nextMana > 0 ? " 下轮回蓝 +" + p.nextMana : "");
             if (p.burnTicks > 0) hero.status.text += "\n灼伤 " + p.burn + " × " + p.burnTicks;
             if (p.exposure > 0) hero.status.text += " 破绽 +" + p.exposure.ToString("P0");
-            roundInfo.text = s.version == 2 && s.roundDivination.revealedLines == 6 ? "本轮 · " + s.roundDivination.chart.benGuaName + "\n\n" + string.Join("\n", s.unlockedSkills.Where(id => engine.RemainingUses(id) > 0).Select(id => owner.catalog.Skill(id).displayName + " ×" + engine.SkillMultiplier(id).ToString("0.0"))) + "\n\n基础技能常驻 · 高级技能限次" : s.version == 1 ? "旧版战斗 · 逐技能定卦" : "正在定卦…";
+            roundInfo.text = s.version >= 2 && s.roundDivination.revealedLines == 6 ? "本轮 · " + s.roundDivination.chart.benGuaName + "\n\n" + string.Join("\n", s.unlockedSkills.Where(id => engine.RemainingUses(id) > 0).Select(id => owner.catalog.Skill(id).displayName + " ×" + engine.SkillMultiplier(id).ToString("0.0"))) + "\n\n基础技能常驻 · 高级技能限次" : s.version == 1 ? "旧版战斗 · 逐技能定卦" : "正在定卦…";
             for (int i = 0; i < enemies.Count; i++)
             {
                 var f = enemies[i]; f.root.gameObject.SetActive(i < s.enemies.Count); if (i >= s.enemies.Count) continue;
@@ -299,7 +316,7 @@ namespace Emerge.Battle
                 f.portrait.canvasRenderer.SetAlpha(e.hp <= 0 ? .25f : 1);
                 f.name.text = d.displayName; RefreshBars(f, e.hp, e.maxHP, e.mp, d.maxMP);
                 f.status.text = (e.hp <= 0 ? "已倒下" : "") + (e.charged ? "蓄势 " : "") + (e.shield > 0 ? "护盾 " + e.shield + "  " : "") + (e.vulnerabilityHits > 0 ? "易伤 " + e.vulnerabilityHits + " 次 " : "") +
-                    (e.stunned ? "眩晕 " : "") + (e.silenced ? "封诀 " : "") + (e.weakness > 0 ? "削弱 " + e.weakness.ToString("P0") : "");
+                    (e.stunned ? "眩晕 " : "") + (e.silenced ? "封诀 " : "") + (e.weakness > 0 ? "削弱 " + e.weakness.ToString("P0") : "") + (s.version >= 3 && e.hp > 0 && d.retaliation > 0 ? " 反震 " + d.retaliation.ToString("P0") : "");
                 f.outline.enabled = i == target && e.hp > 0; f.marker.gameObject.SetActive(f.outline.enabled); f.button.interactable = s.phase == BattlePhase.Player && e.hp > 0;
             }
             foreach (var pair in skills) pair.Value.interactable = engine.CanUseSkill(pair.Key, target, out _);
@@ -310,7 +327,7 @@ namespace Emerge.Battle
             }
             end.interactable = s.phase == BattlePhase.Player; flee.interactable = owner.CanFlee;
             fleeText.text = owner.CanFlee ? "离开战斗，恢复进入前的位置、背包与剧情状态。" : s.phase == BattlePhase.Player ? "此旧存档没有战前快照，无法回退。" : "请等待当前行动结束。";
-            hint.text = s.phase == BattlePhase.Player ? "剩余 MP " + p.mp + " · 预告直接伤害 " + engine.ForecastDamage() + " · 自行结束回合 · 下轮回蓝 +" + rules.roundMana : s.phase == BattlePhase.RoundCasting ? "每轮定卦 · 决定本轮高级技能与倍率" : s.phase == BattlePhase.Casting ? "旧版逐技能定卦" : s.phase == BattlePhase.Enemy ? "敌方依次行动…" : "本场战斗已结束";
+            hint.text = s.phase == BattlePhase.Player ? "剩余 MP " + p.mp + " · 预告直接伤害 " + engine.ForecastDamage() + " · 自行结束回合 · 下轮回蓝 +" + rules.roundMana : s.phase == BattlePhase.RoundCasting ? (s.version >= 3 ? "每轮定卦 · 按五亲加点解锁高级技能 · 倍率由加点固定" : "每轮定卦 · 决定本轮高级技能与倍率") : s.phase == BattlePhase.Casting ? "旧版逐技能定卦" : s.phase == BattlePhase.Enemy ? "敌方依次行动…" : "本场战斗已结束";
             if (s.phase != BattlePhase.Player) HideTooltip();
             if (s.phase == BattlePhase.RoundCasting) { RenderRound(false); castLayer.gameObject.SetActive(true); }
             else if (s.pending != null) { shownCast = s.pending; RenderCast(shownCast, false); castLayer.gameObject.SetActive(true); }
@@ -326,7 +343,7 @@ namespace Emerge.Battle
         { f.hp.text = "HP " + hp + " / " + maxHP; f.mp.text = "MP " + mp + " / " + maxMP; f.hpFill.sizeDelta = new Vector2((f.width - 4) * Mathf.Clamp01((float)hp / maxHP), 17); f.mpFill.sizeDelta = new Vector2((f.width - 4) * (maxMP == 0 ? 0 : Mathf.Clamp01((float)mp / maxMP)), 17); }
         private void Update()
         {
-            if (group == null) return;
+            if (group == null || owner == null || owner.Engine == null) return;
             scaler.matchWidthOrHeight = (float)Screen.width / Mathf.Max(1, Screen.height) >= 1600f / 900 ? 1 : 0;
             group.interactable = GameSessionController.SessionInputAllowed; group.blocksRaycasts = true;
             if (!group.interactable) { HideTooltip(); entryRemaining = 0; entryFade.gameObject.SetActive(false); }

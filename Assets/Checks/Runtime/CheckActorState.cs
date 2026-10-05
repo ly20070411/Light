@@ -12,13 +12,14 @@ namespace Emerge.Checks
         [Serializable] public sealed class Snapshot
         {
             public int version = 1;
+            public int attributeRulesVersion;
             public ActorCheckAttributes attributes = new ActorCheckAttributes();
             public int contamination;
             public List<CheckSession> sessions = new List<CheckSession>();
         }
 
-        public ActorCheckAttributes attributes = new ActorCheckAttributes
-        { parent = 6, offspring = 9, officer = 6, wealth = 10, sibling = 8, self = 7 };
+        public ActorCheckAttributes attributes = SixKinAttributes.DefaultBuild();
+        public int AttributeRulesVersion { get; private set; }
         [SerializeField] private int contamination;
         [SerializeField] private List<CheckSession> sessions = new List<CheckSession>();
         private CheckPipeline pipeline;
@@ -59,7 +60,7 @@ namespace Emerge.Checks
             var prepared = pipeline.Prepare(definition, attributes);
             prepared.contextId = key;
             sessions.Add(prepared);
-            RecordTrace(prepared, "事件入口", "事件 " + definition.eventId + "；上下文 " + key + "；冻结六类角色基础值");
+            RecordTrace(prepared, "事件入口", "事件 " + definition.eventId + "；上下文 " + key + "；冻结五亲角色基础值");
             if (prepared.divination != null)
                 RecordTrace(prepared, "起卦输入", "月令 " + prepared.divination.month + "；日辰 " + prepared.divination.day +
                     "；种子 " + prepared.divination.casting.seed + "；正面=3、背面=2，三枚铜币掷六次；规则 " + prepared.divination.rulesVersion);
@@ -107,14 +108,14 @@ namespace Emerge.Checks
             session.modifiers = (int[])chart.behaviorModifiers.Clone();
             session.castingStatus = "六次铜币投掷完成，初爻至上爻输入已固定";
             session.chartStatus = "本卦 " + chart.benGuaName + " → 变卦 " + chart.bianGuaName;
-            session.modifierStatus = "采用文档评分：同类六亲取最高，缺类为0；我取世爻得分";
+            session.modifierStatus = session.attributeRulesVersion >= SixKinAttributes.RulesVersion ? "采用文档评分：五亲同类取最高，缺类为0；认知归入父母" : "采用文档评分：同类六亲取最高，缺类为0；我取世爻得分";
             session.phase = CheckSessionPhase.Ready;
             RecordTrace(session, "排盘", session.chartStatus + "；" + chart.benGong + "宫 / " + chart.benGongWuxing +
                 "；世爻 " + (chart.shiYaoIndex + 1) + "、应爻 " + (chart.yingYaoIndex + 1));
             foreach (var line in chart.yaos)
                 RecordTrace(session, "爻加值", line.yaowei + " " + line.benGanzhi + " " + line.benWuxing + " " + line.benLiuqin +
                     "：" + string.Join("；", line.wangshuaiDetails) + " → " + line.wangshuaiScore);
-            for (int behavior = 0; behavior < 6; behavior++)
+            for (int behavior = 0; behavior < (session.attributeRulesVersion >= SixKinAttributes.RulesVersion ? SixKinAttributes.Count : 6); behavior++)
                 RecordTrace(session, "行为加值", CheckEncounter.BehaviorName((CheckBehavior)behavior) + " = " + session.modifiers[behavior]);
             return true;
         }
@@ -162,7 +163,8 @@ namespace Emerge.Checks
             var option = definition.options.Find(item => item.id == optionId);
             if (option == null) { error = "没有这个行动选项。"; return false; }
             if (!CanChoose(option, out error)) return false;
-            RecordTrace(session, "提交行动", option.label + "；基础 " + session.attributes.Get(option.behavior) + " + 加值 " + session.modifiers[(int)option.behavior] + "；目标 " + option.targetValue +
+            var behavior = CheckResolver.EffectiveBehavior(session, option.behavior);
+            RecordTrace(session, "提交行动", option.label + "；基础 " + session.attributes.Get(behavior) + " + 加值 " + session.modifiers[(int)behavior] + "；目标 " + option.targetValue +
                 "；前置标记 " + string.Join(",", option.requiredFlags ?? Array.Empty<string>()) + "；前置物品 " +
                 (string.IsNullOrWhiteSpace(option.requiredItemKey) ? "无" : option.requiredItemKey + " × " + option.requiredItemAmount));
 
@@ -170,7 +172,7 @@ namespace Emerge.Checks
             int nextContamination;
             try
             {
-                int finalValue = checked(session.attributes.Get(option.behavior) + session.modifiers[(int)option.behavior]);
+                int finalValue = checked(session.attributes.Get(behavior) + session.modifiers[(int)behavior]);
                 outcome = finalValue >= option.targetValue ? option.success : option.failure;
                 nextContamination = Math.Max(0, checked(contamination + outcome.contaminationDelta));
                 if (!string.IsNullOrWhiteSpace(outcome.rewardItemKey))
@@ -213,7 +215,17 @@ namespace Emerge.Checks
         }
 
         public Snapshot CaptureSnapshot() => JsonUtility.FromJson<Snapshot>(JsonUtility.ToJson(new Snapshot
-        { attributes = attributes, contamination = contamination, sessions = sessions }));
+        { attributeRulesVersion = AttributeRulesVersion, attributes = attributes, contamination = contamination, sessions = sessions }));
+
+        public bool TrySetAllocatedAttributes(ActorCheckAttributes allocated)
+        {
+            if (!SixKinAttributes.IsValidBuild(allocated)) return false;
+            // Keep the live session objects and their frozen attributes, including an open dialogue.
+            attributes = allocated.Clone();
+            AttributeRulesVersion = SixKinAttributes.RulesVersion;
+            Changed?.Invoke();
+            return true;
+        }
 
         public bool RestoreSnapshot(Snapshot saved)
         {
@@ -222,6 +234,7 @@ namespace Emerge.Checks
             var copy = JsonUtility.FromJson<Snapshot>(JsonUtility.ToJson(saved));
             GetComponent<PlayerInteractor>()?.CancelDialogue();
             attributes = copy.attributes;
+            AttributeRulesVersion = copy.attributeRulesVersion;
             contamination = copy.contamination;
             sessions = copy.sessions;
             Changed?.Invoke();
@@ -230,7 +243,8 @@ namespace Emerge.Checks
 
         public static bool IsValidSnapshot(Snapshot saved)
         {
-            if (saved == null || saved.version != 1 || saved.attributes == null || saved.contamination < 0 ||
+            if (saved == null || saved.version != 1 || saved.attributeRulesVersion < 0 || saved.attributeRulesVersion > SixKinAttributes.RulesVersion ||
+                (saved.attributeRulesVersion == SixKinAttributes.RulesVersion && !SixKinAttributes.IsValidBuild(saved.attributes)) || saved.attributes == null || saved.contamination < 0 ||
                 saved.sessions == null || saved.sessions.Count > 10000) return false;
             var contexts = new HashSet<string>(StringComparer.Ordinal);
             var ids = new HashSet<string>(StringComparer.Ordinal);
@@ -238,6 +252,7 @@ namespace Emerge.Checks
             {
                 if (session == null || string.IsNullOrWhiteSpace(session.eventId) || string.IsNullOrWhiteSpace(session.contextId) ||
                     string.IsNullOrWhiteSpace(session.sessionId) || !contexts.Add(session.contextId) || !ids.Add(session.sessionId) ||
+                    session.attributeRulesVersion < 0 || session.attributeRulesVersion > SixKinAttributes.RulesVersion ||
                     session.attributes == null || session.modifiers == null || session.modifiers.Length != 6 ||
                     !Enum.IsDefined(typeof(CheckSessionPhase), session.phase)) return false;
                 if (!ValidDivination(session)) return false;

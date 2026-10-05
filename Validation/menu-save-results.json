@@ -1,8 +1,8 @@
 {
     "unityVersion": "2022.3.12f1",
     "scene": "Assets/Scenes/PropsDemo.unity",
-    "completedUtc": "2026-10-04T04:43:15.6582781Z",
-    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_550dc9ab2143490e97a2011b50a916a0\\Session",
+    "completedUtc": "2026-10-05T17:51:34.0504338Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_42b806fa0b0a4a8cb765e63bad2a5075\\Session",
     "passed": true,
     "checks": [
         {
@@ -38,7 +38,7 @@
         {
             "name": "Verification uses a new isolated save directory",
             "passed": true,
-            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_550dc9ab2143490e97a2011b50a916a0\\Session"
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\MenuSaveChecks_42b806fa0b0a4a8cb765e63bad2a5075\\Session"
         },
         {
             "name": "Empty storage has no continue checkpoint",
@@ -96,7 +96,177 @@
             "observed": ""
         },
         {
+            "name": "Allocation permits all eight points in one attribute and rejects overspending, negative or invalid input",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Draft exports a separate attribute copy and refunds removed points",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reset returns all eight points",
+            "passed": true,
+            "observed": ""
+        },
+        {
             "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Creation exposes five attributes and rejects the removed self attribute",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New-game UI opens a paused allocation page and blocks incomplete confirmation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Repeated new-game calls cannot bypass the creation page",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Incomplete character creation neither saves nor overwrites an automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Character creation screenshot completed: character-creation-preview.png",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Zero-point consequences are shown before allocation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual hover shows the correct description and actions: Parent",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Character creation screenshot completed: character-creation-tooltip-preview.png",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Leaving an attribute hides its tooltip: Parent",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual hover shows the correct description and actions: Offspring",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Leaving an attribute hides its tooltip: Offspring",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual hover shows the correct description and actions: Officer",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Leaving an attribute hides its tooltip: Officer",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual hover shows the correct description and actions: Wealth",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Leaving an attribute hides its tooltip: Wealth",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Actual hover shows the correct description and actions: Sibling",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Leaving an attribute hides its tooltip: Sibling",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Attribute Plus Parent",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Attribute Plus Parent",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Attribute Minus Parent",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Real plus/minus buttons update and refund the shared budget",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reset Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI reset restores zero values and disables subtraction",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Cancel Character Creation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Cancelling creation returns to the main menu without creating a save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Spending exactly eight points disables additions and enables confirmation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Zero-point warning updates after all five families receive points",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Character creation screenshot completed: character-creation-complete-preview.png",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Duplicate confirmation cannot start a second scene load",
             "passed": true,
             "observed": ""
         },
@@ -107,6 +277,21 @@
         },
         {
             "name": "New game immediately creates its initial automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "All five confirmed attributes become the player's check bases and its initial save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "The real check pipeline and resolver use allocated points rather than old scene defaults",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New recognition checks use parent points while legacy serialized behavior stays readable",
             "passed": true,
             "observed": ""
         },
@@ -156,6 +341,161 @@
             "observed": ""
         },
         {
+            "name": "Exploration settings exposes reallocation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Character creation screenshot completed: settings-reallocation-entry-preview.png",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reallocate Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Settings reallocation starts from the live eight-point build and keeps gameplay paused",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reallocation labels distinguish applying changes and returning to settings",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Attribute Minus Officer",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Unspent drafts cannot apply or mutate the live character",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Draft allocation cannot be persisted by unrelated save actions",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Cancel Character Creation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Cancelling reallocation returns to paused settings and preserves both slots byte for byte",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reallocate Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reset Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reallocation retains budget limits and zero-family warnings",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Character creation screenshot completed: settings-reallocation-preview.png",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Save failure preserves the live build and completed draft and displays a retryable error",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Failed reallocation preserves the valid automatic checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Confirmed reallocation applies once and returns to paused settings",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reallocation preserves inventory, plot, position, contamination and the existing live check session",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reallocation saves the new build automatically while keeping the manual checkpoint",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Resume Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "A check already in progress keeps its original point bases after reallocation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New checks use the changed point bases",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New battles use the reallocated multiplier and exclude zero-point advanced families",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Loading the reallocation checkpoint restores changed points together with world progress",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reallocate Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Reset Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Repeated settings reallocation creates a fresh independent draft",
+            "passed": true,
+            "observed": ""
+        },
+        {
             "name": "UI button available: Save And Return",
             "passed": true,
             "observed": ""
@@ -177,6 +517,11 @@
         },
         {
             "name": "Continue restores the player position",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Continue restores all five attributes directly without reopening allocation",
             "passed": true,
             "observed": ""
         },
@@ -341,12 +686,57 @@
             "observed": ""
         },
         {
+            "name": "UI button available: Attribute Plus Officer",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Cancel Character Creation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Cancelling allocation preserves both existing save slots byte for byte",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm New Game",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New character starts with eight unspent points",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "A complete allocation enables the start-adventure button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
             "name": "New game resets backpack, quest, spawn and world fruit",
             "passed": true,
             "observed": ""
         },
         {
             "name": "New game preserves the prior manual save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "A later new game uses a fresh allocation, including zero-point attributes",
             "passed": true,
             "observed": ""
         },
@@ -362,6 +752,96 @@
         },
         {
             "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Legacy six-attribute save is still accepted",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Loading a legacy role asks for one five-family reallocation before gameplay",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Cancelling legacy reallocation leaves the original save untouched",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New character starts with eight unspent points",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "A complete allocation enables the start-adventure button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Reallocation preserves plot, position and contamination while replacing all point bases",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Completed legacy recognition checks keep their original result and snapshot",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Confirmed reallocation writes a compatible upgraded automatic save",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Confirmed reallocation also upgrades its source slot so it cannot ask again",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "Upgraded saves never ask for a second reallocation",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Settings Button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Save And Return",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "New character starts with eight unspent points",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "A complete allocation enables the start-adventure button",
+            "passed": true,
+            "observed": ""
+        },
+        {
+            "name": "UI button available: Confirm Attributes",
             "passed": true,
             "observed": ""
         },

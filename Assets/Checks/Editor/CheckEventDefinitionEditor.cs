@@ -7,7 +7,7 @@ namespace Emerge.Checks.Editor
     [CustomEditor(typeof(CheckEventDefinition))]
     public sealed class CheckEventDefinitionEditor : UnityEditor.Editor
     {
-        private static readonly string[] Behaviors = { "父母 / 学习与强化", "子孙 / 制作与修复", "官鬼 / 被动应对", "妻财 / 战斗与控制", "兄弟 / 探索与说服", "我 / 思考与观察" };
+        private static readonly string[] Behaviors = { "父母 / 学习、理解与强化", "子孙 / 制作与修复", "官鬼 / 被动应对", "妻财 / 支配与突破", "兄弟 / 观察、探索与说服" };
 
         public override void OnInspectorGUI()
         {
@@ -40,7 +40,7 @@ namespace Emerge.Checks.Editor
                 {
                     Relative(option, "id", "选项 ID"); Relative(option, "label", "按钮文字");
                     var behavior = option.FindPropertyRelative("behavior");
-                    behavior.enumValueIndex = EditorGUILayout.Popup("行为类型", behavior.enumValueIndex, Behaviors);
+                    behavior.enumValueIndex = EditorGUILayout.Popup("行为类型", behavior.enumValueIndex >= Behaviors.Length ? 0 : behavior.enumValueIndex, Behaviors);
                     Relative(option, "targetValue", "检定目标值"); Relative(option, "requiredFlags", "前置标记（全部满足）");
                     Relative(option, "requiredItemKey", "前置物品键");
                     if (!string.IsNullOrWhiteSpace(option.FindPropertyRelative("requiredItemKey").stringValue))

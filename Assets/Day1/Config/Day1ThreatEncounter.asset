@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4b85c424dbcb945a586188cd7434c1, type: 3}
+  m_Name: Day1ThreatEncounter
+  m_EditorClassIdentifier: 
+  swiftVictoryRounds: 5
+  id: DAY1_THREAT
+  displayName: "\u79D1\u8003\u7AD9\u5916\u56F4\u6E05\u9664\u884C\u52A8"
+  description: "\u3010\u5360\u4F4D\u3011Day1 \u9996\u573A\u516D\u723B\u6218\u6597\u6559\u5B66\uFF1B\u654C\u79CD\u590D\u7528\u73B0\u6709
+    E01\uFF0C\u5360\u4F4D\u4F4E\u96BE\u6570\u503C\uFF0C\u975E\u9006\u6A21\u56E0 Boss\u3002\u6708\u4EE4\u4E0E\u65E5\u8FB0\u6CBF\u7528\u6F14\u793A\u8BBE\u7F6E\u3002"
+  month: "\u5DF3\u6708"
+  day: "\u620A\u5B50\u65E5"
+  enemies:
+  - enemy: {fileID: 11400000, guid: 67492c0d3c1f06e4f8d32c53f7321c85, type: 2}
+    healthOverride: 0
+  repeatable: 0
+  victoryFlag: day1.threat_cleared
+  useFixedSeed: 0
+  fixedSeed: 12637

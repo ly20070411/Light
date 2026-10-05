@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad222375377f87249a3cd67326bbeab5, type: 3}
+  m_Name: Day1BattleCatalog
+  m_EditorClassIdentifier: 
+  resourcePath: Day1/Day1BattleCatalog
+  rules: {fileID: 11400000, guid: df1fe4c7624528649a2b0cac04728b0c, type: 2}
+  skills:
+  - {fileID: 11400000, guid: b207d5007978f164881cd4f867d1c636, type: 2}
+  - {fileID: 11400000, guid: 8e1dd80ac733a08469516fdaabd646c4, type: 2}
+  - {fileID: 11400000, guid: 9f5722793d40af4439d0f0f1236401a5, type: 2}
+  - {fileID: 11400000, guid: f3bdf476b6cd99c478ddd89d1782bdae, type: 2}
+  - {fileID: 11400000, guid: de042cc87faa16d498ae4de299762bc7, type: 2}
+  - {fileID: 11400000, guid: 4c9b767360be0ec4181a203b8caeb560, type: 2}
+  - {fileID: 11400000, guid: 0fddb75e272ccde4a80e47d0a7528397, type: 2}
+  - {fileID: 11400000, guid: 5466b97351e82534cace2f7d570c3ac9, type: 2}
+  - {fileID: 11400000, guid: e450b0c1ee6d1a94fa8442c3ba994d66, type: 2}
+  - {fileID: 11400000, guid: d316895be118eb446909d81d93c65834, type: 2}
+  - {fileID: 11400000, guid: 0198abd79ff48304bad84cccf3a1ced0, type: 2}
+  enemies:
+  - {fileID: 11400000, guid: 6f80c44b02e7f1d48b0c29c121d2474d, type: 2}
+  - {fileID: 11400000, guid: 95bfc062895b895429fcb81ed1d56f09, type: 2}
+  - {fileID: 11400000, guid: f68de58cb2fee8b42a26df78bd0b82f8, type: 2}
+  - {fileID: 11400000, guid: d45a311ece3dae246b10cb02d5d2e872, type: 2}
+  - {fileID: 11400000, guid: 67492c0d3c1f06e4f8d32c53f7321c85, type: 2}
+  items:
+  - {fileID: 11400000, guid: af6f5d0851a65b2469411a19cea2a61d, type: 2}
+  - {fileID: 11400000, guid: 7269ac457e74557449cdf0cbcc08c1fb, type: 2}
+  - {fileID: 11400000, guid: 080656488992a2b47a6a35bab4a80ced, type: 2}
+  - {fileID: 11400000, guid: 7357b07fe062f2a42878994f07055df4, type: 2}
+  encounters:
+  - {fileID: 11400000, guid: af96205169ab66343b0947edaa39666c, type: 2}
+  - {fileID: 11400000, guid: 79f50bbbacc010c4090db8dec641dc8f, type: 2}
+  - {fileID: 11400000, guid: 9244e2ffd0f670541be6ba4f92fee97f, type: 2}
+  - {fileID: 11400000, guid: 0ed3f32a2076cd1498b0a267d124cd21, type: 2}
+  - {fileID: 11400000, guid: 9e34abe7c2c52464cbec8e3fd4b1c0f0, type: 2}
+  - {fileID: 11400000, guid: c1f1c70e604379b4f936c8156beb1bca, type: 2}

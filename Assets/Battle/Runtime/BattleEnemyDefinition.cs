@@ -25,6 +25,8 @@ namespace Emerge.Battle
         [Min(1)] public int maxHP = 60, maxMP = 12;
         [Min(0)] public int roundMana = 4;
         public bool resistsStun;
+        [Tooltip("受到实际 HP 伤害时反震的比例；主角减伤和护盾可抵消，致命命中也会触发。")]
+        [Range(0, 1)] public float retaliation;
         public Color color = new Color(.76f, .35f, .45f);
         public Sprite battlePortrait;
         public EnemySkillDefinition[] skills = Array.Empty<EnemySkillDefinition>();

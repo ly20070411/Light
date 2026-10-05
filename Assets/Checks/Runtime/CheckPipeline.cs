@@ -83,6 +83,7 @@ namespace Emerge.Checks
                 return new CheckSession
                 {
                     eventId = definition.eventId, contextId = definition.eventId, sessionId = Guid.NewGuid().ToString("N"),
+                    attributeRulesVersion = SixKinAttributes.RulesVersion,
                     attributes = snapshot, modifiers = new int[6], phase = CheckSessionPhase.Preparing,
                     castingStatus = "等待掷出三枚铜币，共六次", chartStatus = "等待六爻齐全后排盘", modifierStatus = "等待排盘加值",
                     divination = new DivinationRecord { month = month, day = day, casting = CoinCasting.Cast(seed) }
@@ -99,6 +100,7 @@ namespace Emerge.Checks
                 eventId = definition.eventId,
                 contextId = definition.eventId,
                 sessionId = Guid.NewGuid().ToString("N"),
+                attributeRulesVersion = SixKinAttributes.RulesVersion,
                 attributes = snapshot,
                 modifiers = (int[])preparation.modifiers.Clone(),
                 castingStatus = castingStatus,

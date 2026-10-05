@@ -4,6 +4,8 @@ namespace Emerge.Checks
 {
     public static class CheckResolver
     {
+        public static CheckBehavior EffectiveBehavior(CheckSession session, CheckBehavior behavior)
+            => session.attributeRulesVersion >= SixKinAttributes.RulesVersion && behavior == CheckBehavior.Self ? CheckBehavior.Parent : behavior;
         public static CheckResult Resolve(CheckSession session, CheckOptionDefinition option)
         {
             if (session == null)
@@ -19,13 +21,14 @@ namespace Emerge.Checks
             if (!CheckEventDefinition.ValidateOption(option, out string error))
                 throw new ArgumentException("Invalid check option: " + error, nameof(option));
 
-            int baseValue = session.attributes.Get(option.behavior);
-            int modifier = session.modifiers[(int)option.behavior];
+            var behavior = EffectiveBehavior(session, option.behavior);
+            int baseValue = session.attributes.Get(behavior);
+            int modifier = session.modifiers[(int)behavior];
             int finalValue = checked(baseValue + modifier);
             var result = new CheckResult
             {
                 optionId = option.id,
-                behavior = option.behavior,
+                behavior = behavior,
                 baseValue = baseValue,
                 modifier = modifier,
                 finalValue = finalValue,

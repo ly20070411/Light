@@ -27,7 +27,7 @@ MonoBehaviour:
   vulnerability: 0.2
   vulnerabilityHits: 2
   bossWeakness: 0.3
-  balanceVersion: v0.3-easy
+  balanceVersion: v0.5-counterplay
   advancedOptions: 3
   enemyIntentBudget: 44
   burnDamage: 5

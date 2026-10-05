@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Tools
+  m_EditorClassIdentifier: 
+  id: 8931f5bf2c9f4d759c60ef19d54baa91
+  displayName: "\u7801\u5934\u5DE5\u5177\u7BB1"
+  category: "Day1 / \u4EFB\u52A1\u7269\u8D44"
+  character: {fileID: 0}
+  description: "P17 \u6240\u9700\u5DE5\u5177\u7531 Day1FlowController \u53D1\u653E\u5E76\u9632\u6B62\u91CD\u590D\u9886\u53D6\u3002\u3010\u5360\u4F4D\u3011\u5DE5\u5177\u79CD\u7C7B\u3001\u6570\u91CF\u5C1A\u672A\u786E\u5B9A\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 076eedbbf23c4d14a9254a40bb6b4010, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 0.76, g: 0.86, b: 0.96, a: 1}
+  worldSize: {x: 1, y: 1.25}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 1
+  colliderSize: {x: 0.75, y: 0.35}
+  colliderOffset: {x: 0, y: 0.12}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u641C\u5BFB\u5DE5\u5177"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 0}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  - day1.quest.mechanic
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5411\u673A\u68B0\u5E08\u786E\u8BA4\u6240\u9700\u5DE5\u5177\u4E0E\u96F6\u4EF6"

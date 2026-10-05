@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a00238764e6be847b734a5f61d6948b, type: 3}
+  m_Name: RepairCheck
+  m_EditorClassIdentifier: 
+  eventId: day1.repair
+  title: "\u4F5C\u6218\u8BBE\u5907\u68C0\u4FEE"
+  speaker: "\u7EF4\u4FEE\u5DE5\u4F5C\u53F0"
+  intro: "\u68C0\u67E5\u6545\u969C\u4F4D\u7F6E\uFF0C\u518D\u4FEE\u590D\u5F02\u5E38\u90E8\u4EF6\u3002"
+  completedText: "\u68C0\u4FEE\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6536\u5BB9\u90E8\u5B89\u4FDD\u3002"
+  revealDifficultyBeforeChoice: 1
+  useDivination: 1
+  divinationMonth: "\u5DF3\u6708"
+  divinationDay: "\u620A\u5B50\u65E5"
+  useFixedDivinationSeed: 0
+  divinationSeed: 0
+  options:
+  - id: perform
+    label: "\u68C0\u67E5\u5E76\u4FEE\u590D\u5F02\u5E38\u90E8\u4EF6"
+    behavior: 1
+    targetValue: 9
+    requiredFlags:
+    - day1.free_roam
+    - day1.quest.containment-researcher
+    requiredItemKey: 
+    requiredItemAmount: 1
+    consumeRequiredItem: 0
+    success:
+      text: "\u5F02\u5E38\u90E8\u4EF6\u5DF2\u6062\u590D\uFF0C\u8BBE\u5907\u901A\u8FC7\u672C\u6B21\u68C0\u4FEE\u3002"
+      continuation: "\u68C0\u4FEE\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6536\u5BB9\u90E8\u5B89\u4FDD\u3002"
+      grantedFlags:
+      - day1.repair_done
+      - day1.repair_success
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0
+    failure:
+      text: "\u4F60\u8BB0\u5F55\u4E0B\u6545\u969C\u4F4D\u7F6E\u3002\u7814\u7A76\u5458\u534F\u52A9\u5B8C\u6210\u4E86\u57FA\u7840\u4FEE\u590D\uFF0C\u8BBE\u5907\u6062\u590D\u5230\u53EF\u7528\u72B6\u6001\u3002"
+      continuation: "\u68C0\u4FEE\u7ED3\u679C\u5DF2\u4FDD\u5B58\uFF0C\u53EF\u4EE5\u56DE\u62A5\u6536\u5BB9\u90E8\u5B89\u4FDD\u3002"
+      grantedFlags:
+      - day1.repair_done
+      rewardItemKey: 
+      rewardItemName: 
+      rewardItemAmount: 0
+      contaminationDelta: 0

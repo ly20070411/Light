@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: ContainmentResearcher
+  m_EditorClassIdentifier: 
+  id: 99ff5cc3c3d344a3b23339d7a1f00dcf
+  displayName: "\u6536\u5BB9\u90E8\u5B89\u4FDD"
+  category: "Day1 / \u89D2\u8272"
+  character: {fileID: 11400000, guid: 88e8831fe9cac91468c832111413837d, type: 2}
+  description: "Day1 \u72EC\u7ACB\u89D2\u8272\u4EA4\u4E92\u914D\u7F6E\uFF1B\u5F15\u7528\u89D2\u8272\u5E93\u5916\u89C2\u4E0E\u8D44\u6599\uFF0C\u539F\u59CB\u89D2\u8272\u5730\u56FE\u9053\u5177\u4FDD\u6301\u4E0D\u53D8\u3002\u5267\u60C5\u5BF9\u767D\u548C\u4EFB\u52A1\u72B6\u6001\u7531
+    Day1FlowController \u7BA1\u7406\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 076f9684d0de81e4588312edbb4bc889, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  worldSize: {x: 0.8, y: 1.2}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 0
+  isSolid: 1
+  colliderSize: {x: 0.45, y: 0.2}
+  colliderOffset: {x: 0, y: 0.08}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u4EA4\u8C08"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 0}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5B8C\u6210\u79D1\u8003\u7AD9\u5165\u9A7B\u51C6\u5907"

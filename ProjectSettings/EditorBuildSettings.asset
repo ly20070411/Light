@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleBossDemo.unity
     guid: 66b9d38ef344c2f419864883580808ed
+  - enabled: 1
+    path: Assets/Scenes/Day1ResearchStation.unity
+    guid: 5ce480cc3342798449cc7bae33c8db41
   m_configObjects: {}

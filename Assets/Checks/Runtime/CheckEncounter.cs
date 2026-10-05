@@ -44,10 +44,11 @@ namespace Emerge.Checks
             foreach (var option in definition.options)
             {
                 bool allowed = state.CanChoose(option, out string reason);
-                int baseValue = session.attributes.Get(option.behavior);
-                int bonus = session.modifiers[(int)option.behavior];
+                var behavior = CheckResolver.EffectiveBehavior(session, option.behavior);
+                int baseValue = session.attributes.Get(behavior);
+                int bonus = session.modifiers[(int)behavior];
                 long total = (long)baseValue + bonus;
-                string label = option.label + " · " + BehaviorName(option.behavior) + " " + baseValue +
+                string label = option.label + " · " + BehaviorName(behavior) + " " + baseValue +
                     (bonus >= 0 ? " + " : " − ") + Math.Abs((long)bonus) + " = " + total;
                 if (definition.revealDifficultyBeforeChoice) label += " / 目标 " + option.targetValue;
                 if (option.consumeRequiredItem) label += " · 消耗" + state.RequiredItemName(option.requiredItemKey) + " × " + option.requiredItemAmount;

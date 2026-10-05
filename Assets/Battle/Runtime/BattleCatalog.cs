@@ -10,6 +10,9 @@ namespace Emerge.Battle
     public sealed class BattleCatalog : ScriptableObject
     {
         public const string ResourcePath = "Battle/BattleCatalog";
+        [Tooltip("此配置库在 Resources 下的稳定路径。旧资产保持默认路径；独立剧情库使用自己的资源路径。")]
+        public string resourcePath = ResourcePath;
+        public string SaveResourcePath => string.IsNullOrWhiteSpace(resourcePath) ? ResourcePath : resourcePath;
         public BattleRules rules;
         public BattleSkillDefinition[] skills = Array.Empty<BattleSkillDefinition>();
         public BattleEnemyDefinition[] enemies = Array.Empty<BattleEnemyDefinition>();
@@ -20,9 +23,26 @@ namespace Emerge.Battle
         public BattleEncounterDefinition Encounter(string id) => encounters.FirstOrDefault(value => value != null && value.id == id);
         public BattleItemDefinition Item(string id) => items.FirstOrDefault(value => value != null && value.id == id);
 
+        public static bool TryResolveSaveCatalog(string path, BattleCatalog current, out BattleCatalog resolved)
+        {
+            resolved = null;
+            if (!ValidResourcePath(path) || (current != null && current.SaveResourcePath != path)) return false;
+            var resource = Resources.Load<BattleCatalog>(path);
+            if (resource == null || resource.SaveResourcePath != path) return false;
+            // Runtime clones deliberately used by simulation/tests retain the same resource identity.
+            // Check the supplied clone's complete battle data below instead of requiring object equality.
+            resolved = current != null ? current : resource;
+            return resolved.Validate(out _);
+        }
+
+        private static bool ValidResourcePath(string path)
+            => !string.IsNullOrWhiteSpace(path) && path == path.Trim() && !path.Contains("\\") &&
+                !path.Contains(":") && !path.Contains(".") && path.Split('/').All(segment => !string.IsNullOrWhiteSpace(segment));
+
         public bool Validate(out string error)
         {
             error = null;
+            if (!ValidResourcePath(SaveResourcePath)) { error = "战斗库 Resources 路径无效。"; return false; }
             if (rules == null || !rules.Validate(out error)) { error = error ?? "缺少战斗规则。"; return false; }
             if (skills == null || skills.Length == 0 || enemies == null || enemies.Length == 0 ||
                 items == null || encounters == null || encounters.Length == 0) { error = "战斗库缺少配置。"; return false; }
@@ -41,7 +61,7 @@ namespace Emerge.Battle
             foreach (var enemy in enemies)
             {
                 if (enemy == null || string.IsNullOrWhiteSpace(enemy.id) || !ids.Add(enemy.id) || enemy.maxHP < 1 ||
-                    enemy.maxMP < 1 || enemy.roundMana < 0 || enemy.skills == null || enemy.skills.Length == 0)
+                    enemy.maxMP < 1 || enemy.roundMana < 0 || !Finite(enemy.retaliation) || enemy.retaliation < 0 || enemy.retaliation > 1 || enemy.skills == null || enemy.skills.Length == 0)
                 { error = "敌人配置无效。"; return false; }
                 var skillIds = new HashSet<string>(); bool fallback = false;
                 foreach (var skill in enemy.skills)

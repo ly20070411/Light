@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Plant
+  m_EditorClassIdentifier: 
+  id: 683d15749d254740b6152e3aff25dcce
+  displayName: "\u690D\u7269\u91C7\u6837\u70B9"
+  category: "Day1 / \u68C0\u5B9A"
+  character: {fileID: 0}
+  description: "P10 \u5B9E\u9645\u516D\u723B\u91C7\u96C6\u68C0\u5B9A\u3002\u3010\u5360\u4F4D\u3011\u9ED8\u8BA4\u706B\u70AC\u8D34\u56FE\u7740\u7EFF\u4EE3\u66FF\u690D\u7269\uFF1B\u5B50\u5B59\u76EE\u6807
+    9\uFF0C\u6837\u672C\u6570\u91CF 1\uFF1B\u6210\u529F\u5956\u52B1\u5B8C\u6574\u6837\u672C\uFF0C\u5931\u8D25\u4E5F\u53EF\u5B8C\u6210\u57FA\u7840\u91C7\u6837\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: b9d8d148f78cd2e4aa2b63c761dd9689, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 0.3, g: 0.8, b: 0.36, a: 1}
+  worldSize: {x: 0.85, y: 1.25}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 0
+  colliderSize: {x: 0.75, y: 0.35}
+  colliderOffset: {x: 0, y: 0.12}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u91C7\u96C6\u690D\u7269\u6837\u672C"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 11400000, guid: b5f8474a7e67bed43a8a09abb1366da7, type: 2}
+  battleEncounter: {fileID: 0}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  - day1.quest.geologist
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5411\u5730\u8D28\u5B66\u5BB6\u63A5\u53D6\u690D\u7269\u91C7\u6837\u4EFB\u52A1"

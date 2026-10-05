@@ -12,6 +12,8 @@ namespace Emerge.Props
         public KeyCode inventoryKey = KeyCode.I;
         public bool keyboardInput = true;
         public bool showUI = true;
+        [Tooltip("按菜单的 1280×720 参考尺寸缩放对话界面；旧场景默认保持原尺寸。")]
+        public bool scaleInterface;
         public PropLibrary propLibrary;
         private PropGameState state;
         private PlayerMovement movement;
@@ -37,7 +39,7 @@ namespace Emerge.Props
             ? (IReadOnlyList<PropDialogueChoice>)optionChoices : Array.Empty<PropDialogueChoice>();
         public int DialogueIndex => lineIndex;
         public string CurrentDialogueText => lines != null && lineIndex >= 0 && lineIndex < lines.Count && lines[lineIndex] != null ? lines[lineIndex].text : "";
-        public string CurrentDialogueSpeaker => lines != null && lineIndex >= 0 && lineIndex < lines.Count && lines[lineIndex] != null ? lines[lineIndex].speaker : "";
+        public string CurrentDialogueSpeaker => lines != null && lineIndex >= 0 && lineIndex < lines.Count && lines[lineIndex] != null ? lines[lineIndex].SpeakerName : "";
         public PropInstance CurrentTarget => current;
         private void Awake() { state = GetComponent<PropGameState>(); movement = GetComponent<PlayerMovement>(); }
         private void OnEnable() { PropGameState.Restored += OnStateRestored; }
@@ -210,7 +212,13 @@ namespace Emerge.Props
         private void OnGUI()
         {
             if (!showUI || !Emerge.GameFlow.GameSessionController.GameplayInputAllowed) return;
-            float width = Mathf.Min(620f, Screen.width - 24f);
+            float scale = scaleInterface ? Mathf.Max(1f, Mathf.Sqrt(Screen.width / 1280f * Screen.height / 720f)) : 1f;
+            float screenWidth = Screen.width / scale, screenHeight = Screen.height / scale;
+            Matrix4x4 previousMatrix = GUI.matrix;
+            GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)) * previousMatrix;
+            try
+            {
+            float width = Mathf.Min(620f, screenWidth - 24f);
             var text = new GUIStyle(GUI.skin.label) { wordWrap = true, fontSize = 16 };
             var title = new GUIStyle(text) { fontStyle = FontStyle.Bold };
             if (IsInDialogue && lines != null && lineIndex < lines.Count)
@@ -224,19 +232,20 @@ namespace Emerge.Props
                 bool? requestedLegacyChoice = null;
                 bool advanceRequested = false, cancelRequested = false;
                 float height = awaitingChoice && choices.Length > 0
-                    ? Mathf.Min(Mathf.Max(180f, Screen.height - 16f), 190f + choices.Length * 34f) : 180f;
-                var rect = new Rect((Screen.width - width) / 2f, Mathf.Max(8f, Screen.height - height - 12f), width, height);
+                    ? Mathf.Min(Mathf.Max(180f, screenHeight - 16f), 190f + choices.Length * 34f) : 180f;
+                var rect = new Rect((screenWidth - width) / 2f, Mathf.Max(8f, screenHeight - height - 12f), width, height);
                 GUI.Box(rect, "");
                 GUILayout.BeginArea(new Rect(rect.x + 14f, rect.y + 12f, rect.width - 28f, rect.height - 24f));
                 GUILayout.BeginHorizontal();
-                if (line != null && line.portrait != null)
+                Sprite dialoguePortrait = line != null ? line.Portrait : null;
+                if (dialoguePortrait != null)
                 {
                     Rect portrait = GUILayoutUtility.GetRect(64f, 64f, GUILayout.Width(64f));
-                    Vector4 uv = UnityEngine.Sprites.DataUtility.GetOuterUV(line.portrait);
-                    GUI.DrawTextureWithTexCoords(portrait, line.portrait.texture, new Rect(uv.x, uv.y, uv.z - uv.x, uv.w - uv.y));
+                    Vector4 uv = UnityEngine.Sprites.DataUtility.GetOuterUV(dialoguePortrait);
+                    GUI.DrawTextureWithTexCoords(portrait, dialoguePortrait.texture, new Rect(uv.x, uv.y, uv.z - uv.x, uv.w - uv.y));
                 }
                 GUILayout.BeginVertical();
-                GUILayout.Label(line == null ? "" : line.speaker, title);
+                GUILayout.Label(line == null ? "" : line.SpeakerName, title);
                 dialogueScroll = GUILayout.BeginScrollView(dialogueScroll);
                 GUILayout.Label(line == null ? "" : line.text, text);
                 GUILayout.EndScrollView();
@@ -277,20 +286,22 @@ namespace Emerge.Props
             {
                 bool allowed = current.CanInteract(this, out string reason);
                 string prompt = allowed ? "[" + interactKey + "] " + current.Definition.interactionLabel + " · " + current.Definition.DisplayName : reason;
-                GUI.Box(new Rect((Screen.width - width) / 2f, Screen.height - 65f, width, 38f), prompt);
+                GUI.Box(new Rect((screenWidth - width) / 2f, screenHeight - (scaleInterface ? 122f : 65f), width, 38f), prompt);
             }
             if (!string.IsNullOrEmpty(feedback) && Time.unscaledTime < feedbackUntil)
-                GUI.Box(new Rect((Screen.width - width) / 2f, Screen.height - 240f, width, 42f), feedback);
+                GUI.Box(new Rect((screenWidth - width) / 2f, screenHeight - 240f, width, 42f), feedback);
             GUI.Label(new Rect(16f, 116f, 280f, 24f), interactKey + " 交互 · " + inventoryKey + " 背包 · Shift 加速");
             if (inventoryOpen)
             {
-                GUILayout.BeginArea(new Rect(16f, 144f, 280f, Mathf.Max(60f, Mathf.Min(360f, Screen.height - 154f))), GUI.skin.box);
+                GUILayout.BeginArea(new Rect(16f, 144f, 280f, Mathf.Max(60f, Mathf.Min(360f, screenHeight - 154f))), GUI.skin.box);
                 GUILayout.Label("背包", title);
                 inventoryScroll = GUILayout.BeginScrollView(inventoryScroll);
                 if (State.Inventory.Count == 0) GUILayout.Label("暂无物品");
                 foreach (var item in State.Inventory) GUILayout.Label(item.displayName + " × " + item.amount);
                 GUILayout.EndScrollView(); GUILayout.EndArea();
             }
+            }
+            finally { GUI.matrix = previousMatrix; }
         }
     }
 }

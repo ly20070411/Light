@@ -23,7 +23,7 @@ namespace Emerge.Battle
         [Range(0, 1)] public float vulnerability = .2f;
         [Min(1)] public int vulnerabilityHits = 2;
         [Range(0, 1)] public float bossWeakness = .3f;
-        public string balanceVersion = "v0.3-easy";
+        public string balanceVersion = "v0.5-counterplay";
         [Range(1, 8)] public int advancedOptions = 3;
         [Min(1)] public int enemyIntentBudget = 44;
         [Min(1)] public int burnDamage = 5, burnTicks = 2;

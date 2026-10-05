@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Emerge.Checks.Divination;
+using Emerge.Checks;
 using Emerge.GameFlow;
 using Emerge.Props;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace Emerge.Battle.Tests
         {
             yield return null;
             catalog = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
-            foreach (var stage in new Action[] { Configuration, Commands, Statuses, Persistence, EncounterSmoke })
+            foreach (var stage in new Action[] { Configuration, Commands, Statuses, Persistence, BuildRules, Retaliation, EncounterSmoke })
                 try { stage(); } catch (Exception e) { Add(stage.Method.Name + " completes", false, e.ToString()); }
             var ui = UI();
             while (true)
@@ -56,11 +57,11 @@ namespace Emerge.Battle.Tests
             var art = Resources.Load<BattlePresentation>(BattlePresentation.ResourcePath);
             Add("Replaceable placeholders remain installed", art != null && art.heroPortrait != null && art.coinFront != null && catalog.enemies.All(e => e.battlePortrait != null));
         }
-        private BattleEngine New(string encounter = "ENC01", int seed = 12637, bool open = true)
+        private BattleEngine New(string encounter = "ENC01", int seed = 12637, bool open = true, ActorCheckAttributes attributes = null)
         {
             var go = new GameObject("Battle fixture"); actors.Add(go); var inventory = go.AddComponent<PropGameState>();
             foreach (var i in catalog.items) inventory.AddItem(i.inventoryKey, i.displayName, 2);
-            var engine = new BattleEngine(catalog, inventory); engine.Start(catalog.Encounter(encounter), seed); if (open) Open(engine); return engine;
+            var engine = new BattleEngine(catalog, inventory) { EmitRuntimeLogs = false }; engine.Start(catalog.Encounter(encounter), seed, attributes: attributes); if (open) Open(engine); return engine;
         }
         private static void Open(BattleEngine e) => BattleBalanceTest.Reveal(e);
         private void Cast(BattleEngine e, string id, int target = 0)
@@ -74,33 +75,33 @@ namespace Emerge.Battle.Tests
                 var coins = CoinCasting.Cast(BattleEngine.RoundSeed(seed, 1));
                 var record = new DivinationRecord { month = d.month, day = d.day, casting = coins, chart = new LiuYaoPaiPan().PaiPan(d.month, d.day, coins.yaoValues) };
                 int score = BattleEngine.FamilyScore(record, catalog.Skill(id).family);
-                if ((exact ? score == minimumScore : score >= minimumScore) && BattleEngine.SelectOffers(catalog, record, new List<EnemySkillUses>()).Contains(id)) return seed;
+                if ((exact ? score == minimumScore : score >= minimumScore) && BattleBuildRules.SelectOffers(catalog, record, new List<EnemySkillUses>(), SixKinAttributes.DefaultBuild()).Contains(id)) return seed;
             }
             throw new Exception("No offered fixture: " + id);
         }
         private void Commands()
         {
             var e = New(open: false);
-            Add("Start gates actions behind round casting", e.State.version == 2 && e.State.phase == BattlePhase.RoundCasting && e.State.player.mp == 30 && e.State.actionSerial == 0);
+            Add("Start gates actions behind round casting", e.State.version == 3 && e.State.phase == BattlePhase.RoundCasting && e.State.player.mp == 30 && e.State.actionSerial == 0);
             Add("Opening cannot consume items or skills or end", !e.CommitSkill("ATK_BASIC", 0, out _) && !e.UseItem("ITEM_BLAST", out _) && !e.EndTurn());
             Add("Cannot resolve an incomplete round", !e.ResolveRound());
             string intent = e.State.enemies[0].intentSkillId; Open(e);
             Add("Round reveal costs no MP and opens three distinct skills", e.State.phase == BattlePhase.Player && e.State.player.mp == 30 && e.State.unlockedSkills.Count == 3 && e.State.unlockedSkills.Distinct().Count() == 3);
-            Add("Offers guarantee offense and utility", e.State.unlockedSkills.Any(id => catalog.Skill(id).effect == BattleEffect.Damage) && e.State.unlockedSkills.Any(id => catalog.Skill(id).effect != BattleEffect.Damage));
+            Add("Offers use the build-weighted pool", e.State.unlockedSkills.SequenceEqual(BattleBuildRules.SelectOffers(catalog, e.State.roundDivination, e.State.roundStartUses, e.State.attributes)));
             Add("Completed casting cannot replay", !e.ResolveRound() && !e.ResolveSkill() && !e.RevealLine());
             string locked = catalog.skills.First(s => !s.alwaysAvailable && !e.State.unlockedSkills.Contains(s.id)).id;
             Add("Locked command is rejected without payment", !e.CommitSkill(locked, 0, out _) && e.State.player.mp == 30 && e.State.actionSerial == 0);
             int hp = e.State.enemies[0].hp; Cast(e, "ATK_BASIC");
-            Add("Basic is immediate and always x1", e.State.phase == BattlePhase.Player && hp - e.State.enemies[0].hp == 7 && e.State.player.mp == 27 && e.State.lastAction.multiplier == 1);
+            Add("Basic uses fixed attribute multiplier", e.State.phase == BattlePhase.Player && hp - e.State.enemies[0].hp == 8 && e.State.player.mp == 27 && Mathf.Approximately(e.State.lastAction.multiplier, 1.2f));
             var coins = e.State.roundDivination.casting.coinFaces.ToArray(); Cast(e, "ATK_BASIC");
             Add("Multiple actions share round coins without reroll", e.State.player.mp == 24 && coins.SequenceEqual(e.State.lastAction.divination.casting.coinFaces));
             Add("Actions do not change enemy intention", e.State.enemies[0].intentSkillId == intent && e.State.player.hp == 100);
-            Cast(e, "DEF_GUARD"); Add("Defense is fixed 35 percent", Mathf.Approximately(e.State.player.reduction, .35f));
+            Cast(e, "DEF_GUARD"); Add("Defense includes fixed parent bonus", Mathf.Approximately(e.State.player.reduction, .42f));
             Add("Duplicate guard and invalid target consume nothing", !e.CommitSkill("DEF_GUARD", 0, out _) && !e.CommitSkill("ATK_BASIC", 9, out _) && e.State.player.mp == 24 - catalog.Skill("DEF_GUARD").mpCost);
             e.State.player.mp = 0; Add("No free infinite attacks", !e.CommitSkill("ATK_BASIC", 0, out _) && !e.CommitSkill("missing", 0, out _));
             e.UseItem("ITEM_MP", out _); Add("Item continues same turn without skill use", e.State.player.mp == 12 && e.State.phase == BattlePhase.Player && e.State.actionSerial == 3);
             e.EndTurn(); Add("Only explicit end advances enemy phase", e.State.phase == BattlePhase.Enemy && !e.EndTurn());
-            e.StepEnemy(); Add("Enemy uses base damage with player defense", e.State.player.hp == 100 - BattleRules.Round(catalog.Enemy("E01").skills.First(s => s.id == intent).power * .65f));
+            e.StepEnemy(); Add("Enemy uses base damage with player defense", e.State.player.hp == 100 - BattleRules.Round(catalog.Enemy("E01").skills.First(s => s.id == intent).power * .58f));
             e.StepEnemy(); Add("New round restores natural MP and clears defense", e.State.round == 2 && e.State.phase == BattlePhase.RoundCasting && e.State.player.mp == Math.Min(30, 12 + catalog.rules.roundMana) && e.State.player.reduction == 0);
             e = New("ENC03", OfferSeed("ATK_SWEEP", "ENC03")); var before = e.State.enemies.Select(x => x.hp).ToArray(); Cast(e, "ATK_SWEEP");
             Add("AoE pays once and hits all enemies", e.State.actionSerial == 1 && e.State.player.mp == 18 && e.State.enemies.Select((x, i) => before[i] - x.hp).All(x => x == e.State.lastAction.value));
@@ -110,7 +111,7 @@ namespace Emerge.Battle.Tests
             Add("Dead enemy skips exactly one cursor position", e.State.player.hp == after && e.State.enemyCursor == 2); e.StepEnemy(); e.StepEnemy(); Open(e);
             Add("Spent skill disappears from later offers", e.State.round == 2 && !e.State.unlockedSkills.Contains("ATK_SWEEP") && e.RemainingUses("ATK_SWEEP") == 0);
             e = New(seed: OfferSeed("ATK_HEAVY", minimumScore: 0)); Cast(e, "ATK_HEAVY"); float multiplier = e.State.lastAction.multiplier;
-            Add("Advanced uses known round multiplier", multiplier == e.SkillMultiplier("ATK_HEAVY") && e.State.lastAction.score == BattleEngine.FamilyScore(e.State.roundDivination, BattleFamily.Officer));
+            Add("Advanced uses known round multiplier", multiplier == e.SkillMultiplier("ATK_HEAVY") && e.State.lastAction.score == 2 && Mathf.Approximately(multiplier, 1.2f));
             e.State.player.mp = 30; Cast(e, "ATK_HEAVY"); Add("Second heavy retains exact multiplier", e.State.lastAction.multiplier == multiplier && e.RemainingUses("ATK_HEAVY") == 1);
             var reloaded = New(); reloaded.Restore(e.Capture());
             Add("Reload keeps remaining whole-battle uses", reloaded.RemainingUses("ATK_HEAVY") == 1 && reloaded.State.unlockedSkills.SequenceEqual(e.State.unlockedSkills));
@@ -140,15 +141,15 @@ namespace Emerge.Battle.Tests
             Add("Exposure amplifies next direct hit", e.State.player.hp == 100 - 4 - BattleRules.Round(8 * 1.2f)); e.StepEnemy();
             Add("Exposure expires after following enemy phase", e.State.player.exposure == 0 && e.State.player.exposureUntilRound == 0);
             e = New(seed: OfferSeed("ATK_HEAVY", minimumScore: 0)); Cast(e, "ATK_HEAVY"); int hp = e.State.enemies[0].hp; int hits = e.State.enemies[0].vulnerabilityHits; Cast(e, "ATK_BASIC");
-            Add("Heavy vulnerability amplifies subsequent hit", hp - e.State.enemies[0].hp == BattleRules.Round(7 * 1.2f) && e.State.enemies[0].vulnerabilityHits == hits - 1);
+            Add("Heavy vulnerability amplifies subsequent hit", hp - e.State.enemies[0].hp == BattleRules.Round(7 * 1.2f * 1.2f) && e.State.enemies[0].vulnerabilityHits == hits - 1);
             e = New(seed: OfferSeed("CTRL_BIND", minimumScore: 2)); Cast(e, "CTRL_BIND"); Round(e);
             Add("Strong bind skips action and gives determination", e.State.player.hp == 100 && e.State.enemies[0].determined);
             e = New("ENC05", OfferSeed("CTRL_BIND", "ENC05", 2)); Cast(e, "CTRL_BIND");
-            Add("Boss stun resistance converts to weakening", !e.State.enemies[0].stunned && e.State.enemies[0].weakness == catalog.rules.bossWeakness);
+            Add("Boss stun resistance converts to weakening", !e.State.enemies[0].stunned && Mathf.Approximately(e.State.enemies[0].weakness, .22f));
             e = New("ENC05"); e.State.enemies[0].intentSkillId = "charge"; Round(e);
             Add("Charge telegraphs next-round release without damage", e.State.enemies[0].charged && e.State.enemies[0].intentSkillId == "release" && e.State.player.hp == 100);
             Cast(e, "DEF_GUARD"); e.EndTurn(); e.StepEnemy();
-            Add("Release respects guard and exposes boss", e.State.player.hp == 100 - BattleRules.Round(42 * .65f) && !e.State.enemies[0].charged && e.State.enemies[0].vulnerabilityHits == 3 && e.State.enemies[0].vulnerability == .25f);
+            Add("Release respects guard and exposes boss", e.State.player.hp == 100 - BattleRules.Round(42 * .58f) && !e.State.enemies[0].charged && e.State.enemies[0].vulnerabilityHits == 3 && e.State.enemies[0].vulnerability == .25f);
             e = New("ENC05", OfferSeed("CTRL_SEAL", "ENC05", 0)); e.State.enemies[0].charged = true; e.State.enemies[0].intentSkillId = "release"; Cast(e, "CTRL_SEAL"); e.EndTurn(); e.StepEnemy();
             Add("Seal downgrades release and consumes charge", e.State.player.hp == 82 && !e.State.enemies[0].charged && e.State.enemies[0].uses.Any(x => x.skillId == "tide"));
             bool varied = false, capped = true, cooldown = true;
@@ -164,6 +165,96 @@ namespace Emerge.Battle.Tests
             Add("Enemy intentions vary across seeds", varied, "unique=" + intents.Count);
             Add("Team raw burst budget applies", capped); Add("Heavy cooldown prevents consecutive specials", cooldown);
         }
+        private void BuildRules()
+        {
+            var defaults = SixKinAttributes.DefaultBuild();
+            foreach (BattleFamily family in Enum.GetValues(typeof(BattleFamily)))
+            {
+                var build = new ActorCheckAttributes();
+                switch (family)
+                {
+                    case BattleFamily.Parent: build.parent = 8; break;
+                    case BattleFamily.Offspring: build.offspring = 8; break;
+                    case BattleFamily.Officer: build.officer = 8; break;
+                    case BattleFamily.Wealth: build.wealth = 8; break;
+                    case BattleFamily.Sibling: build.sibling = 8; break;
+                }
+                var e = New(attributes: build);
+                int available = catalog.skills.Count(s => !s.alwaysAvailable && s.family == family);
+                Add("Single-family build excludes all zero-point skills: " + family,
+                    e.State.unlockedSkills.Count == Math.Min(available, catalog.rules.advancedOptions) &&
+                    e.State.unlockedSkills.All(id => catalog.Skill(id).family == family));
+                Add("Single-family build has 1.8 multiplier: " + family,
+                    catalog.skills.Where(s => s.family == family).All(s => Mathf.Approximately(e.SkillMultiplier(s.id), 1.8f)));
+                build.parent = build.officer = build.offspring = build.wealth = build.sibling = 0;
+                Add("Battle keeps an independent attribute snapshot: " + family, SixKinAttributes.IsValidBuild(e.State.attributes));
+                string blocked = catalog.skills.First(s => !s.alwaysAvailable && s.family != family).id;
+                Add("Zero-point skill cannot be manually submitted: " + family, !e.CommitSkill(blocked, 0, out _) && e.State.actionSerial == 0);
+            }
+            var offense = new ActorCheckAttributes { officer = 8 };
+            var attack = New(attributes: offense);
+            int hp = attack.State.enemies[0].hp;
+            Cast(attack, "ATK_HEAVY");
+            Add("Eight attack points produce fixed 36 heavy damage", hp - attack.State.enemies[0].hp == 36 && attack.State.lastAction.value == 36);
+            Add("Heavy has fixed two-hit vulnerability without a moving-line bonus", attack.State.enemies[0].vulnerabilityHits == catalog.rules.vulnerabilityHits && !attack.State.lastAction.movingLine);
+            var parent = New(attributes: new ActorCheckAttributes { parent = 8 }); Cast(parent, "DEF_GUARD");
+            Add("High defense respects the cap and blocks redundant guard", Mathf.Approximately(parent.State.player.reduction, .5f) && !parent.CanUseSkill("DEF_GUARD", 0, out _));
+            var ghost = New(attributes: new ActorCheckAttributes { sibling = 8 }); Cast(ghost, "CTRL_BIND");
+            Add("Bind stuns ordinary enemies independently of chart score", ghost.State.enemies[0].stunned);
+            var boss = New("ENC05", attributes: new ActorCheckAttributes { sibling = 8 }); Cast(boss, "CTRL_BIND");
+            Add("Resistant bind has fixed attribute-scaled weakening", !boss.State.enemies[0].stunned && Mathf.Approximately(boss.State.enemies[0].weakness, .36f));
+            Cast(boss, "CTRL_SEAL"); Add("Seal works independently of chart score", boss.State.enemies[0].silenced);
+
+            var scores = new HashSet<int>(); bool stable = true;
+            for (int seed = 1; seed <= 30; seed++)
+            {
+                var e = New(seed: seed, attributes: offense);
+                scores.Add(BattleEngine.FamilyScore(e.State.roundDivination, BattleFamily.Officer));
+                int before = e.State.enemies[0].hp; Cast(e, "ATK_HEAVY");
+                stable &= before - e.State.enemies[0].hp == 36 && Mathf.Approximately(e.SkillMultiplier("ATK_HEAVY"), 1.8f);
+            }
+            Add("Different hexagrams never change damage or multiplier", scores.Count > 1 && stable, "distinct chart scores=" + scores.Count);
+
+            var sampleCatalog = Instantiate(catalog); sampleCatalog.rules = Instantiate(catalog.rules); sampleCatalog.rules.advancedOptions = 1;
+            var coins = CoinCasting.Cast(31);
+            var record = new DivinationRecord { casting = coins, chart = new LiuYaoPaiPan().PaiPan("巳月", "戊子日", coins.yaoValues) };
+            var buildA = new ActorCheckAttributes { officer = 4, parent = 2, wealth = 1, offspring = 1 };
+            var buildB = new ActorCheckAttributes { officer = 1, parent = 5, wealth = 1, offspring = 1 };
+            var counts = new Dictionary<BattleFamily, int>();
+            foreach (BattleFamily f in Enum.GetValues(typeof(BattleFamily))) counts[f] = 0;
+            int bAttack = 0; const int trials = 20000;
+            for (int seed = 1; seed <= trials; seed++)
+            {
+                record.casting = new CoinCastResult { seed = seed };
+                var a = BattleBuildRules.SelectOffers(sampleCatalog, record, new List<EnemySkillUses>(), buildA);
+                counts[catalog.Skill(a[0]).family]++;
+                var b = BattleBuildRules.SelectOffers(sampleCatalog, record, new List<EnemySkillUses>(), buildB);
+                if (catalog.Skill(b[0]).family == BattleFamily.Officer) bAttack++;
+            }
+            float totalWeight = counts.Keys.Sum(f => buildA.Get(BattleBuildRules.Attribute(f)) * (4 + record.chart.yaos.Count(y => y.benLiuqin == BattleRules.FamilyName(f))));
+            foreach (var family in counts.Keys)
+            {
+                float expected = buildA.Get(BattleBuildRules.Attribute(family)) * (4 + record.chart.yaos.Count(y => y.benLiuqin == BattleRules.FamilyName(family))) / totalWeight;
+                float observed = counts[family] / (float)trials;
+                Add("First-offer sampling matches family probability: " + family, Math.Abs(expected - observed) < .015f,
+                    "expected=" + expected.ToString("P2") + "; observed=" + observed.ToString("P2") + "; trials=" + trials);
+            }
+            Add("Increasing attack allocation increases attack offer frequency", counts[BattleFamily.Officer] > bAttack * 2, "4 points=" + counts[BattleFamily.Officer] + "; 1 point=" + bAttack);
+            Add("Zero control allocation stays impossible across 20000 seeds", counts[BattleFamily.Sibling] == 0);
+            Destroy(sampleCatalog.rules); Destroy(sampleCatalog);
+
+            var e3 = New(attributes: buildA, open: false); e3.RevealLine(); var saved = e3.Capture();
+            var restored = New(attributes: offense); Add("Attribute battle snapshot restores", restored.Restore(saved));
+            Open(e3); Open(restored); Add("Reload freezes build, lottery and multipliers", JsonUtility.ToJson(e3.State) == JsonUtility.ToJson(restored.State));
+            saved = e3.Capture(); saved.session.attributes.self = 1; Add("Removed self attribute is rejected in v3 saves", !BattleEngine.ValidateSnapshot(saved, catalog));
+            saved = e3.Capture(); saved.session.attributes.officer++; Add("Invalid point budget is rejected in v3 saves", !BattleEngine.ValidateSnapshot(saved, catalog));
+            saved = e3.Capture(); saved.session.unlockedSkills.Add("CTRL_BIND"); Add("Injected zero-point offer is rejected on load", !BattleEngine.ValidateSnapshot(saved, catalog));
+            var old = New(open: false).Capture(); old.session.version = 2; old.session.attributes = null;
+            Add("Existing v2 round-casting battle remains readable", restored.Restore(old) && restored.State.version == 2);
+            Open(restored); hp = restored.State.enemies[0].hp; Cast(restored, "ATK_BASIC");
+            Add("Existing v2 battle retains original basic multiplier", hp - restored.State.enemies[0].hp == 7 && restored.State.lastAction.multiplier == 1 && BattleEngine.ValidateSnapshot(restored.Capture(), catalog));
+        }
+
         private void Persistence()
         {
             var e = New("ENC03", open: false); e.RevealLine(); e.RevealLine(); var saved = e.Capture();
@@ -184,7 +275,7 @@ namespace Emerge.Battle.Tests
             data.actors.Add(new SavedActor { id = "fixture", propState = clone.Inventory.CaptureSnapshot(), battleState = clone.Capture() });
             var store = new GameSaveStore(Path.GetFullPath("Validation/battle-save-test-v3"));
             bool write = store.TryWrite(SaveSlot.Manual, data, out var error); bool read = store.TryRead(SaveSlot.Manual, out var loaded, out var message);
-            Add("Checksummed disk save round-trips v2 battle", write && read && loaded.actors[0].battleState.session.actionSerial == 1, error + message);
+            Add("Checksummed disk save round-trips v3 battle", write && read && loaded.actors[0].battleState.session.actionSerial == 1, error + message);
             e = New(); e.State.enemies[0].hp = 1; Cast(e, "ATK_BASIC"); e.ApplyOutcome(); e.ApplyOutcome(); var victory = e.Inventory.Victory("ENC01", catalog.rules.balanceVersion);
             Add("Victory records current/best rounds and counts once", victory != null && victory.wins == 1 && victory.lastRounds == 1 && victory.bestRounds == 1 && e.State.outcomeApplied);
             Add("First and swift achievements are persisted", e.Inventory.HasFlag("battle-achievement:first:" + catalog.rules.balanceVersion + ":ENC01") && e.Inventory.HasFlag("battle-achievement:swift:" + catalog.rules.balanceVersion + ":ENC01"));
@@ -205,6 +296,52 @@ namespace Emerge.Battle.Tests
             var oldSave = old.Capture(); Add("v1 paid per-skill cast stays readable", BattleEngine.ValidateSnapshot(oldSave, catalog) && e.Restore(oldSave) && e.State.version == 1 && e.State.player.mp == 27 && e.State.pending.divination.revealedLines == 1);
             while (e.RevealLine()) { } Add("v1 pending action resolves once under old flow", e.ResolveSkill() && e.State.phase == BattlePhase.Player && !e.ResolveSkill());
             Add("Old inventory JSON without progress remains readable", e.Inventory.RestoreJson("{\"version\":1,\"inventory\":[],\"flags\":[],\"consumedInstances\":[]}"));
+        }
+        private void Retaliation()
+        {
+            Add("Boss uses the counterplay balance revision", catalog.rules.balanceVersion == "v0.5-counterplay" && catalog.Enemy("B01").maxHP == 400 && Mathf.Approximately(catalog.Enemy("B01").retaliation, .6f));
+            var e = New("ENC05"); int predicted = e.ForecastRetaliation("ATK_BASIC", 0), hp = e.State.player.hp;
+            Cast(e, "ATK_BASIC");
+            Add("Unprotected hit reflects actual HP damage and matches preview", predicted == 5 && hp - e.State.player.hp == predicted && e.State.enemies[0].hp == 392);
+            Add("Retaliation is recorded in the logic chain", e.State.log.Any(line => line.Contains("潮棘反震") && line.Contains("主角损失 5 HP")));
+            var saved = e.Capture(); var clone = New("ENC05");
+            Add("Retaliation damage survives save and load", BattleEngine.ValidateSnapshot(saved, catalog) && clone.Restore(saved) && clone.State.player.hp == 95 && clone.State.enemies[0].hp == 392);
+
+            e = New("ENC05"); Cast(e, "DEF_GUARD"); e.State.player.shield = 2; hp = e.State.player.hp;
+            predicted = e.ForecastRetaliation("ATK_BASIC", 0); Cast(e, "ATK_BASIC");
+            Add("Guard and shield protect against immediate retaliation", predicted == 1 && hp - e.State.player.hp == 1 && e.State.player.shield == 0);
+            e = New("ENC05"); e.State.enemies[0].shield = 20; hp = e.State.player.hp;
+            predicted = e.ForecastRetaliation("ATK_BASIC", 0); Cast(e, "ATK_BASIC");
+            Add("Enemy shield absorption does not trigger retaliation", predicted == 0 && e.State.player.hp == hp && e.State.enemies[0].hp == 400 && e.State.enemies[0].shield == 12);
+            e = New("ENC05"); e.State.player.weakness = .2f; e.State.player.exposure = .2f; e.State.player.exposureUntilRound = 2;
+            e.State.enemies[0].vulnerability = .25f; e.State.enemies[0].vulnerabilityHits = 3; hp = e.State.player.hp;
+            predicted = e.ForecastRetaliation("ATK_BASIC", 0); Cast(e, "ATK_BASIC");
+            Add("Retaliation preview includes weakness, vulnerability and exposure", predicted > 0 && hp - e.State.player.hp == predicted);
+            e = New("ENC05"); hp = e.State.player.hp; predicted = e.ForecastRetaliation("ITEM_BLAST", 0, true);
+            e.UseItem("ITEM_BLAST", out _);
+            Add("Damage items cannot bypass retaliation", predicted == 6 && hp - e.State.player.hp == 6 && e.State.enemies[0].hp == 390);
+            e = New("ENC05"); e.State.enemies[0].hp = 1; e.State.player.hp = 1;
+            predicted = e.ForecastRetaliation("ATK_BASIC", 0); Cast(e, "ATK_BASIC");
+            Add("Lethal hit still reflects only the remaining HP, simultaneous death loses", predicted == 1 && e.State.enemies[0].hp == 0 && e.State.player.hp == 0 && e.State.phase == BattlePhase.Defeat && BattleEngine.ValidateSnapshot(e.Capture(), catalog));
+            e = New("ENC05", open: false); saved = e.Capture(); saved.session.version = 2; saved.session.attributes = null;
+            e.Restore(saved); Open(e); Cast(e, "ATK_BASIC");
+            Add("Version two battles do not acquire the new retaliation rule", e.State.version == 2 && e.State.player.hp == 100 && e.State.enemies[0].hp == 393);
+
+            // Optimistically allow every integer hit size and unlimited MP. Even then, attacking
+            // without defense costs more HP than 100 HP plus the two starter medical kits.
+            int[] costs = new int[catalog.Enemy("B01").maxHP + 1];
+            int maximumHit = catalog.skills.Where(s => s.effect == BattleEffect.Damage).Max(s => BattleRules.Round(s.power * 1.8f * 1.25f));
+            for (int remaining = 1; remaining < costs.Length; remaining++)
+            {
+                costs[remaining] = int.MaxValue;
+                for (int hit = 7; hit <= maximumHit; hit++)
+                {
+                    int actual = Math.Min(remaining, hit);
+                    costs[remaining] = Math.Min(costs[remaining], costs[remaining - actual] + BattleRules.Round(actual * catalog.Enemy("B01").retaliation));
+                }
+            }
+            int maximumHPBudget = catalog.rules.maxHP + 2 * catalog.Item("ITEM_MED").power;
+            Add("Attack-only impossibility holds even with unlimited MP and the starter healing budget", costs.Last() > maximumHPBudget, "minimum reflected HP=" + costs.Last() + "; maximum HP budget=" + maximumHPBudget);
         }
         private void EncounterSmoke()
         {
@@ -267,7 +404,7 @@ namespace Emerge.Battle.Tests
             var basic = view.GetComponentsInChildren<Button>().First(b => b.GetComponentInChildren<Text>().text == "普攻");
             var frozenCoins = controller.Engine.State.roundDivination.casting.coinFaces.ToArray(); int targetHP = controller.Engine.State.enemies[2].hp;
             basic.onClick.Invoke();
-            Add("Actual skill UI immediately attacks selected target", controller.Engine.State.phase == BattlePhase.Player && controller.Engine.State.lastAction.targetIndex == 2 && controller.Engine.State.enemies[2].hp == targetHP - 7);
+            Add("Actual skill UI immediately attacks selected target", controller.Engine.State.phase == BattlePhase.Player && controller.Engine.State.lastAction.targetIndex == 2 && controller.Engine.State.enemies[2].hp == targetHP - 8);
             Add("Round-mode action does not open another coin modal", !view.CastVisible && controller.Engine.State.roundDivination.casting.coinFaces.SequenceEqual(frozenCoins));
             Add("Immediate action still animates portrait effects", view.GetComponentsInChildren<BattlePortraitMotion>().Any(m => m.effect.gameObject.activeSelf));
             yield return new WaitForSeconds(.7f);
@@ -302,6 +439,19 @@ namespace Emerge.Battle.Tests
             Add("Legacy battle save remains readable with escape disabled", controller.RestoreSnapshot(legacy) && !controller.CanFlee);
             controller.RestoreSnapshot(returnSave);
             Add("Escape restores local inventory, position, props and flags", controller.Flee() && controller.Engine.State == null && !BattleController.AnyBattleActive && inventory.CaptureJson() == JsonUtility.ToJson(returnSave.returnPoint.propState, true) && controller.transform.position == beforePosition && prop.transform.position == propPosition && prop.gameObject.activeSelf == propActive);
+            Add("Actual controller opens the revised boss encounter", controller.TryBegin(catalog.Encounter("ENC05")));
+            controller.QuickCast(); yield return new WaitForSeconds(.8f);
+            view = controller.View;
+            view.ShowEnemyTooltip(0, new Vector2(Screen.width * .5f, Screen.height * .5f));
+            Add("Boss hover explains retaliation and its defenses", view.TooltipContent.Contains("潮棘") && view.TooltipContent.Contains("60%") && view.TooltipContent.Contains("护盾"));
+            yield return new WaitForEndOfFrame(); ScreenCapture.CaptureScreenshot("Validation/battle-boss-counterplay-ui.png"); yield return null;
+            view.ShowSkillTooltip("ATK_BASIC", new Vector2(Screen.width * .5f, Screen.height * .5f));
+            int reflected = controller.Engine.ForecastRetaliation("ATK_BASIC", 0), playerHP = controller.Engine.State.player.hp;
+            Add("Attack hover gives the current retaliation HP forecast", view.TooltipContent.Contains("触发反震") && view.TooltipContent.Contains("损失 " + reflected + " HP"));
+            yield return new WaitForEndOfFrame(); ScreenCapture.CaptureScreenshot("Validation/battle-boss-attack-risk-ui.png"); yield return null;
+            controller.UseSkill("ATK_BASIC", 0);
+            Add("Real boss UI attack applies the displayed retaliation loss", controller.Engine.State.player.hp == playerHP - reflected);
+            Add("Boss battle save remains valid and escape restores exploration", BattleEngine.ValidateSnapshot(controller.CaptureSnapshot(), catalog) && controller.Flee());
             controller.enabled = true;
             var menu = MenuPersistence(); while (menu.MoveNext()) yield return menu.Current;
             var scenes = SceneSmoke(); while (scenes.MoveNext()) yield return scenes.Current;
@@ -315,6 +465,8 @@ namespace Emerge.Battle.Tests
             string directory = Path.GetFullPath("Validation/battle-menu-save-test-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss"));
             session.UseTestSaveDirectory(directory); session.gameScenePath = "Assets/Scenes/BattleSingleDemo.unity";
             session.BeginNewGame();
+            for (int startingPointIndex = 0; startingPointIndex < 8; startingPointIndex++) session.AdjustAttribute(Emerge.Checks.CheckBehavior.Wealth, 1);
+            if (!session.ConfirmCharacterCreation()) throw new Exception("Battle fixture character allocation was not confirmed");
             float deadline = Time.realtimeSinceStartup + 12;
             while (session.Phase != GameSessionPhase.Playing && Time.realtimeSinceStartup < deadline) yield return null;
             if (session.Phase != GameSessionPhase.Playing) throw new Exception("New-game menu load timeout");
@@ -331,6 +483,9 @@ namespace Emerge.Battle.Tests
                 combatCanvas.worldCamera == menuCanvas.worldCamera && combatCanvas.sortingOrder < menuCanvas.sortingOrder);
             session.OpenSettings();
             Add("Pause blocks combat commands and world input", !GameSessionController.SessionInputAllowed && !GameSessionController.GameplayInputAllowed);
+            Add("Battle settings disable reallocation and direct calls cannot change its frozen build", !session.CanChangeAttributes &&
+                !session.GetComponentsInChildren<Button>(true).First(button => button.name == "Reallocate Attributes").interactable &&
+                !session.BeginAttributeReallocation() && session.Phase == GameSessionPhase.Settings && !session.IsChangingAttributes);
             int serial = controller.Engine.State.actionSerial; controller.QuickCast(); controller.EndTurn(); controller.UseItem("ITEM_MP");
             Add("Paused combat cannot mutate state", controller.Engine.State.actionSerial == serial && controller.Engine.State.phase == BattlePhase.RoundCasting);
             yield return null; Canvas.ForceUpdateCanvases();
@@ -392,7 +547,8 @@ namespace Emerge.Battle.Tests
         }
         public void BeginPreview() { RunChecks(); Completed += PreviewForward; }
         private void PreviewForward(bool passed) { Completed -= PreviewForward; PreviewCompleted?.Invoke(passed); }
-        private void Add(string name, bool passed, string observed = "") => report.checks.Add(new Check { name = name, passed = passed, observed = observed });
+        private void Add(string name, bool passed, string observed = "")
+        { report.checks.Add(new Check { name = name, passed = passed, observed = observed }); Debug.Log("[BattleValidation] " + (passed ? "PASS " : "FAIL ") + name + (string.IsNullOrEmpty(observed) ? "" : " · " + observed)); }
     }
 }
 #endif

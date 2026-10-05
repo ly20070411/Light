@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068b498cca55d6a458016ea316752311, type: 3}
+  m_Name: Geologist
+  m_EditorClassIdentifier: 
+  id: geologist
+  characterName: 
+  roleLabel: "\u5730\u8D28\u5B66\u5BB6"
+  gender: 0
+  narrativeRole: 3
+  team: 0
+  faction: "\u84EC\u83B1\u9986"
+  department: "\u9752\u9F99\u9986"
+  title: "\u6559\u6388"
+  function: "\u79D1\u7814\u4EBA\u5458\uFF0C\u5730\u8D28\u5B66\u5BB6"
+  hexagram: "\u5C6F"
+  rank: 0
+  abilityName: "\u751F\u547D\u64CD\u7EB5"
+  abilityDescription: "\u5C6F\u5366\u5177\u6709\u751F\u547D\u64CD\u7EB5\u7684\u6743\u80FD\uFF0C\u542B\u56F0\u96BE\u4E0E\u671D\u6C14\u84EC\u52C3\u4E4B\u610F\uFF0C\u8C61\u5F81\u8349\u6728\u7834\u571F\u800C\u51FA\u3002"
+  background: "\u9752\u9F99\u9986\u4E3A\u84EC\u83B1\u9986\u4E0B\u5C5E\u7814\u7A76\u751F\u7269\u3001\u751F\u6001\u4E0E\u533B\u5B66\u7684\u5B66\u9662\u3002"
+  appearanceNotes: "\u4E0E\u6C34\u6587\u5B66\u5BB6\u5171\u7528\u9752\u9F99\u9986\u57FA\u7840\u670D\u9970\uFF0C\u52A0\u5165\u91CE\u5916\u79D1\u8003\u88C5\u5907\uFF1B\u5F53\u524D\u5360\u4F4D\u4E3A\u6D45\u8272\u5916\u8863\u3001\u7EFF\u8272\u5185\u886C\u4E0E\u690D\u7269\u6837\u672C\u3002"
+  dayOneLocation: "\u91CE\u5916\u8349\u4E1B"
+  dayOneActivity: "\u91C7\u96C6\u690D\u7269\u6837\u672C\u3002"
+  dayOneTask: "\u91C7\u96C6\u690D\u7269\u6837\u672C\uFF1B\u5305\u542B\u68C0\u5B9A\uFF0C\u53EF\u83B7\u5F97\u589E\u76CA\u9053\u5177\u3002"
+  planningNotes: "\u59D3\u540D\u5F85\u5B9A\uFF0C\u5148\u4EE5\u804C\u80FD\u540D\u79F0\u663E\u793A\u3002\u4EBA\u7269\u804C\u80FD\u4E3A\u5730\u8D28\u5B66\u5BB6\uFF0C\u7B2C\u4E00\u65E5\u91C7\u96C6\u690D\u7269\uFF0C\u6309\u63D0\u4F9B\u7684\u8BBE\u5B9A\u4FDD\u7559\u3002"
+  mapSprite: {fileID: 21300000, guid: 618a25b566267ad4d86667bbf46bc382, type: 3}
+  portrait: {fileID: 21300000, guid: c499100ef63051841bdc34aa872a8a3b, type: 3}
+  prefab: {fileID: 7036056434290820633, guid: c3b55544bae38a14b820628394ac09c2, type: 3}
+  mapProp: {fileID: 11400000, guid: ae864791b8efea642899c92eb4c74bf6, type: 2}

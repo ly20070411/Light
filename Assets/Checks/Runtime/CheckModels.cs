@@ -12,6 +12,7 @@ namespace Emerge.Checks
         Officer = 2,
         Wealth = 3,
         Sibling = 4,
+        // Serialized value retained for older events and completed check sessions.
         Self = 5
     }
 
@@ -98,6 +99,7 @@ namespace Emerge.Checks
     [Serializable]
     public sealed class CheckSession
     {
+        public int attributeRulesVersion;
         public string eventId;
         public string contextId;
         public string sessionId;

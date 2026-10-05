@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068b498cca55d6a458016ea316752311, type: 3}
+  m_Name: ContainmentResearcher
+  m_EditorClassIdentifier: 
+  id: containment-researcher
+  characterName: 
+  roleLabel: "\u6536\u5BB9\u90E8\u5B89\u4FDD"
+  gender: 1
+  narrativeRole: 3
+  team: 0
+  faction: "\u7F57\u5929\u6559"
+  department: "\u6536\u5BB9\u90E8\uFF08\u540D\u79F0\u5F85\u5B9A\uFF09"
+  title: "\u5B51\u9057\u7814\u7A76\u5458"
+  function: "\u5B89\u4FDD\u4EBA\u5458\uFF0C\u5B51\u9057\u7814\u7A76\u5458"
+  hexagram: "\u4E95"
+  rank: 0
+  abilityName: "\u6536\u5BB9\u4E0E\u4FDD\u5B58"
+  abilityDescription: "\u4E95\u5366\u542B\u7A33\u5B9A\u4E0E\u53EF\u6301\u7EED\u53D1\u5C55\u7684\u610F\u4E49\uFF0C\u4EE5\u6C34\u4E95\u4E3A\u8C61\u5F81\uFF0C\u6743\u80FD\u4E0E\u6536\u5BB9\u3001\u4FDD\u5B58\u6709\u5173\u3002"
+  background: "\u6240\u5C5E\u90E8\u95E8\u8D1F\u8D23\u52AB\u707E\u7684\u6536\u5BB9\u7BA1\u7406\u4E0E\u7814\u7A76\u3002\u4F7F\u7528\u9AD8\u79D1\u6280\u88C5\u5907\u6218\u6597\uFF0C\u504F\u6587\u804C\u3002"
+  appearanceNotes: "\u7F57\u5929\u6559\u6536\u5BB9\u7BA1\u7406\u4E0E\u7814\u7A76\u4EBA\u5458\u7684\u57FA\u7840\u670D\u9970\uFF1B\u5F53\u524D\u5360\u4F4D\u4E3A\u7070\u84DD\u5DE5\u4F5C\u670D\u4E0E\u4EAE\u9752\u8272\u79D1\u6280\u8BBE\u5907\u3002"
+  dayOneLocation: "\u4ED3\u50A8\u533A"
+  dayOneActivity: "\u68C0\u4FEE\u4F5C\u6218\u8BBE\u5907\u3002"
+  dayOneTask: "\u4FEE\u590D\u88C5\u5907\uFF1B\u7EF4\u4FEE\u4EFB\u52A1\uFF0C\u7528\u4E8E\u719F\u6089\u516D\u723B\u7CFB\u7EDF\u3002"
+  planningNotes: "\u59D3\u540D\u4E0E\u90E8\u95E8\u6B63\u5F0F\u540D\u79F0\u5F85\u5B9A\uFF0C\u6682\u7528\u201C\u6536\u5BB9\u90E8\u5B89\u4FDD\u201D\u663E\u793A\u3002"
+  mapSprite: {fileID: 21300000, guid: 076f9684d0de81e4588312edbb4bc889, type: 3}
+  portrait: {fileID: 21300000, guid: 291101f7ff91bd34f9925e7a98bdbdbb, type: 3}
+  prefab: {fileID: 7151062402824237255, guid: b0c2bcb2c6840fd4daed8b0cef7ef6c9, type: 3}
+  mapProp: {fileID: 11400000, guid: a84fbead097032d43803c5a19d166d64, type: 2}

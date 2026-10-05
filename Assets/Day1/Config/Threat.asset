@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: Threat
+  m_EditorClassIdentifier: 
+  id: 44e3b2db0c5f472d8509887350920230
+  displayName: "\u5468\u8FB9\u5A01\u80C1"
+  category: "Day1 / \u6218\u6597"
+  character: {fileID: 0}
+  description: "P12 \u516D\u723B\u6218\u6597\u6559\u5B66\u3002\u3010\u5360\u4F4D\u3011\u654C\u79CD\u590D\u7528
+    E01 \u5916\u89C2\u5E76\u964D\u4F4E\u6570\u503C\uFF0C\u975E Boss\uFF1B\u80DC\u5229\u6807\u8BB0
+    day1.threat_cleared\u3002"
+  visualMode: 0
+  sprite: {fileID: 21300000, guid: 6760811669774fd4f8c34db604fe1e5d, type: 3}
+  visualPrefab: {fileID: 0}
+  tint: {r: 0.8, g: 0.4, b: 0.45, a: 1}
+  worldSize: {x: 1.35, y: 1.2}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 0
+  colliderSize: {x: 0.75, y: 0.35}
+  colliderOffset: {x: 0, y: 0.12}
+  physicsMaterial: {fileID: 6200000, guid: 4cddab4620c952542b07ba06f632f4d9, type: 2}
+  actions: 8
+  interactionRange: 1.8
+  interactionLabel: "\u5F00\u59CB\u6E05\u9664\u884C\u52A8"
+  singleUse: 0
+  cooldown: 0.2
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 0}
+  battleEncounter: {fileID: 11400000, guid: c1f1c70e604379b4f936c8156beb1bca, type: 2}
+  inventoryKey: 
+  pickupAmount: 1
+  hideAfterPickup: 0
+  requiredFlags:
+  - day1.free_roam
+  - day1.quest.yang-yinglong
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u8BF7\u5148\u5411\u6768\u5E94\u9686\u786E\u8BA4\u5468\u8FB9\u5A01\u80C1"
