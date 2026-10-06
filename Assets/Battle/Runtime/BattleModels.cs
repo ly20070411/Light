@@ -4,12 +4,30 @@ using Emerge.Checks.Divination;
 
 namespace Emerge.Battle
 {
+    public enum BattleStatusKind { DamageUp, DamageReduction, DefenseBreak, IncomingUp, DamageDown, Burn, ShadowCurse, Thunder, Blind, Reflect, ManaOnHit, KillMana, ManaLock, Taunt, DefenseDown, HeavenMomentum }
+    [Serializable] public sealed class BattleTimedStatus
+    {
+        public BattleStatusKind kind;
+        public float power;
+        public int rounds, count = 1;
+    }
+    public enum BattleSummonKind { Clone, GuNest, WindBlade }
+    [Serializable] public sealed class BattleSummonState
+    {
+        public BattleSummonKind kind;
+        public int remainingRounds, targetIndex = -1;
+        public float power;
+        public bool enhanced;
+    }
     [Serializable] public sealed class BattlePlayerState
     {
         public int hp, mp, shield, regeneration, regenerationTicks, nextMana;
         public float reduction, weakness;
         public int burn, burnTicks, exposureUntilRound;
         public float exposure;
+        public int shieldRounds, criticalTalentRound;
+        public bool criticalCharge;
+        public List<BattleTimedStatus> statuses = new List<BattleTimedStatus>();
     }
     [Serializable] public sealed class EnemySkillUses { public string skillId; public int count, lastRound; }
     [Serializable] public sealed class BattleEnemyState
@@ -19,6 +37,8 @@ namespace Emerge.Battle
         public float vulnerability, weakness;
         public bool silenced, stunned, determined;
         public bool charged;
+        public float defense;
+        public List<BattleTimedStatus> statuses = new List<BattleTimedStatus>();
         public List<EnemySkillUses> uses = new List<EnemySkillUses>();
     }
     [Serializable] public sealed class BattleAction
@@ -30,6 +50,8 @@ namespace Emerge.Battle
         public BattleEffect effect;
         public float power, multiplier;
         public bool appliesVulnerability, movingLine;
+        public bool enhanced, critical, auspicious;
+        public int randomSerialBefore;
         public DivinationRecord divination;
     }
     [Serializable] public sealed class BattleSession
@@ -47,6 +69,10 @@ namespace Emerge.Battle
         public List<string> unlockedSkills = new List<string>();
         public List<EnemySkillUses> skillUses = new List<EnemySkillUses>();
         public List<EnemySkillUses> roundStartUses = new List<EnemySkillUses>();
+        public List<string> enhancedSkills = new List<string>();
+        public List<BattleSummonState> summons = new List<BattleSummonState>();
+        public int randomSerial, domainRounds;
+        public bool domainEnhanced;
     }
     [Serializable] public sealed class BattleSnapshot
     {

@@ -24,6 +24,11 @@ namespace Emerge.Battle
         private void EnsureEngine()
         {
             if (catalog == null) catalog = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
+            if (Engine?.State == null && catalog != null && catalog.rules.balanceVersion == "v0.5-counterplay")
+            {
+                var current = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
+                if (current != null && current.rules.balanceVersion == BattleSkillTableRules.BalanceVersion) catalog = current;
+            }
             if (catalog == null) return;
             if (Engine != null && (Engine.Catalog == catalog || Engine.State != null)) return;
             SetEngine(new BattleEngine(catalog, GetComponent<PropGameState>()));
@@ -129,9 +134,10 @@ namespace Emerge.Battle
         public bool RestoreSnapshot(BattleSnapshot snapshot)
         {
             EnsureEngine();
-            if (snapshot != null && (Engine == null || Engine.Catalog.SaveResourcePath != snapshot.catalogPath))
+            var compatibleCatalog = BattleEngine.ResolveSnapshotCatalog(snapshot, Engine?.Catalog);
+            if (snapshot != null && (Engine == null || Engine.Catalog.SaveResourcePath != snapshot.catalogPath || (compatibleCatalog != null && compatibleCatalog != Engine.Catalog)))
             {
-                if (!BattleCatalog.TryResolveSaveCatalog(snapshot.catalogPath, null, out var savedCatalog) ||
+                if (!BattleCatalog.TryResolveSaveCatalog(snapshot.catalogPath, compatibleCatalog, out var savedCatalog) ||
                     !BattleEngine.ValidateSnapshot(snapshot, savedCatalog)) return false;
                 // Prepare and validate the replacement before touching the current battle or UI.
                 var restored = new BattleEngine(savedCatalog, GetComponent<PropGameState>());

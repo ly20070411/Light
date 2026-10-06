@@ -7,11 +7,14 @@ namespace Emerge.Battle
     {
         public BattleView view;
         public string skillId, itemId;
+        public bool heroStatus, rules;
         public int enemyIndex = -1;
         public void OnPointerEnter(PointerEventData e)
         {
             if (view == null) return;
-            if (!string.IsNullOrEmpty(skillId)) view.ShowSkillTooltip(skillId, e.position);
+            if (rules) view.ShowRulesTooltip(e.position);
+            else if (heroStatus) view.ShowHeroTooltip(e.position);
+            else if (!string.IsNullOrEmpty(skillId)) view.ShowSkillTooltip(skillId, e.position);
             else if (!string.IsNullOrEmpty(itemId)) view.ShowItemTooltip(itemId, e.position);
             else view.ShowEnemyTooltip(enemyIndex, e.position);
         }

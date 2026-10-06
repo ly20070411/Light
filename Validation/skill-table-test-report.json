@@ -1,0 +1,673 @@
+{
+    "passed": true,
+    "unityVersion": "2022.3.12f1",
+    "version": "v0.6-skill-table",
+    "completedUtc": "2026-10-06T09:42:27.3363733Z",
+    "checks": [
+        {
+            "name": "Shipping catalog validates",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Thirty authored identities appear once alongside three permanent commands",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Full active, ultimate and passive groups are installed",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Active actions require MP; talents are free and passive",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ultimates and passives never have an enhanced version",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Documented durations are four and six rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Two points cannot enhance an offered skill",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Three points plus current offer enables enhancement",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhancement costs one action and one MP payment",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhanced use is recorded once and immediately downgrades",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Later use is the ordinary version at the same cost",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save/load preserves the spent enhancement and whole-battle quota",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A later round never rearms a spent enhancement",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Insufficient MP rejects without RNG, quota or enhancement mutation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Invalid target rejects without payment or mutation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Whole-battle quota blocks further uses after real paid casts",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhancement does not unlock an unoffered skill",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ultimate cannot be submitted before round three: AllLinesChange",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ultimate cannot be submitted before round three: FateVerdict",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ultimate cannot be submitted before round three: HeavenBurial",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ultimate cannot be submitted before round three: YinYangSlash",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: HeavenRadiance",
+            "observed": "MP=30→17; action=29",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: HeavenRadiance",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: MetalSever",
+            "observed": "MP=30→19; action=36",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: MetalSever",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: StealHexagram",
+            "observed": "MP=30→17; action=22",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: StealHexagram",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: PrisonBreak",
+            "observed": "MP=30→20; action=31",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: PrisonBreak",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: HiddenStrike",
+            "observed": "MP=30→20; action=26",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: HiddenStrike",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: ThunderMark",
+            "observed": "MP=30→18; action=34",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: ThunderMark",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: FlameForge",
+            "observed": "MP=30→18; action=27",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: FlameForge",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: MountainBarrier",
+            "observed": "MP=30→18; action=20",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: MountainBarrier",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: ShadowMark",
+            "observed": "MP=30→14; action=0",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: ShadowMark",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: SolarCurse",
+            "observed": "MP=30→22; action=0",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: SolarCurse",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: GuNursery",
+            "observed": "MP=30→12; action=10",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: GuNursery",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: TripleDoom",
+            "observed": "MP=30→9; action=47",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: TripleDoom",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: WindBlades",
+            "observed": "MP=30→20; action=13",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: WindBlades",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: HeartLight",
+            "observed": "MP=30→21; action=23",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: HeartLight",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: ReturningBreath",
+            "observed": "MP=30→22; action=39",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: ReturningBreath",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: SixLineFateGu",
+            "observed": "MP=30→14; action=25",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: SixLineFateGu",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: ThunderFire",
+            "observed": "MP=30→14; action=39",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: ThunderFire",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: EarthWard",
+            "observed": "MP=30→16; action=58",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: EarthWard",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: WaterClone",
+            "observed": "MP=30→16; action=22",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: WaterClone",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: LunarBlessing",
+            "observed": "MP=30→13; action=0",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: LunarBlessing",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: TripleChange",
+            "observed": "MP=30→7; action=0",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: TripleChange",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: MysticArmor",
+            "observed": "MP=30→18; action=52",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: MysticArmor",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: RevolvingGu",
+            "observed": "MP=30→22; action=25",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: RevolvingGu",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: DrawCalamity",
+            "observed": "MP=30→20; action=29",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: DrawCalamity",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: AllLinesChange",
+            "observed": "MP=30→6; action=60",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: AllLinesChange",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: FateVerdict",
+            "observed": "MP=30→10; action=45",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: FateVerdict",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: HeavenBurial",
+            "observed": "MP=30→10; action=62",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: HeavenBurial",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Authored action executes with one MP payment: YinYangSlash",
+            "observed": "MP=30→12; action=55",
+            "passed": true
+        },
+        {
+            "name": "Executed authored action remains save-valid: YinYangSlash",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Passive talent cannot be clicked: RecoilTalent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Passive talent cannot be clicked: CriticalTalent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Version-four active snapshot validates and restores",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Independent effect RNG does not reroll the six-line chart",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save/reload reproduces fate, damage and RNG cursor",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Precritical snapshot restores",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Save/reload reproduces critical result and complete state",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Post-action fate and critical snapshots remain valid",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects forged auspicious flag",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects forged critical flag",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Fate and critical mechanics expose both outcomes across seeds",
+            "observed": "good=52; bad=12; critical=13; ordinary=60",
+            "passed": true
+        },
+        {
+            "name": "Water clone has no additional immediate attack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Water clone is summoned for exactly four rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Clone duration after 1 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Clone duration after 2 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Clone duration after 3 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Clone duration after 4 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Both enhanced clones attack once on each of their four rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Gu nursery begins with a summon and no immediate attack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhanced nursery ends after three ticks and clears the player's shield",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Three-line domain begins at six rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 1 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 2 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 3 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 4 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 5 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Domain duration after 6 completed rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Wind blades create one pending strike per living enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Every wind blade hits its own enemy once in the first round",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Each surviving enemy receives one equal further strike on round two",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Wind blades stop after their authored duration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhanced shadow applies all enemy curses without immediate damage",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Damage-over-time ticks every cursed enemy without critical RNG",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhanced steal transfers exactly two enemy buffs",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Steal never transfers negative enemy states",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enhanced steal applies its incoming-damage tradeoff",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dispel removes one buff layer while preserving other states",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Shielded direct enemy hit can reflect without recursive retaliation",
+            "observed": "enemy loss=13; playerHP=100; RNG advances=1",
+            "passed": true
+        },
+        {
+            "name": "Valid snapshot baseline",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Negative MP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Negative status duration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Nonfinite status magnitude",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Unknown status kind",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Duplicate enhanced IDs",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Unknown enhanced ID",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Negative independent RNG cursor",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Invalid summon target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Clone duration exceeds four rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Domain duration exceeds six rounds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Strict snapshot validation rejects Altered offered skill set",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Original version-five catalog remains available for existing saves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Old JSON contains only the pre-upgrade version-three layout",
+            "observed": "JSON bytes=10138",
+            "passed": true
+        },
+        {
+            "name": "Pre-upgrade JSON validates against the archived configuration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Main catalog resolves old battle JSON to its original rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Old version-three JSON restores without migration or reroll",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Restored old battle can still use its original basic attack",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccc60d6b0c0e94b9d000c6993a66fd, type: 3}
+  m_Name: TABLE_29_RECOILTALENT
+  m_EditorClassIdentifier: 
+  id: TABLE_29_RECOILTALENT
+  displayName: "\u5929\u8D4B\xB7\u535C\u5366\u53CD\u566C"
+  kind: 29
+  family: 4
+  target: 0
+  effect: 0
+  mpCost: 0
+  power: 0
+  description: "\u654C\u65B9\u76F4\u63A5\u653B\u51FB\u547D\u4E2D\u4E3B\u89D2\u65F6\uFF0C30%\u6982\u7387\u53CD\u5F397\u4F24\u5BB3\u5E76\u56DE\u590D3MP\u3002\u53CD\u9707\u3001\u53CD\u5F39\u3001\u6301\u7EED\u4F24\u5BB3\u53CA\u81EA\u8EAB\u53CD\u566C\u4E0D\u89E6\u53D1\u6B64\u88AB\u52A8\u3002\n\u72EC\u7ACB\u88AB\u52A8\uFF0C\u4E0D\u5360\u4E3B\u52A8\u5019\u9009\u3002"
+  appliesVulnerability: 0
+  alwaysAvailable: 0
+  enhancedAvailable: 0
+  isUltimate: 0
+  isPassive: 1
+  maximumUses: 0
+  regenerationTicks: 2

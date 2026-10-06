@@ -34,6 +34,12 @@ namespace Emerge.Battle.Editor
         public static void Install()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("请先停止 Play 模式");
+            var installed = AssetDatabase.LoadAssetAtPath<BattleCatalog>(CatalogPath);
+            if (installed != null && installed.rules != null && installed.rules.balanceVersion == BattleSkillTableRules.BalanceVersion)
+            {
+                Debug.Log("BATTLE_INSTALL_PRESERVED: 已安装新版技能表，基础安装器保留现有配置。");
+                return;
+            }
             PropAssetFactory.EnsureFolder("Assets/Battle/Config"); PropAssetFactory.EnsureFolder("Assets/Resources/Battle"); PropAssetFactory.EnsureFolder("Assets/Scenes");
             var rules = Asset<BattleRules>("Rules", _ => { });
             var skills = new[]

@@ -16,11 +16,11 @@ namespace Emerge.Checks
         public const int RulesVersion = 2;
         private static readonly SixKinAttributeInfo[] Definitions =
         {
-            new SixKinAttributeInfo("父母", "强化", "积累知识、继承经验，强化已有能力，并理解、分析当前处境。", "学习、研习、分析、强化技能或装备。", "战斗中司防御：护盾、减伤。"),
-            new SixKinAttributeInfo("子孙", "创造", "将想法变成实际成果，创造、制作或修复事物。", "制作道具、修复机关、改造设施。", "战斗中司调息：回气、净化。"),
-            new SixKinAttributeInfo("官鬼", "应对", "面对外界威胁与不利影响时，保护自身并作出应对。", "躲避危险、抵抗侵染、承受冲击、摆脱异常。", "战斗中司攻伐：单体攻击、群体攻击。"),
-            new SixKinAttributeInfo("妻财", "支配", "主动施加力量，改变目标的状态，取得控制权。", "攻击、压制、破坏、强行突破。", "战斗中司疗愈：直接治疗、持续恢复。"),
-            new SixKinAttributeInfo("兄弟", "同化", "与他人及环境建立联系，通过观察、交流、探索和协作寻找出路。", "观察、探索、说服、交涉、协作。", "战斗中司控制：沉默、束缚。")
+            new SixKinAttributeInfo("父母", "强化", "积累知识、继承经验，强化已有能力，并理解、分析当前处境。", "学习、研习、分析、强化技能或装备。", "战斗中负责护盾、分身、领域与反伤。"),
+            new SixKinAttributeInfo("子孙", "创造", "将想法变成实际成果，创造、制作或修复事物。", "制作道具、修复机关、改造设施。", "战斗中负责风刃、驱散、恢复与机会爆发。"),
+            new SixKinAttributeInfo("官鬼", "应对", "面对外界威胁与不利影响时，保护自身并作出应对。", "躲避危险、抵抗侵染、承受冲击、摆脱异常。", "战斗中负责雷火标记、持续伤害、诅咒与控制。"),
+            new SixKinAttributeInfo("妻财", "支配", "主动施加力量，改变目标的状态，取得控制权。", "攻击、压制、破坏、强行突破。", "战斗中负责直接爆发、破防与增益窃取。"),
+            new SixKinAttributeInfo("兄弟", "同化", "与他人及环境建立联系，通过观察、交流、探索和协作寻找出路。", "观察、探索、说服、交涉、协作。", "战斗中负责变爻爆发与引灾干扰。")
         };
 
         public static SixKinAttributeInfo Get(CheckBehavior attribute)

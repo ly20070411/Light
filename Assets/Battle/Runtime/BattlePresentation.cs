@@ -11,4 +11,5 @@ namespace Emerge.Battle
         public Sprite coinFront, coinBack, attackEffect, healingEffect, shieldEffect;
     }
     public enum BattlePage { Skills, Backpack, Negotiation, Escape }
+    public enum BattleSkillGroup { Families, Special }
 }

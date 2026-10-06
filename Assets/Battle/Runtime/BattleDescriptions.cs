@@ -1,12 +1,90 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Emerge.Battle
 {
     public static class BattleDescriptions
     {
-        public static string Skill(BattleSkillDefinition s, BattleRules r, bool buildRules = true)
+        public static string Build(BattleSession session)
+        {
+            if (session == null) return "";
+            var lines = new List<string> { "五亲加点 · 入战后保持本场配置" };
+            if (session.attributes != null)
+                foreach (BattleFamily family in System.Enum.GetValues(typeof(BattleFamily)))
+                    lines.Add(BattleRules.FamilyName(family) + "：" + BattleBuildRules.Points(session.attributes, family) + " 点");
+            lines.Add("每点提高对应五亲技能基础效果 10%；基础技能也享受加成。\n终结技能使用自身基础效果。");
+            if (session.version >= 4)
+                lines.Add("妻财：直接输出、破防与窃取；官鬼：雷火、诅咒与控制；子孙：风刃、驱散与恢复；父母：护盾、分身、领域与反伤；兄弟：变爻爆发与引灾。\n对应五亲达到 3 点可获得该类技能增强资格。");
+            return string.Join("\n", lines);
+        }
+        public static string Statuses(IEnumerable<BattleTimedStatus> statuses, bool compact = false)
+        {
+            if (statuses == null) return "";
+            var entries = statuses.Where(s => s != null && s.rounds > 0).Select(Status).ToArray();
+            if (!compact) return string.Join("\n", entries);
+            return string.Join("\n", entries.Take(3)) + (entries.Length > 3 ? "\n另 " + (entries.Length - 3) + " 项 · 悬停查看" : "");
+        }
+        private static string Status(BattleTimedStatus status)
+        {
+            string value;
+            switch (status.kind)
+            {
+                case BattleStatusKind.DamageUp: value = "增伤 +" + status.power.ToString("P0"); break;
+                case BattleStatusKind.DamageReduction: value = "减伤 " + status.power.ToString("P0"); break;
+                case BattleStatusKind.DefenseBreak: value = "破防 " + status.power.ToString("P0"); break;
+                case BattleStatusKind.IncomingUp: value = "易伤 +" + status.power.ToString("P0"); break;
+                case BattleStatusKind.DamageDown: value = "削弱 " + status.power.ToString("P0"); break;
+                case BattleStatusKind.Burn: value = "灼烧 " + status.power.ToString("0.#") + " HP / 轮"; break;
+                case BattleStatusKind.ShadowCurse: value = "引晦 " + status.power.ToString("0.#") + " HP / 轮"; break;
+                case BattleStatusKind.Thunder: value = "雷印 " + status.count + " 层"; break;
+                case BattleStatusKind.Blind: value = "致盲 " + status.power.ToString("P0"); break;
+                case BattleStatusKind.Reflect: value = "盾击反伤 " + status.power.ToString("0.#"); break;
+                case BattleStatusKind.ManaOnHit: value = "护盾受击回 MP " + status.power.ToString("0.#"); break;
+                case BattleStatusKind.KillMana: value = "击杀回 MP " + status.power.ToString("0.#"); break;
+                case BattleStatusKind.ManaLock: value = "禁回 MP"; break;
+                case BattleStatusKind.Taunt: value = "挑衅 · 改用普攻"; break;
+                case BattleStatusKind.DefenseDown: value = "防御下降 " + status.power.ToString("P0"); break;
+                default: value = "天势 +" + status.power.ToString("P0") + " · " + status.count + " 层"; break;
+            }
+            return value + "（" + status.rounds + " 轮）";
+        }
+        public static string Summons(BattleSession session)
+        {
+            var lines = new List<string>();
+            if (session.summons != null)
+                foreach (var group in session.summons.Where(s => s != null && s.remainingRounds > 0).GroupBy(s => s.kind))
+                {
+                    string name = group.Key == BattleSummonKind.Clone ? "玄水分身" : group.Key == BattleSummonKind.GuNest ? "蛊虫" : "盘旋风刃";
+                    lines.Add(name + " ×" + group.Count() + " · 剩余 " + string.Join(" / ", group.Select(s => s.remainingRounds).Distinct().OrderByDescending(x => x)) + " 轮");
+                }
+            if (session.domainRounds > 0) lines.Add((session.domainEnhanced ? "增强" : "") + "三爻领域 · 剩余 " + session.domainRounds + " 轮");
+            return string.Join("\n", lines);
+        }
+        public static bool HasDelayedEnemyDamage(BattleSkillDefinition skill, bool enhanced)
+        {
+            switch (skill.kind)
+            {
+                case BattleSkillKind.GuNursery:
+                case BattleSkillKind.WaterClone:
+                case BattleSkillKind.ShadowMark:
+                case BattleSkillKind.FlameForge: return true;
+                case BattleSkillKind.WindBlades:
+                case BattleSkillKind.TripleChange:
+                case BattleSkillKind.RevolvingGu: return enhanced;
+                default: return false;
+            }
+        }
+        public static string Skill(BattleSkillDefinition s, BattleRules r, bool buildRules = true, bool skillTableRules = false)
         {
             string target = s.target == BattleTarget.Enemy ? "单体敌人" : s.target == BattleTarget.AllEnemies ? "所有敌人" : "自身";
+            if (skillTableRules)
+            {
+                string category = s.isPassive ? "被动技能" : s.isUltimate ? "终结技能" : s.alwaysAvailable ? "基础技能" : "五亲技能";
+                string cost = s.isPassive ? "满足条件自动触发，无需点击施放。" : "消耗：" + s.mpCost + " MP";
+                string classification = s.isUltimate || s.isPassive ? category : BattleRules.FamilyName(s.family) + " · " + category;
+                return s.displayName + "\n" + classification + " · " + target + "\n" + cost + "\n" + s.description +
+                    (s.isPassive ? "" : "\n结算后可继续行动。");
+            }
             string effect;
             switch (s.effect)
             {
@@ -24,8 +102,24 @@ namespace Emerge.Battle
                 (s.appliesVulnerability ? (buildRules ? "\n伤害后施加固定易伤。" : "\n卦势 ≥ 0：伤害后施加易伤。") : "") +
                 "\n结算后可继续行动。";
         }
-        public static string SkillStatuses(BattleSkillDefinition s, BattleRules r, bool buildRules = true)
+        public static string SkillStatuses(BattleSkillDefinition s, BattleRules r, bool buildRules = true, bool skillTableRules = false)
         {
+            if (skillTableRules)
+            {
+                var notes = new List<string>();
+                if (s.enhancedAvailable)
+                    notes.Add("增强\n对应五亲达到 3 点，并在本轮定卦抽中该技能时生效。\n每个技能每场仅可增强一次，消耗 MP 与普通版相同；金色按钮边框表示本次增强。");
+                if (s.isUltimate)
+                    notes.Add("终结\n从第 " + BattleSkillTableRules.UltimateFirstRound + " 轮开始可用，仍须足够 MP 与剩余次数；不参与增强。");
+                if (s.kind == BattleSkillKind.SixLineFateGu)
+                    notes.Add("吉凶\n普通吉兆概率 " + BattleSkillTableRules.FateGoodChance.ToString("P0") + "；增强吉兆概率 " + BattleSkillTableRules.EnhancedFateGoodChance.ToString("P0") + "。\n吉凶在施放时结算。");
+                if (s.isPassive)
+                    notes.Add("被动\n满足技能说明中的条件后由战斗自动结算，不占用主动技能按钮。");
+                if (s.effect == BattleEffect.Cleanse)
+                    notes.Add("净化\n立即移除可净化的负面状态；技能额外回 MP 在下轮开始结算，取较高值。");
+                notes.Add("暴击\n直接伤害基础暴击率 " + BattleSkillTableRules.CritChance.ToString("P0") + "，暴击伤害 ×" + BattleSkillTableRules.CritMultiplier.ToString("0.0") + "。\n加点与状态的具体影响以实际效果为准。");
+                return string.Join("\n\n", notes);
+            }
             if (s.appliesVulnerability) return "易伤\n后续直接伤害 +" + r.vulnerability.ToString("P0") + "。\n持续 " + r.vulnerabilityHits + " 次命中" + (buildRules ? "。" : "；代表爻为动爻时 " + (r.vulnerabilityHits + 1) + " 次。") + "\n重复施加刷新，不叠加。";
             switch (s.effect)
             {
@@ -45,7 +139,7 @@ namespace Emerge.Battle
                 item.effect == BattleItemEffect.DamageAll ? "所有存活敌人受到 " + item.power + " 基础伤害。" : "解除主角的削弱、灼伤、破绽。";
             return item.displayName + "\n" + effect + "\n消耗 1 件物品；不耗 MP，不定卦。\n使用后可继续行动。";
         }
-        public static string Intent(BattleEnemyDefinition def, BattleEnemyState e, BattleRules rules, bool buildRules = true)
+        public static string Intent(BattleEnemyDefinition def, BattleEnemyState e, BattleRules rules, bool buildRules = true, bool skillTableRules = false)
         {
             if (e.hp <= 0) return def.displayName + "\n已倒下，不会行动。";
             var s = def.skills.First(x => x.id == e.intentSkillId);
@@ -55,10 +149,12 @@ namespace Emerge.Battle
             if (s.effect == EnemyEffect.Burn) effect += "\n灼伤：玩家回合结束损失 " + rules.burnDamage + " HP，持续 " + rules.burnTicks + " 次";
             if (s.effect == EnemyEffect.Exposure) effect += "\n破绽：承受直接伤害 +" + rules.exposure.ToString("P0") + "，至下一敌方阶段结束";
             if (s.effect == EnemyEffect.ChargedDamage) effect += "\n释放后敌人易伤 +25%，持续 3 次命中";
-            string control = e.stunned ? "\n眩晕：本次行动跳过。" : e.silenced && s.mpCost > 0 ? "\n封诀：将改用 0 MP 普攻。" : "";
+            bool taunted = skillTableRules && BattleEngine.Status(e.statuses, BattleStatusKind.Taunt) > 0;
+            string control = e.stunned ? "\n眩晕：本次行动跳过。" : taunted ? "\n挑衅：当前特殊意图将改为基础普攻（0 MP），不执行上方特殊效果。" : e.silenced && s.mpCost > 0 ? "\n封诀：将改用 0 MP 普攻。" : "";
             return def.displayName + " · 敌方意图\n" + s.displayName + "\n" + effect + "。\n消耗 " + s.mpCost + " MP" + control +
                 (e.weakness > 0 ? "\n攻击伤害降低 " + e.weakness.ToString("P0") + "。" : "") + "\n最终伤害受主角的减伤与护盾影响。" +
-                (buildRules && def.retaliation > 0 ? "\n潮棘：反震实际 HP 伤害的 " + def.retaliation.ToString("P0") + "，减伤与护盾有效。致命攻击也触发；同归于尽判失败。" : "");
+                (buildRules && def.retaliation > 0 ? "\n潮棘：反震实际 HP 伤害的 " + def.retaliation.ToString("P0") + "，减伤与护盾有效。致命攻击也触发；同归于尽判失败。" + (skillTableRules ? "敌方输出削弱同样降低反震。" : "") : "") +
+                (skillTableRules ? "\n基础防御：" + e.defense.ToString("P0") + (e.statuses.Count > 0 ? "\n当前状态\n" + Statuses(e.statuses) : "") : "");
         }
     }
 }

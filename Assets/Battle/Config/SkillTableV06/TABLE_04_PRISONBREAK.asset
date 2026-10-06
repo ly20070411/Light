@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccc60d6b0c0e94b9d000c6993a66fd, type: 3}
+  m_Name: TABLE_04_PRISONBREAK
+  m_EditorClassIdentifier: 
+  id: TABLE_04_PRISONBREAK
+  displayName: "\u566C\u55D1\xB7\u7834\u72F1"
+  kind: 4
+  family: 2
+  target: 1
+  effect: 0
+  mpCost: 10
+  power: 24
+  description: "\u5355\u4F53\u4F24\u5BB324\uFF1B\u82E5\u76EE\u6807\u6B63\u5728\u9632\u5FA1\u6216\u62E5\u6709\u62A4\u76FE\uFF0C\u57FA\u7840\u4F24\u5BB3\u63D0\u9AD8\u523034\uFF0C\u5E76\u4F7F\u5176\u9632\u5FA1\u964D\u4F4E10%\uFF0C\u6301\u7EED3\u56DE\u5408\u3002\n\u6240\u5C5E\u4E94\u4EB2\u6BCF\u70B9\u4F7F\u6280\u80FD\u500D\u7387+10%\u3002"
+  appliesVulnerability: 0
+  alwaysAvailable: 0
+  enhancedAvailable: 0
+  isUltimate: 0
+  isPassive: 0
+  maximumUses: 3
+  regenerationTicks: 2

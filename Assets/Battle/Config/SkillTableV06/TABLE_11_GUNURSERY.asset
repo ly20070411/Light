@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccc60d6b0c0e94b9d000c6993a66fd, type: 3}
+  m_Name: TABLE_11_GUNURSERY
+  m_EditorClassIdentifier: 
+  id: TABLE_11_GUNURSERY
+  displayName: "\u5366\u5C71\u517B\u86CA"
+  kind: 11
+  family: 0
+  target: 1
+  effect: 0
+  mpCost: 18
+  power: 8
+  description: "\u666E\u901A\uFF1A\u751F\u6210\u517B\u86CA\u9886\u57DF3\u56DE\u5408\uFF0C\u6BCF\u8F6E\u4E00\u53EA\u86CA\u866B\u968F\u673A\u653B\u51FB\u4E00\u6B21\uFF0C\u4F24\u5BB38\uFF0C\u65E0\u5373\u65F6\u4F24\u5BB3\u3002\u5F3A\u5316\uFF1A\u6BCF\u8F6E\u4E24\u53EA\u86CA\u866B\uFF0C\u5408\u8BA116\u4F24\u5BB3\uFF1B\u9886\u57DF\u7ED3\u675F\u65F6\u6E05\u7A7A\u81EA\u8EAB\u62A4\u76FE\u3002\n\u6240\u5C5E\u4E94\u4EB2\u6BCF\u70B9\u4F7F\u6280\u80FD\u500D\u7387+10%\u3002\u6240\u5C5E\u4E94\u4EB2\u8FBE\u52303\u70B9\u65F6\uFF0C\u672C\u573A\u7B2C\u4E00\u6B21\u4F7F\u7528\u81EA\u52A8\u5F3A\u5316\uFF0C\u8D39\u7528\u76F8\u540C\uFF1B\u4E4B\u540E\u6062\u590D\u666E\u901A\u6548\u679C\u3002"
+  appliesVulnerability: 0
+  alwaysAvailable: 0
+  enhancedAvailable: 1
+  isUltimate: 0
+  isPassive: 0
+  maximumUses: 2
+  regenerationTicks: 2

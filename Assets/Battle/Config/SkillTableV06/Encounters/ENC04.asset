@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4b85c424dbcb945a586188cd7434c1, type: 3}
+  m_Name: ENC04
+  m_EditorClassIdentifier: 
+  swiftVictoryRounds: 5
+  id: ENC04
+  displayName: "\u9632\u5FA1\u906D\u9047"
+  description: "\u62A4\u58F3\u4F53\u4E0E\u6D77\u8680\u5F71\u3002\u6D4B\u8BD5\u62A4\u58F3\u3001\u6613\u4F24\u548C\u9632\u5FA1\u65F6\u70B9\u3002"
+  month: "\u5DF3\u6708"
+  day: "\u620A\u5B50\u65E5"
+  enemies:
+  - enemy: {fileID: 11400000, guid: 9b7eb43ffe36fbb4e94edf382db02651, type: 2}
+    healthOverride: 0
+  - enemy: {fileID: 11400000, guid: 3f4a27d619942c44fa5e15492af95f55, type: 2}
+    healthOverride: 0
+  repeatable: 1
+  victoryFlag: 
+  useFixedSeed: 0
+  fixedSeed: 12637

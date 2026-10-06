@@ -29,11 +29,12 @@ namespace Emerge.Battle.Editor
         }
 
         [MenuItem("Tools/战斗系统/运行战斗验证")]
-        public static void Run() => Begin("manual-" + Guid.NewGuid().ToString("N"), "validate");
+        public static void Run() { if (UsesSkillTable()) BattleSkillTableValidation.Run(); else Begin("manual-" + Guid.NewGuid().ToString("N"), "validate"); }
         [MenuItem("Tools/战斗系统/捕获战斗界面")]
-        public static void Preview() => Begin("manual-" + Guid.NewGuid().ToString("N"), "preview");
+        public static void Preview() { if (UsesSkillTable()) BattleSkillTableUiValidation.Run(); else Begin("manual-" + Guid.NewGuid().ToString("N"), "preview"); }
         [MenuItem("Tools/战斗系统/运行流派与物品数值模拟")]
-        public static void Balance() => Begin("manual-" + Guid.NewGuid().ToString("N"), "balance");
+        public static void Balance() { if (UsesSkillTable()) BattleSkillTableValidation.Balance(); else Begin("manual-" + Guid.NewGuid().ToString("N"), "balance"); }
+        private static bool UsesSkillTable() => Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath)?.rules?.balanceVersion == BattleSkillTableRules.BalanceVersion;
 
         private static void Begin(string id, string verb)
         {

@@ -28,12 +28,17 @@ namespace Emerge.Battle
         private CanvasGroup group;
         private Font font;
         private RectTransform root, castLayer, result, tooltipLayer, mainTooltip, stateTooltip;
-        private Text title, hint, castTitle, castLines, castResult, resultText, tooltipText, stateText, fleeText, quickText, roundInfo;
+        private Text title, hint, castTitle, castLines, castResult, resultText, tooltipText, stateText, fleeText, quickText, roundInfo, lastActionText;
         private Button end, quick, flee;
         private Fighter hero;
         private readonly List<Fighter> enemies = new List<Fighter>();
         private readonly Dictionary<string, Button> skills = new Dictionary<string, Button>(), items = new Dictionary<string, Button>();
         private readonly Dictionary<string, Text> itemLabels = new Dictionary<string, Text>();
+        private readonly Dictionary<string, RectTransform> passiveCards = new Dictionary<string, RectTransform>();
+        private readonly Dictionary<BattleFamily, ScrollRect> familyScrolls = new Dictionary<BattleFamily, ScrollRect>();
+        private readonly HashSet<string> enhancedHighlights = new HashSet<string>();
+        private RectTransform familySkills, specialSkills, skillGroupTabs;
+        private Button familyGroupButton, specialGroupButton;
         private readonly List<RectTransform> pages = new List<RectTransform>();
         private readonly List<Image> tabs = new List<Image>();
         private readonly List<Image> coins = new List<Image>();
@@ -42,11 +47,26 @@ namespace Emerge.Battle
         private int target;
         private string sessionId;
         private BattleAction shownCast;
-        private float castUntil, resultAt, entryRemaining;
+        private float castUntil, resultAt, entryRemaining, fateAnimationUntil;
         private static readonly Color Gold = new Color(.92f, .76f, .43f);
         private static readonly Color Panel = new Color(.10f, .15f, .21f);
         public int SelectedTarget => target;
         public BattlePage CurrentPage { get; private set; }
+        public BattleSkillGroup CurrentSkillGroup { get; private set; }
+        public IEnumerable<string> RenderedActiveSkillIds => skills.Keys;
+        public IEnumerable<string> RenderedPassiveSkillIds => passiveCards.Keys;
+        public int SkillColumnScrollCount => familyScrolls.Count;
+        public Button SkillButton(string id) => skills.TryGetValue(id, out var button) ? button : null;
+        public RectTransform PassiveCard(string id) => passiveCards.TryGetValue(id, out var card) ? card : null;
+        public ScrollRect FamilyScroll(BattleFamily family) => familyScrolls.TryGetValue(family, out var scroll) ? scroll : null;
+        public bool IsEnhancedHighlighted(string id) => enhancedHighlights.Contains(id);
+        public string HeroStatusContent => hero?.status?.text ?? "";
+        public string SummonStatusContent => owner?.Engine?.State == null ? "" : BattleDescriptions.Summons(owner.Engine.State);
+        public string EnemyStatusContent(int index) => index >= 0 && index < enemies.Count ? enemies[index].status.text : "";
+        public string LastActionContent => lastActionText?.text ?? "";
+        public Button EnemyButton(int index) => index >= 0 && index < enemies.Count ? enemies[index].button : null;
+        public Button ItemButton(string id) => items.TryGetValue(id, out var button) ? button : null;
+        public Button EscapeButton => flee;
         public bool TooltipVisible => tooltipLayer != null && tooltipLayer.gameObject.activeSelf;
         public string TooltipContent => tooltipText != null ? tooltipText.text : "";
         public string StatusTooltipContent => stateTooltip != null && stateTooltip.gameObject.activeSelf ? stateText.text : "";
@@ -79,10 +99,15 @@ namespace Emerge.Battle
             Label(root, 36, 22, 490, 38, "六爻战斗", 27, Gold);
             title = Label(root, 530, 22, 610, 38, "", 24, Color.white); title.alignment = TextAnchor.MiddleCenter;
             var guidance = Label(root, 530, 65, 610, 28, "点击选敌 · 悬停查看意图", 18, new Color(.65f, .75f, .82f)); guidance.alignment = TextAnchor.MiddleCenter;
+            var rulesHelp = Label(root, 1170, 27, 390, 28, "悬停：五亲 / 暴击 / 增强规则", 17, Gold);
+            rulesHelp.raycastTarget = true;
+            var rulesHover = rulesHelp.gameObject.AddComponent<BattleHoverTarget>(); rulesHover.view = this; rulesHover.rules = true;
             roundInfo = Label(root, 500, 170, 410, 270, "", 19, new Color(.72f, .8f, .85f)); roundInfo.alignment = TextAnchor.MiddleCenter;
-            hero = FighterAt("主角立绘", 110, 130, 290, 350,
+            lastActionText = Label(root, 490, 455, 440, 112, "", 18, Gold); lastActionText.alignment = TextAnchor.UpperCenter;
+            lastActionText.resizeTextForBestFit = true; lastActionText.resizeTextMinSize = 14; lastActionText.resizeTextMaxSize = 18;
+            hero = FighterAt("主角立绘", 110, 130, 290, 320,
                 controller.character != null ? controller.character.portrait : art?.heroPortrait, -1);
-            for (int i = 0; i < 3; i++) enemies.Add(FighterAt("敌人立绘 " + (i + 1), 950 + i * 200, 170, 185, 310, art?.defaultEnemyPortrait, i));
+            for (int i = 0; i < 3; i++) enemies.Add(FighterAt("敌人立绘 " + (i + 1), 950 + i * 200, 170, 185, 280, art?.defaultEnemyPortrait, i));
             BuildCommands(); BuildTooltip(); BuildCasting();
             result = PanelAt(root, "结果遮幕", 0, 0, 1600, 900, new Color(0, 0, 0, .65f), true);
             var modal = PanelAt(result, "战斗结果", 440, 250, 720, 390, Panel); Border(modal);
@@ -105,19 +130,30 @@ namespace Emerge.Battle
                 Picture(b.transform, names[i] + "图标", 22, 11, 32, 32, icons[i], Gold);
                 pages.Add(PanelAt(panel, names[i] + "页面", 12, 65, 1544, 175, Color.clear));
             }
+            skillGroupTabs = PanelAt(panel, "技能分组", 938, 8, 614, 40, Color.clear);
+            familyGroupButton = ButtonAt(skillGroupTabs, 0, 0, 294, 40, "五亲技能 · 滚轮查看", () => SwitchSkillGroup(BattleSkillGroup.Families), out var familyGroupLabel);
+            specialGroupButton = ButtonAt(skillGroupTabs, 302, 0, 294, 40, "终结 / 被动", () => SwitchSkillGroup(BattleSkillGroup.Special), out var specialGroupLabel);
+            familyGroupLabel.fontSize = specialGroupLabel.fontSize = 19;
+            familySkills = PanelAt(pages[0], "五亲技能列表", 0, 0, 1544, 175, Color.clear);
+            specialSkills = PanelAt(pages[0], "终结与被动列表", 0, 0, 1544, 175, Color.clear);
             for (int family = 0; family < 5; family++)
             {
                 float x = 16 + family * 306;
-                var header = Label(pages[0], x, 0, 290, 28, BattleRules.FamilyName((BattleFamily)family), 23, Gold);
-                header.alignment = TextAnchor.MiddleCenter; int row = 0;
-                foreach (var d in owner.catalog.skills.Where(s => (int)s.family == family))
+                var header = Label(familySkills, x, 0, 290, 28, BattleRules.FamilyName((BattleFamily)family), 23, Gold);
+                header.alignment = TextAnchor.MiddleCenter;
+                var definitions = owner.catalog.skills.Where(s => (int)s.family == family && !s.isUltimate && !s.isPassive).ToArray();
+                ScrollRect scroll = BuildSkillScroll(familySkills, x, 34, 290, 137, definitions.Length);
+                familyScrolls.Add((BattleFamily)family, scroll);
+                int row = 0;
+                foreach (var d in definitions)
                 {
                     string id = d.id;
-                    var b = ButtonAt(pages[0], x, 38 + row++ * 45, 290, 38, d.displayName, () => owner.UseSkill(id, target), out _);
-                    skills.Add(id, b); b.gameObject.AddComponent<BattleHoverTarget>().view = this;
-                    b.GetComponent<BattleHoverTarget>().skillId = id;
+                    var b = ButtonAt(scroll.content, 3, 3 + row++ * 45, 272, 38, d.displayName, () => owner.UseSkill(id, target), out _);
+                    RegisterSkill(id, b);
                 }
             }
+            BuildSpecialSkills();
+            SwitchSkillGroup(BattleSkillGroup.Families);
             for (int i = 0; i < owner.catalog.items.Length; i++)
             {
                 var d = owner.catalog.items[i]; string id = d.id;
@@ -135,10 +171,66 @@ namespace Emerge.Battle
             end = ButtonAt(panel, 1280, 239, 264, 34, "结束回合 →", () => owner.EndTurn(), out _);
             end.GetComponent<Image>().color = new Color(.32f, .29f, .15f);
         }
+        private ScrollRect BuildSkillScroll(Transform parent, float x, float y, float w, float h, int count)
+        {
+            var viewport = PanelAt(parent, "技能滚动视口", x, y, w, h, new Color(.07f, .11f, .16f), true);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var content = PanelAt(viewport, "技能滚动内容", 0, 0, w - 11, Mathf.Max(h, count * 45 + 1), Color.clear);
+            var scroll = viewport.gameObject.AddComponent<ScrollRect>();
+            scroll.viewport = viewport; scroll.content = content;
+            scroll.horizontal = false; scroll.vertical = true; scroll.inertia = false;
+            scroll.movementType = ScrollRect.MovementType.Clamped; scroll.scrollSensitivity = 35;
+            var track = PanelAt(viewport, "滚动条", w - 8, 3, 5, h - 6, new Color(.02f, .04f, .07f), true);
+            var handle = PanelAt(track, "滑块", 0, 0, 5, h - 6, new Color(.49f, .44f, .28f), true);
+            handle.sizeDelta = Vector2.zero; handle.anchoredPosition = Vector2.zero;
+            var bar = track.gameObject.AddComponent<Scrollbar>();
+            bar.handleRect = handle; bar.targetGraphic = handle.GetComponent<Image>();
+            bar.direction = Scrollbar.Direction.BottomToTop;
+            scroll.verticalScrollbar = bar; scroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+            return scroll;
+        }
+        private void RegisterSkill(string id, Button button)
+        {
+            skills.Add(id, button);
+            var hover = button.gameObject.AddComponent<BattleHoverTarget>(); hover.view = this; hover.skillId = id;
+        }
+        private void BuildSpecialSkills()
+        {
+            Label(specialSkills, 18, 0, 1480, 26, "终结技能 · 每场限次 · 不获得增强", 19, Gold);
+            var ultimate = owner.catalog.skills.Where(s => s.isUltimate && !s.isPassive).ToArray();
+            float width = ultimate.Length == 0 ? 0 : Mathf.Min(350, (1508f - (ultimate.Length - 1) * 14) / ultimate.Length);
+            for (int i = 0; i < ultimate.Length; i++)
+            {
+                var d = ultimate[i]; string id = d.id;
+                RegisterSkill(id, ButtonAt(specialSkills, 18 + i * (width + 14), 32, width, 42, d.displayName, () => owner.UseSkill(id, target), out _));
+            }
+            Label(specialSkills, 18, 86, 1480, 24, "被动技能 · 满足条件自动生效，悬停查看", 18, Gold);
+            var passive = owner.catalog.skills.Where(s => s.isPassive).ToArray();
+            float cardWidth = passive.Length == 0 ? 0 : Mathf.Min(730, (1508f - (passive.Length - 1) * 14) / passive.Length);
+            for (int i = 0; i < passive.Length; i++)
+            {
+                var d = passive[i];
+                var card = PanelAt(specialSkills, "被动：" + d.displayName, 18 + i * (cardWidth + 14), 115, cardWidth, 45, new Color(.12f, .17f, .17f), true);
+                Border(card); var label = Label(card, 12, 4, cardWidth - 24, 37, d.displayName, 21, new Color(.71f, .85f, .78f));
+                label.alignment = TextAnchor.MiddleCenter;
+                var hover = card.gameObject.AddComponent<BattleHoverTarget>(); hover.view = this; hover.skillId = d.id;
+                passiveCards.Add(d.id, card);
+            }
+        }
+        public void SwitchSkillGroup(BattleSkillGroup group)
+        {
+            if (familySkills == null || specialSkills == null) return;
+            CurrentSkillGroup = group;
+            familySkills.gameObject.SetActive(group == BattleSkillGroup.Families);
+            specialSkills.gameObject.SetActive(group == BattleSkillGroup.Special);
+            familyGroupButton.GetComponent<Image>().color = group == BattleSkillGroup.Families ? new Color(.28f, .26f, .17f) : Panel;
+            specialGroupButton.GetComponent<Image>().color = group == BattleSkillGroup.Special ? new Color(.28f, .26f, .17f) : Panel;
+            HideTooltip();
+        }
         private Fighter FighterAt(string name, float x, float y, float w, float h, Sprite sprite, int index)
         {
             var f = new Fighter { width = w };
-            f.root = PanelAt(root, name, x, y, w, h + 112, Color.clear, index >= 0);
+            f.root = PanelAt(root, name, x, y, w, h + 156, Color.clear, index >= 0);
             f.portrait = Picture(f.root, "立绘", 4, 0, w - 8, h, sprite, Color.white);
             f.outline = f.portrait.gameObject.AddComponent<Outline>(); f.outline.effectColor = Gold; f.outline.effectDistance = new Vector2(3, -3); f.outline.enabled = false;
             f.marker = Label(f.root, 0, -35, w, 28, "▼ 当前目标", 20, Gold); f.marker.alignment = TextAnchor.MiddleCenter;
@@ -146,7 +238,7 @@ namespace Emerge.Battle
             f.name = Label(f.root, 0, h + 1, w, 28, index < 0 ? (owner.character != null ? owner.character.DisplayName : "主角") : "", 23, Color.white); f.name.alignment = TextAnchor.MiddleCenter;
             f.hpFill = Bar(f.root, "红色血条", w, h + 32, new Color(.78f, .20f, .24f), out f.hp);
             f.mpFill = Bar(f.root, "蓝色法力条", w, h + 57, new Color(.16f, .48f, .85f), out f.mp);
-            f.status = Label(f.root, 0, h + 82, w, 52, "", 16, Gold); f.status.alignment = TextAnchor.UpperCenter;
+            f.status = Label(f.root, 0, h + 82, w, 72, "", 16, Gold); f.status.alignment = TextAnchor.UpperCenter;
             f.status.resizeTextForBestFit = true; f.status.resizeTextMinSize = 12; f.status.resizeTextMaxSize = 16;
             f.motion = f.portrait.gameObject.AddComponent<BattlePortraitMotion>(); f.motion.portrait = f.portrait;
             f.motion.effect = Picture(f.portrait.transform, "行动特效", 0, h * .15f, w - 8, h * .65f, null, Color.clear);
@@ -156,6 +248,11 @@ namespace Emerge.Battle
                 f.button = f.root.gameObject.AddComponent<Button>(); f.button.transition = Selectable.Transition.None;
                 f.button.onClick.AddListener(() => SelectTarget(index));
                 var hover = f.root.gameObject.AddComponent<BattleHoverTarget>(); hover.view = this; hover.enemyIndex = index;
+            }
+            else
+            {
+                f.status.raycastTarget = true;
+                var hover = f.status.gameObject.AddComponent<BattleHoverTarget>(); hover.view = this; hover.heroStatus = true;
             }
             return f;
         }
@@ -170,21 +267,42 @@ namespace Emerge.Battle
             if ((int)page < 0 || (int)page >= pages.Count) return;
             CurrentPage = page; HideTooltip();
             for (int i = 0; i < pages.Count; i++) { pages[i].gameObject.SetActive(i == (int)page); tabs[i].color = i == (int)page ? new Color(.28f, .26f, .17f) : Panel; }
+            if (skillGroupTabs != null) skillGroupTabs.gameObject.SetActive(page == BattlePage.Skills);
         }
         private void BuildTooltip()
         {
             var go = new GameObject("悬浮详情", typeof(RectTransform)); go.layer = 5; go.transform.SetParent(root, false); tooltipLayer = (RectTransform)go.transform;
-            mainTooltip = PanelAt(tooltipLayer, "技能与意图详情", 0, 0, 370, 180, new Color(.06f, .095f, .14f, .98f)); Border(mainTooltip);
-            tooltipText = Label(mainTooltip, 15, 12, 340, 160, "", 18, Color.white); tooltipText.lineSpacing = 1.12f;
-            stateTooltip = PanelAt(tooltipLayer, "附加状态说明", 0, 180, 370, 160, new Color(.13f, .14f, .13f, .98f)); Border(stateTooltip);
-            stateText = Label(stateTooltip, 15, 12, 340, 140, "", 18, Gold); stateText.lineSpacing = 1.12f;
+            mainTooltip = PanelAt(tooltipLayer, "技能与意图详情", 0, 0, 430, 180, new Color(.06f, .095f, .14f, .98f)); Border(mainTooltip);
+            tooltipText = Label(mainTooltip, 15, 12, 400, 160, "", 17, Color.white); tooltipText.lineSpacing = 1.08f;
+            tooltipText.resizeTextForBestFit = true; tooltipText.resizeTextMinSize = 14; tooltipText.resizeTextMaxSize = 17;
+            stateTooltip = PanelAt(tooltipLayer, "附加状态说明", 0, 180, 430, 160, new Color(.13f, .14f, .13f, .98f)); Border(stateTooltip);
+            stateText = Label(stateTooltip, 15, 12, 400, 140, "", 17, Gold); stateText.lineSpacing = 1.08f;
+            stateText.resizeTextForBestFit = true; stateText.resizeTextMinSize = 14; stateText.resizeTextMaxSize = 17;
             HideTooltip();
         }
         public void ShowSkillTooltip(string id, Vector2 pointer)
         {
             if (owner.Engine.State?.phase != BattlePhase.Player || !GameSessionController.SessionInputAllowed) return;
             var d = owner.catalog.Skill(id); if (d == null) return;
-            string content = BattleDescriptions.Skill(d, owner.catalog.rules, owner.Engine.State.version >= 3);
+            bool tableRules = owner.Engine.State.version >= 4;
+            string content = BattleDescriptions.Skill(d, owner.catalog.rules, owner.Engine.State.version >= 3, tableRules);
+            if (tableRules)
+            {
+                if (!d.isPassive)
+                {
+                    content += d.isUltimate ? "\n终结效果不乘五亲倍率" : "\n五亲基础效果倍率：×" + owner.Engine.SkillMultiplier(id).ToString("0.0");
+                    content += "\n本场剩余：" + (owner.Engine.RemainingUses(id) == int.MaxValue ? "不限次数" : owner.Engine.RemainingUses(id) + " / " + d.maximumUses + " 次");
+                    if (d.enhancedAvailable)
+                        content += owner.Engine.IsEnhanced(id) ? "\n本次使用增强效果 · 耗 MP 不变" : owner.Engine.State.enhancedSkills.Contains(id) ? "\n本场增强已使用 · 当前为普通效果" : "\n当前使用普通效果";
+                    if (d.effect == BattleEffect.Damage && d.power > 0 && owner.Engine.HasRetaliationTarget(d.target, target))
+                        content += "\n直接命中的基础反震预估：" + owner.Engine.ForecastRetaliation(id, target) + " HP（未含暴击 / 追加）。";
+                    if (BattleDescriptions.HasDelayedEnemyDamage(d, owner.Engine.IsEnhanced(id)) && owner.Engine.HasRetaliationTarget(BattleTarget.AllEnemies, target))
+                        content += "\n后续召唤 / 持续伤害命中反震敌人时，由主角承受反震；减伤与护盾可抵消。";
+                    if (!owner.Engine.CanUseSkill(id, target, out var tableReason)) content += "\n" + tableReason;
+                }
+                ShowTooltip(content, BattleDescriptions.SkillStatuses(d, owner.catalog.rules, true, true), pointer);
+                return;
+            }
             if (owner.Engine.State.version >= 2) content += (owner.Engine.State.version >= 3 ? "\n属性固定倍率：×" : "\n本轮倍率：×") + owner.Engine.SkillMultiplier(id).ToString("0.0") + "\n本场剩余：" + (owner.Engine.RemainingUses(id) == int.MaxValue ? "不限次数" : owner.Engine.RemainingUses(id) + " / " + d.maximumUses + " 次") + (d.alwaysAvailable ? "\n常驻技能" : "\n高级技能 · 每轮定卦解锁");
             if (owner.Engine.State.version >= 3)
             {
@@ -209,7 +327,7 @@ namespace Emerge.Battle
             var d = owner.catalog.Item(id); if (d == null) return;
             string content = BattleDescriptions.Item(d);
             if (d.effect == BattleItemEffect.DamageAll && owner.Engine.HasRetaliationTarget(BattleTarget.AllEnemies, target))
-                content += "\n触发反震，当前预计损失 " + owner.Engine.ForecastRetaliation(id, target, true) + " HP。";
+                content += owner.Engine.State.version >= 4 ? "\n直接命中的基础反震预估：" + owner.Engine.ForecastRetaliation(id, target, true) + " HP。" : "\n触发反震，当前预计损失 " + owner.Engine.ForecastRetaliation(id, target, true) + " HP。";
             if (!owner.Engine.CanUseItem(id, out var reason)) content += "\n" + reason;
             ShowTooltip(content, d.effect == BattleItemEffect.DamageAll ? "易伤\n散灵符的直接伤害同样受目标易伤影响，并消耗一次命中次数。" : "", pointer);
         }
@@ -217,16 +335,30 @@ namespace Emerge.Battle
         {
             var s = owner.Engine.State;
             if (s == null || s.phase == BattlePhase.Casting || s.phase == BattlePhase.RoundCasting || index < 0 || index >= s.enemies.Count || !GameSessionController.SessionInputAllowed) return;
-            var e = s.enemies[index]; ShowTooltip(BattleDescriptions.Intent(owner.catalog.Enemy(e.definitionId), e, owner.catalog.rules, s.version >= 3), "", pointer);
+            var e = s.enemies[index]; ShowTooltip(BattleDescriptions.Intent(owner.catalog.Enemy(e.definitionId), e, owner.catalog.rules, s.version >= 3, s.version >= 4),
+                s.version >= 4 && e.statuses.Count > 0 ? "状态持续\n剩余回合表示还会影响几次敌方行动，下一玩家回合开始递减。\n灼烧、引晦在结束玩家回合时结算。" : "", pointer);
+        }
+        public void ShowRulesTooltip(Vector2 pointer)
+        {
+            var s = owner?.Engine?.State;
+            if (s == null || !GameSessionController.SessionInputAllowed) return;
+            ShowTooltip(BattleDescriptions.Build(s), "暴击\n基础概率 20%，暴击伤害 ×1.5。\n增强\n对应五亲达到 3 点，本轮抽中时可用；每技能每场一次，MP 消耗不变。", pointer);
+        }
+        public void ShowHeroTooltip(Vector2 pointer)
+        {
+            var s = owner?.Engine?.State;
+            if (s == null || !GameSessionController.SessionInputAllowed) return;
+            ShowTooltip("主角状态\n" + BaseHeroStatuses(s) + "\n" + BattleDescriptions.Statuses(s.player.statuses),
+                BattleDescriptions.Summons(s) + "\n状态剩余回合在下一玩家回合开始递减；召唤与领域在结束玩家回合时触发。", pointer);
         }
         private void ShowTooltip(string content, string status, Vector2 pointer)
         {
             tooltipText.text = content; stateText.text = status;
-            float h = Mathf.Clamp(tooltipText.preferredHeight + 28, 90, 340), sh = string.IsNullOrEmpty(status) ? 0 : Mathf.Clamp(stateText.preferredHeight + 28, 80, 270);
-            Position(mainTooltip, 0, 0, 370, h); Position(tooltipText.rectTransform, 15, 12, 340, h - 24);
-            Position(stateTooltip, 0, h, 370, sh); Position(stateText.rectTransform, 15, 12, 340, Mathf.Max(0, sh - 24)); stateTooltip.gameObject.SetActive(sh > 0);
+            float h = Mathf.Clamp(tooltipText.preferredHeight + 28, 90, 520), sh = string.IsNullOrEmpty(status) ? 0 : Mathf.Clamp(stateText.preferredHeight + 28, 80, 270);
+            Position(mainTooltip, 0, 0, 430, h); Position(tooltipText.rectTransform, 15, 12, 400, h - 24);
+            Position(stateTooltip, 0, h, 430, sh); Position(stateText.rectTransform, 15, 12, 400, Mathf.Max(0, sh - 24)); stateTooltip.gameObject.SetActive(sh > 0);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(root, pointer, canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera, out var local);
-            Position(tooltipLayer, Mathf.Clamp(local.x + 18, 12, 1218), Mathf.Clamp(-local.y - h - sh - 16, 65, 888 - h - sh), 370, h + sh);
+            Position(tooltipLayer, Mathf.Clamp(local.x + 18, 12, 1158), Mathf.Clamp(-local.y - h - sh - 16, 65, 888 - h - sh), 430, h + sh);
             tooltipLayer.gameObject.SetActive(true);
         }
         public void HideTooltip() { if (tooltipLayer != null) tooltipLayer.gameObject.SetActive(false); }
@@ -245,6 +377,7 @@ namespace Emerge.Battle
         private void RenderCast(BattleAction action, bool resolved)
         {
             castTitle.text = action.skillName + " · 定卦"; var r = action.divination;
+            castLines.alignment = TextAnchor.UpperLeft;
             var lines = new List<string>();
             for (int i = 5; i >= 0; i--)
             {
@@ -263,7 +396,7 @@ namespace Emerge.Battle
             var s = owner.Engine.State;
             shownCast = new BattleAction { skillName = "第 " + s.round + " 轮", divination = s.roundDivination };
             RenderCast(shownCast, resolved); castTitle.text = "第 " + s.round + " 轮 · 定卦";
-            if (resolved) { castResult.text = s.roundDivination.chart.benGuaName + " → " + s.roundDivination.chart.bianGuaName + (s.version >= 3 ? "\n本轮高级技能已解锁 · 效果由加点固定" : "\n本轮技能与倍率已确定"); quickText.text = "开始行动"; }
+            if (resolved) { castResult.text = s.roundDivination.chart.benGuaName + " → " + s.roundDivination.chart.bianGuaName + (s.version >= 4 ? "\n本轮技能已开放 · 金色边框表示增强" : s.version >= 3 ? "\n本轮高级技能已解锁 · 效果由加点固定" : "\n本轮技能与倍率已确定"); quickText.text = "开始行动"; }
         }
         public void ShowRoundResult()
         { castUntil = Time.time + .65f; HideTooltip(); RenderRound(true); castLayer.gameObject.SetActive(true); }
@@ -272,16 +405,51 @@ namespace Emerge.Battle
             if (action == null) return;
             if (owner.Engine.State.version == 1) { shownCast = action; castUntil = resultAt = Time.time + .85f; HideTooltip(); RenderCast(action, true); castLayer.gameObject.SetActive(true); result.gameObject.SetActive(false); }
             else { castUntil = 0; resultAt = Time.time + .55f; HideTooltip(); castLayer.gameObject.SetActive(false); result.gameObject.SetActive(false); }
+            if (owner.Engine.State.version >= 4) lastActionText.text = string.Join("\n", new[] { ActionOutcomeText(action), BattleDescriptions.Summons(owner.Engine.State) }.Where(x => !string.IsNullOrEmpty(x)));
+            var kind = owner.catalog.Skill(action.skillId)?.kind ?? BattleSkillKind.Legacy;
+            if (owner.Engine.State.version >= 4 && (kind == BattleSkillKind.SixLineFateGu || kind == BattleSkillKind.FateVerdict))
+            {
+                shownCast = action; fateAnimationUntil = castUntil = resultAt = Time.time + .95f;
+                RenderCast(action, true);
+                castTitle.text = action.skillName + " · 吉凶";
+                castLines.text = "铜币落定\n\n" + (action.auspicious ? "吉兆" : "凶兆") + "\n\n" + (action.enhanced ? "增强效果" : "普通效果");
+                castLines.alignment = TextAnchor.MiddleCenter;
+                castResult.text = action.auspicious ? "吉 · 技能效果已结算" : "凶 · 技能效果与代价已结算";
+                castLayer.gameObject.SetActive(true);
+            }
             bool attack = action.effect == BattleEffect.Damage || action.effect == BattleEffect.Bind || action.effect == BattleEffect.Silence;
             var fx = attack ? art?.attackEffect : action.effect == BattleEffect.Shield || action.effect == BattleEffect.Reduction ? art?.shieldEffect : art?.healingEffect;
             hero.motion.Play(attack ? 35 : 0, attack ? null : fx, attack ? Gold : new Color(.4f, 1, .75f));
             if (attack) for (int i = 0; i < owner.Engine.State.enemies.Count; i++) if (action.target == BattleTarget.AllEnemies || i == action.targetIndex) enemies[i].motion.Play(10, fx, new Color(1, .4f, .35f), true);
         }
+        private string ActionOutcomeText(BattleAction action)
+        {
+            if (action == null) return "";
+            string flags = action.enhanced ? "增强效果" : "普通效果";
+            if (action.critical) flags += " · 暴击";
+            var kind = owner.catalog.Skill(action.skillId)?.kind ?? BattleSkillKind.Legacy;
+            if (kind == BattleSkillKind.SixLineFateGu || kind == BattleSkillKind.FateVerdict) flags += action.auspicious ? " · 吉兆" : " · 凶兆";
+            return "刚刚使用 · " + action.skillName + "\n" + flags;
+        }
+        private static string BaseHeroStatuses(BattleSession session)
+        {
+            var p = session.player; var lines = new List<string>();
+            if (p.shield > 0) lines.Add("护盾 " + p.shield + (p.shieldRounds > 0 ? "（" + p.shieldRounds + " 轮）" : ""));
+            if (p.reduction > 0) lines.Add("减伤 " + p.reduction.ToString("P0"));
+            if (p.weakness > 0) lines.Add("削弱 " + p.weakness.ToString("P0"));
+            if (p.regenerationTicks > 0) lines.Add("生息 " + p.regeneration + " HP × " + p.regenerationTicks + " 轮");
+            if (p.nextMana > 0) lines.Add("下轮回 MP +" + p.nextMana);
+            if (p.burnTicks > 0) lines.Add("灼伤 " + p.burn + " HP × " + p.burnTicks + " 轮");
+            if (p.exposure > 0) lines.Add("破绽 +" + p.exposure.ToString("P0"));
+            if (p.criticalCharge) lines.Add("下次单体技能 +20%");
+            return string.Join("  ", lines);
+        }
         public void PlayEnemyAction(int index, string skillId)
         {
             var s = owner.Engine.State; if (index < 0 || index >= s.enemies.Count) return;
             var e = s.enemies[index]; var d = owner.catalog.Enemy(e.definitionId); var skill = d.skills.First(k => k.id == skillId);
-            if (e.silenced && skill.mpCost > 0) skill = d.skills.First(k => k.mpCost == 0 && k.effect == EnemyEffect.Damage);
+            if (e.mp < skill.mpCost || e.silenced && skill.mpCost > 0 || s.version >= 4 && BattleEngine.Status(e.statuses, BattleStatusKind.Taunt) > 0)
+                skill = d.skills.First(k => k.effect == EnemyEffect.Damage && k.mpCost == 0 && k.maximumHealthFraction == 1 && k.maximumUses == 0 && k.cooldownRounds == 0);
             bool attack = BattleEngine.IsAttack(skill.effect);
             enemies[index].motion.Play(attack ? -27 : 0, attack ? null : skill.effect == EnemyEffect.Heal ? art?.healingEffect : art?.shieldEffect, Gold);
             if (attack) hero.motion.Play(-8, art?.attackEffect, new Color(1, .4f, .35f), true);
@@ -292,20 +460,26 @@ namespace Emerge.Battle
             { for (int i = 0; i < owner.Engine.State.enemies.Count; i++) if (owner.Engine.State.enemies[i].hp > 0) enemies[i].motion.Play(10, art?.attackEffect, new Color(1, .4f, .35f), true); }
             else hero.motion.Play(0, art?.healingEffect, new Color(.4f, 1, .75f));
         }
-        private void HideCastResult() { castUntil = 0; if (castLayer != null) castLayer.gameObject.SetActive(false); Refresh(); }
+        private void HideCastResult() { castUntil = fateAnimationUntil = 0; if (castLayer != null) castLayer.gameObject.SetActive(false); Refresh(); }
         public void Refresh()
         {
             var engine = owner?.Engine; var s = engine?.State; if (s == null || root == null) return;
-            if (sessionId != s.sessionId) { sessionId = s.sessionId; target = 0; shownCast = null; castUntil = resultAt = 0; entryRemaining = .24f; entryFade.gameObject.SetActive(true); SwitchPage(BattlePage.Skills); }
+            if (sessionId != s.sessionId) { sessionId = s.sessionId; target = 0; shownCast = null; castUntil = resultAt = 0; entryRemaining = .24f; entryFade.gameObject.SetActive(true); SwitchPage(BattlePage.Skills); SwitchSkillGroup(BattleSkillGroup.Families); }
             if (target < 0 || target >= s.enemies.Count || s.enemies[target].hp <= 0) { target = s.enemies.FindIndex(e => e.hp > 0); if (target < 0) target = 0; }
             var p = s.player; var rules = owner.catalog.rules;
+            lastActionText.text = s.version >= 4 ? string.Join("\n", new[] { ActionOutcomeText(s.lastAction), BattleDescriptions.Summons(s) }.Where(x => !string.IsNullOrEmpty(x))) : "";
             title.text = owner.catalog.Encounter(s.encounterId).displayName + " · 第 " + s.round + " 轮 · " + PhaseName(s.phase);
             RefreshBars(hero, p.hp, rules.maxHP, p.mp, rules.maxMP);
             hero.status.text = (p.shield > 0 ? "护盾 " + p.shield + "  " : "") + (p.reduction > 0 ? "减伤 " + p.reduction.ToString("P0") : "") +
                 (p.weakness > 0 ? " 削弱 " + p.weakness.ToString("P0") : "") + (p.regenerationTicks > 0 ? "\n生息 " + p.regeneration + " × " + p.regenerationTicks : "") + (p.nextMana > 0 ? " 下轮回蓝 +" + p.nextMana : "");
             if (p.burnTicks > 0) hero.status.text += "\n灼伤 " + p.burn + " × " + p.burnTicks;
             if (p.exposure > 0) hero.status.text += " 破绽 +" + p.exposure.ToString("P0");
+            if (s.version >= 4) hero.status.text = BaseHeroStatuses(s) + (p.statuses.Count > 0 ? "\n" + BattleDescriptions.Statuses(p.statuses, true) : "");
             roundInfo.text = s.version >= 2 && s.roundDivination.revealedLines == 6 ? "本轮 · " + s.roundDivination.chart.benGuaName + "\n\n" + string.Join("\n", s.unlockedSkills.Where(id => engine.RemainingUses(id) > 0).Select(id => owner.catalog.Skill(id).displayName + " ×" + engine.SkillMultiplier(id).ToString("0.0"))) + "\n\n基础技能常驻 · 高级技能限次" : s.version == 1 ? "旧版战斗 · 逐技能定卦" : "正在定卦…";
+            if (s.version >= 4 && s.roundDivination.revealedLines == 6)
+                roundInfo.text = "本轮 · " + s.roundDivination.chart.benGuaName + "\n\n" + string.Join("\n", s.unlockedSkills.Where(id => engine.RemainingUses(id) > 0)
+                    .Select(id => owner.catalog.Skill(id).displayName + (engine.IsEnhanced(id) ? " · 增强" : ""))) +
+                    "\n\n金色边框：本次增强\n每技能每场增强一次 · MP 不变\n暴击 20% · 伤害 ×1.5";
             for (int i = 0; i < enemies.Count; i++)
             {
                 var f = enemies[i]; f.root.gameObject.SetActive(i < s.enemies.Count); if (i >= s.enemies.Count) continue;
@@ -317,9 +491,19 @@ namespace Emerge.Battle
                 f.name.text = d.displayName; RefreshBars(f, e.hp, e.maxHP, e.mp, d.maxMP);
                 f.status.text = (e.hp <= 0 ? "已倒下" : "") + (e.charged ? "蓄势 " : "") + (e.shield > 0 ? "护盾 " + e.shield + "  " : "") + (e.vulnerabilityHits > 0 ? "易伤 " + e.vulnerabilityHits + " 次 " : "") +
                     (e.stunned ? "眩晕 " : "") + (e.silenced ? "封诀 " : "") + (e.weakness > 0 ? "削弱 " + e.weakness.ToString("P0") : "") + (s.version >= 3 && e.hp > 0 && d.retaliation > 0 ? " 反震 " + d.retaliation.ToString("P0") : "");
+                if (s.version >= 4 && e.hp > 0 && e.statuses.Count > 0) f.status.text += "\n" + BattleDescriptions.Statuses(e.statuses, true);
                 f.outline.enabled = i == target && e.hp > 0; f.marker.gameObject.SetActive(f.outline.enabled); f.button.interactable = s.phase == BattlePhase.Player && e.hp > 0;
             }
-            foreach (var pair in skills) pair.Value.interactable = engine.CanUseSkill(pair.Key, target, out _);
+            enhancedHighlights.Clear();
+            foreach (var pair in skills)
+            {
+                pair.Value.interactable = engine.CanUseSkill(pair.Key, target, out _);
+                bool enhanced = s.version >= 4 && engine.IsEnhanced(pair.Key);
+                if (enhanced) enhancedHighlights.Add(pair.Key);
+                pair.Value.GetComponent<Image>().color = enhanced ? new Color(.31f, .25f, .10f) : Panel;
+                pair.Value.GetComponent<Outline>().effectColor = enhanced ? Gold : new Color(.55f, .47f, .31f);
+                pair.Value.GetComponent<Outline>().effectDistance = enhanced ? new Vector2(2, -2) : new Vector2(1, -1);
+            }
             foreach (var pair in items)
             {
                 var d = owner.catalog.Item(pair.Key); pair.Value.interactable = engine.CanUseItem(pair.Key, out _);
@@ -328,6 +512,7 @@ namespace Emerge.Battle
             end.interactable = s.phase == BattlePhase.Player; flee.interactable = owner.CanFlee;
             fleeText.text = owner.CanFlee ? "离开战斗，恢复进入前的位置、背包与剧情状态。" : s.phase == BattlePhase.Player ? "此旧存档没有战前快照，无法回退。" : "请等待当前行动结束。";
             hint.text = s.phase == BattlePhase.Player ? "剩余 MP " + p.mp + " · 预告直接伤害 " + engine.ForecastDamage() + " · 自行结束回合 · 下轮回蓝 +" + rules.roundMana : s.phase == BattlePhase.RoundCasting ? (s.version >= 3 ? "每轮定卦 · 按五亲加点解锁高级技能 · 倍率由加点固定" : "每轮定卦 · 决定本轮高级技能与倍率") : s.phase == BattlePhase.Casting ? "旧版逐技能定卦" : s.phase == BattlePhase.Enemy ? "敌方依次行动…" : "本场战斗已结束";
+            if (s.version >= 4 && s.phase == BattlePhase.RoundCasting) hint.text = "每轮定卦开放技能 · 对应五亲 3 点可增强 · 每技能每场增强一次 · MP 不变";
             if (s.phase != BattlePhase.Player) HideTooltip();
             if (s.phase == BattlePhase.RoundCasting) { RenderRound(false); castLayer.gameObject.SetActive(true); }
             else if (s.pending != null) { shownCast = s.pending; RenderCast(shownCast, false); castLayer.gameObject.SetActive(true); }
@@ -349,7 +534,7 @@ namespace Emerge.Battle
             if (!group.interactable) { HideTooltip(); entryRemaining = 0; entryFade.gameObject.SetActive(false); }
             if (entryRemaining > 0) { entryRemaining = Mathf.Max(0, entryRemaining - Time.deltaTime); entryFade.color = new Color(0, 0, 0, entryRemaining / .24f); if (entryRemaining == 0) entryFade.gameObject.SetActive(false); }
             var s = owner.Engine.State; if (s == null) return;
-            if (s.pending != null || s.phase == BattlePhase.RoundCasting)
+            if (s.pending != null || s.phase == BattlePhase.RoundCasting || fateAnimationUntil > Time.time)
             {
                 float t = Time.time * 14;
                 for (int i = 0; i < coins.Count; i++) { var rt = coins[i].rectTransform; rt.anchoredPosition = coinHomes[i] + Vector2.up * Mathf.Abs(Mathf.Sin(t + i)) * 24; rt.localScale = new Vector3(.5f + .5f * Mathf.Abs(Mathf.Cos(t + i)), 1, 1); rt.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(t + i) * 25); SetCoinFace(i, Mathf.Max(0, (s.pending?.divination ?? s.roundDivination).revealedLines - 1)); }

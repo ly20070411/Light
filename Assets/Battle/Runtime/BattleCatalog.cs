@@ -47,21 +47,24 @@ namespace Emerge.Battle
             if (skills == null || skills.Length == 0 || enemies == null || enemies.Length == 0 ||
                 items == null || encounters == null || encounters.Length == 0) { error = "战斗库缺少配置。"; return false; }
             var ids = new HashSet<string>();
+            var kinds = new HashSet<BattleSkillKind>();
             foreach (var skill in skills)
                 if (skill == null || string.IsNullOrWhiteSpace(skill.id) || !ids.Add(skill.id) ||
-                    skill.maximumUses < 0 || (!skill.alwaysAvailable && skill.maximumUses == 0) || skill.mpCost < 1 || !Finite(skill.power) || skill.power < 0 || skill.power > 10000 ||
+                    skill.maximumUses < 0 || (!skill.alwaysAvailable && !skill.isPassive && skill.maximumUses == 0) ||
+                    (skill.isPassive ? skill.mpCost != 0 || skill.alwaysAvailable || skill.isUltimate || skill.enhancedAvailable : skill.mpCost < 1) ||
+                    !Finite(skill.power) || skill.power < 0 || skill.power > 10000 ||
                     !Enum.IsDefined(typeof(BattleEffect), skill.effect) || !Enum.IsDefined(typeof(BattleTarget), skill.target) ||
-                    !Enum.IsDefined(typeof(BattleFamily), skill.family) || skill.regenerationTicks < 1 ||
-                    (skill.effect != BattleEffect.Damage && skill.effect != BattleEffect.Silence && skill.effect != BattleEffect.Bind && skill.target != BattleTarget.Self) ||
-                    ((skill.effect == BattleEffect.Silence || skill.effect == BattleEffect.Bind) && skill.target != BattleTarget.Enemy) ||
-                    (skill.effect == BattleEffect.Damage && skill.target == BattleTarget.Self) ||
-                    (skill.effect == BattleEffect.Reduction && skill.power > 1))
+                    !Enum.IsDefined(typeof(BattleFamily), skill.family) || !Enum.IsDefined(typeof(BattleSkillKind), skill.kind) || skill.regenerationTicks < 1 ||
+                    (skill.kind == BattleSkillKind.Legacy ? !ValidLegacySkill(skill) :
+                        !kinds.Add(skill.kind) || skill.isPassive != (skill.kind == BattleSkillKind.RecoilTalent || skill.kind == BattleSkillKind.CriticalTalent) ||
+                        skill.isUltimate != ((int)skill.kind >= 25 && (int)skill.kind <= 28)))
                 { error = "玩家技能 ID、数值或类型无效。"; return false; }
             ids.Clear();
             foreach (var enemy in enemies)
             {
                 if (enemy == null || string.IsNullOrWhiteSpace(enemy.id) || !ids.Add(enemy.id) || enemy.maxHP < 1 ||
-                    enemy.maxMP < 1 || enemy.roundMana < 0 || !Finite(enemy.retaliation) || enemy.retaliation < 0 || enemy.retaliation > 1 || enemy.skills == null || enemy.skills.Length == 0)
+                    enemy.maxMP < 1 || enemy.roundMana < 0 || !Finite(enemy.retaliation) || enemy.retaliation < 0 || enemy.retaliation > 1 ||
+                    !Finite(enemy.defense) || enemy.defense < 0 || enemy.defense > .8f || enemy.skills == null || enemy.skills.Length == 0)
                 { error = "敌人配置无效。"; return false; }
                 var skillIds = new HashSet<string>(); bool fallback = false;
                 foreach (var skill in enemy.skills)
@@ -99,5 +102,13 @@ namespace Emerge.Battle
             return true;
         }
         private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+        private static bool ValidLegacySkill(BattleSkillDefinition skill)
+        {
+            return !skill.isPassive && !skill.isUltimate &&
+                !((skill.effect != BattleEffect.Damage && skill.effect != BattleEffect.Silence && skill.effect != BattleEffect.Bind && skill.target != BattleTarget.Self) ||
+                  ((skill.effect == BattleEffect.Silence || skill.effect == BattleEffect.Bind) && skill.target != BattleTarget.Enemy) ||
+                  (skill.effect == BattleEffect.Damage && skill.target == BattleTarget.Self) ||
+                  (skill.effect == BattleEffect.Reduction && skill.power > 1));
+        }
     }
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4b85c424dbcb945a586188cd7434c1, type: 3}
+  m_Name: ENC05
+  m_EditorClassIdentifier: 
+  swiftVictoryRounds: 5
+  id: ENC05
+  displayName: "\u9996\u9886 \xB7 \u6B7B\u6D77\u6B8B\u54CD"
+  description: "340 HP\uFF0C\u6F6E\u68D8\u53CD\u9707\u5B9E\u9645 HP \u4F24\u5BB3\u7684
+    30%\uFF0C\u81F4\u547D\u653B\u51FB\u4E5F\u89E6\u53D1\u3002\u51CF\u4F24\u3001\u62A4\u76FE\u548C\u6CBB\u7597\u53EF\u5E94\u5BF9\uFF1B\u9996\u9886\u62B5\u6297\u7729\u6655\uFF0C\u4F4E\u8840\u91CF\u53EF\u91CD\u805A\u4E24\u6B21\u3002"
+  month: "\u5DF3\u6708"
+  day: "\u620A\u5B50\u65E5"
+  enemies:
+  - enemy: {fileID: 11400000, guid: 1ea13c26fa132734d93eaeb4d1d776b0, type: 2}
+    healthOverride: 0
+  repeatable: 1
+  victoryFlag: 
+  useFixedSeed: 0
+  fixedSeed: 12637

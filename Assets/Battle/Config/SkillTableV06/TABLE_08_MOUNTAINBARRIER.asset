@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccc60d6b0c0e94b9d000c6993a66fd, type: 3}
+  m_Name: TABLE_08_MOUNTAINBARRIER
+  m_EditorClassIdentifier: 
+  id: TABLE_08_MOUNTAINBARRIER
+  displayName: "\u826E\u723B\xB7\u5C42\u5C71\u9501\u723B"
+  kind: 8
+  family: 0
+  target: 1
+  effect: 8
+  mpCost: 12
+  power: 15
+  description: "\u666E\u901A\uFF1A\u5C71\u969C\u78B0\u649E\u5355\u4F53\u4E00\u6B21\uFF0C\u4F24\u5BB315\uFF1B\u51CF\u901F\u5BF9\u5E94\u76EE\u6807\u8F93\u51FA\u964D\u4F4E30%\uFF0C\u6301\u7EED2\u56DE\u5408\u3002\u5F3A\u5316\uFF1A\u8F93\u51FA\u964D\u4F4E\u63D0\u9AD8\u523050%\uFF0C\u989D\u5916\u7981\u9522\u4E00\u6B21\uFF1B\u6297\u7729\u6655\u76EE\u6807\u6539\u4E3A\u672C\u8F6E\u524A\u5F3120%\u3002\n\u6240\u5C5E\u4E94\u4EB2\u6BCF\u70B9\u4F7F\u6280\u80FD\u500D\u7387+10%\u3002\u6240\u5C5E\u4E94\u4EB2\u8FBE\u52303\u70B9\u65F6\uFF0C\u672C\u573A\u7B2C\u4E00\u6B21\u4F7F\u7528\u81EA\u52A8\u5F3A\u5316\uFF0C\u8D39\u7528\u76F8\u540C\uFF1B\u4E4B\u540E\u6062\u590D\u666E\u901A\u6548\u679C\u3002"
+  appliesVulnerability: 0
+  alwaysAvailable: 0
+  enhancedAvailable: 1
+  isUltimate: 0
+  isPassive: 0
+  maximumUses: 2
+  regenerationTicks: 2

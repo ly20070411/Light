@@ -6,14 +6,16 @@ namespace Emerge.Battle
     public sealed class BattleSkillDefinition : ScriptableObject
     {
         public string id, displayName;
+        public BattleSkillKind kind;
         public BattleFamily family;
         public BattleTarget target;
         public BattleEffect effect;
-        [Min(1)] public int mpCost = 3;
+        [Min(0)] public int mpCost = 3;
         [Min(0)] public float power = 7;
         [TextArea] public string description;
         public bool appliesVulnerability;
         public bool alwaysAvailable;
+        public bool enhancedAvailable, isUltimate, isPassive;
         [Min(0)] public int maximumUses;
         [Min(1)] public int regenerationTicks = 3;
     }
