@@ -21,7 +21,7 @@ namespace Emerge.Battle
         [SerializeReference] public GameSaveData world;
         public List<SavedProp> props = new List<SavedProp>();
 
-        public static BattleReturnPoint Capture(BattleController actor)
+        public static BattleReturnPoint Capture(Component actor)
         {
             var point = new BattleReturnPoint { scenePath = actor.gameObject.scene.path, position = actor.transform.position,
                 rotationZ = actor.transform.eulerAngles.z, localScale = actor.transform.localScale,
@@ -44,9 +44,9 @@ namespace Emerge.Battle
                 point.props.Select(p => p.instanceId).Distinct().Count() != point.props.Count) return false;
             // A return point is always outside combat. Reject recursive save graphs before validating.
             return point.world == null || (point.world.scenePath == point.scenePath && point.world.actors != null &&
-                point.world.actors.All(a => a != null && a.battleState == null) && GameSaveStore.IsValidData(point.world));
+                point.world.actors.All(a => a != null && a.battleState == null && a.pointBattleState == null) && GameSaveStore.IsValidData(point.world));
         }
-        public void RestoreLocal(BattleController actor)
+        public void RestoreLocal(Component actor)
         {
             var state = actor.GetComponent<PropGameState>();
             if (!state.RestoreSnapshot(propState)) throw new InvalidOperationException("战前背包状态无效");

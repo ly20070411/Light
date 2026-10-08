@@ -12,15 +12,18 @@ namespace Emerge.Checks
     public static class SixKinAttributes
     {
         public const int StartingPoints = 8;
-        public const int Count = 5;
-        public const int RulesVersion = 2;
+        public const int Count = 6;
+        public const int Minimum = 1;
+        public const int TotalBasePoints = Count * Minimum + StartingPoints;
+        public const int RulesVersion = 3;
         private static readonly SixKinAttributeInfo[] Definitions =
         {
-            new SixKinAttributeInfo("父母", "强化", "积累知识、继承经验，强化已有能力，并理解、分析当前处境。", "学习、研习、分析、强化技能或装备。", "战斗中负责护盾、分身、领域与反伤。"),
-            new SixKinAttributeInfo("子孙", "创造", "将想法变成实际成果，创造、制作或修复事物。", "制作道具、修复机关、改造设施。", "战斗中负责风刃、驱散、恢复与机会爆发。"),
-            new SixKinAttributeInfo("官鬼", "应对", "面对外界威胁与不利影响时，保护自身并作出应对。", "躲避危险、抵抗侵染、承受冲击、摆脱异常。", "战斗中负责雷火标记、持续伤害、诅咒与控制。"),
-            new SixKinAttributeInfo("妻财", "支配", "主动施加力量，改变目标的状态，取得控制权。", "攻击、压制、破坏、强行突破。", "战斗中负责直接爆发、破防与增益窃取。"),
-            new SixKinAttributeInfo("兄弟", "同化", "与他人及环境建立联系，通过观察、交流、探索和协作寻找出路。", "观察、探索、说服、交涉、协作。", "战斗中负责变爻爆发与引灾干扰。")
+            new SixKinAttributeInfo("父母", "增伤", "基础行动：自身增伤增加 x × 10%。", "增伤 +x × 10%", "敌方回合结束清零；重复使用相加。"),
+            new SixKinAttributeInfo("子孙", "易伤", "基础行动：目标易伤增加 x × 12.5%。", "易伤 +x × 12.5%", "敌方回合结束清零；重复使用相加。"),
+            new SixKinAttributeInfo("官鬼", "护盾", "基础行动：获得最终点数 x 点护盾。", "获得 x 点护盾", "护盾吸收伤害，自己的下回合开始清零。"),
+            new SixKinAttributeInfo("妻财", "进攻", "基础行动：对目标造成最终点数 x 点伤害。", "造成 x 点伤害", "伤害受增伤、目标易伤和敌方效果影响。"),
+            new SixKinAttributeInfo("兄弟", "削弱", "基础行动：目标敌人攻击点数减少 x × 1.25。", "攻击点数 −x × 1.25", "敌方回合结束清零；重复使用相加。"),
+            new SixKinAttributeInfo("我", "行动点", "每回合定卦后，自动获得最终点数 x 点行动点。", "自动获得 x 行动点", "每回合另获 3 AP；每次行动消耗 2 AP，手动结束回合。")
         };
 
         public static SixKinAttributeInfo Get(CheckBehavior attribute)
@@ -31,13 +34,26 @@ namespace Emerge.Checks
         }
 
         public static ActorCheckAttributes DefaultBuild() => new ActorCheckAttributes
-        { parent = 2, offspring = 2, officer = 2, wealth = 1, sibling = 1 };
+        { parent = 3, offspring = 2, officer = 3, wealth = 2, sibling = 2, self = 2 };
 
         public static bool IsValidBuild(ActorCheckAttributes attributes)
         {
-            if (attributes == null || attributes.self != 0) return false;
+            if (attributes == null) return false;
             long total = 0;
             for (int i = 0; i < Count; i++)
+            {
+                int value = attributes.Get((CheckBehavior)i);
+                if (value < Minimum || value > Minimum + StartingPoints) return false;
+                total += value;
+            }
+            return total == TotalBasePoints;
+        }
+
+        public static bool IsValidLegacyBuild(ActorCheckAttributes attributes)
+        {
+            if (attributes == null || attributes.self != 0) return false;
+            long total = 0;
+            for (int i = 0; i < 5; i++)
             {
                 int value = attributes.Get((CheckBehavior)i);
                 if (value < 0 || value > StartingPoints) return false;
@@ -56,8 +72,9 @@ namespace Emerge.Checks
         public bool IsComplete => Remaining == 0;
         public CharacterAttributeAllocation(ActorCheckAttributes initial = null)
         {
+            Reset();
             if (initial == null) return;
-            if (!SixKinAttributes.IsValidBuild(initial)) throw new ArgumentException("初始五亲点数必须合计为 8。", nameof(initial));
+            if (!SixKinAttributes.IsValidBuild(initial)) throw new ArgumentException("六亲各至少 1 点，额外分配点数必须合计为 8。", nameof(initial));
             for (int i = 0; i < points.Length; i++) points[i] = initial.Get((CheckBehavior)i);
             Spent = SixKinAttributes.StartingPoints;
         }
@@ -71,14 +88,14 @@ namespace Emerge.Checks
         {
             int index = (int)attribute;
             if (index < 0 || index >= points.Length || (delta != 1 && delta != -1) ||
-                (delta == 1 && Remaining == 0) || (delta == -1 && points[index] == 0)) return false;
+                (delta == 1 && Remaining == 0) || (delta == -1 && points[index] == SixKinAttributes.Minimum)) return false;
             points[index] += delta; Spent += delta; return true;
         }
-        public void Reset() { Array.Clear(points, 0, points.Length); Spent = 0; }
+        public void Reset() { for (int i = 0; i < points.Length; i++) points[i] = SixKinAttributes.Minimum; Spent = 0; }
         public ActorCheckAttributes ToAttributes() => new ActorCheckAttributes
         {
             parent = points[0], offspring = points[1], officer = points[2],
-            wealth = points[3], sibling = points[4]
+            wealth = points[3], sibling = points[4], self = points[5]
         };
     }
 }

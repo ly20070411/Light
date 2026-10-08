@@ -93,6 +93,7 @@ namespace Emerge.Day1.Editor
                     camera.nearClipPlane = .1f; camera.farClipPlane = 100;
                     cameraObject.AddComponent<AudioListener>(); cameraObject.AddComponent<CameraFollow>().Configure(flow.actor.transform);
                     cameraObject.transform.position = flow.actor.transform.position + Vector3.back * 10;
+                    if (File.Exists(Day1ControlRoomSetup.ArtPath)) Day1ControlRoomSetup.ApplyToScene(scene);
                     PropAssetFactory.EnsureFolder("Assets/Scenes");
                     if (!EditorSceneManager.SaveScene(scene, ScenePath)) throw new IOException("Day1 scene could not be saved.");
                 }

@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422535af551be8b4589957c8e9ce2f27, type: 3}
+  m_Name: PointBattleRules
+  m_EditorClassIdentifier: 
+  balanceVersion: v0.8-points
+  playerHealth: 40
+  actionCost: 2
+  roundActionPoints: 3
+  carryLimit: 1
+  temporaryActionStatuses: 1
+  enemies:
+  - id: point.sentinel
+    name: "\u5DE1\u5B88\u5F71"
+    health: 36
+    color: {r: 0.65, g: 0.3, b: 0.4, a: 1}
+    portrait: {fileID: 0}
+    pattern:
+    - name: "\u8BD5\u63A2"
+      effect: 0
+      amount: 4
+      hits: 1
+    - name: "\u4E3E\u76FE"
+      effect: 1
+      amount: 5
+      hits: 1
+    - name: "\u91CD\u51FB"
+      effect: 0
+      amount: 7
+      hits: 1
+  - id: point.miasma
+    name: "\u8680\u96FE"
+    health: 24
+    color: {r: 0.65, g: 0.3, b: 0.4, a: 1}
+    portrait: {fileID: 0}
+    pattern:
+    - name: "\u4FB5\u8680"
+      effect: 5
+      amount: 2
+      hits: 1
+    - name: "\u96FE\u88AD"
+      effect: 0
+      amount: 4
+      hits: 1
+  - id: point.stalker
+    name: "\u6F5C\u884C\u5F71"
+    health: 24
+    color: {r: 0.65, g: 0.3, b: 0.4, a: 1}
+    portrait: {fileID: 0}
+    pattern:
+    - name: "\u7834\u7EFD"
+      effect: 4
+      amount: 25
+      hits: 1
+    - name: "\u4E8C\u8FDE\u51FB"
+      effect: 0
+      amount: 3
+      hits: 2
+  - id: point.guard
+    name: "\u5B88\u536B\u5F71"
+    health: 20
+    color: {r: 0.65, g: 0.3, b: 0.4, a: 1}
+    portrait: {fileID: 0}
+    pattern:
+    - name: "\u63A9\u62A4"
+      effect: 1
+      amount: 4
+      hits: 1
+    - name: "\u731B\u653B"
+      effect: 0
+      amount: 4
+      hits: 1
+  - id: E01
+    name: "\u6D77\u8680\u5F71"
+    health: 24
+    color: {r: 0.76, g: 0.35, b: 0.45, a: 1}
+    portrait: {fileID: 21300000, guid: 6760811669774fd4f8c34db604fe1e5d, type: 3}
+    pattern:
+    - name: "\u8BD5\u63A2"
+      effect: 0
+      amount: 4
+      hits: 1
+    - name: "\u84C4\u529B"
+      effect: 3
+      amount: 1
+      hits: 1
+    - name: "\u51B2\u649E"
+      effect: 0
+      amount: 7
+      hits: 1
+  - id: E02
+    name: "\u62A4\u58F3\u4F53"
+    health: 28
+    color: {r: 0.76, g: 0.35, b: 0.45, a: 1}
+    portrait: {fileID: 21300000, guid: 21e35c9488aa8d146aa399488c5bc4c1, type: 3}
+    pattern:
+    - name: "\u7ED3\u58F3"
+      effect: 1
+      amount: 5
+      hits: 1
+    - name: "\u649E\u51FB"
+      effect: 0
+      amount: 6
+      hits: 1
+  - id: E03
+    name: "\u6270\u8BC6\u4F53"
+    health: 20
+    color: {r: 0.76, g: 0.35, b: 0.45, a: 1}
+    portrait: {fileID: 21300000, guid: b717264875553df4fb1330f789df57c6, type: 3}
+    pattern:
+    - name: "\u8680\u5FF5"
+      effect: 5
+      amount: 2
+      hits: 1
+    - name: "\u6270\u8BC6"
+      effect: 4
+      amount: 25
+      hits: 1
+    - name: "\u6697\u88AD"
+      effect: 0
+      amount: 4
+      hits: 1
+  - id: B01
+    name: "\u6B7B\u6D77\u6B8B\u54CD"
+    health: 60
+    color: {r: 0.76, g: 0.35, b: 0.45, a: 1}
+    portrait: {fileID: 21300000, guid: 20248ef0557be1145a0f1e1e39ec3327, type: 3}
+    pattern:
+    - name: "\u53CC\u91CD\u56DE\u54CD"
+      effect: 0
+      amount: 5
+      hits: 2
+    - name: "\u805A\u6F6E"
+      effect: 3
+      amount: 2
+      hits: 1
+    - name: "\u6D77\u5578"
+      effect: 0
+      amount: 10
+      hits: 1
+    - name: "\u56DE\u6D41"
+      effect: 2
+      amount: 4
+      hits: 1

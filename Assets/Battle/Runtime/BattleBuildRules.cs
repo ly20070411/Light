@@ -10,6 +10,9 @@ namespace Emerge.Battle
     public static class BattleBuildRules
     {
         public const int Version = 4;
+        // The pending point-based battle flow is separate from this archived MP/multiplier engine.
+        public static ActorCheckAttributes DefaultBuild() => new ActorCheckAttributes
+        { parent = 2, offspring = 2, officer = 2, wealth = 1, sibling = 1 };
         public const float BonusPerPoint = .10f;
         public static CheckBehavior Attribute(BattleFamily family)
         {
@@ -32,7 +35,7 @@ namespace Emerge.Battle
         public static List<string> SelectOffers(BattleCatalog catalog, DivinationRecord record,
             List<EnemySkillUses> baseline, ActorCheckAttributes attributes, Action<string> trace = null, int round = 1)
         {
-            if (!SixKinAttributes.IsValidBuild(attributes)) throw new ArgumentException("战斗需要有效的五亲 8 点快照。");
+            if (!SixKinAttributes.IsValidLegacyBuild(attributes)) throw new ArgumentException("战斗需要有效的五亲 8 点快照。");
             var pool = catalog.skills.Where(s => !s.alwaysAvailable && !s.isPassive && !s.isUltimate && Points(attributes, s.family) > 0 &&
                 (baseline.Find(u => u.skillId == s.id)?.count ?? 0) < s.maximumUses).ToList();
             var random = new Random(unchecked(record.casting.seed ^ 0x347D));

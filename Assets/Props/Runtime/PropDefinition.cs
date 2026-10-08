@@ -80,6 +80,10 @@ namespace Emerge.Props
         public Emerge.Battle.BattleEncounterDefinition battleEncounter;
         [Tooltip("留空时使用道具 ID；同一个物品类型应使用同一个键。")]
         public string inventoryKey;
+        [Tooltip("可选：拾取为成长道具。使用此定义的物品键；请同时加入点数道具库。")]
+        public Emerge.Checks.PointItemDefinition pointItem;
+        [Tooltip("成功完成创建精神锚点事件时发放；lin-xi 或 hydrologist。")]
+        public string createdMentalAnchorId;
         [Min(1)] public int pickupAmount = 1;
         public bool hideAfterPickup = true;
         public string[] requiredFlags = Array.Empty<string>();
@@ -91,7 +95,7 @@ namespace Emerge.Props
 
         public string Id => id;
         public string DisplayName => character != null ? character.DisplayName : string.IsNullOrWhiteSpace(displayName) ? name : displayName;
-        public string InventoryKey => string.IsNullOrWhiteSpace(inventoryKey) ? id : inventoryKey;
+        public string InventoryKey => pointItem != null && pointItem.data != null && !string.IsNullOrWhiteSpace(pointItem.data.key) ? pointItem.data.key : string.IsNullOrWhiteSpace(inventoryKey) ? id : inventoryKey;
         public bool HasAction(PropActions action) => (actions & action) != 0;
         public void RenewIdentity() { id = Guid.NewGuid().ToString("N"); }
 

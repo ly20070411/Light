@@ -268,7 +268,7 @@ namespace Emerge.Battle.Tests
             Add("Original version-five catalog remains available for existing saves", archive != null && archive.skills.Length == 11 && archive.rules.balanceVersion == "v0.5-counterplay");
             if (archive == null) return;
             var oldEngine = new BattleEngine(archive, null) { EmitRuntimeLogs = false };
-            oldEngine.Start(archive.Encounter("ENC01"), 12637, attributes: SixKinAttributes.DefaultBuild());
+            oldEngine.Start(archive.Encounter("ENC01"), 12637, attributes: BattleBuildRules.DefaultBuild());
             oldEngine.State.version = 3; BattleSkillTableBalanceTest.Reveal(oldEngine);
             var legacyObject = JObject.Parse(JsonUtility.ToJson(oldEngine.Capture()));
             RemoveUpgradeFields(legacyObject);

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace Emerge.Battle
 {
     // Runtime uGUI: replace the presentation sprites without rebuilding the demo scenes.
-    public sealed class BattleView : MonoBehaviour
+    public sealed partial class BattleView : MonoBehaviour
     {
         private sealed class Fighter
         {
@@ -73,6 +73,7 @@ namespace Emerge.Battle
         public bool CastVisible => castLayer != null && castLayer.gameObject.activeSelf;
         public void SelectTarget(int index)
         {
+            if (UsesPointRules) { SelectPointTarget(index); return; }
             var s = owner?.Engine?.State;
             if (s?.phase != BattlePhase.Player || index < 0 || index >= s.enemies.Count || s.enemies[index].hp <= 0) return;
             target = index; HideTooltip(); Refresh();
@@ -99,7 +100,7 @@ namespace Emerge.Battle
             Label(root, 36, 22, 490, 38, "六爻战斗", 27, Gold);
             title = Label(root, 530, 22, 610, 38, "", 24, Color.white); title.alignment = TextAnchor.MiddleCenter;
             var guidance = Label(root, 530, 65, 610, 28, "点击选敌 · 悬停查看意图", 18, new Color(.65f, .75f, .82f)); guidance.alignment = TextAnchor.MiddleCenter;
-            var rulesHelp = Label(root, 1170, 27, 390, 28, "悬停：五亲 / 暴击 / 增强规则", 17, Gold);
+            var rulesHelp = Label(root, 1170, UsesPointRules ? 78 : 27, 390, 28, UsesPointRules ? "悬停：点数 / 行动点 / 精神锚" : "悬停：五亲 / 暴击 / 增强规则", 17, Gold);
             rulesHelp.raycastTarget = true;
             var rulesHover = rulesHelp.gameObject.AddComponent<BattleHoverTarget>(); rulesHover.view = this; rulesHover.rules = true;
             roundInfo = Label(root, 500, 170, 410, 270, "", 19, new Color(.72f, .8f, .85f)); roundInfo.alignment = TextAnchor.MiddleCenter;
@@ -107,12 +108,14 @@ namespace Emerge.Battle
             lastActionText.resizeTextForBestFit = true; lastActionText.resizeTextMinSize = 14; lastActionText.resizeTextMaxSize = 18;
             hero = FighterAt("主角立绘", 110, 130, 290, 320,
                 controller.character != null ? controller.character.portrait : art?.heroPortrait, -1);
-            for (int i = 0; i < 3; i++) enemies.Add(FighterAt("敌人立绘 " + (i + 1), 950 + i * 200, 170, 185, 280, art?.defaultEnemyPortrait, i));
+            int count = UsesPointRules ? pointOwner.Engine.State.enemies.Count : 3;
+            for (int i = 0; i < count; i++) enemies.Add(FighterAt("敌人立绘 " + (i + 1), 950 + i * 200, 170, 185, 280, art?.defaultEnemyPortrait, i));
+            if (UsesPointRules && count > 3) BuildPointEnemyScroll();
             BuildCommands(); BuildTooltip(); BuildCasting();
             result = PanelAt(root, "结果遮幕", 0, 0, 1600, 900, new Color(0, 0, 0, .65f), true);
             var modal = PanelAt(result, "战斗结果", 440, 250, 720, 390, Panel); Border(modal);
             resultText = Label(modal, 40, 40, 640, 220, "", 29, Gold); resultText.alignment = TextAnchor.MiddleCenter;
-            ButtonAt(modal, 170, 285, 380, 65, "返回场景", () => owner.CloseResult(), out _);
+            ButtonAt(modal, 170, 285, 380, 65, "返回场景", () => { if (UsesPointRules) pointOwner.CloseResult(); else owner.CloseResult(); }, out _);
             result.gameObject.SetActive(false);
             entryFade = PanelAt(root, "进入战斗过渡", 0, 0, 1600, 900, Color.black, true).GetComponent<Image>();
             entryFade.gameObject.SetActive(false); SwitchPage(BattlePage.Skills);
@@ -130,6 +133,7 @@ namespace Emerge.Battle
                 Picture(b.transform, names[i] + "图标", 22, 11, 32, 32, icons[i], Gold);
                 pages.Add(PanelAt(panel, names[i] + "页面", 12, 65, 1544, 175, Color.clear));
             }
+            if (UsesPointRules) { BuildPointCommands(panel); return; }
             skillGroupTabs = PanelAt(panel, "技能分组", 938, 8, 614, 40, Color.clear);
             familyGroupButton = ButtonAt(skillGroupTabs, 0, 0, 294, 40, "五亲技能 · 滚轮查看", () => SwitchSkillGroup(BattleSkillGroup.Families), out var familyGroupLabel);
             specialGroupButton = ButtonAt(skillGroupTabs, 302, 0, 294, 40, "终结 / 被动", () => SwitchSkillGroup(BattleSkillGroup.Special), out var specialGroupLabel);
@@ -323,6 +327,7 @@ namespace Emerge.Battle
         }
         public void ShowItemTooltip(string id, Vector2 pointer)
         {
+            if (UsesPointRules) { ShowPointItemTooltip(id, pointer); return; }
             if (owner.Engine.State?.phase != BattlePhase.Player || !GameSessionController.SessionInputAllowed) return;
             var d = owner.catalog.Item(id); if (d == null) return;
             string content = BattleDescriptions.Item(d);
@@ -333,6 +338,7 @@ namespace Emerge.Battle
         }
         public void ShowEnemyTooltip(int index, Vector2 pointer)
         {
+            if (UsesPointRules) { ShowPointEnemyTooltip(index, pointer); return; }
             var s = owner.Engine.State;
             if (s == null || s.phase == BattlePhase.Casting || s.phase == BattlePhase.RoundCasting || index < 0 || index >= s.enemies.Count || !GameSessionController.SessionInputAllowed) return;
             var e = s.enemies[index]; ShowTooltip(BattleDescriptions.Intent(owner.catalog.Enemy(e.definitionId), e, owner.catalog.rules, s.version >= 3, s.version >= 4),
@@ -340,12 +346,14 @@ namespace Emerge.Battle
         }
         public void ShowRulesTooltip(Vector2 pointer)
         {
+            if (UsesPointRules) { ShowPointRulesTooltip(pointer); return; }
             var s = owner?.Engine?.State;
             if (s == null || !GameSessionController.SessionInputAllowed) return;
             ShowTooltip(BattleDescriptions.Build(s), "暴击\n基础概率 20%，暴击伤害 ×1.5。\n增强\n对应五亲达到 3 点，本轮抽中时可用；每技能每场一次，MP 消耗不变。", pointer);
         }
         public void ShowHeroTooltip(Vector2 pointer)
         {
+            if (UsesPointRules) { ShowPointHeroTooltip(pointer); return; }
             var s = owner?.Engine?.State;
             if (s == null || !GameSessionController.SessionInputAllowed) return;
             ShowTooltip("主角状态\n" + BaseHeroStatuses(s) + "\n" + BattleDescriptions.Statuses(s.player.statuses),
@@ -371,7 +379,10 @@ namespace Emerge.Battle
             var text = Label(modal, 24, 147, 412, 28, "六爻自下而上逐次揭示", 18, Color.white); text.alignment = TextAnchor.MiddleCenter;
             castLines = Label(modal, 46, 179, 368, 139, "", 18, new Color(.78f, .85f, .9f));
             castResult = Label(modal, 24, 320, 412, 60, "", 20, Gold); castResult.alignment = TextAnchor.MiddleCenter;
-            quick = ButtonAt(modal, 24, 392, 412, 39, "快速定卦", () => { if (owner.Engine.State?.pending != null || owner.Engine.State?.phase == BattlePhase.RoundCasting) owner.QuickCast(); else HideCastResult(); }, out quickText);
+            quick = ButtonAt(modal, 24, 392, 412, 39, "快速定卦", () => {
+                if (UsesPointRules) { if (pointOwner.Engine.State?.phase == PointBattlePhase.Casting) pointOwner.QuickCast(); else HideCastResult(); }
+                else if (owner.Engine.State?.pending != null || owner.Engine.State?.phase == BattlePhase.RoundCasting) owner.QuickCast();
+                else HideCastResult(); }, out quickText);
             castLayer.gameObject.SetActive(false);
         }
         private void RenderCast(BattleAction action, bool resolved)
@@ -463,6 +474,7 @@ namespace Emerge.Battle
         private void HideCastResult() { castUntil = fateAnimationUntil = 0; if (castLayer != null) castLayer.gameObject.SetActive(false); Refresh(); }
         public void Refresh()
         {
+            if (UsesPointRules) { RefreshPoints(); return; }
             var engine = owner?.Engine; var s = engine?.State; if (s == null || root == null) return;
             if (sessionId != s.sessionId) { sessionId = s.sessionId; target = 0; shownCast = null; castUntil = resultAt = 0; entryRemaining = .24f; entryFade.gameObject.SetActive(true); SwitchPage(BattlePage.Skills); SwitchSkillGroup(BattleSkillGroup.Families); }
             if (target < 0 || target >= s.enemies.Count || s.enemies[target].hp <= 0) { target = s.enemies.FindIndex(e => e.hp > 0); if (target < 0) target = 0; }
@@ -533,6 +545,7 @@ namespace Emerge.Battle
             group.interactable = GameSessionController.SessionInputAllowed; group.blocksRaycasts = true;
             if (!group.interactable) { HideTooltip(); entryRemaining = 0; entryFade.gameObject.SetActive(false); }
             if (entryRemaining > 0) { entryRemaining = Mathf.Max(0, entryRemaining - Time.deltaTime); entryFade.color = new Color(0, 0, 0, entryRemaining / .24f); if (entryRemaining == 0) entryFade.gameObject.SetActive(false); }
+            if (UsesPointRules) { UpdatePoints(); return; }
             var s = owner.Engine.State; if (s == null) return;
             if (s.pending != null || s.phase == BattlePhase.RoundCasting || fateAnimationUntil > Time.time)
             {

@@ -89,13 +89,15 @@ namespace Emerge.Day1.Tests
             Add(!Directory.Exists(results.testSaveDirectory), "Test saves are isolated from existing player saves", results.testSaveDirectory);
             ClickMenu("New Game");
             Require(session.Phase == GameSessionPhase.CharacterCreation, "Day1 new game enters the five-attribute creation page");
-            int[] startingPoints = { 1, 2, 2, 2, 1 };
+            int[] startingPoints = { 2, 3, 3, 3, 2, 1 };
             for (int i = 0; i < startingPoints.Length; i++)
-                for (int point = 0; point < startingPoints[i]; point++) Require(session.AdjustAttribute((CheckBehavior)i, 1), "Allocate Day1 starting attributes");
+                for (int point = 0; point < startingPoints[i] - 1; point++) Require(session.AdjustAttribute((CheckBehavior)i, 1), "Allocate Day1 starting attributes");
             ClickMenu("Confirm Attributes");
             yield return Until(() => session.Phase == GameSessionPhase.Playing && Flow != null && Player != null, "Day1 new game loaded");
             Add(Enumerable.Range(0, SixKinAttributes.Count).All(i => Checks.attributes.Get((CheckBehavior)i) == startingPoints[i]),
                 "Day1 starts with the eight points confirmed in character creation");
+            Add(Player.GetComponent<BattleController>().catalog == Resources.Load<BattleCatalog>("Day1/Day1BattleCatalog"),
+                "Day1 retains its scene-specific teaching battle catalog when the main battle library upgrades");
             PreparePlayer();
             yield return Until(() => Player.IsInDialogue, "automatic admission questionnaire");
             Add(!State.HasFlag("day1.admitted") && State.Count("day1.identity-card") == 0, "A new game starts with admission incomplete and no identity card");
@@ -359,6 +361,11 @@ namespace Emerge.Day1.Tests
 
         private IEnumerator Door(Vector2 center, Vector2 direction, string label)
         {
+            if (Flow.controlRoom != null)
+            {
+                direction = Flow.controlRoom.LegacyDoorDirection(center, direction);
+                center = Flow.controlRoom.LegacyDoor(center);
+            }
             MovePlayer(center - direction * 1.25f);
             var movement = Player.GetComponent<PlayerMovement>();
             movement.SetScriptedInput(direction);
@@ -545,14 +552,28 @@ namespace Emerge.Day1.Tests
         private void Add(bool condition, string label, string observed = "")
         {
             results.checks.Add(new CheckResult { name = label, passed = condition, observed = observed });
-            WriteReport(results);
+            // Console logs provide live progress; publish the complete report at Finish.
+            // Replacing it on every assertion races Windows indexers and report viewers.
             Debug.Log("DAY1_CHECK " + (condition ? "PASS " : "FAIL ") + label + ": " + observed);
         }
         public static void WriteReport(Report report)
         {
             string path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Validation/day1-results.json"));
             Directory.CreateDirectory(Path.GetDirectoryName(path));
-            File.WriteAllText(path, JsonUtility.ToJson(report, true));
+            // Readers may have the live report open. Replace a complete file instead of
+            // truncating that file in place (Windows rejects a mapped file with IO 1224).
+            string temporary = path + ".tmp";
+            File.WriteAllText(temporary, JsonUtility.ToJson(report, true));
+            for (int attempt = 0; ; attempt++)
+            {
+                try
+                {
+                    if (File.Exists(path)) File.Replace(temporary, path, null);
+                    else File.Move(temporary, path);
+                    break;
+                }
+                catch (IOException) when (attempt < 4) { System.Threading.Thread.Sleep(25); }
+            }
         }
         private void RestoreSession()
         {

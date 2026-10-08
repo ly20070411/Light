@@ -114,7 +114,7 @@ namespace Emerge.GameFlow.Tests
             Check(session.Phase == GameSessionPhase.CharacterCreation && session.AllocationRemaining == 8,
                 "New character starts with eight unspent points");
             for (int i = 0; i < points.Length; i++)
-                for (int point = 0; point < points[i]; point++) FindButton("Attribute Plus " + (CheckBehavior)i).onClick.Invoke();
+                for (int point = 0; point < points[i] - 1; point++) FindButton("Attribute Plus " + (CheckBehavior)i).onClick.Invoke();
             Check(session.AllocationRemaining == 0 && FindButton("Confirm Attributes").interactable,
                 "A complete allocation enables the start-adventure button");
             Click("Confirm Attributes");
@@ -162,11 +162,11 @@ namespace Emerge.GameFlow.Tests
                 File.ReadAllBytes(session.Store.SlotPath(SaveSlot.Manual)).SequenceEqual(manualBytes) && File.ReadAllBytes(session.Store.SlotPath(SaveSlot.Auto)).SequenceEqual(autoBytes),
                 "Cancelling reallocation returns to paused settings and preserves both slots byte for byte");
 
-            int[] changedPoints = { 1, 0, 4, 2, 1 };
+            int[] changedPoints = { 2, 1, 5, 3, 2, 1 };
             Click("Reallocate Attributes"); Click("Reset Attributes");
             for (int i = 0; i < changedPoints.Length; i++)
-                for (int point = 0; point < changedPoints[i]; point++) session.AdjustAttribute((CheckBehavior)i, 1);
-            Check(session.AllocationRemaining == 0 && session.GetComponent<GameMenuUI>().AllocationWarningText.Contains("子孙"), "Reallocation retains budget limits and zero-family warnings");
+                for (int point = 0; point < changedPoints[i] - 1; point++) session.AdjustAttribute((CheckBehavior)i, 1);
+            Check(session.AllocationRemaining == 0 && session.GetComponent<GameMenuUI>().AllocationWarningText.Contains("合计 14"), "Reallocation retains budget limits and one-point minimums");
             capture = CaptureCreation("settings-reallocation-preview.png"); while (capture.MoveNext()) yield return capture.Current;
             string blockedTemporary = session.Store.SlotPath(SaveSlot.Auto) + ".tmp";
             Directory.CreateDirectory(blockedTemporary);
@@ -194,13 +194,13 @@ namespace Emerge.GameFlow.Tests
             var fresh = ScriptableObject.CreateInstance<CheckEventDefinition>(); fresh.eventId = "settings-reallocation-fresh"; fresh.useDivination = false;
             fresh.options.Add(new CheckOptionDefinition { id = "create", label = "新检定", behavior = CheckBehavior.Offspring, targetValue = 1,
                 success = new CheckOutcomeDefinition(), failure = new CheckOutcomeDefinition() });
-            Check(checks.TryResolve(fresh, checks.GetOrPrepare(fresh), "create", out var freshResult, out _) && freshResult.baseValue == 0,
+            Check(checks.TryResolve(fresh, checks.GetOrPrepare(fresh), "create", out var freshResult, out _) && freshResult.baseValue == 1,
                 "New checks use the changed point bases");
             var catalog = Resources.Load<Emerge.Battle.BattleCatalog>(Emerge.Battle.BattleCatalog.ResourcePath);
             var battle = new Emerge.Battle.BattleEngine(catalog, Player.State) { EmitRuntimeLogs = false };
-            battle.Start(catalog.Encounter("ENC01"), 31001, attributes: checks.attributes); Emerge.Battle.Tests.BattleBalanceTest.Reveal(battle);
-            Check(Mathf.Approximately(battle.SkillMultiplier("ATK_BASIC"), 1.4f) && !battle.State.unlockedSkills.Contains("MP_BREATH"),
-                "New battles use the reallocated multiplier and exclude zero-point advanced families");
+            battle.Start(catalog.Encounter("ENC01"), 31001, attributes: Emerge.Battle.BattleBuildRules.DefaultBuild()); Emerge.Battle.Tests.BattleBalanceTest.Reveal(battle);
+            Check(Mathf.Approximately(battle.SkillMultiplier("ATK_BASIC"), 1.2f) && Emerge.Checks.SixKinAttributes.IsValidLegacyBuild(battle.State.attributes),
+                "Legacy battle calculation stays separate from new six-attribute base points");
             Destroy(definition); Destroy(fresh);
             Click("Settings Button"); session.LoadAutomatic();
             yield return new WaitUntil(() => session.Phase == GameSessionPhase.Playing); PreparePlayer();
@@ -208,7 +208,7 @@ namespace Emerge.GameFlow.Tests
                 "Loading the reallocation checkpoint restores changed points together with world progress");
             Click("Settings Button"); Click("Reallocate Attributes"); Click("Reset Attributes");
             for (int i = 0; i < originalPoints.Length; i++)
-                for (int point = 0; point < originalPoints[i]; point++) session.AdjustAttribute((CheckBehavior)i, 1);
+                for (int point = 0; point < originalPoints[i] - 1; point++) session.AdjustAttribute((CheckBehavior)i, 1);
             Click("Confirm Attributes");
             Check(AttributesMatch(Player.GetComponent<CheckActorState>().attributes, originalPoints), "Repeated settings reallocation creates a fresh independent draft");
         }
@@ -301,15 +301,14 @@ namespace Emerge.GameFlow.Tests
                 !draft.TryChange((CheckBehavior)99, 1) && !draft.TryChange(CheckBehavior.Officer, int.MaxValue),
                 "Allocation permits all eight points in one attribute and rejects overspending, negative or invalid input");
             var copy = draft.ToAttributes(); copy.officer = -100;
-            Check(draft.Get(CheckBehavior.Officer) == 8 && draft.TryChange(CheckBehavior.Officer, -1) && draft.Remaining == 1,
+            Check(draft.Get(CheckBehavior.Officer) == 9 && draft.TryChange(CheckBehavior.Officer, -1) && draft.Remaining == 1,
                 "Draft exports a separate attribute copy and refunds removed points");
             draft.Reset();
-            Check(draft.Remaining == 8 && Enumerable.Range(0, SixKinAttributes.Count).All(i => draft.Get((CheckBehavior)i) == 0), "Reset returns all eight points");
+            Check(draft.Remaining == 8 && Enumerable.Range(0, SixKinAttributes.Count).All(i => draft.Get((CheckBehavior)i) == 1), "Reset returns all eight points");
 
             Click("New Game");
             Check(session.GetComponentsInChildren<CharacterAttributeHover>(true).Length == SixKinAttributes.Count &&
-                !session.GetComponentsInChildren<Button>(true).Any(button => button.name == "Attribute Plus Self") &&
-                !session.AdjustAttribute(CheckBehavior.Self, 1), "Creation exposes five attributes and rejects the removed self attribute");
+                session.GetComponentsInChildren<Button>(true).Any(button => button.name == "Attribute Plus Self"), "Creation exposes all six independent attributes");
             Check(session.Phase == GameSessionPhase.CharacterCreation && Time.timeScale == 0 && !GameSessionController.GameplayInputAllowed &&
                 !FindButton("Confirm Attributes").interactable && !session.ConfirmCharacterCreation(),
                 "New-game UI opens a paused allocation page and blocks incomplete confirmation");
@@ -320,7 +319,7 @@ namespace Emerge.GameFlow.Tests
                 "Incomplete character creation neither saves nor overwrites an automatic checkpoint");
             var capture = CaptureCreation("character-creation-preview.png"); while (capture.MoveNext()) yield return capture.Current;
             var ui = session.GetComponent<GameMenuUI>();
-            Check(ui.AllocationWarningText.Contains("未投入") && ui.AllocationWarningText.Contains("高级技能"), "Zero-point consequences are shown before allocation");
+            Check(ui.AllocationWarningText.Contains("合计 14"), "Default point rules are shown before allocation");
             foreach (CheckBehavior attribute in Enumerable.Range(0, SixKinAttributes.Count).Select(i => (CheckBehavior)i))
             {
                 var row = session.GetComponentsInChildren<CharacterAttributeHover>(true).First(item => item.name == "Attribute Row " + attribute);
@@ -337,21 +336,21 @@ namespace Emerge.GameFlow.Tests
                 Check(!ui.AttributeTooltipVisible, "Leaving an attribute hides its tooltip: " + attribute);
             }
             Click("Attribute Plus Parent"); Click("Attribute Plus Parent"); Click("Attribute Minus Parent");
-            Check(session.AllocatedPoints(CheckBehavior.Parent) == 1 && session.AllocationRemaining == 7,
+            Check(session.AllocatedPoints(CheckBehavior.Parent) == 2 && session.AllocationRemaining == 7,
                 "Real plus/minus buttons update and refund the shared budget");
             Click("Reset Attributes");
-            Check(session.AllocationRemaining == 8 && !FindButton("Attribute Minus Parent").interactable, "UI reset restores zero values and disables subtraction");
+            Check(session.AllocationRemaining == 8 && !FindButton("Attribute Minus Parent").interactable, "UI reset restores one-point minimums and disables subtraction");
             Click("Cancel Character Creation");
             Check(session.Phase == GameSessionPhase.MainMenu && !File.Exists(session.Store.SlotPath(SaveSlot.Auto)),
                 "Cancelling creation returns to the main menu without creating a save");
             Click("New Game");
-            int[] initialPoints = { 2, 1, 2, 2, 1 };
+            int[] initialPoints = { 3, 2, 3, 3, 2, 1 };
             for (int i = 0; i < initialPoints.Length; i++)
-                for (int point = 0; point < initialPoints[i]; point++) FindButton("Attribute Plus " + (CheckBehavior)i).onClick.Invoke();
+                for (int point = 0; point < initialPoints[i] - 1; point++) FindButton("Attribute Plus " + (CheckBehavior)i).onClick.Invoke();
             Check(session.AllocationRemaining == 0 && !session.AdjustAttribute(CheckBehavior.Wealth, 1) &&
                 !FindButton("Attribute Plus Wealth").interactable && FindButton("Confirm Attributes").interactable,
                 "Spending exactly eight points disables additions and enables confirmation");
-            Check(ui.AllocationWarningText.Contains("均已投入"), "Zero-point warning updates after all five families receive points");
+            Check(ui.AllocationWarningText.Contains("合计 14"), "Point rules remain visible after allocation");
             capture = CaptureCreation("character-creation-complete-preview.png"); while (capture.MoveNext()) yield return capture.Current;
             Click("Confirm Attributes");
             Check(!session.ConfirmCharacterCreation(), "Duplicate confirmation cannot start a second scene load");
@@ -362,14 +361,14 @@ namespace Emerge.GameFlow.Tests
             var checks = Player.GetComponent<CheckActorState>();
             Check(checks != null && AttributesMatch(checks.attributes, initialPoints) &&
                 AttributesMatch(initial.actors.Find(actor => actor.id == initial.playerId).checkState.attributes, initialPoints),
-                "All five confirmed attributes become the player's check bases and its initial save");
+                "All six confirmed attributes become the player's check bases and its initial save");
             var checkEvent = ScriptableObject.CreateInstance<CheckEventDefinition>();
             checkEvent.eventId = "character-allocation-fixture"; checkEvent.useDivination = false;
             checkEvent.options.Add(new CheckOptionDefinition { id = "create", label = "验证创造", behavior = CheckBehavior.Offspring, targetValue = 1,
                 success = new CheckOutcomeDefinition(), failure = new CheckOutcomeDefinition() });
             var checkSession = checks.GetOrPrepare(checkEvent);
             Check(AttributesMatch(checkSession.attributes, initialPoints) && checks.TryResolve(checkEvent, checkSession, "create", out var checkResult, out _) &&
-                checkResult.baseValue == 1 && checkResult.finalValue == 1 && checkResult.success,
+                checkResult.baseValue == 2 && checkResult.finalValue == 2 && checkResult.success,
                 "The real check pipeline and resolver use allocated points rather than old scene defaults");
             Destroy(checkEvent);
             var recognition = ScriptableObject.CreateInstance<CheckEventDefinition>();
@@ -411,7 +410,7 @@ namespace Emerge.GameFlow.Tests
             PreparePlayer();
             Check(Vector3.Distance(Player.transform.position, checkpointPosition) < .01f, "Continue restores the player position");
             Check(AttributesMatch(Player.GetComponent<CheckActorState>().attributes, initialPoints) && !FindButton("Confirm Attributes").gameObject.activeInHierarchy,
-                "Continue restores all five attributes directly without reopening allocation");
+                "Continue restores all six attributes directly without reopening allocation");
             Check(Player.State.Count("fruit") == 1 && Player.State.IsConsumed(fruitId) && Fruit.InstanceId == fruitId && !Fruit.gameObject.activeSelf,
                 "Continue restores backpack fruit and keeps the world fruit hidden");
             Check(Guide.InstanceId == guideId, "Scene reload retains persistent guide identity");
@@ -462,7 +461,7 @@ namespace Emerge.GameFlow.Tests
             Check(File.ReadAllText(session.Store.SlotPath(SaveSlot.Manual)) == manualContents && File.ReadAllText(session.Store.SlotPath(SaveSlot.Auto)) == autoContents,
                 "Cancelling allocation preserves both existing save slots byte for byte");
             Click("New Game"); Click("Confirm New Game");
-            int[] replacementPoints = { 0, 2, 0, 6, 0 };
+            int[] replacementPoints = { 1, 3, 1, 7, 1, 1 };
             CompleteAllocation(replacementPoints);
             yield return new WaitUntil(() => session.Phase == GameSessionPhase.Playing);
             PreparePlayer();
@@ -470,7 +469,7 @@ namespace Emerge.GameFlow.Tests
                 Vector3.Distance(Player.transform.position, spawn) < .01f, "New game resets backpack, quest, spawn and world fruit");
             Check(File.ReadAllText(session.Store.SlotPath(SaveSlot.Manual)) == manualContents, "New game preserves the prior manual save");
             Check(AttributesMatch(Player.GetComponent<CheckActorState>().attributes, replacementPoints),
-                "A later new game uses a fresh allocation, including zero-point attributes");
+                "A later new game uses a fresh allocation, with one-point minimums");
             Check(FindObjectsOfType<GameSessionController>(true).Length == 1, "Repeated scene loads retain exactly one persistent controller");
             Click("Settings Button"); Click("Save And Return");
 
@@ -488,14 +487,14 @@ namespace Emerge.GameFlow.Tests
             var legacyBytes = File.ReadAllBytes(session.Store.SlotPath(SaveSlot.Manual));
             session.LoadManual();
             Check(session.Phase == GameSessionPhase.CharacterCreation && session.IsReallocating && session.AllocationRemaining == 8,
-                "Loading a legacy role asks for one five-family reallocation before gameplay");
+                "Loading a legacy role asks for one six-attribute reallocation before gameplay");
             session.CancelCharacterCreation();
             Check(File.ReadAllBytes(session.Store.SlotPath(SaveSlot.Manual)).SequenceEqual(legacyBytes), "Cancelling legacy reallocation leaves the original save untouched");
             session.LoadManual(); CompleteAllocation(initialPoints);
             yield return new WaitUntil(() => session.Phase == GameSessionPhase.Playing);
             PreparePlayer();
             checks = Player.GetComponent<CheckActorState>();
-            Check(checks.AttributeRulesVersion == SixKinAttributes.RulesVersion && AttributesMatch(checks.attributes, initialPoints) && checks.attributes.self == 0 &&
+            Check(checks.AttributeRulesVersion == SixKinAttributes.RulesVersion && AttributesMatch(checks.attributes, initialPoints) && checks.attributes.self == 1 &&
                 checks.Contamination == 7 && Player.State.HasFlag("migration-progress") && Vector3.Distance(Player.transform.position, legacyPlayer.position) < .01f,
                 "Reallocation preserves plot, position and contamination while replacing all point bases");
             var oldRecognition = checks.Sessions.First(item => item.eventId == "old-recognition");

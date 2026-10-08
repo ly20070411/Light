@@ -109,6 +109,8 @@ namespace Emerge.GameFlow
             if (data.actors.Any(actor => actor == null || string.IsNullOrWhiteSpace(actor.id) || !Emerge.Props.PropGameState.IsValidSnapshot(actor.propState) ||
                 (actor.checkState != null && !Emerge.Checks.CheckActorState.IsValidSnapshot(actor.checkState)) ||
                 (actor.battleState != null && !Emerge.Battle.BattleEngine.ValidateSnapshot(actor.battleState)) ||
+                (actor.pointBattleState != null && !Emerge.Battle.PointBattleEngine.Validate(actor.pointBattleState)) ||
+                (actor.pointBattleState != null && actor.battleState != null) ||
                 !ValidVector(actor.position)) ||
                 data.actors.Select(actor => actor.id).Distinct().Count() != data.actors.Count ||
                 !data.actors.Any(actor => actor.id == data.playerId))

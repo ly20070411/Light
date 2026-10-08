@@ -64,6 +64,7 @@ namespace Emerge.Props
             var entry = inventory.Find(item => item.key == key);
             if (entry == null) { entry = new InventoryEntry { key = key, displayName = displayName }; inventory.Add(entry); }
             entry.amount += amount;
+            GetComponent<Emerge.Checks.CheckActorState>()?.OnPointItemAcquired(key, amount);
             Changed?.Invoke();
         }
         public bool RemoveItem(string key, int amount)
@@ -72,6 +73,7 @@ namespace Emerge.Props
             var entry = inventory.Find(item => item.key == key);
             entry.amount -= amount;
             if (entry.amount == 0) inventory.Remove(entry);
+            GetComponent<Emerge.Checks.CheckActorState>()?.OnPointItemRemoved(key, amount);
             Changed?.Invoke();
             return true;
         }

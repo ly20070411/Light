@@ -12,7 +12,7 @@ namespace Emerge.Checks
         Officer = 2,
         Wealth = 3,
         Sibling = 4,
-        // Serialized value retained for older events and completed check sessions.
+        // An independent sixth attribute; version-2 sessions retain their old remapping.
         Self = 5
     }
 
@@ -104,6 +104,7 @@ namespace Emerge.Checks
         public string contextId;
         public string sessionId;
         public ActorCheckAttributes attributes;
+        public List<FrozenPointItem> pointEquipment = new List<FrozenPointItem>();
         public int[] modifiers = new int[6];
         public string castingStatus;
         public string chartStatus;
@@ -123,6 +124,7 @@ namespace Emerge.Checks
         public int baseValue;
         public int modifier;
         public int finalValue;
+        public PointCalculationResult pointCalculation;
         public int targetValue;
         public long margin;
         public bool success;

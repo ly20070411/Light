@@ -75,7 +75,7 @@ namespace Emerge.Battle.Tests
                 var coins = CoinCasting.Cast(BattleEngine.RoundSeed(seed, 1));
                 var record = new DivinationRecord { month = d.month, day = d.day, casting = coins, chart = new LiuYaoPaiPan().PaiPan(d.month, d.day, coins.yaoValues) };
                 int score = BattleEngine.FamilyScore(record, catalog.Skill(id).family);
-                if ((exact ? score == minimumScore : score >= minimumScore) && BattleBuildRules.SelectOffers(catalog, record, new List<EnemySkillUses>(), SixKinAttributes.DefaultBuild()).Contains(id)) return seed;
+                if ((exact ? score == minimumScore : score >= minimumScore) && BattleBuildRules.SelectOffers(catalog, record, new List<EnemySkillUses>(), BattleBuildRules.DefaultBuild()).Contains(id)) return seed;
             }
             throw new Exception("No offered fixture: " + id);
         }
@@ -167,7 +167,7 @@ namespace Emerge.Battle.Tests
         }
         private void BuildRules()
         {
-            var defaults = SixKinAttributes.DefaultBuild();
+            var defaults = BattleBuildRules.DefaultBuild();
             foreach (BattleFamily family in Enum.GetValues(typeof(BattleFamily)))
             {
                 var build = new ActorCheckAttributes();
@@ -187,7 +187,7 @@ namespace Emerge.Battle.Tests
                 Add("Single-family build has 1.8 multiplier: " + family,
                     catalog.skills.Where(s => s.family == family).All(s => Mathf.Approximately(e.SkillMultiplier(s.id), 1.8f)));
                 build.parent = build.officer = build.offspring = build.wealth = build.sibling = 0;
-                Add("Battle keeps an independent attribute snapshot: " + family, SixKinAttributes.IsValidBuild(e.State.attributes));
+                Add("Battle keeps an independent attribute snapshot: " + family, SixKinAttributes.IsValidLegacyBuild(e.State.attributes));
                 string blocked = catalog.skills.First(s => !s.alwaysAvailable && s.family != family).id;
                 Add("Zero-point skill cannot be manually submitted: " + family, !e.CommitSkill(blocked, 0, out _) && e.State.actionSerial == 0);
             }

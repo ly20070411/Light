@@ -1,0 +1,2611 @@
+{
+  "schemaVersion": 1,
+  "title": "绥海堰剧情 · 全新细纲初始版",
+  "revision": "2026-10-08 · 按细纲.docx与道具需求.xlsx录入；用户确认隐藏值规则",
+  "scope": "仅用于剧情编辑、资料管理和占位道具存储，不接入或改写可玩场景、旧Day1流程、战斗或道具运行时效果。新版细纲为本资产的内容依据。",
+  "sources": [
+    {
+      "id": "source-outline",
+      "fileName": "细纲.docx",
+      "sha256": "8966e452c9fbd8de581a648ad94df94839788c10790cc513ee4bab62eadf5c74",
+      "notes": "用户提供的新初始版。编号缺省的事件按顺序整理，原文及定位保留。正文表格5为原作者修改日志，属于来源资料。"
+    },
+    {
+      "id": "source-items",
+      "fileName": "道具需求.xlsx",
+      "sha256": "a7b58caf46d481c5068a51cdda8b0439d014f427ac750341f393c8c50c922b06",
+      "notes": "Sheet1有18个正式编号道具；Sheet2和Sheet3为空。未填列保留为空，正文推定关联另行标记。"
+    },
+    {
+      "id": "source-user-confirmation",
+      "fileName": "本次对话 · 2026-10-08用户确认",
+      "sha256": "",
+      "notes": "第三日隐藏值≥3进入HE/TE；读取船员记忆并得到信息锚为第四个主线隐藏值事件，获得1点。"
+    }
+  ],
+  "characters": [
+    {
+      "id": "huan-yujian",
+      "name": "桓玉鉴",
+      "role": "玩家操控角色／队长",
+      "faction": "罗天教",
+      "department": "悬鉴司",
+      "identity": "悬鉴司总管",
+      "hexagram": "恒卦卦主",
+      "notes": "悬鉴司为逆模因部，负责一切认知，模因有关的工作，职能包括隐藏罗天教的存在，修改记忆，对抗信息类劫灾恒象征永恒，无类象，表现持恒的概念就行锚定，创建物质或概念上的“锚点”以维持事物的本质\n整理备注：人物表为“悬鉴司总管”，故事背景为“悬鉴司掌鉴”，称谓差异待统一。",
+      "sourceText": "桓玉鉴 | 男 | 玩家操控角色 | 罗天教 | 悬鉴司总管 | 队长 | 恒卦卦主 | 悬鉴司为逆模因部，负责一切认知，模因有关的工作，职能包括隐藏罗天教的存在，修改记忆，对抗信息类劫灾恒象征永恒，无类象，表现持恒的概念就行锚定，创建物质或概念上的“锚点”以维持事物的本质",
+      "source": "细纲.docx/正文表格11/数据行1"
+    },
+    {
+      "id": "lin-xi",
+      "name": "林溪",
+      "role": "次要人物／副队长，随队卦者",
+      "faction": "太衍道",
+      "department": "",
+      "identity": "",
+      "hexagram": "比卦掌卦",
+      "notes": "太衍道对应道教，可以以道袍为基础，按照科考环境进行改造比卦象征水行地上，亲密无间，权能与“连接”有关能力为“整流”，串联高度复杂的信息流",
+      "sourceText": "林溪 | 女 | 次要人物 | 太衍道 |  | 副队长，随队卦者 | 比卦掌卦 | 太衍道对应道教，可以以道袍为基础，按照科考环境进行改造比卦象征水行地上，亲密无间，权能与“连接”有关能力为“整流”，串联高度复杂的信息流",
+      "source": "细纲.docx/正文表格11/数据行2"
+    },
+    {
+      "id": "hydrologist",
+      "name": "鹿见深",
+      "role": "NPC／科研人员，水文学家",
+      "faction": "蓬莱馆",
+      "department": "青龙馆",
+      "identity": "青龙馆教授",
+      "hexagram": "屯卦天眼",
+      "notes": "青龙馆为蓬莱馆下属，研究生物，生态与医学的学院，掌握权能“屯”卦具有生命操纵的权能",
+      "sourceText": "鹿见深 | 男 | Npc | 蓬莱馆 | 青龙馆教授 | 科研人员水文学家 | 屯卦天眼 | 青龙馆为蓬莱馆下属，研究生物，生态与医学的学院，掌握权能“屯”卦具有生命操纵的权能",
+      "source": "细纲.docx/正文表格11/数据行3"
+    },
+    {
+      "id": "geologist",
+      "name": "虞青",
+      "role": "NPC／科研人员，地质学家",
+      "faction": "蓬莱馆",
+      "department": "青龙馆",
+      "identity": "青龙馆教授",
+      "hexagram": "屯卦天眼",
+      "notes": "屯卦为困难，与朝气蓬勃之意，象征草木破土而出",
+      "sourceText": "虞青 | 男 | Npc | 蓬莱馆 | 青龙馆教授 | 科研人员地质学家 | 屯卦天眼 | 屯卦为困难，与朝气蓬勃之意，象征草木破土而出",
+      "source": "细纲.docx/正文表格11/数据行4"
+    },
+    {
+      "id": "yang-yinglong",
+      "name": "杨应隆",
+      "role": "次要人物／安保人员",
+      "faction": "罗天教",
+      "department": "青霆司",
+      "identity": "青霆司华杨（特勤队队长职位）",
+      "hexagram": "大过卦掌卦",
+      "notes": "青霆司为罗天教的执行部，负责直接执行劫灾的收容纯战士，按战斗人员设计比卦象征过度，物极必反，以高大的树木或房梁为象征树木过盛而衰，故权能与“凋亡”有关能力为“过衍化”，使事物快速衍化至衰亡状态\n整理备注：原备注写“比卦象征过度”，人物卦象列为大过卦；卦象字段按人物列保留大过，原文未改。",
+      "sourceText": "杨应隆 | 男 | 次要人物 | 罗天教 | 青霆司华杨（特勤队队长职位） | 安保人员 | 大过卦掌卦 | 青霆司为罗天教的执行部，负责直接执行劫灾的收容纯战士，按战斗人员设计比卦象征过度，物极必反，以高大的树木或房梁为象征树木过盛而衰，故权能与“凋亡”有关能力为“过衍化”，使事物快速衍化至衰亡状态",
+      "source": "细纲.docx/正文表格11/数据行5"
+    },
+    {
+      "id": "containment-researcher",
+      "name": "常月容",
+      "role": "NPC／安保人员，孑遗研究员",
+      "faction": "罗天教",
+      "department": "深泉司",
+      "identity": "深泉司",
+      "hexagram": "井卦天眼",
+      "notes": "罗天教的收容部，深泉司，负责劫灾的收容管理与研究使用高科技装备战斗，偏文职井卦含义为稳定与可持续发展，以水井为象征，权能与“收容，保存有关”",
+      "sourceText": "常月容 | 女 | Npc | 罗天教 | 深泉司 | 安保人员孑遗研究员 | 井卦天眼 | 罗天教的收容部，深泉司，负责劫灾的收容管理与研究使用高科技装备战斗，偏文职井卦含义为稳定与可持续发展，以水井为象征，权能与“收容，保存有关”",
+      "source": "细纲.docx/正文表格11/数据行6"
+    },
+    {
+      "id": "mechanic",
+      "name": "唐晦",
+      "role": "NPC／机械师",
+      "faction": "蓬莱馆",
+      "department": "白虎馆",
+      "identity": "白虎馆教授",
+      "hexagram": "丰卦天眼",
+      "notes": "白虎馆为蓬莱馆下属，研究工学的学院丰卦象征宏大威仪，以太阳，雷电为象征权能与“能量”有关",
+      "sourceText": "唐晦 | 男 | Npc | 蓬莱馆 | 白虎馆教授 | 机械师 | 丰卦天眼 | 白虎馆为蓬莱馆下属，研究工学的学院丰卦象征宏大威仪，以太阳，雷电为象征权能与“能量”有关",
+      "source": "细纲.docx/正文表格11/数据行7"
+    },
+    {
+      "id": "tan-yue",
+      "name": "谭礿",
+      "role": "主要人物／前一支勘察队队长",
+      "faction": "无",
+      "department": "",
+      "identity": "流浪作家",
+      "hexagram": "萃卦卦主",
+      "notes": "萃为聚集，萃取之意，以聚集的水与祭祀为象征无势力所属，设计符合身份即可权能为收集，将物质，概念容纳入自己的精神，也可将其释放或使用",
+      "sourceText": "谭礿 | 女 | 主要人物 | 无 | 流浪作家 | 前一支勘察队队长 | 萃卦卦主 | 萃为聚集，萃取之意，以聚集的水与祭祀为象征无势力所属，设计符合身份即可权能为收集，将物质，概念容纳入自己的精神，也可将其释放或使用",
+      "source": "细纲.docx/正文表格11/数据行8"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-buffer",
+      "name": "认知缓冲间（缓冲区）",
+      "sourceNumber": "5",
+      "dayAvailability": "Day1",
+      "mapGroup": "科考站内部",
+      "description": "外界与科考站内部的连接区域；用于消毒、更衣、精神检测校准与身份登记的极小房间。",
+      "notes": "只存场景需求，不创建地图。",
+      "source": "细纲.docx/正文段落62—正文段落68"
+    },
+    {
+      "id": "scene-control",
+      "name": "总控室",
+      "sourceNumber": "4",
+      "dayAvailability": "Day1—Day3",
+      "mapGroup": "科考站内部",
+      "description": "终端、环境监测台及控制台；集合宣读规则、设备检查、数据分析、林溪夜间工作、战前报告。",
+      "notes": "第15事件原称“主控室”，归为此场景并保留原文。三个检查交互点的具体名称待补。",
+      "source": "细纲.docx/正文段落73—正文段落88；细纲.docx/正文段落144—正文段落169；细纲.docx/正文段落218—正文段落220"
+    },
+    {
+      "id": "scene-living",
+      "name": "生活区走廊／餐厅厨房",
+      "sourceNumber": "3",
+      "dayAvailability": "Day1；NE Day4",
+      "mapGroup": "科考站内部",
+      "description": "餐桌上领取生活物资；食材箱送达处；神秘影子首次经过；NE撤离会议使用餐厅长椅。",
+      "notes": "走廊、餐厅和厨房按同一区域的功能记载；无需据此新建房间。",
+      "source": "细纲.docx/正文段落93—正文段落103；细纲.docx/正文表格109/常月容行；细纲.docx/正文段落258—正文段落260"
+    },
+    {
+      "id": "scene-machinery",
+      "name": "机房",
+      "sourceNumber": "6",
+      "dayAvailability": "Day1",
+      "mapGroup": "科考站内部",
+      "description": "林溪检查站内设备并发放总控室检查任务。",
+      "notes": "",
+      "source": "细纲.docx/正文表格109/林溪行"
+    },
+    {
+      "id": "scene-research-corridor",
+      "name": "科研区走廊",
+      "sourceNumber": "8",
+      "dayAvailability": "Day1—Day2",
+      "mapGroup": "科考站内部",
+      "description": "科研仪器箱送达处；等待水样分析；神秘影子第二次经过。",
+      "notes": "鹿见深Day1活动涉及此处与化学分析室，接任务在化学分析室。",
+      "source": "细纲.docx/正文表格109/鹿见深、常月容行；细纲.docx/正文段落133—正文段落141"
+    },
+    {
+      "id": "scene-chemical",
+      "name": "化学分析室",
+      "sourceNumber": "9",
+      "dayAvailability": "Day1—Day2",
+      "mapGroup": "科考站内部",
+      "description": "鹿见深分析水质、发放采样任务；次日交付样品分析。",
+      "notes": "事件6的等待演出发生在科研区走廊，分析在室内。",
+      "source": "细纲.docx/正文表格109/鹿见深行；细纲.docx/正文段落133—正文段落139"
+    },
+    {
+      "id": "scene-outdoors",
+      "name": "科考站室外／周围",
+      "sourceNumber": "10",
+      "dayAvailability": "Day1—Day3；NE Day4",
+      "mapGroup": "科考站附近",
+      "description": "虞青采集植物、杨应隆在蚀海方向边界巡逻；主角队伍迎战与追击劫灾；连通内海侧码头。",
+      "notes": "室外草丛、蚀海方向地图边界、码头为细纲中不同交互位置。范围、方位与地图比例待设计。",
+      "source": "细纲.docx/正文表格109；细纲.docx/正文段落224—正文段落238"
+    },
+    {
+      "id": "scene-dock",
+      "name": "内海侧码头",
+      "sourceNumber": "",
+      "dayAvailability": "Day1；NE Day4",
+      "mapGroup": "科考站附近",
+      "description": "科考船停靠；常月容组织三箱搬运；NE全队经舷梯登船撤离。",
+      "notes": "作为科考站室外子区域登记，非独立地图要求。",
+      "source": "细纲.docx/正文表格109/常月容行；细纲.docx/正文段落273—正文段落279"
+    },
+    {
+      "id": "scene-warehouse",
+      "name": "仓储区",
+      "sourceNumber": "",
+      "dayAvailability": "Day1；Day3",
+      "mapGroup": "科考站内部",
+      "description": "唐晦修复装备、提供订制装备功能；工具箱送达处；战前装备六选二。",
+      "notes": "以新版正文为准，唐晦在仓储区，常月容在码头；不沿用旧版分工。",
+      "source": "细纲.docx/正文表格109/常月容、唐晦行；细纲.docx/正文段落218—正文段落220"
+    },
+    {
+      "id": "scene-eroding-coast",
+      "name": "蚀海海岸",
+      "sourceNumber": "",
+      "dayAvailability": "Day2；NE Day4",
+      "mapGroup": "蚀海海岸",
+      "description": "堰体受到严重侵蚀；三轮可选采样护卫战；NE设置大规模现实稳定锚与护卫战。",
+      "notes": "Day2新开放；Day1采水会被杨应隆劝阻。",
+      "source": "细纲.docx/正文段落118—正文段落130；细纲.docx/正文段落265—正文段落271"
+    },
+    {
+      "id": "scene-stranded-coast",
+      "name": "搁浅科考船的海岸",
+      "sourceNumber": "",
+      "dayAvailability": "Day3",
+      "mapGroup": "搁浅科考船独立地图",
+      "description": "沿科考站外海岸向北一定距离后切换进入；发现搁浅科考船、入船前认知危害检测与钉锚。",
+      "notes": "原文明示与科考站附近不属于同一张地图。距离、切换点待补。",
+      "source": "细纲.docx/正文段落173—正文段落188"
+    },
+    {
+      "id": "scene-deck",
+      "name": "废弃科考船甲板",
+      "sourceNumber": "",
+      "dayAvailability": "Day3",
+      "mapGroup": "搁浅科考船独立地图",
+      "description": "常月容用绳索帮助众人登上甲板。",
+      "notes": "与船舱自由探索相连；布局、绳索交互细节待补。",
+      "source": "细纲.docx/正文段落191—正文段落197"
+    },
+    {
+      "id": "scene-cabin",
+      "name": "废弃科考船船舱",
+      "sourceNumber": "",
+      "dayAvailability": "Day3",
+      "mapGroup": "搁浅科考船独立地图",
+      "description": "四人同行自由探索，包含怪物、密室与道具；大量现实缺失，可用雪花屏或马赛克蒙版表现。",
+      "notes": "敌人、密室、解谜规则、掉落物与布局尚无细纲，不自行编造。",
+      "source": "细纲.docx/正文段落191—正文段落200"
+    },
+    {
+      "id": "scene-captain-room",
+      "name": "船长室",
+      "sourceNumber": "",
+      "dayAvailability": "Day3",
+      "mapGroup": "搁浅科考船独立地图",
+      "description": "用钥匙进入、修复损坏航行日志；信息扭曲生物袭击，虞青挡下攻击；精英战后面对船员抉择。",
+      "notes": "入口、隔间位置需支持唐晦与常月容在隔间、虞青靠门的演出。",
+      "source": "细纲.docx/正文段落200—正文段落214"
+    },
+    {
+      "id": "scene-player-rest",
+      "name": "科考站单人休息室",
+      "sourceNumber": "",
+      "dayAvailability": "Day3夜",
+      "mapGroup": "科考站内部",
+      "description": "桓玉鉴躺在床上整理三天线索，进行剧情路线判定。",
+      "notes": "第三日判定阈值使用本次用户确认：≥3进入HE/TE。",
+      "source": "细纲.docx/正文段落242—正文段落251"
+    },
+    {
+      "id": "scene-medical",
+      "name": "医务室",
+      "sourceNumber": "",
+      "dayAvailability": "Day2条件性",
+      "mapGroup": "科考站内部",
+      "description": "三次采样导致鹿见深精神损伤过大，送医并由林溪代为分析。",
+      "notes": "仅作为条件性剧情地点登记，未提供室内可探索流程或地图制作需求。",
+      "source": "细纲.docx/正文段落134"
+    },
+    {
+      "id": "scene-rest",
+      "name": "休息室（林溪返回处）",
+      "sourceNumber": "",
+      "dayAvailability": "Day2条件性",
+      "mapGroup": "科考站内部",
+      "description": "选择让林溪停止工作后，她返回休息室。",
+      "notes": "未说明具体房间与是否可进入，暂作地点占位。",
+      "source": "细纲.docx/正文段落157"
+    },
+    {
+      "id": "scene-memetic-lab",
+      "name": "模因实验室",
+      "sourceNumber": "",
+      "dayAvailability": "HE/TE后续入口",
+      "mapGroup": "科考站内部",
+      "description": "站内规则要求离站前补满储存的工业息壤；高隐藏值路线前往这里揭开真相。",
+      "notes": "HE/TE后续详细事件未提供，只登记入口场景需求。",
+      "source": "细纲.docx/正文段落85；细纲.docx/正文段落247"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-01",
+      "sourceNumber": "1",
+      "name": "铜钱",
+      "function": "摇卦（检定）",
+      "description": "正面印有“甲子”，反面印有“太极”字样的铜钱",
+      "programEffect": "摇卦检定用的铜钱",
+      "acquisition": "",
+      "artNotes": "检定时播放动画，三枚铜钱同时掷出，掷六次，需要动效\n需要与ui，程序合作，目前不急着做",
+      "modified": "10.2.13：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。",
+      "source": "道具需求.xlsx/Sheet1/第2行（A2:H2）",
+      "placeholder": false
+    },
+    {
+      "id": "item-02",
+      "sourceNumber": "2",
+      "name": "散落的铜钱",
+      "function": "任务道具",
+      "description": "散落在地上的三枚铜钱，\n正面印有“已丑”，反面印有“华盖”的字样",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "10.2.13：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。",
+      "source": "道具需求.xlsx/Sheet1/第3行（A3:H3）",
+      "placeholder": false
+    },
+    {
+      "id": "item-03",
+      "sourceNumber": "3",
+      "name": "现实稳定锚",
+      "function": "增益道具",
+      "description": "由恒卦权能制作的现实稳定装备",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "科幻/玄幻作品里“锚”是用于稳定自我认知与存在的装备，\n可为任意形态，要有科技感或玄幻感",
+      "modified": "10.2.13：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。 文中的能力钉锚、大规模现实稳定锚、信息锚及罗天教制式现实稳定锚不自动视为此道具或其消耗。",
+      "source": "道具需求.xlsx/Sheet1/第4行（A4:H4）",
+      "placeholder": false
+    },
+    {
+      "id": "item-04",
+      "sourceNumber": "4",
+      "name": "连理枝植株",
+      "function": "任务道具",
+      "description": "生命力及其顽强的植物，恶劣环境下种子会将根系连接在一起，\n共同给养一颗植株",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "从土中采出，带有根系的植物样品，有并不艳丽花，要表现出“连理”的特点\n体现涌现主题的重要物品，会在场景中表现，建议与场景一同设计",
+      "modified": "10.2.13：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1虞青任务采集连理枝植株；具体采集数量未给出。“4”为道具编号。来源：细纲.docx/正文表格109/虞青行。",
+      "source": "道具需求.xlsx/Sheet1/第5行（A5:H5）",
+      "placeholder": false
+    },
+    {
+      "id": "item-05",
+      "sourceNumber": "5",
+      "name": "身份认证卡",
+      "function": "任务道具",
+      "description": "科考站通行所需的凭证，同时具有终端功能",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "外形为卡带状的通讯器，拥有一个可变色的指示灯",
+      "modified": "10.3.19：06",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：事件1完成认知测试后取得。来源：细纲.docx/正文段落64、66。",
+      "source": "道具需求.xlsx/Sheet1/第6行（A6:H6）",
+      "placeholder": false
+    },
+    {
+      "id": "item-06",
+      "sourceNumber": "6",
+      "name": "生活物资",
+      "function": "任务道具",
+      "description": "一个包裹，包含了各种生活用品",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "10.3.19：06",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：事件3与生活区餐桌物资交互后领取。来源：细纲.docx/正文段落95、98。",
+      "source": "道具需求.xlsx/Sheet1/第7行（A7:H7）",
+      "placeholder": false
+    },
+    {
+      "id": "item-07",
+      "sourceNumber": "7",
+      "name": "环境数据表",
+      "function": "任务道具",
+      "description": "在现实不稳定的环境中，纸质文件往往比数据信息可靠一点",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "一沓表单",
+      "modified": "10.3.19：06",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：事件2在环境监测台收集并收入背包。来源：细纲.docx/正文段落75、79。",
+      "source": "道具需求.xlsx/Sheet1/第8行（A8:H8）",
+      "placeholder": false
+    },
+    {
+      "id": "item-08",
+      "sourceNumber": "8",
+      "name": "一份蚀海水样",
+      "function": "任务道具",
+      "description": "物质化的虚无，用感官只能观察到零碎的信息",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "容器封装的水样，尝试表现蚀海水“虚无”的特点",
+      "modified": "10.4.14：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1接取鹿见深任务，Day2事件5采样取得。未定义各轮样品库存数量。来源：细纲.docx/正文表格109/鹿见深行、正文段落126—128。",
+      "source": "道具需求.xlsx/Sheet1/第9行（A9:H9）",
+      "placeholder": false
+    },
+    {
+      "id": "item-09",
+      "sourceNumber": "9",
+      "name": "分析结果",
+      "function": "任务道具",
+      "description": "数据结果表明，蚀海侵蚀绥海堰的速率远高于正常值",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "可与道具7“环境数据表”素材复用",
+      "modified": "10.4.14：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n候选正文关联：Day2样品分析与事件7数据分析；正文未明确编号、交付时机及与10的并存关系，待确认。来源：细纲.docx/正文段落133—148。",
+      "source": "道具需求.xlsx/Sheet1/第10行（A10:H10）",
+      "placeholder": false
+    },
+    {
+      "id": "item-10",
+      "sourceNumber": "10",
+      "name": "精确的分析结果",
+      "function": "任务道具\n增益道具",
+      "description": "更精确的分析结果，数据结果表明，蚀海侵蚀绥海堰的速率远高于正常值",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "可与道具7“环境数据表”素材复用",
+      "modified": "10.4.14：51",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n候选正文关联：事件7控制台检定成功的额外增益道具；正文未明确道具编号，待确认。来源：细纲.docx/正文段落148。",
+      "source": "道具需求.xlsx/Sheet1/第11行（A11:H11）",
+      "placeholder": false
+    },
+    {
+      "id": "item-11",
+      "sourceNumber": "11",
+      "name": "连理枝标本",
+      "function": "增益道具",
+      "description": "保存完好的连理枝花朵标本，并不秾艳，但是充满生命的意志",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "与道具4共同设计",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1向虞青提交连理枝植株后获得。来源：细纲.docx/正文表格109/虞青行。",
+      "source": "道具需求.xlsx/Sheet1/第12行（A12:H12）",
+      "placeholder": false
+    },
+    {
+      "id": "item-12",
+      "sourceNumber": "12",
+      "name": "食材箱",
+      "function": "任务道具",
+      "description": "各色食材，送往生活区的厨房储存",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "一个箱子，12，13，14素材可复用",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1常月容搬运任务在码头拿取，送生活区。来源：细纲.docx/正文表格109/常月容行。",
+      "source": "道具需求.xlsx/Sheet1/第13行（A13:H13）",
+      "placeholder": false
+    },
+    {
+      "id": "item-13",
+      "sourceNumber": "13",
+      "name": "工具箱",
+      "function": "任务道具",
+      "description": "维修用的工具，送往仓储区",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1常月容搬运任务在码头拿取，送仓储区。来源：细纲.docx/正文表格109/常月容行。",
+      "source": "道具需求.xlsx/Sheet1/第14行（A14:H14）",
+      "placeholder": false
+    },
+    {
+      "id": "item-14",
+      "sourceNumber": "14",
+      "name": "科研仪器箱",
+      "function": "任务道具",
+      "description": "各式实验仪器，送往科研区",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1常月容搬运任务在码头拿取，送科研区走廊。来源：细纲.docx/正文表格109/常月容行。",
+      "source": "道具需求.xlsx/Sheet1/第15行（A15:H15）",
+      "placeholder": false
+    },
+    {
+      "id": "item-15",
+      "sourceNumber": "15",
+      "name": "松茸干",
+      "function": "增益道具",
+      "description": "深泉司常见的小零食，因“茸”同“容”，有劫灾不突破收容的寓意",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "密封袋包装的小零食",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1完成常月容的三箱搬运任务后获得。来源：细纲.docx/正文表格109/常月容行。",
+      "source": "道具需求.xlsx/Sheet1/第16行（A16:H16）",
+      "placeholder": false
+    },
+    {
+      "id": "item-16",
+      "sourceNumber": "16",
+      "name": "铜钱剑",
+      "function": "增益道具",
+      "description": "古代罗天教常将法器作为铜钱剑的形式，如今它的象征意义大于实用意义",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "一小把铜钱剑，用作护身符",
+      "modified": "10.6.18：03",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。\n正文映射：Day1与杨应隆交谈后先获得，再去清除周围威胁。来源：细纲.docx/正文表格109/杨应隆行。",
+      "source": "道具需求.xlsx/Sheet1/第17行（A17:H17）",
+      "placeholder": false
+    },
+    {
+      "id": "item-17",
+      "sourceNumber": "17",
+      "name": "息壤样本",
+      "function": "任务道具",
+      "description": "袋装的息壤，也是构成绥海堰的物质",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。",
+      "source": "道具需求.xlsx/Sheet1/第18行（A18:H18）",
+      "placeholder": false
+    },
+    {
+      "id": "item-18",
+      "sourceNumber": "18",
+      "name": "岩石样本",
+      "function": "任务道具",
+      "description": "袋装岩石样本",
+      "programEffect": "",
+      "acquisition": "",
+      "artNotes": "",
+      "modified": "",
+      "notes": "道具仅在编辑器存储；未配置或实现任何实际效果。 来源表F列获取条件为空。",
+      "source": "道具需求.xlsx/Sheet1/第19行（A19:H19）",
+      "placeholder": false
+    },
+    {
+      "id": "item-error-report",
+      "sourceNumber": "",
+      "name": "数据系统错误报告",
+      "function": "剧情道具（未编号占位）",
+      "description": "林溪继续修复数据库后提供的错误报告。",
+      "programEffect": "",
+      "acquisition": "事件8选择让林溪继续工作后得到。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。具体报告内容、外观待补。",
+      "source": "细纲.docx/正文段落158",
+      "placeholder": true
+    },
+    {
+      "id": "item-captain-key",
+      "sourceNumber": "",
+      "name": "船长室钥匙",
+      "function": "剧情道具（未编号占位）",
+      "description": "进入搁浅科考船船长室所需的钥匙。",
+      "programEffect": "",
+      "acquisition": "事件12探索／事件13前在场景中搜索；具体位置与解谜条件待补。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。未指定是否收入背包、开门是否消耗。",
+      "source": "细纲.docx/正文段落200",
+      "placeholder": true
+    },
+    {
+      "id": "item-navigation-log",
+      "sourceNumber": "",
+      "name": "航行日志（数据损坏）",
+      "function": "剧情道具（未编号占位）",
+      "description": "船长室内的数据损坏航行日志，需修复后获取数据。",
+      "programEffect": "",
+      "acquisition": "事件13进入船长室后发现并修复；未说明是否作为可携带物品取得。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。作为剧情引用资料占位；不假设自动入包。",
+      "source": "细纲.docx/正文段落200",
+      "placeholder": true
+    },
+    {
+      "id": "item-memory-anchor",
+      "sourceNumber": "",
+      "name": "储存记忆的信息锚",
+      "function": "剧情道具（未编号占位）",
+      "description": "在船员脑中种下信息锚收集记忆后得到的载体。",
+      "programEffect": "",
+      "acquisition": "事件14选择读取船员记忆后获得，同时主线隐藏值+1（用户确认）。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。记忆具体内容与外观待补；不等同于道具3。",
+      "source": "细纲.docx/正文段落213；本次对话/2026-10-08用户确认",
+      "placeholder": true
+    },
+    {
+      "id": "item-standard-anchor",
+      "sourceNumber": "",
+      "name": "罗天教制式现实稳定锚",
+      "function": "剧情道具（未编号占位）",
+      "description": "劫灾携带的疑似制式装备物品。",
+      "programEffect": "",
+      "acquisition": "事件17选择追击并完成高难战斗后获取，隐藏值+1。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。与道具3的变体／同一物品关系待确认，不擅自合并。",
+      "source": "细纲.docx/正文段落232—正文段落236",
+      "placeholder": true
+    },
+    {
+      "id": "item-linxi-thanks",
+      "sourceNumber": "",
+      "name": "林溪谢礼（名称待补）",
+      "function": "谢礼（占位）",
+      "description": "为林溪锚定后得到的谢礼。",
+      "programEffect": "",
+      "acquisition": "事件8对林溪锚定后获得。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。谢礼名称、数量、效果与外观均待补。",
+      "source": "细纲.docx/正文段落156",
+      "placeholder": true
+    },
+    {
+      "id": "item-linxi-rest-reward",
+      "sourceNumber": "",
+      "name": "林溪停止工作的额外增益道具（名称待补）",
+      "function": "增益道具（占位，未实现）",
+      "description": "选择令林溪停止工作后获得的额外增益道具。",
+      "programEffect": "",
+      "acquisition": "事件8选择停止工作。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。名称、数量与效果待补。",
+      "source": "细纲.docx/正文段落157",
+      "placeholder": true
+    },
+    {
+      "id": "item-crew-mercy-reward",
+      "sourceNumber": "",
+      "name": "让船员解脱的额外道具（名称待补）",
+      "function": "剧情道具（未编号占位）",
+      "description": "放弃读取记忆、决定让船员解脱后获得的额外道具。",
+      "programEffect": "",
+      "acquisition": "事件14选择让船员解脱。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。名称、数量、效果与外观待补。",
+      "source": "细纲.docx/正文段落214",
+      "placeholder": true
+    },
+    {
+      "id": "item-battlefield-reward",
+      "sourceNumber": "",
+      "name": "打扫战场的增益道具（名称待补）",
+      "function": "增益道具（占位，未实现）",
+      "description": "不追击劫灾、留在战场清理后获得的增益道具。",
+      "programEffect": "",
+      "acquisition": "事件17选择不追击。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。名称、数量、效果与外观待补。",
+      "source": "细纲.docx/正文段落237",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-01",
+      "sourceNumber": "",
+      "name": "战前装备候选1（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-02",
+      "sourceNumber": "",
+      "name": "战前装备候选2（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-03",
+      "sourceNumber": "",
+      "name": "战前装备候选3（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-04",
+      "sourceNumber": "",
+      "name": "战前装备候选4（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-05",
+      "sourceNumber": "",
+      "name": "战前装备候选5（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    },
+    {
+      "id": "item-supply-06",
+      "sourceNumber": "",
+      "name": "战前装备候选6（名称待补）",
+      "function": "战前装备（候选占位）",
+      "description": "事件15“装备六选二”的六个候选槽之一。",
+      "programEffect": "",
+      "acquisition": "事件15在仓储区向唐晦领取，六选二。",
+      "artNotes": "",
+      "modified": "",
+      "notes": "仅编辑器存储，无实际效果；来源未编号。六件装备的名称、配置、数量及具体选择文案均未提供；编号仅为编辑器占位槽，不是原稿道具编号。",
+      "source": "细纲.docx/正文段落220",
+      "placeholder": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "event-01",
+      "eventNumber": "1",
+      "title": "入站认知测试",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 1,
+      "order": 10,
+      "summary": "勘察队入驻科考站，完成入站认知检测并取得身份认证卡。",
+      "trigger": "开始游戏时自动进入问答测试。",
+      "completion": "玩家完成选择，身份认证卡发放。",
+      "interaction": "测试屏幕／问答选项 → 选择完毕 → 身份登记。",
+      "staging": "缓冲间内屏幕显示测试问题和选项；具体问题与答案文案待补。",
+      "designNotes": "沿用新细纲的功能要求，未沿用旧Day1原型的三题内容或测试门禁逻辑。",
+      "source": "细纲.docx/正文段落60—正文段落68",
+      "sourceText": "[细纲.docx/正文段落60]\n1.勘察队入驻科考站，进行入站认知测试\n\n[细纲.docx/正文段落62]\n场景：5.认知缓冲间（缓冲区），外界与科考站内部的连接区域\n\n[细纲.docx/正文段落64]\n道具：5.身份认证卡\n\n[细纲.docx/正文段落66]\n事件：开始游戏时玩家自动进入一个问答测试，玩家选择完毕会得到身份认证卡\n\n[细纲.docx/正文段落68]\n说明：缓冲间是进入实验室前过用于消毒，更衣的，空间极小的房间。因为蚀海环境下有认知危害，需要认知缓冲间检测，校准精神状态，同时具有身份登记功能",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-buffer"
+      ],
+      "characterIds": [
+        "huan-yujian"
+      ],
+      "itemIds": [
+        "item-05"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-01-next",
+          "label": "完成测试",
+          "condition": "选择完毕",
+          "targetId": "event-02",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-05"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-02",
+      "eventNumber": "2",
+      "title": "宣读规则与取得环境数据",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 1,
+      "order": 20,
+      "summary": "全员在总控室集合，桓玉鉴宣读站内注意事项后解散，再查阅环境监测台并收取数据表。",
+      "trigger": "认知测试完成后进入总控室。",
+      "completion": "完成宣读并收集环境数据档案。",
+      "interaction": "注意事项终端 → 查阅并宣读；环境监测台 → 收集环境数据表入包。",
+      "staging": "规则怪谈式呈现；全员集合后解散进行入驻准备。",
+      "designNotes": "原文六条规则单列为规则资料。近岸允许停留的n时辰为待填参数。",
+      "source": "细纲.docx/正文段落71—正文段落88",
+      "sourceText": "[细纲.docx/正文段落71]\n2.全员进入科考站总控室，桓玉鉴开始宣读站内注意事项，宣读完毕后，全员解散进行入驻准备工作，主角前往监测台查阅环境信息\n\n[细纲.docx/正文段落73]\n场景：4.总控室\n\n[细纲.docx/正文段落75]\n道具：7.环境数据表\n\n[细纲.docx/正文段落77]\n事件：\n\n[细纲.docx/正文段落78]\n·玩家查阅终端上的注意事项，并宣读给所有人\n\n[细纲.docx/正文段落79]\n·玩家前往环境监测台收集环境数据，将数据档案作为物品收入背包\n\n[细纲.docx/正文段落81]\n说明：以规则怪谈的方式呈现\n\n[细纲.docx/正文段落82]\n包括：\n\n[细纲.docx/正文段落83]\n科考站内部绝对安全，不会出现任何幻象或认知污染\n\n[细纲.docx/正文段落84]\n不得在蚀海近岸逗留超过n时辰\n\n[细纲.docx/正文段落85]\n离站时，补满模因实验室储存的工业息壤\n\n[细纲.docx/正文段落86]\n队友向你提及不存在的人时，相信他\n\n[细纲.docx/正文段落87]\n科考站内观测到残影是正常现象，无视它\n\n[细纲.docx/正文段落88]\n向死方生",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi",
+        "hydrologist",
+        "geologist",
+        "yang-yinglong",
+        "containment-researcher",
+        "mechanic"
+      ],
+      "itemIds": [
+        "item-07"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-02-next",
+          "label": "收集环境数据",
+          "condition": "宣读与数据收集完成",
+          "targetId": "event-03",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-07"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-03",
+      "eventNumber": "3",
+      "title": "生活物资与首次神秘影子",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 1,
+      "order": 30,
+      "summary": "接到安保人员领取生活物资的消息；在生活区与餐桌物资交互后看到神秘影子，但当下没有产生怀疑。",
+      "trigger": "环境信息查阅完成，接到安保人员消息。",
+      "completion": "物资交互和影子经过演出结束。",
+      "interaction": "身份卡终端／消息形式待补 → 生活区餐桌物资 → 影子演出。",
+      "staging": "神秘影子为谭礿；可用噪声、雪花屏及雪花填充剪影营造突然惊扰。",
+      "designNotes": "谭礿身份是策划信息，不在本阶段向玩家明示。未怀疑的具体独白、原因呈现待补。消息发信安保具体是谁待确认。",
+      "source": "细纲.docx/正文段落91—正文段落103",
+      "sourceText": "[细纲.docx/正文段落91]\n3.查阅完成后，接收到安保人员取食堂领取生活物资的消息，前往食堂后看到了一个神秘的影子（谭礿）但因为某种原因未产生怀疑\n\n[细纲.docx/正文段落93]\n场景：3.生活区走廊\n\n[细纲.docx/正文段落95]\n道具：6.生活物资\n\n[细纲.docx/正文段落97]\n事件：\n\n[细纲.docx/正文段落98]\n·与餐桌上物资交互，交互完毕后播放神秘影子经过的动画\n\n[细纲.docx/正文段落100]\n说明：影子经过时，可以加点阴间特效，比如刺耳的噪声，雪花屏什么的，主要达到让玩家一激灵的效果\n\n[细纲.docx/正文段落101]\n个人设想是让雪花屏填充人物剪影\n\n[细纲.docx/正文段落103]\n注：不是每个房间都要绘制，细纲写了什么画什么即可。并且示意图中房间大小不代表实际大小，可以在实际绘制时按需缩放",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-living"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "tan-yue"
+      ],
+      "itemIds": [
+        "item-06"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-03-next",
+          "label": "物资领取与影子演出完成",
+          "condition": "",
+          "targetId": "event-04",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-06"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-04",
+      "eventNumber": "4",
+      "title": "自由探索与六位队员任务",
+      "route": "共通",
+      "kind": "并行任务汇总",
+      "day": 1,
+      "order": 40,
+      "summary": "玩家自由探索，与六位科考队员交谈，处理入驻准备任务；鹿见深的采水顺延到第二日。",
+      "trigger": "物资领取与首次影子经过后。",
+      "completion": "完成当日任务，结束第一日；具体日终确认点待补。",
+      "interaction": "六位NPC交谈与支线任务；林溪三检查点、虞青采集、杨应隆战斗、常月容三箱搬运、唐晦维修。",
+      "staging": "",
+      "designNotes": "本事件原文无数字，按前3事件与Day3第10事件顺序整理为4。六任务可并行，分支是编辑导航链接，不代表互斥选择。采水延期不要求在Day1获得水样。",
+      "source": "细纲.docx/正文段落107—正文段落113",
+      "sourceText": "[细纲.docx/正文段落107]\n玩家可进行自由探索，与其余六个科考队员交谈\n\n[细纲.docx/正文表格109]\n角色 | 场景 | 道具 | 事件 | 领取任务 | 说明\n林溪 | 6机房 | 无 | 检查站内设备情况 | 检查总控室状况，设置三个交互点，全部检查后提交任务 | 采集任务，包含检定，可解锁终端功能\n鹿见深 | 8科研区走廊9化学分析室 | 无 | 分析水质 | 化学分析室接取任务，采集蚀海海水样本 | 前往蚀海侧会被杨应隆劝阻，任务顺延至第二天\n虞青 | 10科考站室外（野外草丛中） | 4连理枝植株11连理枝标本 | 采集植物样本 | 采集地图中分布的4连理枝植株，提交后获得增益道具11连理枝标本 | 采集任务\n杨应隆 | 10科考站室外（地图蚀海方向边界） | 16铜钱剑 | 巡逻 | 交谈后获得16铜钱剑，然后去清除周围威胁 | 战斗任务，用于熟悉六爻系统\n常月容 | 10科考站室外（内海侧码头，旁边停靠科考船） | 12食材箱13工具箱14科研仪器箱15松茸干 | 搬运物资 | 前往码头拿起装备箱，12送至3生活区走廊，13送至仓储区，14送至8科研区走廊完成后获得15松茸干 | 搬运任务，熟悉地图\n唐晦 | 仓储区 | 无 | 检修码头供电系统 | 修复装备，完成后可找唐晦订制装备 | 维修任务，用于熟悉六爻系统\n\n[细纲.docx/正文段落111]\n注：当前任务安排以“战斗系统可以应用于维修，研究等行为”\n\n[细纲.docx/正文段落113]\n任务完成后，第一日流程结束",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control",
+        "scene-machinery",
+        "scene-research-corridor",
+        "scene-chemical",
+        "scene-outdoors",
+        "scene-dock",
+        "scene-warehouse",
+        "scene-living"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi",
+        "hydrologist",
+        "geologist",
+        "yang-yinglong",
+        "containment-researcher",
+        "mechanic"
+      ],
+      "itemIds": [
+        "item-04",
+        "item-08",
+        "item-11",
+        "item-12",
+        "item-13",
+        "item-14",
+        "item-15",
+        "item-16"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-04-lin",
+          "label": "林溪任务（并行）",
+          "condition": "",
+          "targetId": "task-lin-xi",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-lu",
+          "label": "鹿见深任务（并行）",
+          "condition": "",
+          "targetId": "task-hydrologist",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-yu",
+          "label": "虞青任务（并行）",
+          "condition": "",
+          "targetId": "task-geologist",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-yang",
+          "label": "杨应隆任务（并行）",
+          "condition": "",
+          "targetId": "task-yang-yinglong",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-chang",
+          "label": "常月容任务（并行）",
+          "condition": "",
+          "targetId": "task-containment-researcher",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-tang",
+          "label": "唐晦任务（并行）",
+          "condition": "",
+          "targetId": "task-mechanic",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-04-next",
+          "label": "当日任务完成，进入第二日",
+          "condition": "当日准备任务完成；鹿见深采水已顺延",
+          "targetId": "event-05",
+          "notes": "日终具体触发方式未给出。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "task-lin-xi",
+      "eventNumber": "4",
+      "title": "林溪 · 检查总控室",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 41,
+      "summary": "林溪正在机房检查站内设备情况。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "检查总控室状况，设置三个交互点，全部检查后提交任务。",
+      "interaction": "检查总控室状况，设置三个交互点，全部检查后提交任务。",
+      "staging": "",
+      "designNotes": "检查任务包含检定，可解锁终端功能。\n待补：三个点的名称、检定要求、失败处理和终端功能内容待补。",
+      "source": "细纲.docx/正文表格109/林溪行",
+      "sourceText": "林溪 | 6机房 | 无 | 检查站内设备情况 | 检查总控室状况，设置三个交互点，全部检查后提交任务 | 采集任务，包含检定，可解锁终端功能",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-machinery",
+        "scene-control"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-lin-xi-return",
+          "label": "任务处理后返回自由探索汇总",
+          "condition": "",
+          "targetId": "event-04",
+          "notes": "完成细节待补；此链接供编辑导航。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "task-hydrologist",
+      "eventNumber": "4",
+      "title": "鹿见深 · 采集蚀海水样",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 42,
+      "summary": "鹿见深正在分析水质，化学分析室接取任务。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "杨应隆劝阻后顺延至第二日，Day1只登记顺延；实际水样在event-05采集。",
+      "interaction": "采集蚀海海水样本。",
+      "staging": "",
+      "designNotes": "Day1前往蚀海侧会被杨应隆劝阻，任务顺延第二天。\n待补：Day1任务结果为顺延，不虚构已获得水样。",
+      "source": "细纲.docx/正文表格109/鹿见深行",
+      "sourceText": "鹿见深 | 8科研区走廊9化学分析室 | 无 | 分析水质 | 化学分析室接取任务，采集蚀海海水样本 | 前往蚀海侧会被杨应隆劝阻，任务顺延至第二天",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-research-corridor",
+        "scene-chemical",
+        "scene-outdoors",
+        "scene-eroding-coast"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "hydrologist",
+        "yang-yinglong"
+      ],
+      "itemIds": [
+        "item-08"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-hydrologist-return",
+          "label": "任务处理后返回自由探索汇总",
+          "condition": "",
+          "targetId": "event-04",
+          "notes": "完成细节待补；此链接供编辑导航。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "task-geologist",
+      "eventNumber": "4",
+      "title": "虞青 · 连理枝采集",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 43,
+      "summary": "虞青在野外草丛采集植物样本。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "采集地图中分布的连理枝植株，提交后获得连理枝标本。",
+      "interaction": "采集地图中分布的连理枝植株，提交后获得连理枝标本。",
+      "staging": "",
+      "designNotes": "采集任务。\n待补：原文“4连理枝植株”中的4为道具编号，数量未给出；采集点数与提交数量待补。",
+      "source": "细纲.docx/正文表格109/虞青行",
+      "sourceText": "虞青 | 10科考站室外（野外草丛中） | 4连理枝植株11连理枝标本 | 采集植物样本 | 采集地图中分布的4连理枝植株，提交后获得增益道具11连理枝标本 | 采集任务",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-outdoors"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "geologist"
+      ],
+      "itemIds": [
+        "item-04",
+        "item-11"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-geologist-submit",
+          "label": "提交连理枝植株",
+          "condition": "采集与提交完成",
+          "targetId": "event-04",
+          "notes": "采集和消耗数量待补，仅登记道具关系。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-11"
+          ],
+          "consumeItemIds": [
+            "item-04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task-yang-yinglong",
+      "eventNumber": "4",
+      "title": "杨应隆 · 清除周围威胁",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 44,
+      "summary": "杨应隆在室外地图的蚀海方向边界巡逻。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "交谈后获得铜钱剑，然后去清除周围威胁。",
+      "interaction": "交谈后获得铜钱剑，然后去清除周围威胁。",
+      "staging": "",
+      "designNotes": "战斗任务，用于熟悉六爻系统。\n待补：铜钱剑先赠送，不需战斗胜利才取得。敌人、数量及胜负处理待补。",
+      "source": "细纲.docx/正文表格109/杨应隆行",
+      "sourceText": "杨应隆 | 10科考站室外（地图蚀海方向边界） | 16铜钱剑 | 巡逻 | 交谈后获得16铜钱剑，然后去清除周围威胁 | 战斗任务，用于熟悉六爻系统",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-outdoors"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "yang-yinglong"
+      ],
+      "itemIds": [
+        "item-16"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-yang-gift",
+          "label": "交谈领取铜钱剑后清除威胁",
+          "condition": "交谈完成并按任务前往战斗",
+          "targetId": "event-04",
+          "notes": "编辑导航返回汇总；完成清除的战斗条件待补。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-16"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "task-containment-researcher",
+      "eventNumber": "4",
+      "title": "常月容 · 三箱搬运",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 45,
+      "summary": "常月容在内海侧码头搬运物资，旁边停靠科考船。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "码头拿起装备箱：食材箱送生活区走廊，工具箱送仓储区，科研仪器箱送科研区走廊；完成后得到松茸干。",
+      "interaction": "码头拿起装备箱：食材箱送生活区走廊，工具箱送仓储区，科研仪器箱送科研区走廊；完成后得到松茸干。",
+      "staging": "",
+      "designNotes": "搬运任务，用于熟悉地图。\n待补：搬运时可否同时携带、箱体显示与提交交互细节待补。",
+      "source": "细纲.docx/正文表格109/常月容行",
+      "sourceText": "常月容 | 10科考站室外（内海侧码头，旁边停靠科考船） | 12食材箱13工具箱14科研仪器箱15松茸干 | 搬运物资 | 前往码头拿起装备箱，12送至3生活区走廊，13送至仓储区，14送至8科研区走廊完成后获得15松茸干 | 搬运任务，熟悉地图",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-dock",
+        "scene-living",
+        "scene-warehouse",
+        "scene-research-corridor"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "containment-researcher"
+      ],
+      "itemIds": [
+        "item-12",
+        "item-13",
+        "item-14",
+        "item-15"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-chang-deliver",
+          "label": "三箱全部送达",
+          "condition": "12→生活区；13→仓储区；14→科研区走廊",
+          "targetId": "event-04",
+          "notes": "拿取三箱和交付关系登记；不实现库存效果。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-15"
+          ],
+          "consumeItemIds": [
+            "item-12",
+            "item-13",
+            "item-14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task-mechanic",
+      "eventNumber": "4",
+      "title": "唐晦 · 装备维修",
+      "route": "共通",
+      "kind": "Day1支线任务",
+      "day": 1,
+      "order": 46,
+      "summary": "唐晦在仓储区，事件栏写“检修码头供电系统”。",
+      "trigger": "自由探索时与对应队员交谈。",
+      "completion": "修复装备，完成后可找唐晦订制装备。",
+      "interaction": "修复装备，完成后可找唐晦订制装备。",
+      "staging": "",
+      "designNotes": "维修任务，用于熟悉六爻系统。\n待补：原文活动为码头供电系统、任务为修复装备；具体维修对象及订制功能内容待补，不擅自视为同一设备。",
+      "source": "细纲.docx/正文表格109/唐晦行",
+      "sourceText": "唐晦 | 仓储区 | 无 | 检修码头供电系统 | 修复装备，完成后可找唐晦订制装备 | 维修任务，用于熟悉六爻系统",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-warehouse"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "mechanic"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "task-mechanic-return",
+          "label": "任务处理后返回自由探索汇总",
+          "condition": "",
+          "targetId": "event-04",
+          "notes": "完成细节待补；此链接供编辑导航。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-05",
+      "eventNumber": "5",
+      "title": "蚀海护卫采样与三次取样抉择",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 2,
+      "order": 50,
+      "summary": "杨应隆初步清理威胁后，主角与常月容、鹿见深前往蚀海采样，发现绥海堰修复功能消退。",
+      "trigger": "Day2开放蚀海海岸，处理此前顺延的采样任务。",
+      "completion": "完成至少一次采样后返回；可继续至三次采样。",
+      "interaction": "首次采样护卫战 → 选择是否第二次采样／战斗 → 选择是否第三次采样／战斗 → 护送返回。",
+      "staging": "第三次完成后鹿见深因精神损伤昏迷；桓玉鉴以能力保护其不再受认知损伤并护送回站。",
+      "designNotes": "每次采样对应一场战斗；完成三次仅获得一次隐藏值+1。战斗敌人、难度、失败流程与样本库存份数待补。",
+      "source": "细纲.docx/正文段落121—正文段落130",
+      "sourceText": "[细纲.docx/正文段落121]\n杨应隆初步清理了周边威胁，玩家与收容部安保，鹿见深前往蚀海采样，发现该区段绥海堰修复功能正在消退\n\n[细纲.docx/正文段落123]\n场景：蚀海海岸，堰体受到严重侵蚀\n\n[细纲.docx/正文段落125]\n事件：\n\n[细纲.docx/正文段落126]\n·玩家保护鹿见深采样，经历一场战斗\n\n[细纲.docx/正文段落127]\n·鹿见深第一次采样后建议滞留一段时间进行二次采样，同意则进行第二场战斗，拒绝则返回\n\n[细纲.docx/正文段落128]\n·第二次采样完成后，鹿见深建议进行第三次采样，同意则进行第三场战斗，拒绝则返回，完成采样后鹿见深会因精神损伤昏迷，主角对其使用能力，保护其不在受到认知损伤并护送其返回科考站\n\n[细纲.docx/正文段落130]\n说明：完成三次采样后获得一点剧情隐藏值",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-eroding-coast"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "containment-researcher",
+        "hydrologist"
+      ],
+      "itemIds": [
+        "item-08"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-05-stop-first",
+          "label": "首次采样后拒绝二次采样",
+          "condition": "完成第一次采样护卫战",
+          "targetId": "event-06",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-08"
+          ],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-05-stop-second",
+          "label": "二次采样后拒绝第三次采样",
+          "condition": "已同意并完成第二次采样护卫战",
+          "targetId": "event-06",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-08"
+          ],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-05-complete-third",
+          "label": "同意并完成三次采样",
+          "condition": "三场采样护卫战完成",
+          "targetId": "event-06",
+          "notes": "主线隐藏值事件1；鹿见深昏迷并送医。",
+          "hiddenValueDelta": 1,
+          "hiddenValueConfirmed": true,
+          "grantItemIds": [
+            "item-08"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-06",
+      "eventNumber": "6",
+      "title": "交付水样与第二次神秘影子",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 2,
+      "order": 60,
+      "summary": "水样交给鹿见深或林溪分析，主角在科研区走廊门口等待，谭礿的影子第二次闪过。",
+      "trigger": "蚀海采样后返回科考站。",
+      "completion": "交样并播放影子经过演出。",
+      "interaction": "交样 → 化学分析室门口／科研区走廊等待 → 影子动画。",
+      "staging": "",
+      "designNotes": "若完成三次采样，鹿见深送往医务室，由林溪代为分析；否则由鹿见深分析。影子身份不向玩家明示。交样是否消耗水样待补。",
+      "source": "细纲.docx/正文段落133—正文段落141",
+      "sourceText": "[细纲.docx/正文段落133]\n将样本拿回化学分析室分析室，在走廊中等候等待鹿见深进行分析，谭礿的影子第二次闪过\n\n[细纲.docx/正文段落134]\n若进行三次采样，鹿见深会因为精神损伤过大而被送往医务室，由林溪代为分析\n\n[细纲.docx/正文段落136]\n场景：科研区走廊\n\n[细纲.docx/正文段落138]\n事件：\n\n[细纲.docx/正文段落139]\n·将样品交给鹿见深/林溪，交互完毕后在门口等待，播放神秘影子经过的动画\n\n[细纲.docx/正文段落141]\n说明：无",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-chemical",
+        "scene-research-corridor",
+        "scene-medical"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "hydrologist",
+        "lin-xi",
+        "tan-yue"
+      ],
+      "itemIds": [
+        "item-08"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-06-lu",
+          "label": "鹿见深分析水样",
+          "condition": "仅完成一或二次采样",
+          "targetId": "event-07",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-06-lin",
+          "label": "林溪代为分析水样",
+          "condition": "完成三次采样，鹿见深因精神损伤送医",
+          "targetId": "event-07",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-07",
+      "eventNumber": "7",
+      "title": "与林溪分析数据",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 2,
+      "order": 70,
+      "summary": "前往总控室与林溪分析数据，在控制台进行检定，成功得到额外增益道具。",
+      "trigger": "样品分析后前往总控室。",
+      "completion": "控制台检定结束。",
+      "interaction": "控制台检定；具体要求与文案待补。",
+      "staging": "",
+      "designNotes": "道具表9“分析结果”、10“精确的分析结果”为语义上的候选关联。正文没明确编号、普通结果领取时机与额外结果是否替换普通结果，因此只存引用，不录入未经确认的发放效果。",
+      "source": "细纲.docx/正文段落144—正文段落148",
+      "sourceText": "[细纲.docx/正文段落144]\n前往总控室，与林溪分析数据\n\n[细纲.docx/正文段落146]\n场景：总控室\n\n[细纲.docx/正文段落148]\n事件：在控制台上进行检定，成功得到额外增益道具",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi"
+      ],
+      "itemIds": [
+        "item-09",
+        "item-10"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-07-success",
+          "label": "数据分析检定成功",
+          "condition": "检定成功",
+          "targetId": "event-08",
+          "notes": "额外增益道具待确认是否为道具10。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-07-failure",
+          "label": "数据分析检定未成功",
+          "condition": "检定未成功",
+          "targetId": "event-08",
+          "notes": "后续主线是否受失败影响原文未另述，按顺序导航；具体失败文案待补。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-08",
+      "eventNumber": "8",
+      "title": "林溪夜间锚定与继续工作抉择",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 2,
+      "order": 80,
+      "summary": "林溪请求锚定认知，桓玉鉴发现她持续透支能力。林溪说明数据库遭到大规模篡改，自己一直用整流修复。",
+      "trigger": "入夜，林溪联系主角来到总控室。",
+      "completion": "为林溪锚定后收取谢礼，并决定是否让她继续工作。",
+      "interaction": "状态检查 → 锚定 → 谢礼 → 停止／继续工作选择。",
+      "staging": "",
+      "designNotes": "锚定谢礼、停止后的额外增益道具均未命名，登记占位。继续工作获得数据系统错误报告与隐藏值+1。未提供完整对话，不编写额外台词。",
+      "source": "细纲.docx/正文段落151—正文段落160",
+      "sourceText": "[细纲.docx/正文段落151]\n入夜，林溪联系主角，使其来到来到总控室，请求对她使用锚定稳定认知。主角检测了她的精神状态，指出这两天一直在透支能力。林溪表明科考站数据库遭到了大规模篡改，她一直在用整流能力修复\n\n[细纲.docx/正文段落153]\n场景：总控室\n\n[细纲.docx/正文段落155]\n事件：\n\n[细纲.docx/正文段落156]\n玩家对其进行锚定后，获得其谢礼，并选择是否让她继续工作\n\n[细纲.docx/正文段落157]\n选择令其停止，林溪返回休息室，获得额外增益道具\n\n[细纲.docx/正文段落158]\n选择令其继续，则得到数据系统的错误报告，获得一点剧情隐藏值\n\n[细纲.docx/正文段落160]\n说明：无",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control",
+        "scene-rest"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi"
+      ],
+      "itemIds": [
+        "item-error-report",
+        "item-linxi-thanks",
+        "item-linxi-rest-reward"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-08-stop",
+          "label": "令林溪停止工作",
+          "condition": "完成锚定；林溪返回休息室",
+          "targetId": "event-09",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-linxi-thanks",
+            "item-linxi-rest-reward"
+          ],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-08-continue",
+          "label": "令林溪继续工作",
+          "condition": "完成锚定；继续修复数据库",
+          "targetId": "event-09",
+          "notes": "主线隐藏值事件2。",
+          "hiddenValueDelta": 1,
+          "hiddenValueConfirmed": true,
+          "grantItemIds": [
+            "item-linxi-thanks",
+            "item-error-report"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-09",
+      "eventNumber": "9",
+      "title": "总控室追随神秘影子",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 2,
+      "order": 90,
+      "summary": "主角准备返回房间时，在总控室看到影子；靠近追上后影子消失。",
+      "trigger": "林溪工作抉择结束，主角将返回房间。",
+      "completion": "影子出现、主角靠近、影子消失的动画结束。",
+      "interaction": "影子追随演出；是否玩家手动靠近未定。",
+      "staging": "影子出现 → 主角靠近 → 影子消失。",
+      "designNotes": "不新增道具或隐藏值。",
+      "source": "细纲.docx/正文段落163—正文段落169",
+      "sourceText": "[细纲.docx/正文段落163]\n主角正要返回房间时，在总控室看到了谭礿的影子，追上去后发现影子已经消失\n\n[细纲.docx/正文段落165]\n场景：总控室\n\n[细纲.docx/正文段落167]\n事件：播放动画：影子出现，主角靠近，影子消失\n\n[细纲.docx/正文段落169]\n说明：无",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "tan-yue"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-09-next",
+          "label": "次日早晨",
+          "condition": "",
+          "targetId": "event-10",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-10",
+      "eventNumber": "10",
+      "title": "发现搁浅科考船并前往",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 100,
+      "summary": "常月容早晨发来消息，在远离科考站的内海畔发现搁浅科考船；桓玉鉴带唐晦、虞青前往调查。",
+      "trigger": "Day3早晨收到常月容消息。",
+      "completion": "沿海岸向北到达独立的搁浅船海岸地图。",
+      "interaction": "科考站出门 → 沿海岸北行一定距离 → 切换地图。",
+      "staging": "",
+      "designNotes": "到达船只后与常月容会合组成四人调查队；具体距离、切换点与消息文案待补。",
+      "source": "细纲.docx/正文段落173—正文段落180",
+      "sourceText": "[细纲.docx/正文段落173]\n10.早晨，常月容发来消息，称在内海畔远离科考站处发现一艘搁浅的  科考船，主角，唐晦，虞青前往调查\n\n[细纲.docx/正文段落175]\n场景：搁浅科考船的海岸\n\n[细纲.docx/正文段落177]\n事件：玩家自科考站出门，沿海岸向北方走一定距离，切换至搁浅科考船的海岸\n\n[细纲.docx/正文段落178]\n地图（与科考站附近不属于同一张地图）\n\n[细纲.docx/正文段落180]\n说明：无",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-outdoors",
+        "scene-stranded-coast"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "containment-researcher",
+        "mechanic",
+        "geologist"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-10-next",
+          "label": "抵达搁浅船海岸",
+          "condition": "",
+          "targetId": "event-11",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-11",
+      "eventNumber": "11",
+      "title": "入船前锚定与灵感检定",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 110,
+      "summary": "主角天眼察觉船舱认知危害，拦住同行者并解释，为众人创建锚；极低成功率灵感检定可识别逆模因。",
+      "trigger": "四人准备进入船舱时。",
+      "completion": "为众人钉锚并完成灵感检定。",
+      "interaction": "停步拦人 → 解释 → 锚定 → 灵感检定。",
+      "staging": "权能锚定认知的动画属于次要表现需求。",
+      "designNotes": "灵感失败判断为蚀海水泄露，成功意识到与逆模因有关。正文没明确此检定给隐藏值，因此隐藏值不增加。成功率数值待补。锚定不自动消耗道具3。",
+      "source": "细纲.docx/正文段落182—正文段落188",
+      "sourceText": "[细纲.docx/正文段落182]\n主角带着常月容，唐晦，虞青进入船舱时，主角的天眼察觉到船舱内的认知危害，为众人创建了锚\n\n[细纲.docx/正文段落184]\n场景：搁浅科考船的海岸\n\n[细纲.docx/正文段落186]\n事件：主角进入船舱时停步并拦住众人，解释后为众人创建了锚，并且过一个灵感（成功率极低）未成功判断为蚀海水泄露，成功则意识到与逆模因有关\n\n[细纲.docx/正文段落188]\n说明：设计主角使用权能锚定认知的动画（通俗来说是锁san值）（次要）",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-stranded-coast"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "containment-researcher",
+        "mechanic",
+        "geologist"
+      ],
+      "itemIds": [
+        "item-03"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-11-success",
+          "label": "灵感检定成功",
+          "condition": "成功率极低的检定成功",
+          "targetId": "event-12",
+          "notes": "认识到与逆模因有关；无已确认隐藏值奖励。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-11-failure",
+          "label": "灵感检定未成功",
+          "condition": "检定未成功",
+          "targetId": "event-12",
+          "notes": "判断为蚀海水泄露。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-12",
+      "eventNumber": "12",
+      "title": "废弃科考船自由探索",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 120,
+      "summary": "常月容用绳索帮助众人上甲板，四人同行进入船舱自由探索。",
+      "trigger": "钉锚后登船。",
+      "completion": "探索场景并找到进入船长室的关键条件。",
+      "interaction": "绳索登甲板 → 船舱战斗、密室、道具与解谜探索。",
+      "staging": "前一支勘测队的废弃船存在大量现实缺失；可用雪花屏或马赛克蒙版填充。",
+      "designNotes": "本段是未展开的探索概要，怪物、密室、具体谜题、解答与掉落清单均待补。船长室钥匙在下一事件明确。",
+      "source": "细纲.docx/正文段落191—正文段落197",
+      "sourceText": "[细纲.docx/正文段落191]\n安保用绳索使众人登上甲板，玩家可进入船舱自由探索\n\n[细纲.docx/正文段落193]\n场景：废弃科考船甲板，船舱\n\n[细纲.docx/正文段落195]\n事件：四人一起行动，其中包含很多怪，密室与道具，爽打爽吃爽解密\n\n[细纲.docx/正文段落197]\n说明：废弃科考船属于前一支勘测队，存在大量现实缺失，可以使用大量雪花屏或马赛克蒙版填充场景，同时降低美术成本（降啥啊，美术资源极大丰富了都）",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-deck",
+        "scene-cabin"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "containment-researcher",
+        "mechanic",
+        "geologist"
+      ],
+      "itemIds": [
+        "item-captain-key"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-12-next",
+          "label": "搜寻船长室钥匙并继续调查",
+          "condition": "找到钥匙；具体探索条件待补",
+          "targetId": "event-13",
+          "notes": "钥匙发放点和开门消耗未指定。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-13",
+      "eventNumber": "13",
+      "title": "船长室日志与扭曲生物袭击",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 130,
+      "summary": "搜索钥匙进入船长室，修复损坏航行日志；信息扭曲生物从门口冲来，虞青替主角挡下攻击，进入精英战。",
+      "trigger": "找到钥匙并进入船长室。",
+      "completion": "完成日志相关演出与精英战斗。",
+      "interaction": "搜索钥匙 → 开船长室 → 修复日志 → 突袭演出 → 精英战。",
+      "staging": "桓玉鉴背对入口，虞青靠近门口；唐晦和常月容在隔间分头收集数据。",
+      "designNotes": "日志具体内容、修复手段／检定、敌人数据、虞青受伤状态与战败流程待补。",
+      "source": "细纲.docx/正文段落200—正文段落207",
+      "sourceText": "[细纲.docx/正文段落200]\n玩家在场景中搜索船长室钥匙，进入船长室，修复数据损坏的航行日志，这时某个信息被扭曲的生物从背后冲进来，向主角袭来，虞青替主角挡下了攻击\n\n[细纲.docx/正文段落202]\n场景：船长室\n\n[细纲.docx/正文段落204]\n事件：主角，唐晦，常月容，虞青在船长室分头搜集数据，主角背对入口，\n\n[细纲.docx/正文段落205]\n唐晦与常月容在隔间，扭曲生物自门口冲入，靠近门口的虞青为主角挡下攻击，进入精英怪战斗\n\n[细纲.docx/正文段落207]\n说明：阶段性战斗",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-captain-room"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "mechanic",
+        "containment-researcher",
+        "geologist"
+      ],
+      "itemIds": [
+        "item-captain-key",
+        "item-navigation-log"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-13-next",
+          "label": "击倒扭曲生物",
+          "condition": "精英战胜利",
+          "targetId": "event-14",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-14",
+      "eventNumber": "14",
+      "title": "船员记忆与解脱抉择",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 140,
+      "summary": "被击倒的扭曲生物恢复微弱意识，自称船员并请求了结；主角选择读取记忆或让其解脱。",
+      "trigger": "击倒船长室精英生物后。",
+      "completion": "选择读取记忆得到信息锚，或让船员解脱得到额外道具。",
+      "interaction": "船员交谈 → 读取记忆／让其解脱的选择。",
+      "staging": "读取记忆会让船员痛苦死去。",
+      "designNotes": "船员实际是前科考队留守船上的队员。读取记忆+1为本次用户明确确认的第四个主线隐藏值事件。原文唯一台词的说话人未标明，保留待确认。",
+      "source": "细纲.docx/正文段落209—正文段落214",
+      "sourceText": "[细纲.docx/正文段落209]\n击倒扭曲生物后，生物恢复微弱意识，表明自己是这艘船的船员（实际是前一支科考队留守科考船的队员），存在被扭曲变成怪物，请求主角了结他\n\n[细纲.docx/正文段落211]\n场景：船长室\n\n[细纲.docx/正文段落213]\n事件：主角可以选择在他脑中种下信息锚收集其脑中记忆，获得储存记忆的信息锚，但他会痛苦死去，“不必自责，卦主阁下，如果存在扭曲的是我，也会希望您做出这样的抉择”\n\n[细纲.docx/正文段落214]\n或者决定让他解脱，获得额外道具",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-captain-room"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "mechanic",
+        "containment-researcher",
+        "geologist"
+      ],
+      "itemIds": [
+        "item-memory-anchor",
+        "item-crew-mercy-reward"
+      ],
+      "lines": [
+        {
+          "speakerId": "",
+          "speaker": "说话人待确认",
+          "text": "不必自责，卦主阁下，如果存在扭曲的是我，也会希望您做出这样的抉择",
+          "notes": "原文段落213未标注说话人，暂不绑定角色；其余对话文案待补。"
+        }
+      ],
+      "branches": [
+        {
+          "id": "event-14-memory",
+          "label": "种下信息锚，读取船员记忆",
+          "condition": "选择收集脑中记忆",
+          "targetId": "event-15",
+          "notes": "用户确认的第四个主线隐藏值事件。",
+          "hiddenValueDelta": 1,
+          "hiddenValueConfirmed": true,
+          "grantItemIds": [
+            "item-memory-anchor"
+          ],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-14-mercy",
+          "label": "决定让船员解脱",
+          "condition": "不读取其记忆",
+          "targetId": "event-15",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-crew-mercy-reward"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-15",
+      "eventNumber": "15",
+      "title": "迎战报告与战前装备六选二",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 150,
+      "summary": "四人回站，杨应隆报告蚀海侵蚀加剧使劫灾向内海畔迁徙；主角领取装备并为杨应隆钉锚。",
+      "trigger": "搁浅科考船调查结束，四人回归。",
+      "completion": "与杨应隆交谈、仓储区找唐晦领取六选二装备、为杨应隆钉锚。",
+      "interaction": "总控室杨应隆报告 → 仓储区唐晦装备六选二 → 钉锚。",
+      "staging": "",
+      "designNotes": "六件装备只有候选槽占位，名称、属性与选择文案待补；钉锚为能力行为，不假定消耗物品3。原文“主控室”归并总控室。",
+      "source": "细纲.docx/正文段落216—正文段落222",
+      "sourceText": "[细纲.docx/正文段落216]\n四人回归，接到杨应隆报告，因为蚀海侵蚀加剧，绥海堰游荡劫灾有向内海畔迁徙的趋势，准备应对怪海冲击\n\n[细纲.docx/正文段落218]\n场景：主控室，仓储区\n\n[细纲.docx/正文段落220]\n事件：主控室与杨应隆交谈，得知劫灾侵袭，前往仓储区找唐晦领取装备（六选二）并为杨应隆钉锚\n\n[细纲.docx/正文段落222]\n说明：大战之前，必有补给",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-control",
+        "scene-warehouse"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "yang-yinglong",
+        "mechanic"
+      ],
+      "itemIds": [
+        "item-supply-01",
+        "item-supply-02",
+        "item-supply-03",
+        "item-supply-04",
+        "item-supply-05",
+        "item-supply-06"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-15-next",
+          "label": "选取两件装备并完成战前准备",
+          "condition": "六个候选中选两件，且完成钉锚",
+          "targetId": "event-16",
+          "notes": "候选未定，不写死具体发放道具。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-16",
+      "eventNumber": "16",
+      "title": "夜间劫灾防御战",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 160,
+      "summary": "入夜劫灾来袭，桓玉鉴与杨应隆、常月容到科考站室外迎战。",
+      "trigger": "入夜，战前准备完成。",
+      "completion": "完成防御战；可采用怪物无限、坚持N回合胜利。",
+      "interaction": "室外防御战。",
+      "staging": "",
+      "designNotes": "无限怪物与N回合为原稿建议，战斗形式、N值、敌人和胜负处理待补。",
+      "source": "细纲.docx/正文段落224—正文段落228",
+      "sourceText": "[细纲.docx/正文段落224]\n入夜，劫灾来袭，主角与杨应隆，常月容前往科考站室外迎战劫灾\n\n[细纲.docx/正文段落226]\n事件：经历战斗\n\n[细纲.docx/正文段落228]\n说明：依旧蘸豆爽，可以做成防御战（怪物无限，坚持N个回合胜利）",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-outdoors"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "yang-yinglong",
+        "containment-researcher"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-16-next",
+          "label": "怪海退去",
+          "condition": "防御战结束",
+          "targetId": "event-17",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-17",
+      "eventNumber": "17",
+      "title": "追击制式装备劫灾或打扫战场",
+      "route": "共通",
+      "kind": "主线事件",
+      "day": 3,
+      "order": 170,
+      "summary": "怪海退去，杨应隆发现劫灾携带疑似制式装备，请示是否追击。",
+      "trigger": "夜间防御战结束。",
+      "completion": "追击高难战斗获取制式现实稳定锚，或不追击而打扫战场获得增益道具；之后回站休息。",
+      "interaction": "追击／不追击选择 → 高难战斗或打扫战场 → 回站。",
+      "staging": "",
+      "designNotes": "追击战失败后的处理未提供。罗天教制式现实稳定锚与道具3的关系待确认，独立占位。",
+      "source": "细纲.docx/正文段落232—正文段落238",
+      "sourceText": "[细纲.docx/正文段落232]\n怪海退去，杨应隆发现有劫灾携带着疑似制式装备的物品，请示桓玉鉴是否追击，\n\n[细纲.docx/正文段落234]\n场景：科考站周围\n\n[细纲.docx/正文段落236]\n事件：选择追击，进入高难战斗，获取道具“罗天教制式现实稳定锚”，剧情隐藏值加一\n\n[细纲.docx/正文段落237]\n不进行追击，则打扫战场，获得增益道具\n\n[细纲.docx/正文段落238]\n选择结束后回站休息",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-outdoors"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "yang-yinglong"
+      ],
+      "itemIds": [
+        "item-standard-anchor",
+        "item-battlefield-reward"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-17-pursue",
+          "label": "追击并取得制式现实稳定锚",
+          "condition": "选择追击且高难战斗完成",
+          "targetId": "event-18",
+          "notes": "主线隐藏值事件3；战败处理待补。",
+          "hiddenValueDelta": 1,
+          "hiddenValueConfirmed": true,
+          "grantItemIds": [
+            "item-standard-anchor"
+          ],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-17-stay",
+          "label": "不追击，打扫战场",
+          "condition": "选择不进行追击",
+          "targetId": "event-18",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [
+            "item-battlefield-reward"
+          ],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-18",
+      "eventNumber": "18",
+      "title": "夜间整理线索与路线判定",
+      "route": "共通",
+      "kind": "路线判定",
+      "day": 3,
+      "order": 180,
+      "summary": "主角躺在单人休息室的床上整理三天线索，按隐藏值判定后续路线。",
+      "trigger": "第三日夜战及追击抉择结束，回房休息。",
+      "completion": "隐藏值≥3进入HE/TE；0进入NE；1或2可选撤离NE或继续调查BE。",
+      "interaction": "自动判定隐藏值，1或2时向玩家提供撤离／继续调查选择。",
+      "staging": "",
+      "designNotes": "原文段落247“大于3”与总则冲突，按2026-10-08用户确认采用≥3。HE/TE分流条件、HE/BE/TE详细流程未提供，仅存入口占位。",
+      "source": "细纲.docx/正文段落242—正文段落251",
+      "sourceText": "[细纲.docx/正文段落242]\n入夜，主角躺在床上整理三天内得到的线索\n\n[细纲.docx/正文段落244]\n场景：科考站单人休息室\n\n[细纲.docx/正文段落246]\n事件：进行剧情走向判定\n\n[细纲.docx/正文段落247]\n若线索足够/剧情隐藏值大于3，则进入HE线，前往模因实验室揭开真相\n\n[细纲.docx/正文段落248]\n若剧情隐藏值为0，则进入NE线，选择撤离\n\n[细纲.docx/正文段落249]\n为1或2，则玩家可选择进入NE线（撤离）还是BE线（继续调查）\n\n[细纲.docx/正文段落251]\n说明：剧情分歧点",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-player-rest"
+      ],
+      "characterIds": [
+        "huan-yujian"
+      ],
+      "itemIds": [
+        "item-error-report",
+        "item-memory-anchor",
+        "item-standard-anchor"
+      ],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-18-high",
+          "label": "线索足够，进入HE/TE后续入口",
+          "condition": "剧情隐藏值 >= 3",
+          "targetId": "route-he",
+          "notes": "用户确认阈值；HE与TE的进一步分流规则待补。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-18-zero",
+          "label": "隐藏值为0，选择撤离（NE）",
+          "condition": "剧情隐藏值 == 0",
+          "targetId": "event-19",
+          "notes": "按原文进入NE，不提供BE选择。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-18-low-retreat",
+          "label": "撤离（NE）",
+          "condition": "剧情隐藏值 == 1 或 2，玩家选择撤离",
+          "targetId": "event-19",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        },
+        {
+          "id": "event-18-low-investigate",
+          "label": "继续调查（BE）",
+          "condition": "剧情隐藏值 == 1 或 2，玩家选择继续调查",
+          "targetId": "route-be",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-19",
+      "eventNumber": "19",
+      "title": "NE · 紧急条例与撤离会议",
+      "route": "NE",
+      "kind": "主线事件",
+      "day": 4,
+      "order": 190,
+      "summary": "凌晨全员开会，主角、杨应隆与林溪共同认定适用《蚀海预防管理紧急条例》，立即撤离并回去组建三位卦主以上的特别行动组。",
+      "trigger": "第三日判定进入NE。",
+      "completion": "全员长椅会议表决完成，决定撤离。",
+      "interaction": "餐厅长椅上的全员会议表决。",
+      "staging": "",
+      "designNotes": "第19—21事件在正文未直接标号，按顺序及段落269“切换至21”整理。会议完整对话与表决呈现待补。",
+      "source": "细纲.docx/正文段落256—正文段落262",
+      "sourceText": "[细纲.docx/正文段落256]\n凌晨，主角召集队员开会，与杨应隆，林溪共同认定为当下情况适用《蚀海预防管理紧急条例》，可被认定为国家紧急状态，决定立即撤离，并回去组建三位卦主以上的国家紧急状态特别行动组\n\n[细纲.docx/正文段落258]\n场景：生活区餐厅位置\n\n[细纲.docx/正文段落260]\n事件：全员坐在长椅上开会表决\n\n[细纲.docx/正文段落262]\n说明：无",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-living"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi",
+        "hydrologist",
+        "geologist",
+        "yang-yinglong",
+        "containment-researcher",
+        "mechanic"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-19-next",
+          "label": "会议决定撤离",
+          "condition": "",
+          "targetId": "event-20",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-20",
+      "eventNumber": "20",
+      "title": "NE · 大规模现实稳定锚护卫战",
+      "route": "NE",
+      "kind": "主线事件",
+      "day": 4,
+      "order": 200,
+      "summary": "撤离前桓玉鉴到蚀海岸创建大规模现实稳定锚，林溪与杨应隆护卫；锚建立后主角虚弱，随后切换撤离演出。",
+      "trigger": "撤离会议后，主角决定延缓蚀海侵蚀。",
+      "completion": "护卫至锚完成，主角陷入虚弱状态，对话后切至21。",
+      "interaction": "杨应隆主控、固定面板的演出性质防御战；无限怪物，坚持N回合胜利。",
+      "staging": "桓玉鉴创建大锚；杨应隆、林溪进行护卫。",
+      "designNotes": "N值、固定面板、敌人、能力动画与虚弱后对话待补；不假定给入背包一个巨大锚。",
+      "source": "细纲.docx/正文段落265—正文段落271",
+      "sourceText": "[细纲.docx/正文段落265]\n撤离前，桓玉鉴决定前往蚀海畔，创建大规模现实稳定锚延缓蚀海侵蚀，并请求林溪，杨应隆随同前往护卫\n\n[细纲.docx/正文段落267]\n场景：蚀海海岸\n\n[细纲.docx/正文段落269]\n事件：主角开始创建大规模现实稳定锚，杨应隆，林溪进行护卫战，直到主角完成建立，陷入虚弱状态，经过一段对话后画面直接切换至21\n\n[细纲.docx/正文段落271]\n说明：杨应隆为主控，有固定面板，演出性质的防御战（怪物无限，坚持N个回合胜利）",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-eroding-coast"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi",
+        "yang-yinglong"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "event-20-next",
+          "label": "大锚完成，护卫战结束",
+          "condition": "完成建立后主角虚弱，经过一段待补对话",
+          "targetId": "event-21",
+          "notes": "",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "event-21",
+      "eventNumber": "21",
+      "title": "NE · 飞鸿踏雪泥",
+      "route": "NE",
+      "kind": "结局演出",
+      "day": 4,
+      "order": 210,
+      "summary": "全员登船撤离，桓玉鉴最后登船；回头看到神秘影子化作粒子消散。",
+      "trigger": "大规模现实稳定锚建立与护卫战完成后直接切换。",
+      "completion": "登船与影子消散演出结束，达成NE“飞鸿踏雪泥”。",
+      "interaction": "撤离演出；无明确玩家选择。",
+      "staging": "队员陆续经舷梯上科考船；主角最后，在码头口回头看到谭礿影子消散。气氛伤感。",
+      "designNotes": "策划真相：谭礿队伍全员被抹消。原文要求此信息在NE内不向玩家明示，存为秘密设定，不放进玩家台词。",
+      "source": "细纲.docx/正文段落273—正文段落279",
+      "sourceText": "[细纲.docx/正文段落273]\n全员登船撤离，离开前，主角回头看见神秘影子（谭礿）化作粒子消散\n\n[细纲.docx/正文段落275]\n场景：科考站附近（码头上）\n\n[细纲.docx/正文段落277]\n事件：播放动画，队员陆续通过舷梯登上科考船，主角最后一个上船，来到码头口时，主角回头看到了谭礿的影子化作粒子消散\n\n[细纲.docx/正文段落279]\n说明：NE结局最后的画面，主角的科考队受逆模因影响未能发现谭礿的队伍，因此谭礿队伍全员被抹消（怎么这个更像BE）不过这个信息在该结局内不向玩家明示，所以把气氛烘托的伤感一些",
+      "placeholder": false,
+      "optional": false,
+      "sceneIds": [
+        "scene-dock"
+      ],
+      "characterIds": [
+        "huan-yujian",
+        "lin-xi",
+        "hydrologist",
+        "geologist",
+        "yang-yinglong",
+        "containment-researcher",
+        "mechanic",
+        "tan-yue"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": []
+    },
+    {
+      "id": "route-he",
+      "eventNumber": "",
+      "title": "HE/TE后续入口（细纲待补）",
+      "route": "HE/TE",
+      "kind": "路线入口占位",
+      "day": 4,
+      "order": 220,
+      "summary": "高隐藏值路线前往模因实验室揭开真相；新版没有提供后续具体事件。",
+      "trigger": "第三日夜剧情隐藏值≥3。",
+      "completion": "后续HE事件与HE/TE分流待补。",
+      "interaction": "",
+      "staging": "",
+      "designNotes": "仅保留新细纲确认的入口，不用旧大纲补写HE击败逆模因或TE隐藏道具机制。Day4仅为路线接续占位，不断言新版HE的日程。",
+      "source": "细纲.docx/正文段落247",
+      "sourceText": "[细纲.docx/正文段落247]\n若线索足够/剧情隐藏值大于3，则进入HE线，前往模因实验室揭开真相",
+      "placeholder": true,
+      "optional": false,
+      "sceneIds": [
+        "scene-memetic-lab"
+      ],
+      "characterIds": [
+        "huan-yujian"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": [
+        {
+          "id": "route-he-te-placeholder",
+          "label": "TE细分入口（条件待补）",
+          "condition": "待补：HE/TE细分条件",
+          "targetId": "route-te",
+          "notes": "编辑导航占位，不能作为已确定可执行条件。",
+          "hiddenValueDelta": 0,
+          "hiddenValueConfirmed": false,
+          "grantItemIds": [],
+          "consumeItemIds": []
+        }
+      ]
+    },
+    {
+      "id": "route-be",
+      "eventNumber": "",
+      "title": "BE后续入口（细纲待补）",
+      "route": "BE",
+      "kind": "路线入口占位",
+      "day": 4,
+      "order": 230,
+      "summary": "隐藏值为1或2且选择继续调查，进入BE后续。",
+      "trigger": "第三日夜判定1或2，并选择继续调查。",
+      "completion": "后续BE具体事件待补。",
+      "interaction": "",
+      "staging": "",
+      "designNotes": "新版没有BE详细结局与名称；不沿用旧大纲擅自填入。Day4为接续占位。",
+      "source": "细纲.docx/正文段落249",
+      "sourceText": "[细纲.docx/正文段落249]\n为1或2，则玩家可选择进入NE线（撤离）还是BE线（继续调查）",
+      "placeholder": true,
+      "optional": false,
+      "sceneIds": [],
+      "characterIds": [
+        "huan-yujian"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": []
+    },
+    {
+      "id": "route-te",
+      "eventNumber": "",
+      "title": "TE后续入口（细纲待补）",
+      "route": "TE",
+      "kind": "路线入口占位",
+      "day": 4,
+      "order": 240,
+      "summary": "新细纲列有TE，隐藏值≥3进入HE/TE路线；TE的细分条件与事件未提供。",
+      "trigger": "待补：满足HE/TE路线中的TE细分条件。",
+      "completion": "后续TE具体事件待补。",
+      "interaction": "",
+      "staging": "",
+      "designNotes": "仅登记入口；不沿用旧大纲隐藏道具、模因生命或结局名称。Day4为接续占位。",
+      "source": "细纲.docx/正文段落48—正文段落54",
+      "sourceText": "[细纲.docx/正文段落48]\n结局分为：HE，NE，BE，TE\n\n[细纲.docx/正文段落50]\n由于前一支科考队处于模因掩体，主角队伍在登陆时被屏蔽了“本次任务以搜救为目标”的认知，需要玩家发现场景中的不协调之处，积累隐藏值，确保在第三日晚上达到一定的隐藏值，才能触发HE\n\n[细纲.docx/正文段落52]\n包括任务隐藏值与额外隐藏值：\n\n[细纲.docx/正文段落53]\n任务隐藏值：在主线的引导下，达成特定条件获得隐藏值，获得隐藏值的事件有四个，隐藏值大于等于三进入HE/TE线，小于三进入NE/BE线\n\n[细纲.docx/正文段落54]\n额外隐藏值：在场景中完成成功率极低的检定或较难的解密，获得额外线索积累隐藏值（次要）",
+      "placeholder": true,
+      "optional": false,
+      "sceneIds": [],
+      "characterIds": [
+        "huan-yujian"
+      ],
+      "itemIds": [],
+      "lines": [],
+      "branches": []
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule-station-01",
+      "title": "站内注意事项 1",
+      "text": "科考站内部绝对安全，不会出现任何幻象或认知污染",
+      "source": "细纲.docx/正文段落83",
+      "notes": "原文规则，待配宣读演出。"
+    },
+    {
+      "id": "rule-station-02",
+      "title": "站内注意事项 2",
+      "text": "不得在蚀海近岸逗留超过n时辰",
+      "source": "细纲.docx/正文段落84",
+      "notes": "原文规则，待配宣读演出。n时辰为待填参数。"
+    },
+    {
+      "id": "rule-station-03",
+      "title": "站内注意事项 3",
+      "text": "离站时，补满模因实验室储存的工业息壤",
+      "source": "细纲.docx/正文段落85",
+      "notes": "原文规则，待配宣读演出。"
+    },
+    {
+      "id": "rule-station-04",
+      "title": "站内注意事项 4",
+      "text": "队友向你提及不存在的人时，相信他",
+      "source": "细纲.docx/正文段落86",
+      "notes": "原文规则，待配宣读演出。"
+    },
+    {
+      "id": "rule-station-05",
+      "title": "站内注意事项 5",
+      "text": "科考站内观测到残影是正常现象，无视它",
+      "source": "细纲.docx/正文段落87",
+      "notes": "原文规则，待配宣读演出。"
+    },
+    {
+      "id": "rule-station-06",
+      "title": "站内注意事项 6",
+      "text": "向死方生",
+      "source": "细纲.docx/正文段落88",
+      "notes": "原文规则，待配宣读演出。"
+    },
+    {
+      "id": "rule-hidden-sources",
+      "title": "四个主线隐藏值事件",
+      "text": "完成三次蚀海采样 +1；让林溪继续修复数据库 +1；读取船员记忆得到信息锚 +1；追击并取得罗天教制式现实稳定锚 +1。主线可确认最大值为4。",
+      "source": "细纲.docx/正文段落130；细纲.docx/正文段落158；细纲.docx/正文段落213；细纲.docx/正文段落236；本次对话/2026-10-08用户确认",
+      "notes": "读取记忆项由用户确认；其余来自正文。极低成功率灵感检定未明示加值，不擅自增加。"
+    },
+    {
+      "id": "rule-hidden-threshold",
+      "title": "第三日隐藏值路线阈值（已确认）",
+      "text": "剧情隐藏值≥3：进入HE/TE；为0：进入NE；为1或2：玩家可选择NE撤离或BE继续调查。",
+      "source": "细纲.docx/正文段落53；细纲.docx/正文段落246—正文段落249；本次对话/2026-10-08用户确认",
+      "notes": "原文“大于3”的冲突已按用户确认解决；HE/TE进一步分流待补。"
+    },
+    {
+      "id": "rule-extra-hidden",
+      "title": "额外隐藏值（次要，未展开）",
+      "text": "额外隐藏值：在场景中完成成功率极低的检定或较难的解密，获得额外线索积累隐藏值（次要）",
+      "source": "细纲.docx/正文段落54",
+      "notes": "只存设计规则。具体额外线索、谜题、数值与发放条件尚未给出。"
+    }
+  ],
+  "lore": [
+    {
+      "id": "lore-sea",
+      "title": "蚀海与虚无效应",
+      "text": "太衍陆数百海里外，存在着延绵数四万里，由特殊物质筑成，将内海合围起来的堤坝，被称为“绥海堰”\n\n传说六神创世之时，虚神玄武因混沌而陨落，于是灵神勾陈赐先民卦象，令其玄武的残躯泄露出的虚无化为海水，再筑起长堤，阻挡玄武残躯的侵蚀。\n\n经当代学者的研究，物体长期处于蚀海水的氛围中会被逐渐“抹消”——不仅是物质上的销蚀，还往往伴随着认知意义上的消除。受到蚀海水影响的物质会难以被感官与仪器观测，甚至有研究员表示“不知道自己在进行什么研究”。对于受试的丁级人员会出现意志消沉，记忆缺失，认知损害等现象。\n\n这种现象最终被归结为“虚无的纯粹概念趋同”，简称“虚无效应”进一步印证了“蚀海由虚神产生”的观点",
+      "source": "细纲.docx/正文段落20—正文段落26",
+      "secret": false
+    },
+    {
+      "id": "lore-dam",
+      "title": "绥海堰与息壤",
+      "text": "构成绥海堰的特殊物质被称为“息壤”，息壤具有自我修复与定义的能力，具有强大现实稳定功能",
+      "source": "细纲.docx/正文段落30",
+      "secret": false
+    },
+    {
+      "id": "lore-dam-truth",
+      "title": "息壤中的人类意识（秘密）",
+      "text": "息壤实质为寄宿了人类意识的特殊物质。蚀海蔓延时，大量人类在卦主的引导下把自己的精神融入土壤，建立了绥海堰。息壤中的人类意识通过观测与定义现实的方式对抗蚀海的虚无效应",
+      "source": "细纲.docx/正文段落32",
+      "secret": true
+    },
+    {
+      "id": "lore-memes",
+      "title": "模因、逆模因与对抗原则",
+      "text": "故事沿用scp对模因，逆模因的设定，将boss设定为可以抹消人类存在的逆模因威胁，并遵循“能杀死理念的只有更好的理念”的原则",
+      "source": "细纲.docx/正文段落34—正文段落37",
+      "secret": false
+    },
+    {
+      "id": "lore-mission",
+      "title": "救援任务真实背景（秘密）",
+      "text": "为了检测绥海堰的状态，蓬莱馆每隔一定时间会派遣科考船，由卦主领导，对绥海堰进行为期数年的勘察作业，然而由萃卦卦主谭礿领导的，科考队在绥海堰□□段失去了联系。于是蓬莱馆巨子委托罗天教悬鉴司掌鉴，恒卦卦主桓玉鉴组织特别救援行动，前往绥海堰□□段搜寻谭礿与其船队的踪迹\n\n谭礿带领的科考队在绥海堰遭遇逆模因劫灾。为保护队员，谭礿启用科考站内储备的模因掩体，暂时抹消整支勘察队的存在，并在这一过程中发现了绥海堰的真相。桓玉鉴的队伍到来时，通过隐秘方式引导桓玉鉴的队伍进行反击",
+      "source": "细纲.docx/正文段落41—正文段落43",
+      "secret": true
+    },
+    {
+      "id": "lore-blocked-mission",
+      "title": "任务目标被屏蔽（秘密）",
+      "text": "由于前一支科考队处于模因掩体，主角队伍在登陆时被屏蔽了“本次任务以搜救为目标”的认知，需要玩家发现场景中的不协调之处，积累隐藏值，确保在第三日晚上达到一定的隐藏值，才能触发HE",
+      "source": "细纲.docx/正文段落50",
+      "secret": true
+    },
+    {
+      "id": "lore-ne-truth",
+      "title": "NE幕后结果（不向玩家明示）",
+      "text": "说明：NE结局最后的画面，主角的科考队受逆模因影响未能发现谭礿的队伍，因此谭礿队伍全员被抹消（怎么这个更像BE）不过这个信息在该结局内不向玩家明示，所以把气氛烘托的伤感一些",
+      "source": "细纲.docx/正文段落279",
+      "secret": true
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-threshold",
+      "title": "第三日≥3阈值冲突",
+      "detail": "总则写≥3，事件18写>3且遗漏恰好3。",
+      "source": "细纲.docx/正文段落53；细纲.docx/正文段落247",
+      "status": "已确认",
+      "resolution": "按2026-10-08用户确认：隐藏值≥3进入HE/TE。"
+    },
+    {
+      "id": "issue-fourth-hidden",
+      "title": "第四个主线隐藏值来源",
+      "detail": "总则写四个事件，正文只有三处直接写+1。",
+      "source": "细纲.docx/正文段落53；细纲.docx/正文段落213",
+      "status": "已确认",
+      "resolution": "按2026-10-08用户确认：读取船员记忆获得信息锚时+1。"
+    },
+    {
+      "id": "issue-numbering",
+      "title": "缺省事件编号的整理",
+      "detail": "正文只有1、2、3、10直接写了编号，其他按日程顺序整理为4—9、11—21；269段直接引用事件21。",
+      "source": "细纲.docx/正文段落60—正文段落279",
+      "status": "整理说明",
+      "resolution": "Day1 1—4；Day2 5—9；Day3 10—18；NE Day4 19—21。不改变原文顺序。"
+    },
+    {
+      "id": "issue-test-dialogue",
+      "title": "认知测试题与完整对话未提供",
+      "detail": "原稿只有事件概要，缺少认知测试题、选项、检定反馈及绝大多数完整对话。所有节点lines保持空，只有原文唯一台词存入事件14。",
+      "source": "细纲.docx/正文段落60—正文段落279",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-rule-time",
+      "title": "近岸停留时间待填",
+      "detail": "规则写不得在蚀海近岸逗留超过n时辰，具体n未提供。",
+      "source": "细纲.docx/正文段落84",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-huan-title",
+      "title": "桓玉鉴正式称谓",
+      "detail": "人物表写悬鉴司总管，故事背景写悬鉴司掌鉴；不擅自统一。",
+      "source": "细纲.docx/正文表格11/桓玉鉴行；细纲.docx/正文段落41",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-yang-hexagram",
+      "title": "杨应隆备注中的卦名差异",
+      "detail": "人物卦象列为大过卦，备注误写“比卦象征过度”。规范字段采用大过卦，原文保留。",
+      "source": "细纲.docx/正文表格11/杨应隆行",
+      "status": "整理说明",
+      "resolution": "以人物卦象列录入大过卦。"
+    },
+    {
+      "id": "issue-day1-gate",
+      "title": "Day1任务结束与确认方式",
+      "detail": "原文只写任务完成后第一日流程结束，采水又明确顺延。没有具体日终交互点、强制任务列表或确认文案。",
+      "source": "细纲.docx/正文段落107—正文段落113",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-day1-terminals",
+      "title": "林溪三个设备检查点",
+      "detail": "数量明确为三个；各点名称、位置、检定条件、结果与终端功能内容尚未给出。",
+      "source": "细纲.docx/正文表格109/林溪行",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-plant-quantity",
+      "title": "连理枝采集数量",
+      "detail": "“4连理枝植株”与“11连理枝标本”分别是道具编号；采集点数量和需提交数量未提供，不能按4株理解。",
+      "source": "细纲.docx/正文表格109/虞青行",
+      "status": "整理说明",
+      "resolution": "只绑定item-04与item-11，数量待补。"
+    },
+    {
+      "id": "issue-mechanic-target",
+      "title": "唐晦维修对象",
+      "detail": "活动栏为检修码头供电系统，领取任务为修复装备。具体对象、位置、维修流程和订制功能待补。",
+      "source": "细纲.docx/正文表格109/唐晦行",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-analysis-items",
+      "title": "分析结果道具编号与领取关系",
+      "detail": "道具9/10语义对应数据分析，但事件7未明确编号，成功称额外增益道具。9在哪一步取得、10是否额外给出或替换9待确认。",
+      "source": "细纲.docx/正文段落133—正文段落148；道具需求.xlsx/Sheet1/第10—11行",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-sampling-inventory",
+      "title": "多次采样的库存与损伤细节",
+      "detail": "正文明确三次战斗、第三次昏迷；未定义水样份数、前两次损伤数值、护送和战败处理。",
+      "source": "细纲.docx/正文段落126—正文段落130",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-extra-items",
+      "title": "文内未编号道具",
+      "detail": "错误报告、船长室钥匙、航行日志、信息锚、制式现实稳定锚及未命名奖励登记为独立占位；不追加正式编号，不配置实际效果。",
+      "source": "细纲.docx/正文段落156—正文段落158；细纲.docx/正文段落200；细纲.docx/正文段落213—正文段落214；细纲.docx/正文段落220；细纲.docx/正文段落236—正文段落237",
+      "status": "整理说明",
+      "resolution": "保留18个表内正式编号。"
+    },
+    {
+      "id": "issue-anchor-identity",
+      "title": "不同锚的身份与消耗",
+      "detail": "道具3现实稳定锚、能力钉锚、信息锚、制式现实稳定锚和NE大锚之间没有明确等同或消耗关系。",
+      "source": "道具需求.xlsx/Sheet1/第4行；细纲.docx/正文段落186；细纲.docx/正文段落213；细纲.docx/正文段落220；细纲.docx/正文段落236；细纲.docx/正文段落269",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-inspiration-hidden",
+      "title": "极低概率灵感检定的隐藏值",
+      "detail": "事件11成功可识别逆模因，但正文没写隐藏值奖励；额外隐藏值规则只写一般原则。",
+      "source": "细纲.docx/正文段落54；细纲.docx/正文段落186",
+      "status": "整理说明",
+      "resolution": "先存成功/失败认知差别，不加未经确认的隐藏值。"
+    },
+    {
+      "id": "issue-cabin-details",
+      "title": "科考船探索细节缺省",
+      "detail": "第12事件未列具体怪物、密室、谜题、道具和布局；钥匙位置、日志内容及修复手段也未提供。",
+      "source": "细纲.docx/正文段落191—正文段落207",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-speaker",
+      "title": "唯一台词说话人待确认",
+      "detail": "事件14原句“不必自责，卦主阁下，如果存在扭曲的是我，也会希望您做出这样的抉择”未标明说话人。",
+      "source": "细纲.docx/正文段落213",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-six-equipment",
+      "title": "战前装备六选二候选待补",
+      "detail": "六件装备没有名称、属性或领取选项。已存六个候选占位槽，不作运行时发放。",
+      "source": "细纲.docx/正文段落220",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-defense",
+      "title": "防御战与追击战参数",
+      "detail": "第16、20事件的N回合、敌人、面板、无限怪规则未定；第17高难追击战败后的流程未给出。",
+      "source": "细纲.docx/正文段落228；细纲.docx/正文段落236；细纲.docx/正文段落271",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-other-routes",
+      "title": "HE/BE/TE后续细纲待补",
+      "detail": "本次文档只提供共通流程至第三日及NE第四日。HE/BE/TE具体事件、标题、结局表现以及HE/TE细分条件未提供。",
+      "source": "细纲.docx/正文段落48—正文段落54；细纲.docx/正文段落247—正文段落249",
+      "status": "待补",
+      "resolution": ""
+    },
+    {
+      "id": "issue-item-unused",
+      "title": "表内暂未分配剧情的道具",
+      "detail": "道具1铜钱只有检定用途；2散落的铜钱、3现实稳定锚、17息壤样本、18岩石样本未明确取得或交付事件。保留资料，不虚构任务。",
+      "source": "道具需求.xlsx/Sheet1/第2—4、18—19行",
+      "status": "整理说明",
+      "resolution": "全部存入编辑器，效果暂不实现。"
+    },
+    {
+      "id": "issue-optional-gallery",
+      "title": "结局收集界面（次要建议）",
+      "detail": "修改日志提及结局物品摆放界面，属于次要建议，尚无具体需求；只记录，不实现。",
+      "source": "细纲.docx/正文表格5/10.6.15：14修改日志",
+      "status": "次要待补",
+      "resolution": ""
+    }
+  ]
+}

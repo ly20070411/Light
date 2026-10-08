@@ -28,7 +28,7 @@ namespace Emerge.Battle.Tests
         { public string name; public ActorCheckAttributes attributes; }
         private static Build[] Builds() => new[]
         {
-            new Build { name = "balanced", attributes = SixKinAttributes.DefaultBuild() },
+            new Build { name = "balanced", attributes = BattleBuildRules.DefaultBuild() },
             new Build { name = "officer-8", attributes = new ActorCheckAttributes { officer = 8 } },
             new Build { name = "officer-6-support", attributes = new ActorCheckAttributes { officer = 6, parent = 1, wealth = 1 } },
             new Build { name = "officer-4-sustain", attributes = new ActorCheckAttributes { officer = 4, parent = 2, wealth = 2 } },

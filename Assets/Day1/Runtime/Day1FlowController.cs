@@ -20,6 +20,7 @@ namespace Emerge.Day1
         public List<Day1Interaction> interactions = new List<Day1Interaction>();
         public Transform bufferExit, seaGate, shadowStart, shadowEnd, assembly;
         public GameObject admissionGate, outdoorGate;
+        public Day1ControlRoomLayout controlRoom;
         public bool showHUD = true;
         private bool? dispersed;
         private GameObject shadow;
@@ -90,7 +91,8 @@ namespace Emerge.Day1
                     new Vector3(3, 0), new Vector3(-1, -2), new Vector3(2, -2) };
                 int index = 0;
                 foreach (var p in NpcPoints)
-                    p.transform.position = next ? p.homePosition : assembly.position + offsets[index++ % offsets.Length];
+                    p.transform.position = next ? p.homePosition : assembly.position +
+                        (controlRoom != null ? (Vector3)controlRoom.assemblyOffsets[index++ % controlRoom.assemblyOffsets.Length] : offsets[index++ % offsets.Length]);
             }
             if (admissionGate != null) admissionGate.SetActive(!State.HasFlag("day1.admitted"));
             if (outdoorGate != null) outdoorGate.SetActive(!State.HasFlag("day1.free_roam"));
@@ -280,11 +282,13 @@ namespace Emerge.Day1
             if (hadShadow && movement != null) movement.enabled = movementBeforeShadow;
         }
 
+        public string CurrentArea => Area;
         private string Area
         {
             get
             {
                 Vector3 p = actor.transform.position;
+                if (controlRoom != null) return controlRoom.Area(p);
                 if (p.y < -10) return "码头";
                 if (p.x < -9) return "科考站附近";
                 if (p.x > 7) return "仓储区";

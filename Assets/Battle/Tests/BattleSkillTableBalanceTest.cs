@@ -54,7 +54,7 @@ namespace Emerge.Battle.Tests
         public static Report LastReport { get; private set; }
         private static Build[] Builds() => new[]
         {
-            new Build { name = "balanced", reasonable = true, attributes = SixKinAttributes.DefaultBuild() },
+            new Build { name = "balanced", reasonable = true, attributes = BattleBuildRules.DefaultBuild() },
             new Build { name = "offense-defense", reasonable = true, attributes = new ActorCheckAttributes { officer = 3, parent = 3, offspring = 2 } },
             new Build { name = "offense-healing", reasonable = true, attributes = new ActorCheckAttributes { officer = 3, offspring = 3, parent = 2 } },
             new Build { name = "wealth-assault", reasonable = true, attributes = new ActorCheckAttributes { wealth = 3, parent = 3, offspring = 2 } },

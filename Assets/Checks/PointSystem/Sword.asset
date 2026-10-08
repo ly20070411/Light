@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee608615dbfc6f45b2cb5ff9e055bf9, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  data:
+    key: points.sword
+    displayName: "\u5251"
+    description: "\u6210\u957F +1\uFF1B\u5F53\u524D\u70B9\u6570\u5C0F\u4E8E\u5C40\u5916\u70B9\u6570\u65F6\uFF0C\u5C06\u5F53\u524D\u70B9\u6570\u53D8\u4E3A\u5C40\u5916\u70B9\u6570\u3002"
+    modifiers:
+    - comparison: 1
+      left:
+        source: 5
+        constant: 0
+      right:
+        source: 3
+        constant: 0
+      operation: 1
+      operand:
+        source: 3
+        constant: 0
+    actionAddons: []

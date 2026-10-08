@@ -156,7 +156,7 @@ namespace Emerge.GameFlow
         public void ShowCharacterCreation()
         {
             HidePages(); allocationPage.SetActive(true); settingsButton.SetActive(false); toast.gameObject.SetActive(false);
-            allocationTitle.text = session.IsChangingAttributes ? "五亲加点 · 重新分配" : session.IsReallocating ? "五亲加点 · 旧角色重新分配" : "五亲加点";
+            allocationTitle.text = session.IsChangingAttributes ? "六亲加点 · 重新分配" : session.IsReallocating ? "六亲加点 · 旧角色重新分配" : "六亲加点";
             confirmAllocation.GetComponentInChildren<Text>().text = session.IsChangingAttributes ? "确认修改 · 自动保存" : session.IsReallocating ? "确认加点 · 恢复进度" : "确认加点 · 开始冒险";
             cancelAllocation.GetComponentInChildren<Text>().text = session.IsChangingAttributes ? "返回设置  [Esc]" : "返回主菜单  [Esc]";
             EnsureEventSystem(); RefreshAttributeAllocation();
@@ -167,14 +167,13 @@ namespace Emerge.GameFlow
             int remaining = session.AllocationRemaining;
             remainingPoints.text = "剩余点数  " + remaining + " / " + SixKinAttributes.StartingPoints;
             allocationHint.text = remaining == 0 ? (session.IsChangingAttributes ? "确认后立即生效并自动保存；已开始的检定保持原加点。" : session.IsReallocating ? "分配完成，确认后保留原进度并恢复游戏。" : "分配完成，确认后开始冒险。") : "请分配剩余的 " + remaining + " 点。";
-            var zeroNames = Enumerable.Range(0, SixKinAttributes.Count).Where(i => session.AllocatedPoints((CheckBehavior)i) == 0).Select(i => SixKinAttributes.Get((CheckBehavior)i).name).ToArray();
-            allocationWarning.text = zeroNames.Length == 0 ? "五亲均已投入，可抽取所有类别的高级技能。" : "未投入：" + string.Join("、", zeroNames) + "。这些类别的高级技能不会在战斗中解锁。";
+            allocationWarning.text = "六项各保留 1 点；自由分配 8 点，基础点数合计 14。";
             for (int i = 0; i < SixKinAttributes.Count; i++)
             {
                 int value = session.AllocatedPoints((CheckBehavior)i);
                 attributeValues[i].text = value.ToString();
-                attributeBonuses[i].text = "效果 ×" + Emerge.Battle.BattleBuildRules.Multiplier(value).ToString("0.0");
-                attributeMinus[i].interactable = value > 0;
+                attributeBonuses[i].text = "基础点数 " + value;
+                attributeMinus[i].interactable = value > SixKinAttributes.Minimum;
                 attributePlus[i].interactable = remaining > 0;
             }
             confirmAllocation.interactable = remaining == 0;
@@ -188,8 +187,7 @@ namespace Emerge.GameFlow
             tooltipTitle.text = info.name + " · " + info.behavior;
             tooltipDescription.text = info.description;
             tooltipActions.text = "对应行为：" + info.behavior + "\n" + info.actions + "\n\n" + info.battleRole +
-                "\n当前技能效果 ×" + Emerge.Battle.BattleBuildRules.Multiplier(session.AllocatedPoints(attribute)).ToString("0.0") +
-                (session.AllocatedPoints(attribute) == 0 ? "；0 点无法解锁该类高级技能。" : "；加点提高该类抽取权重。");
+                "\n当前基础点数 " + session.AllocatedPoints(attribute) + "；每件配置道具增加 1 成长点。";
             attributeTooltip.gameObject.SetActive(true); MoveAttributeTooltip(screenPoint);
         }
         public void MoveAttributeTooltip(Vector2 screenPoint)
@@ -274,29 +272,29 @@ namespace Emerge.GameFlow
             allocationPage = ScreenPanel("Character Creation", parent, ink);
             Decorate(allocationPage.transform);
             var panel = CenterPanel(allocationPage.transform, "Attribute Allocation Card", new Vector2(1060, 640));
-            allocationTitle = Label(panel, "五亲加点", new Vector2(28, -22), new Vector2(740, 52), 32, accent);
-            Label(panel, "将 8 点自由分配给五亲，构建你的检定能力与战斗流派。\n鼠标悬停查看解释、对应行为及战斗职责。",
+            allocationTitle = Label(panel, "六亲加点", new Vector2(28, -22), new Vector2(740, 52), 32, accent);
+            Label(panel, "六项默认各 1 点，再将 8 点自由分配给六亲。\n鼠标悬停查看解释、对应行为及战斗职责。",
                 new Vector2(28, -84), new Vector2(720, 54), 17, new Color(.76f, .83f, .9f));
             remainingPoints = Label(panel, "", new Vector2(780, -36), new Vector2(252, 40), 25, accent);
             for (int i = 0; i < SixKinAttributes.Count; i++)
             {
                 var attribute = (CheckBehavior)i; var info = SixKinAttributes.Get(attribute);
                 var row = Rect("Attribute Row " + attribute, panel, new Vector2(0, 1), new Vector2(0, 1),
-                    new Vector2(28, -152 - i * 62), new Vector2(1004, 54));
+                    new Vector2(28, -152 - i * 52), new Vector2(1004, 46));
                 row.gameObject.AddComponent<Image>().color = new Color(.13f, .19f, .27f);
                 row.gameObject.AddComponent<CharacterAttributeHover>().Bind(this, attribute);
                 Label(row, info.name, new Vector2(18, -10), new Vector2(115, 34), 24, Color.white);
                 Label(row, info.behavior + "  ·  " + info.actions, new Vector2(140, -15), new Vector2(490, 32), 16, new Color(.75f, .83f, .88f));
                 attributeBonuses[i] = Label(row, "", new Vector2(636, -15), new Vector2(128, 32), 16, accent);
-                attributeMinus[i] = Button(row, "Attribute Minus " + attribute, "−", new Vector2(766, -6), new Vector2(42, 42),
+                attributeMinus[i] = Button(row, "Attribute Minus " + attribute, "−", new Vector2(766, -2), new Vector2(42, 42),
                     () => session.AdjustAttribute(attribute, -1));
-                attributeValues[i] = Label(row, "0", new Vector2(816, -6), new Vector2(68, 42), 26, accent);
+                attributeValues[i] = Label(row, "1", new Vector2(816, -2), new Vector2(68, 42), 26, accent);
                 attributeValues[i].alignment = TextAnchor.MiddleCenter;
-                attributePlus[i] = Button(row, "Attribute Plus " + attribute, "+", new Vector2(892, -6), new Vector2(42, 42),
+                attributePlus[i] = Button(row, "Attribute Plus " + attribute, "+", new Vector2(892, -2), new Vector2(42, 42),
                     () => session.AdjustAttribute(attribute, 1));
             }
-            Label(panel, "属性点数作为对应检定基础值，提高该类高级技能抽取权重，每点增加 10% 技能基础效果。\n某亲 0 点时，其高级技能不会出现；常驻基础技能可用。定卦只决定解锁，倍率由加点固定。",
-                new Vector2(28, -462), new Vector2(1004, 48), 15, new Color(.76f, .83f, .9f));
+            Label(panel, "基础 + 成长 = 局外；局外 + 六爻检定 = 当前点数[0]。\n按配置顺序执行道具效果，得到最终点数 x；加点直接增加点数。",
+                new Vector2(28, -470), new Vector2(1004, 48), 15, new Color(.76f, .83f, .9f));
             allocationWarning = Label(panel, "", new Vector2(28, -516), new Vector2(1004, 28), 15, new Color(1, .72f, .45f));
             allocationHint = Label(panel, "", new Vector2(28, -546), new Vector2(1004, 28), 16, accent);
             cancelAllocation = Button(panel, "Cancel Character Creation", "返回主菜单  [Esc]", new Vector2(28, -578), new Vector2(242, 42), session.CancelCharacterCreation);

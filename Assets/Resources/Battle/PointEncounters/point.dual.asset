@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4b85c424dbcb945a586188cd7434c1, type: 3}
+  m_Name: point.dual
+  m_EditorClassIdentifier: 
+  swiftVictoryRounds: 5
+  id: point.dual
+  displayName: "\u53CC\u654C \xB7 \u4F18\u5148\u51FB\u7834"
+  description: 
+  month: "\u5DF3\u6708"
+  day: "\u620A\u5B50\u65E5"
+  enemies:
+  - enemy: {fileID: 11400000, guid: 1f65708a542f82f44a14ee6f646a9130, type: 2}
+    healthOverride: 0
+  - enemy: {fileID: 11400000, guid: d11d6be20749094409bb16fcc10c6dbb, type: 2}
+    healthOverride: 0
+  repeatable: 1
+  victoryFlag: 
+  useFixedSeed: 1
+  fixedSeed: 91073

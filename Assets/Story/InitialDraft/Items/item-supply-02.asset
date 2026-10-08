@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db075628b9c9be4b983365df3909f12, type: 3}
+  m_Name: item-supply-02
+  m_EditorClassIdentifier: 
+  id: story.item-supply-02
+  displayName: "\u6218\u524D\u88C5\u5907\u5019\u90092\uFF08\u540D\u79F0\u5F85\u8865\uFF09"
+  category: "\u5267\u60C5\u5360\u4F4D"
+  character: {fileID: 0}
+  description: "\u4E8B\u4EF615\u201C\u88C5\u5907\u516D\u9009\u4E8C\u201D\u7684\u516D\u4E2A\u5019\u9009\u69FD\u4E4B\u4E00\u3002"
+  visualMode: 0
+  sprite: {fileID: 0}
+  visualPrefab: {fileID: 0}
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  worldSize: {x: 1, y: 1}
+  idleFrames: []
+  interactionFrames: []
+  framesPerSecond: 6
+  loop: 1
+  animatorController: {fileID: 0}
+  interactionTrigger: Interact
+  sortingLayerName: Default
+  sortingOrder: 0
+  sortByY: 1
+  allowRotation: 1
+  isSolid: 0
+  colliderSize: {x: 0.8, y: 0.5}
+  colliderOffset: {x: 0, y: 0.15}
+  physicsMaterial: {fileID: 0}
+  actions: 0
+  interactionRange: 1.5
+  interactionLabel: 
+  singleUse: 0
+  cooldown: 0.3
+  dialogue: []
+  itemHandover:
+    enabled: 0
+    itemKey: 
+    amount: 1
+    completionFlag: 
+    acceptLabel: "\u4EA4\u7ED9"
+    declineLabel: "\u4E0D\u7ED9"
+    offerDialogue: []
+    acceptedDialogue: []
+    declinedDialogue: []
+    missingItemDialogue: []
+    completedDialogue: []
+  checkEvent: {fileID: 0}
+  battleEncounter: {fileID: 0}
+  inventoryKey: story.item-supply-02
+  pickupAmount: 1
+  hideAfterPickup: 1
+  requiredFlags: []
+  requiredItemKey: 
+  requiredItemAmount: 1
+  consumeRequiredItem: 0
+  grantedFlags: []
+  lockedHint: "\u5C1A\u672A\u6EE1\u8DB3\u4EA4\u4E92\u6761\u4EF6"

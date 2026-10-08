@@ -33,7 +33,7 @@ namespace Emerge.GameFlow
         public bool CanChangeAttributes => phase == GameSessionPhase.Settings && hasStartedGame && !Emerge.Battle.BattleController.AnyBattleActive;
         public static GameSessionController Instance { get; private set; }
         public static bool SessionInputAllowed => Instance == null || Instance.phase == GameSessionPhase.Playing;
-        public static bool GameplayInputAllowed => SessionInputAllowed && !Emerge.Battle.BattleController.AnyBattleActive;
+        public static bool GameplayInputAllowed => SessionInputAllowed && !Emerge.Battle.BattleController.AnyBattleActive && !PointLoadoutUI.AnyOpen;
         public GameSessionPhase Phase => phase;
         public float PlayedSeconds => playedSeconds;
         public string LastMessage => lastMessage;
@@ -72,6 +72,7 @@ namespace Emerge.GameFlow
                 }
             }
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            if (PointLoadoutUI.AnyOpen) { PointLoadoutUI.Open.Close(); return; }
             if (phase == GameSessionPhase.CharacterCreation) CancelCharacterCreation();
             else if (menu.HasSecondaryPage) menu.CloseSecondaryPage();
             else if (phase == GameSessionPhase.Playing)
@@ -101,7 +102,7 @@ namespace Emerge.GameFlow
         {
             if (!CanChangeAttributes) { Notify("请在战斗结束后，通过设置重新分配点数。"); return false; }
             var checks = MainPlayer()?.GetComponent<CheckActorState>();
-            if (checks == null || !SixKinAttributes.IsValidBuild(checks.attributes)) { Notify("当前角色的五亲点数无效，无法重新分配。"); return false; }
+            if (checks == null || !SixKinAttributes.IsValidBuild(checks.attributes)) { Notify("当前角色的六亲点数无效，无法重新分配。"); return false; }
             allocation = new CharacterAttributeAllocation(checks.attributes);
             reallocationSave = null; reallocationSlot = null; changingAttributes = true;
             phase = GameSessionPhase.CharacterCreation; Time.timeScale = 0; menu.ShowCharacterCreation();
@@ -151,7 +152,7 @@ namespace Emerge.GameFlow
             }
             catch (Exception exception) { Notify("重新加点保存失败：" + exception.Message); return false; }
             allocation = null; changingAttributes = false; phase = GameSessionPhase.Settings; Time.timeScale = 0;
-            menu.ShowSettings(); Notify("已重新分配五亲点数并自动保存；新的检定和战斗使用新加点。");
+            menu.ShowSettings(); Notify("已重新分配六亲点数并自动保存；新的检定和战斗使用新加点。");
             Debug.Log("[角色加点] 设置中重新分配：父母 " + attributes.parent + "，子孙 " + attributes.offspring + "，官鬼 " + attributes.officer + "，妻财 " + attributes.wealth + "，兄弟 " + attributes.sibling);
             return true;
         }
@@ -188,14 +189,14 @@ namespace Emerge.GameFlow
             }
             StartCoroutine(EnterGame(data, warning));
         }
-        private static void UpgradePlayerAttributes(GameSaveData data, ActorCheckAttributes attributes, string reason = "五亲规则升级")
+        private static void UpgradePlayerAttributes(GameSaveData data, ActorCheckAttributes attributes, string reason = "六亲规则升级")
         {
             data.reason = reason;
             var player = data.actors.Find(actor => actor.id == data.playerId);
             if (player.checkState == null) player.checkState = new CheckActorState.Snapshot();
             player.checkState.attributes = attributes.Clone();
             player.checkState.attributeRulesVersion = SixKinAttributes.RulesVersion;
-            var point = player.battleState?.returnPoint;
+            var point = player.pointBattleState?.returnPoint ?? player.battleState?.returnPoint;
             if (point != null)
             {
                 if (point.checkState == null) point.checkState = new CheckActorState.Snapshot();
@@ -230,7 +231,7 @@ namespace Emerge.GameFlow
                 if (upgradeSlot.HasValue)
                 {
                     if (!store.TryWrite(upgradeSlot.Value, data, out var upgradeError)) Notify(upgradeError);
-                    SaveAutomatic("五亲规则升级");
+                    SaveAutomatic("六亲规则升级");
                 }
             }
         }
@@ -245,7 +246,7 @@ namespace Emerge.GameFlow
             if (!checks.RestoreSnapshot(new CheckActorState.Snapshot { attributeRulesVersion = SixKinAttributes.RulesVersion, attributes = attributes.Clone() }))
                 throw new InvalidOperationException("六亲基础点数无效。");
             Debug.Log("[角色创建] 六亲基础点数已确认：父母 " + attributes.parent + "，子孙 " + attributes.offspring +
-                "，官鬼 " + attributes.officer + "，妻财 " + attributes.wealth + "，兄弟 " + attributes.sibling + "；每点技能基础效果 +10%。");
+                "，官鬼 " + attributes.officer + "，妻财 " + attributes.wealth + "，兄弟 " + attributes.sibling + "，我 " + attributes.self + "；六项默认各 1 点，另分配 8 点，按点数直接计算。");
         }
         public void OpenSettings()
         {
@@ -304,7 +305,8 @@ namespace Emerge.GameFlow
                 if (actor.Body != null) { position.x = actor.Body.position.x; position.y = actor.Body.position.y; }
                 data.actors.Add(new SavedActor { id = identity.Id, position = position, active = actor.gameObject.activeSelf,
                     propState = state.CaptureSnapshot(), checkState = actor.GetComponent<Emerge.Checks.CheckActorState>()?.CaptureSnapshot(),
-                    battleState = actor.GetComponent<Emerge.Battle.BattleController>()?.CaptureSnapshot() });
+                    battleState = actor.GetComponent<Emerge.Battle.BattleController>()?.CaptureSnapshot(),
+                    pointBattleState = actor.GetComponent<Emerge.Battle.PointBattleController>()?.CaptureSnapshot() });
                 if (actor == main) data.playerId = identity.Id;
             }
             foreach (var prop in FindObjectsOfType<PropInstance>(true).Where(item => item.gameObject.scene == SceneManager.GetActiveScene() && item.Definition != null))
@@ -315,7 +317,7 @@ namespace Emerge.GameFlow
         public void RestoreBattleWorld(GameSaveData data)
         {
             if (!SessionInputAllowed || data == null || data.scenePath != SceneManager.GetActiveScene().path ||
-                data.actors == null || data.actors.Any(a => a == null || a.battleState != null) || !GameSaveStore.IsValidData(data))
+                data.actors == null || data.actors.Any(a => a == null || a.battleState != null || a.pointBattleState != null) || !GameSaveStore.IsValidData(data))
                 throw new InvalidDataException("战前世界快照无效，无法回退。");
             restoringBattleWorld = true;
             try { RestoreGame(data); playedSeconds = data.playedSeconds; }
@@ -351,6 +353,9 @@ namespace Emerge.GameFlow
                 var battle = actor.GetComponent<Emerge.Battle.BattleController>();
                 if (saved.battleState != null && battle == null) battle = actor.gameObject.AddComponent<Emerge.Battle.BattleController>();
                 if (battle != null && !battle.RestoreSnapshot(saved.battleState)) throw new InvalidDataException("战斗进度无效。");
+                var pointBattle = actor.GetComponent<Emerge.Battle.PointBattleController>();
+                if (saved.pointBattleState != null && pointBattle == null) pointBattle = actor.gameObject.AddComponent<Emerge.Battle.PointBattleController>();
+                if (pointBattle != null && !pointBattle.RestoreSnapshot(saved.pointBattleState)) throw new InvalidDataException("点数战斗进度无效。");
             }
             var props = FindObjectsOfType<PropInstance>(true).Where(prop => prop.gameObject.scene == SceneManager.GetActiveScene() && prop.Definition != null).GroupBy(prop => prop.InstanceId).ToDictionary(group => group.Key, group => group.First());
             foreach (var saved in data.props)

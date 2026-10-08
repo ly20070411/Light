@@ -13,7 +13,7 @@ namespace Emerge.Battle
         public Emerge.Characters.CharacterDefinition character;
         public BattleEngine Engine { get; private set; }
         public static BattleController Active { get; private set; }
-        public static bool AnyBattleActive => Active != null && Active.Engine?.State != null;
+        public static bool AnyBattleActive => (Active != null && Active.Engine?.State != null) || PointBattleController.AnyActive;
         public BattleView View { get; private set; }
         private float nextStep;
         private BattleReturnPoint returnPoint;
@@ -24,7 +24,10 @@ namespace Emerge.Battle
         private void EnsureEngine()
         {
             if (catalog == null) catalog = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
-            if (Engine?.State == null && catalog != null && catalog.rules.balanceVersion == "v0.5-counterplay")
+            // Upgrade the built-in battle library only. Story scenes can intentionally
+            // keep a separate teaching library with their own encounters and save path.
+            if (Engine?.State == null && catalog != null && catalog.rules.balanceVersion == "v0.5-counterplay" &&
+                (catalog.SaveResourcePath == BattleCatalog.ResourcePath || catalog.SaveResourcePath == "Battle/LegacyV05/BattleCatalog"))
             {
                 var current = Resources.Load<BattleCatalog>(BattleCatalog.ResourcePath);
                 if (current != null && current.rules.balanceVersion == BattleSkillTableRules.BalanceVersion) catalog = current;
@@ -42,6 +45,11 @@ namespace Emerge.Battle
         }
         public bool TryBegin(BattleEncounterDefinition encounter, string contextId = null)
         {
+            if (GetComponent<Emerge.Checks.CheckActorState>()?.AttributeRulesVersion >= 3)
+            {
+                var points = GetComponent<PointBattleController>() ?? gameObject.AddComponent<PointBattleController>();
+                return points.TryBegin(encounter, contextId);
+            }
             EnsureEngine();
             if (!GameSessionController.SessionInputAllowed || AnyBattleActive || Engine == null || encounter == null ||
                 GetComponent<PlayerInteractor>()?.IsInDialogue == true) return false;
@@ -49,11 +57,14 @@ namespace Emerge.Battle
             string context = contextId ?? encounter.id;
             int proposedSeed = encounter.useFixedSeed ? encounter.fixedSeed : unchecked((int)DateTime.UtcNow.Ticks ^ Guid.NewGuid().GetHashCode());
             int seed = GetComponent<PropGameState>().LockBattleSeed(context, encounter.id, proposedSeed);
-            var attributes = GetComponent<Emerge.Checks.CheckActorState>()?.attributes;
-            if (!Emerge.Checks.SixKinAttributes.IsValidBuild(attributes))
+            var checks = GetComponent<Emerge.Checks.CheckActorState>();
+            // New six-attribute points must never enter the legacy +10%-per-point formula.
+            var attributes = checks?.AttributeRulesVersion >= 3 ? BattleBuildRules.DefaultBuild() : checks?.attributes;
+            if (checks?.AttributeRulesVersion >= 3) Debug.Log("[战斗链] 新点数战斗流程待定；当前旧战斗临时使用独立的默认 8 点配置。");
+            if (!Emerge.Checks.SixKinAttributes.IsValidLegacyBuild(attributes))
             {
                 if (GameSessionController.Instance != null) { Debug.LogWarning("[战斗链] 请先完成五亲 8 点分配。"); return false; }
-                attributes = Emerge.Checks.SixKinAttributes.DefaultBuild();
+                attributes = BattleBuildRules.DefaultBuild();
                 Debug.Log("[战斗链] 独立演示使用默认五亲 8 点配置。");
             }
             returnPoint = BattleReturnPoint.Capture(this);

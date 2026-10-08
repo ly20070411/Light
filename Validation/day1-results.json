@@ -1,8 +1,8 @@
 {
     "unityVersion": "2022.3.12f1",
     "scene": "Assets/Scenes/Day1ResearchStation.unity",
-    "completedUtc": "2026-10-05T17:22:50.4557875Z",
-    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_ddaa2d7494db4927a7fe1608c0d24c65\\Saves",
+    "completedUtc": "2026-10-07T15:53:31.8749846Z",
+    "testSaveDirectory": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_80784578a6934c7eaa42d959b7d529dc\\Saves",
     "passed": true,
     "checks": [
         {
@@ -57,7 +57,7 @@
         },
         {
             "name": "Test saves are isolated from existing player saves",
-            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_ddaa2d7494db4927a7fe1608c0d24c65\\Saves",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Temp\\Day1Checks_80784578a6934c7eaa42d959b7d529dc\\Saves",
             "passed": true
         },
         {
@@ -117,6 +117,11 @@
         },
         {
             "name": "Day1 starts with the eight points confirmed in character creation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Day1 retains its scene-specific teaching battle catalog when the main battle library upgrades",
             "observed": "",
             "passed": true
         },
@@ -297,37 +302,37 @@
         },
         {
             "name": "Physics2D passage: Exterior to buffer",
-            "observed": "Door center (-9.00, 4.50); crossed distance 1.51",
+            "observed": "Door center (-13.00, 4.50); crossed distance 1.49",
             "passed": true
         },
         {
             "name": "Physics2D passage: Buffer to control",
-            "observed": "Door center (-3.00, 4.50); crossed distance 1.16",
+            "observed": "Door center (-7.00, 4.33); crossed distance 1.47",
             "passed": true
         },
         {
             "name": "Physics2D passage: Control to living area",
-            "observed": "Door center (1.50, 5.00); crossed distance 1.48",
+            "observed": "Door center (2.00, 7.00); crossed distance 1.47",
             "passed": true
         },
         {
             "name": "Physics2D passage: Control to machine room",
-            "observed": "Door center (-3.00, -0.50); crossed distance 1.48",
+            "observed": "Door center (-7.00, -0.70); crossed distance 1.48",
             "passed": true
         },
         {
             "name": "Physics2D passage: Control to chemical laboratory",
-            "observed": "Door center (1.50, -3.00); crossed distance 1.48",
+            "observed": "Door center (2.00, -9.00); crossed distance 1.48",
             "passed": true
         },
         {
             "name": "Physics2D passage: Control to storage",
-            "observed": "Door center (7.00, 0.50); crossed distance 1.47",
+            "observed": "Door center (10.00, 0.00); crossed distance 1.19",
             "passed": true
         },
         {
             "name": "Physics2D passage: Exterior to dock",
-            "observed": "Door center (-16.50, -10.00); crossed distance 1.48",
+            "observed": "Door center (-20.50, -10.00); crossed distance 1.48",
             "passed": true
         },
         {
@@ -427,7 +432,7 @@
         },
         {
             "name": "Save a partially revealed actual cast",
-            "observed": "游戏已保存 · 01:22:35",
+            "observed": "游戏已保存 · 23:53:17",
             "passed": true
         },
         {
@@ -467,7 +472,7 @@
         },
         {
             "name": "Save a resolved check before closing its result dialogue",
-            "observed": "游戏已保存 · 01:22:36",
+            "observed": "游戏已保存 · 23:53:18",
             "passed": true
         },
         {
@@ -857,7 +862,7 @@
         },
         {
             "name": "Save a real active teaching battle",
-            "observed": "游戏已保存 · 01:22:44",
+            "observed": "游戏已保存 · 23:53:26",
             "passed": true
         },
         {
@@ -957,7 +962,7 @@
         },
         {
             "name": "Save the finished Day1 checkpoint",
-            "observed": "游戏已保存 · 01:22:47",
+            "observed": "游戏已保存 · 23:53:29",
             "passed": true
         },
         {

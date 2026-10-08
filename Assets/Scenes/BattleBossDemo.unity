@@ -8310,6 +8310,9 @@ GameObject:
   - component: {fileID: 1146193432}
   - component: {fileID: 1146193431}
   - component: {fileID: 1146193430}
+  - component: {fileID: 1146193438}
+  - component: {fileID: 1146193437}
+  - component: {fileID: 1146193436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8360,6 +8363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catalog: {fileID: 11400000, guid: ab22a9c1a5dd0064f8c9a1033f41a6ff, type: 2}
+  character: {fileID: 0}
 --- !u!114 &1146193431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8389,6 +8393,7 @@ MonoBehaviour:
   inventoryKey: 105
   keyboardInput: 1
   showUI: 1
+  scaleInterface: 0
   propLibrary: {fileID: 0}
 --- !u!114 &1146193433
 MonoBehaviour:
@@ -8405,6 +8410,8 @@ MonoBehaviour:
   inventory: []
   flags: []
   consumedInstances: []
+  battleAttempts: []
+  battleVictories: []
 --- !u!70 &1146193434
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8467,6 +8474,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1146193436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146193427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4619ad74e5760fb4caf6b108cf25495d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rules: {fileID: 0}
+--- !u!114 &1146193437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146193427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e46afe42989354e82a1d43b875f329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1146193438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146193427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b6c200153671047a0efbe0f8f215c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes:
+    parent: 3
+    offspring: 2
+    officer: 3
+    wealth: 2
+    sibling: 2
+    self: 2
+  contamination: 0
+  sessions: []
+  pointEquipment: []
+  pointItemCatalog: {fileID: 0}
+  progression:
+    bag: []
+    anchors: []
+    equippedAnchor: 
+    storyDay: 1
+    modificationsUsed: 0
+    refreshesUsed: 0
+    offers: []
+    offerSerial: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1176479727
 GameObject:
   m_ObjectHideFlags: 0
@@ -9233,6 +9300,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1227862776}
   - component: {fileID: 1227862775}
+  - component: {fileID: 1227862778}
+  - component: {fileID: 1227862777}
   m_Layer: 0
   m_Name: "\u6218\u6597\u6D4B\u8BD5\u60C5\u5883"
   m_TagString: Untagged
@@ -9269,6 +9338,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1227862777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227862774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae0c9f8b75b73c4d9a73de3b7dde7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 20
+--- !u!114 &1227862778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227862774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c98e28ac776ce24cb7659bcd6ff82df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warehouse: 1
+  size: {x: 30, y: 20}
 --- !u!1 &1229762280
 GameObject:
   m_ObjectHideFlags: 0

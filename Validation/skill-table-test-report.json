@@ -2,7 +2,7 @@
     "passed": true,
     "unityVersion": "2022.3.12f1",
     "version": "v0.6-skill-table",
-    "completedUtc": "2026-10-06T09:42:27.3363733Z",
+    "completedUtc": "2026-10-08T14:12:11.2092777Z",
     "checks": [
         {
             "name": "Shipping catalog validates",
@@ -646,7 +646,7 @@
         },
         {
             "name": "Old JSON contains only the pre-upgrade version-three layout",
-            "observed": "JSON bytes=10138",
+            "observed": "JSON bytes=10142",
             "passed": true
         },
         {

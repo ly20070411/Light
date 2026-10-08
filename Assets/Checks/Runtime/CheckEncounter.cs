@@ -50,6 +50,17 @@ namespace Emerge.Checks
                 long total = (long)baseValue + bonus;
                 string label = option.label + " · " + BehaviorName(behavior) + " " + baseValue +
                     (bonus >= 0 ? " + " : " − ") + Math.Abs((long)bonus) + " = " + total;
+                if (session.attributeRulesVersion >= 3)
+                {
+                    try
+                    {
+                        var calculation = CheckResolver.Points(session, behavior);
+                        total = calculation.finalPoints;
+                        label = option.label + " · " + SixKinAttributes.Get(behavior).name + "：局外 " + calculation.outsidePoints +
+                            " / 检定 " + bonus.ToString("+0;-0;0") + " / 道具顺序结算 = " + total;
+                    }
+                    catch (Exception exception) { allowed = false; reason = exception.Message; total = long.MaxValue; }
+                }
                 if (definition.revealDifficultyBeforeChoice) label += " / 目标 " + option.targetValue;
                 if (option.consumeRequiredItem) label += " · 消耗" + state.RequiredItemName(option.requiredItemKey) + " × " + option.requiredItemAmount;
                 if (total < int.MinValue || total > int.MaxValue) { allowed = false; reason = "检定点数超出可用范围。"; }
@@ -91,7 +102,8 @@ namespace Emerge.Checks
             var lines = new List<PropDialogueLine>
             {
                 new PropDialogueLine { speaker = result.success ? "检定成功" : "检定失败",
-                    text = BehaviorName(result.behavior) + "：基础 " + result.baseValue + " + 加值 " + result.modifier +
+                    text = result.pointCalculation != null ? result.pointCalculation.Describe() + "\n" + result.finalValue + comparison + "目标 " + result.targetValue :
+                        BehaviorName(result.behavior) + "：基础 " + result.baseValue + " + 加值 " + result.modifier +
                         " = " + result.finalValue + comparison + "目标 " + result.targetValue }
             };
             if (outcome != null && !string.IsNullOrWhiteSpace(outcome.text))

@@ -1,0 +1,487 @@
+{
+    "completedUtc": "2026-10-08T14:12:11.0066596Z",
+    "unityVersion": "2022.3.12f1",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Six attributes begin at one with eight extra points",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Cannot subtract the default one or use an unknown attribute",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 6",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self accepts freely allocated point 7",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Eight extra points may all go to Self, with no overspending",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exported base attributes cannot mutate the draft",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reset restores six default ones and all eight extras",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Legacy eight-point builds are separate",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Installed point item library is valid",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "New base snapshot restores",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Unowned items cannot be equipped",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Equip sword and talisman from actual inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Equipped copies are reserved, not duplicated",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Sword then talisman gives precisely 5+2-1 -> 7 -> 9",
+            "observed": "基础 5 + 成长 2 = 局外 7；检定 -1 → 当前点数[0] 6\n剑：当前点数[1] 6 → 7\n符咒：当前点数[2] 7 → 9\n最终点数 x = 9；造成 9 点伤害",
+            "passed": true
+        },
+        {
+            "name": "Each item advances the iteration index, not multiplication",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Move talisman before sword",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Talisman then sword gives 6 -> 8 -> 8",
+            "observed": "基础 5 + 成长 2 = 局外 7；检定 -1 → 当前点数[0] 6\n符咒：当前点数[1] 6 → 8\n剑：当前点数[2] 8 → 8\n最终点数 x = 8；造成 8 点伤害",
+            "passed": true
+        },
+        {
+            "name": "Reordering does not change base, growth or outside points",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Move item to another attribute without duplication",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Invalid move preserves slot order",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Unequip returns exactly one reserved copy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Negative check points and negative final points are preserved",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Offspring reduction retains fractional final-point amount",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Wealth means 12.5 percent per point",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Sibling means 10 percent per point",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Officer, Parent and Self use the final points directly",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Point-only equipment still adds growth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "External slot views cannot mutate the live loadout",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Frozen definitions have independent data",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Constant",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Base",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Growth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Outside",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Check",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Typed point operand Current",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual check freezes item order at preparation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real casting reveal 6",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual chart supplies signed check points",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self modifier is the independent world-line score",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Changing equipment after preparation leaves session frozen",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Resolve uses the point chain, including frozen growth",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Repeated resolution is rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "New state and resolved point trace validate",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "JSON preserves signed scores, frozen equipment and result",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tampered intermediate point trace is rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Duplicate physical equipped copies are rejected on restore",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Old five-family saves still load without changing old point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Only version-two sessions retain Self-to-Parent mapping",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Equip again before save integration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Whole-game save accepts and restores equipment reservations",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Point arithmetic overflow fails explicitly",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Rules within one item see the updated current points and named scopes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Action add-ons are emitted once with their item's resolved point value",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing world pickup grants the linked growth item key",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A consumed world pickup cannot duplicate growth items",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -8 / 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier -1 / 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 0 / 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 1 / 5",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 0",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 1",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 2",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 3",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 4",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No-equipment identity for signed modifier 9 / 5",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

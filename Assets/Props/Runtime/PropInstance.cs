@@ -284,6 +284,8 @@ namespace Emerge.Props
                 onPickedUp.Invoke(actor);
             }
             else if (definition.HasAction(PropActions.Inspect)) actor.ShowFeedback(definition.description);
+            if (!string.IsNullOrWhiteSpace(definition.createdMentalAnchorId))
+                actor.GetComponent<Emerge.Checks.CheckActorState>()?.CreateMentalAnchor(definition.createdMentalAnchorId);
             onInteracted.Invoke(actor);
             if (pickup && definition.hideAfterPickup)
             { hiddenByState = true; gameObject.SetActive(false); }

@@ -1,0 +1,1466 @@
+{
+    "success": true,
+    "completedUtc": "2026-10-07T16:16:55.7338240Z",
+    "checks": [
+        {
+            "name": "初稿项目可加载且为编辑资料",
+            "observed": "Assets/Story/InitialDraft/InitialStoryProject.asset",
+            "passed": true
+        },
+        {
+            "name": "来源 ID 非空且唯一",
+            "observed": "3 条",
+            "passed": true
+        },
+        {
+            "name": "角色 ID 非空且唯一",
+            "observed": "8 条",
+            "passed": true
+        },
+        {
+            "name": "场景 ID 非空且唯一",
+            "observed": "18 条",
+            "passed": true
+        },
+        {
+            "name": "道具 ID 非空且唯一",
+            "observed": "33 条",
+            "passed": true
+        },
+        {
+            "name": "剧情节点 ID 非空且唯一",
+            "observed": "30 条",
+            "passed": true
+        },
+        {
+            "name": "规则 ID 非空且唯一",
+            "observed": "9 条",
+            "passed": true
+        },
+        {
+            "name": "背景 ID 非空且唯一",
+            "observed": "7 条",
+            "passed": true
+        },
+        {
+            "name": "待定事项 ID 非空且唯一",
+            "observed": "23 条",
+            "passed": true
+        },
+        {
+            "name": "八名角色保持已有稳定 ID 与资产绑定",
+            "observed": "不新建角色 ID、图片或预制体",
+            "passed": true
+        },
+        {
+            "name": "新版八人姓名全部录入",
+            "observed": "桓玉鉴、林溪、鹿见深、虞青、杨应隆、常月容、唐晦、谭礿",
+            "passed": true
+        },
+        {
+            "name": "常月容部门为深泉司",
+            "observed": "依据新版人物表",
+            "passed": true
+        },
+        {
+            "name": "21 个编号事件完整且唯一",
+            "observed": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21",
+            "passed": true
+        },
+        {
+            "name": "Day1 六名队员各有一条任务资料",
+            "observed": "六条支线不替代四号自由探索事件",
+            "passed": true
+        },
+        {
+            "name": "参考布局图已导入",
+            "observed": "仅为资料参考",
+            "passed": true
+        },
+        {
+            "name": "未定剧情有显式占位说明",
+            "observed": "占位节点、正文道具及待沟通事项",
+            "passed": true
+        },
+        {
+            "name": "独立剧情道具库包含全部新道具",
+            "observed": "Assets/Story/InitialDraft/StoryPropLibrary.asset",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-01",
+            "observed": "铜钱",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-02",
+            "observed": "散落的铜钱",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-03",
+            "observed": "现实稳定锚",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-04",
+            "observed": "连理枝植株",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-05",
+            "observed": "身份认证卡",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-06",
+            "observed": "生活物资",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-07",
+            "observed": "环境数据表",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-08",
+            "observed": "一份蚀海水样",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-09",
+            "observed": "分析结果",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-10",
+            "observed": "精确的分析结果",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-11",
+            "observed": "连理枝标本",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-12",
+            "observed": "食材箱",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-13",
+            "observed": "工具箱",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-14",
+            "observed": "科研仪器箱",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-15",
+            "observed": "松茸干",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-16",
+            "observed": "铜钱剑",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-17",
+            "observed": "息壤样本",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-18",
+            "observed": "岩石样本",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-error-report",
+            "observed": "数据系统错误报告",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-captain-key",
+            "observed": "船长室钥匙",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-navigation-log",
+            "observed": "航行日志（数据损坏）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-memory-anchor",
+            "observed": "储存记忆的信息锚",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-standard-anchor",
+            "observed": "罗天教制式现实稳定锚",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-linxi-thanks",
+            "observed": "林溪谢礼（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-linxi-rest-reward",
+            "observed": "林溪停止工作的额外增益道具（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-crew-mercy-reward",
+            "observed": "让船员解脱的额外道具（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-battlefield-reward",
+            "observed": "打扫战场的增益道具（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-01",
+            "observed": "战前装备候选1（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-02",
+            "observed": "战前装备候选2（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-03",
+            "observed": "战前装备候选3（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-04",
+            "observed": "战前装备候选4（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-05",
+            "observed": "战前装备候选5（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具仅存储资料 / item-supply-06",
+            "observed": "战前装备候选6（名称待补）",
+            "passed": true
+        },
+        {
+            "name": "道具表 18 条原始记录完整",
+            "observed": "Sheet1 第 2—19 行；空白字段保留空白",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G2",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 1 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H2",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 1",
+            "observed": "道具需求.xlsx/Sheet1/第2行（A2:H2）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G3",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 2 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H3",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 2",
+            "observed": "道具需求.xlsx/Sheet1/第3行（A3:H3）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G4",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 3 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H4",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 3",
+            "observed": "道具需求.xlsx/Sheet1/第4行（A4:H4）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G5",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 4 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H5",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 4",
+            "observed": "道具需求.xlsx/Sheet1/第5行（A5:H5）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G6",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 5 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H6",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 5",
+            "observed": "道具需求.xlsx/Sheet1/第6行（A6:H6）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G7",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 6 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H7",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 6",
+            "observed": "道具需求.xlsx/Sheet1/第7行（A7:H7）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G8",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 7 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H8",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 7",
+            "observed": "道具需求.xlsx/Sheet1/第8行（A8:H8）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G9",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 8 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H9",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 8",
+            "observed": "道具需求.xlsx/Sheet1/第9行（A9:H9）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G10",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 9 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H10",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 9",
+            "observed": "道具需求.xlsx/Sheet1/第10行（A10:H10）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G11",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 10 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H11",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 10",
+            "observed": "道具需求.xlsx/Sheet1/第11行（A11:H11）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G12",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 11 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H12",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 11",
+            "observed": "道具需求.xlsx/Sheet1/第12行（A12:H12）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G13",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 12 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H13",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 12",
+            "observed": "道具需求.xlsx/Sheet1/第13行（A13:H13）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G14",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 13 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H14",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 13",
+            "observed": "道具需求.xlsx/Sheet1/第14行（A14:H14）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G15",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 14 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H15",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 14",
+            "observed": "道具需求.xlsx/Sheet1/第15行（A15:H15）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G16",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 15 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H16",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 15",
+            "observed": "道具需求.xlsx/Sheet1/第16行（A16:H16）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G17",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 16 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H17",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 16",
+            "observed": "道具需求.xlsx/Sheet1/第17行（A17:H17）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G18",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 17 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H18",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 17",
+            "observed": "道具需求.xlsx/Sheet1/第18行（A18:H18）",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / ID",
+            "observed": "道具需求.xlsx/Sheet1/A19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 名称",
+            "observed": "道具需求.xlsx/Sheet1/B19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 功能",
+            "observed": "道具需求.xlsx/Sheet1/C19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 简介",
+            "observed": "道具需求.xlsx/Sheet1/D19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 程序效果说明",
+            "observed": "道具需求.xlsx/Sheet1/E19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 获取条件",
+            "observed": "道具需求.xlsx/Sheet1/F19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 需求备注",
+            "observed": "道具需求.xlsx/Sheet1/G19",
+            "passed": true
+        },
+        {
+            "name": "来源忠实 / 18 / 修改时间",
+            "observed": "道具需求.xlsx/Sheet1/H19",
+            "passed": true
+        },
+        {
+            "name": "来源可追溯 / 18",
+            "observed": "道具需求.xlsx/Sheet1/第19行（A19:H19）",
+            "passed": true
+        },
+        {
+            "name": "来源原件哈希 / 细纲.docx",
+            "observed": "Docs/Story/Sources/细纲.docx",
+            "passed": true
+        },
+        {
+            "name": "来源原件哈希 / 道具需求.xlsx",
+            "observed": "Docs/Story/Sources/道具需求.xlsx",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-01",
+            "observed": "入站认知测试",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-01",
+            "observed": "入站认知测试",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-02",
+            "observed": "宣读规则与取得环境数据",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-02",
+            "observed": "宣读规则与取得环境数据",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-03",
+            "observed": "生活物资与首次神秘影子",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-03",
+            "observed": "生活物资与首次神秘影子",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-04",
+            "observed": "自由探索与六位队员任务",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-04",
+            "observed": "自由探索与六位队员任务",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-lin-xi",
+            "observed": "林溪 · 检查总控室",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-lin-xi",
+            "observed": "林溪 · 检查总控室",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-hydrologist",
+            "observed": "鹿见深 · 采集蚀海水样",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-hydrologist",
+            "observed": "鹿见深 · 采集蚀海水样",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-geologist",
+            "observed": "虞青 · 连理枝采集",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-geologist",
+            "observed": "虞青 · 连理枝采集",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-yang-yinglong",
+            "observed": "杨应隆 · 清除周围威胁",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-yang-yinglong",
+            "observed": "杨应隆 · 清除周围威胁",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-containment-researcher",
+            "observed": "常月容 · 三箱搬运",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-containment-researcher",
+            "observed": "常月容 · 三箱搬运",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / task-mechanic",
+            "observed": "唐晦 · 装备维修",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / task-mechanic",
+            "observed": "唐晦 · 装备维修",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-05",
+            "observed": "蚀海护卫采样与三次取样抉择",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-05",
+            "observed": "蚀海护卫采样与三次取样抉择",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-06",
+            "observed": "交付水样与第二次神秘影子",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-06",
+            "observed": "交付水样与第二次神秘影子",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-07",
+            "observed": "与林溪分析数据",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-07",
+            "observed": "与林溪分析数据",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-08",
+            "observed": "林溪夜间锚定与继续工作抉择",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-08",
+            "observed": "林溪夜间锚定与继续工作抉择",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-09",
+            "observed": "总控室追随神秘影子",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-09",
+            "observed": "总控室追随神秘影子",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-10",
+            "observed": "发现搁浅科考船并前往",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-10",
+            "observed": "发现搁浅科考船并前往",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-11",
+            "observed": "入船前锚定与灵感检定",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-11",
+            "observed": "入船前锚定与灵感检定",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-12",
+            "observed": "废弃科考船自由探索",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-12",
+            "observed": "废弃科考船自由探索",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-13",
+            "observed": "船长室日志与扭曲生物袭击",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-13",
+            "observed": "船长室日志与扭曲生物袭击",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-14",
+            "observed": "船员记忆与解脱抉择",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-14",
+            "observed": "船员记忆与解脱抉择",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-15",
+            "observed": "迎战报告与战前装备六选二",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-15",
+            "observed": "迎战报告与战前装备六选二",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-16",
+            "observed": "夜间劫灾防御战",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-16",
+            "observed": "夜间劫灾防御战",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-17",
+            "observed": "追击制式装备劫灾或打扫战场",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-17",
+            "observed": "追击制式装备劫灾或打扫战场",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-18",
+            "observed": "夜间整理线索与路线判定",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-18",
+            "observed": "夜间整理线索与路线判定",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-19",
+            "observed": "NE · 紧急条例与撤离会议",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-19",
+            "observed": "NE · 紧急条例与撤离会议",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-20",
+            "observed": "NE · 大规模现实稳定锚护卫战",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-20",
+            "observed": "NE · 大规模现实稳定锚护卫战",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / event-21",
+            "observed": "NE · 飞鸿踏雪泥",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / event-21",
+            "observed": "NE · 飞鸿踏雪泥",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / route-he",
+            "observed": "HE/TE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / route-he",
+            "observed": "HE/TE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / route-be",
+            "observed": "BE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / route-be",
+            "observed": "BE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "场景角色道具引用 / route-te",
+            "observed": "TE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "分支引用 / route-te",
+            "observed": "TE后续入口（细纲待补）",
+            "passed": true
+        },
+        {
+            "name": "四处主线隐藏值各加 1 且已确认",
+            "observed": "5 三次采样；8 林溪继续工作；14 读取记忆；17 追击劫灾",
+            "passed": true
+        },
+        {
+            "name": "第三日晚高分条件包含恰好 3 点",
+            "observed": "按用户确认：隐藏值 ≥ 3",
+            "passed": true
+        },
+        {
+            "name": "第三日晚保存低分撤离与继续调查选择",
+            "observed": "0 点进入 NE；1—2 点可撤离或进入 BE",
+            "passed": true
+        },
+        {
+            "name": "初始节点可到达 NE 末事件",
+            "observed": "按分支目标遍历，不执行运行时剧情",
+            "passed": true
+        },
+        {
+            "name": "初始节点可到达占位 HE",
+            "observed": "后续流程保持待定",
+            "passed": true
+        },
+        {
+            "name": "初始节点可到达占位 BE",
+            "observed": "后续流程保持待定",
+            "passed": true
+        },
+        {
+            "name": "初始节点可到达占位 TE",
+            "observed": "后续流程保持待定",
+            "passed": true
+        },
+        {
+            "name": "重复补齐保留剧情项目编辑值",
+            "observed": "不重新覆盖节点、文案或规则",
+            "passed": true
+        },
+        {
+            "name": "重复补齐保留角色与道具资料",
+            "observed": "既有引用与元数据保持不变",
+            "passed": true
+        },
+        {
+            "name": "嵌套节点可通过序列化字段编辑",
+            "observed": "仅修改临时副本",
+            "passed": true
+        },
+        {
+            "name": "真实 Undo 恢复剧情字段",
+            "observed": "不撤销用户项目编辑",
+            "passed": true
+        },
+        {
+            "name": "保存并重载后节点文案保留",
+            "observed": "卸载临时 SO 后从磁盘重载",
+            "passed": true
+        },
+        {
+            "name": "保存重载后角色与道具引用保留",
+            "observed": "不复制或替换共享资源",
+            "passed": true
+        },
+        {
+            "name": "旧可玩流程基线包含场景、脚本与构建配置",
+            "observed": "Validation/StoryImport/baseline-hashes.json",
+            "passed": true
+        },
+        {
+            "name": "旧可玩流程未改动 / Day1ResearchStation.unity",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Assets\\Scenes\\Day1ResearchStation.unity",
+            "passed": true
+        },
+        {
+            "name": "旧可玩流程未改动 / Day1FlowController.cs",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Assets\\Day1\\Runtime\\Day1FlowController.cs",
+            "passed": true
+        },
+        {
+            "name": "旧可玩流程未改动 / EditorBuildSettings.asset",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\ProjectSettings\\EditorBuildSettings.asset",
+            "passed": true
+        }
+    ]
+}

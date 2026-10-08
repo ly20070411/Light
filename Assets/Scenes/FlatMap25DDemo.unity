@@ -585,7 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -6.5
     y: 5.575
     width: 11
@@ -595,6 +594,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 5
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &509478931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -644,7 +645,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &602546948
@@ -693,7 +694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -4.875
     y: -3.175
     width: 0.75
@@ -703,6 +703,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 11
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &602546951
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -752,7 +754,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &758285688
@@ -801,7 +803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -1.66
     y: 2.14
     width: 0.12
@@ -811,6 +812,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 6
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &758285691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -860,7 +863,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &790572949
@@ -944,7 +947,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &790863769
@@ -993,7 +996,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: 4.44
     y: -3.26
     width: 0.12
@@ -1003,6 +1005,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 9
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &790863772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1052,7 +1056,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &944635259
@@ -1274,7 +1278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: 1.71
     y: 1.1
     width: 0.08
@@ -1284,6 +1287,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 1
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1010703713
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1333,7 +1338,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1023620374
@@ -1463,7 +1468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -4
     y: 1
     width: 6
@@ -1473,6 +1477,8 @@ MonoBehaviour:
   platform: 1
   stableOrder: 7
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1062485267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1522,7 +1528,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1157327219
@@ -1733,7 +1739,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -6.925
     y: -4
     width: 0.45
@@ -1743,6 +1748,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 10
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1181389788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1792,7 +1799,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1187380409
@@ -1966,7 +1973,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -4.875
     y: -4.175
     width: 0.75
@@ -1976,6 +1982,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 12
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1246042653
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2025,7 +2033,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1305709872
@@ -2069,6 +2077,196 @@ MonoBehaviour:
   spawnWorld: {x: 3, y: -4}
   follow: 0
   ShowCollision: 0
+  body: {fileID: 0}
+  movement: {fileID: 0}
+  actorRenderer: {fileID: 0}
+  shadowRenderer: {fileID: 0}
+  collisionOutlines: []
+  animationPhase: 0
+  overviewZoom: 8.3
+  titleStyle:
+    m_Name: 
+    m_Normal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Hover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Active: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Focused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnNormal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnHover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnActive: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnFocused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  textStyle:
+    m_Name: 
+    m_Normal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Hover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Active: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Focused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnNormal: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnHover: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnActive: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_OnFocused: {m_Background: {fileID: 0}, m_ScaledBackgrounds: []
+, m_TextColor:
+        r: 0
+        g: 0
+        b: 0
+        a: 1
+}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  <PreviewRunning>k__BackingField: 0
 --- !u!114 &1305709874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2208,7 +2406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -4
     y: 1.02
     width: 3.6
@@ -2218,6 +2415,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 8
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1305793968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2267,7 +2466,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1380876687
@@ -2316,7 +2515,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: 5.125
     y: 1.7249999
     width: 0.75
@@ -2326,6 +2524,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 2
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1380876690
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2375,7 +2575,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1399755347
@@ -2702,7 +2902,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1810809039
@@ -2751,7 +2951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: -3.075
     y: 4.125
     width: 0.75
@@ -2761,6 +2960,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 3
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1810809042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2810,7 +3011,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1825466323
@@ -3102,7 +3303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldFootprint:
-    serializedVersion: 2
     x: 5.3
     y: -1.4
     width: 1
@@ -3112,6 +3312,8 @@ MonoBehaviour:
   platform: 0
   stableOrder: 4
   actor: {fileID: 1305709873}
+  spriteRenderer: {fileID: 0}
+  <IsCovering>k__BackingField: 0
 --- !u!212 &1967972302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3161,7 +3363,7 @@ SpriteRenderer:
   m_Size: {x: 29.51111, y: 16.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1987311264

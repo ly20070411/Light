@@ -2,17 +2,17 @@
 
 从 **Tools → 角色编辑器** 管理八名已录入角色。可以按姓名、固定 ID、势力、部门、职能或卦象搜索，编辑人物资料、第一日安排，以及地图形象和对话头像。
 
-每名角色是独立的 `CharacterDefinition` 资产；运行时角色库位于 `Assets/Resources/Characters/CharacterCatalog.asset`。四位未命名队员的姓名留空，暂以职能显示，之后补充姓名不会改变 ID 或资产引用。
+每名角色是独立的 `CharacterDefinition` 资产；运行时角色库位于 `Assets/Resources/Characters/CharacterCatalog.asset`。新版细纲已补充四位队员姓名，原有 ID 与占位资产引用继续使用。
 
 | 固定 ID | 当前显示名 | 队伍 | 卦象与层级 |
 | --- | --- | --- | --- |
 | `huan-yujian` | 桓玉鉴 | 当前勘察队 | 恒·卦主 |
 | `lin-xi` | 林溪 | 当前勘察队 | 比·掌卦 |
-| `hydrologist` | 水文学家 | 当前勘察队 | 屯·天眼 |
-| `geologist` | 地质学家 | 当前勘察队 | 屯·天眼 |
+| `hydrologist` | 鹿见深 | 当前勘察队 | 屯·天眼 |
+| `geologist` | 虞青 | 当前勘察队 | 屯·天眼 |
 | `yang-yinglong` | 杨应隆 | 当前勘察队 | 大过·掌卦 |
-| `containment-researcher` | 收容部安保 | 当前勘察队 | 井·天眼 |
-| `mechanic` | 机械师 | 当前勘察队 | 丰·天眼 |
+| `containment-researcher` | 常月容 | 当前勘察队 | 井·天眼 |
+| `mechanic` | 唐晦 | 当前勘察队 | 丰·天眼 |
 | `tan-yue` | 谭礿 | 前一支科考队 | 萃·卦主 |
 
 ## 地图与对话
@@ -47,4 +47,4 @@ var line = new PropDialogueLine { character = linXi, text = "在此填写剧情�
 
 批处理安装与验证入口：`Emerge.Characters.Editor.CharacterValidation.InstallAndValidate`。
 
-保留的待定项包括四位队员姓名、收容部门名称，以及桓玉鉴“总管／掌鉴”的称谓差异。杨应隆按人物表录入大过卦，原备注的卦名差异记在策划备注中。
+新版将常月容所属收容部门记为深泉司。桓玉鉴“总管／掌鉴”的称谓差异、杨应隆备注中的卦名差异仍保留待核对。新版剧情和第一日任务以 [剧情编辑器资料](../../Docs/Story/StoryEditor.md) 为准；原 Day1 测试场景保持原样。

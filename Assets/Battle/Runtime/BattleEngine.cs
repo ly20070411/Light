@@ -26,8 +26,8 @@ namespace Emerge.Battle
         {
             if (encounter == null || Catalog.Encounter(encounter.id) == null || IsCommitting) throw new ArgumentException("未知遭遇或行动未完成");
             encounter = Catalog.Encounter(encounter.id);
-            var build = attributes ?? SixKinAttributes.DefaultBuild();
-            if (!SixKinAttributes.IsValidBuild(build)) throw new ArgumentException("五亲点数必须非负且合计为 8。");
+            var build = attributes ?? BattleBuildRules.DefaultBuild();
+            if (!SixKinAttributes.IsValidLegacyBuild(build)) throw new ArgumentException("五亲点数必须非负且合计为 8。");
             legacy = null; state = new BattleSession { version = BattleBuildRules.Version, attributes = build.Clone(), balanceVersion = Catalog.rules.balanceVersion, seed = seed, sessionId = Guid.NewGuid().ToString("N"), encounterId = encounter.id, contextId = contextId ?? encounter.id,
                 player = new BattlePlayerState { hp = Catalog.rules.maxHP, mp = Catalog.rules.maxMP } };
             foreach (var slot in encounter.enemies) { int hp = slot.healthOverride > 0 ? slot.healthOverride : slot.enemy.maxHP; state.enemies.Add(new BattleEnemyState { definitionId = slot.enemy.id, hp = hp, maxHP = hp, mp = slot.enemy.maxMP, defense = slot.enemy.defense }); }
@@ -398,7 +398,7 @@ namespace Emerge.Battle
             if (snapshot.session == null) return true;
             if (snapshot.session.version == 1) return BattleLegacyEngine.ValidateSnapshot(snapshot, catalog);
             var s = snapshot.session; var p = s.player; var r = catalog.rules; var d = catalog.Encounter(s.encounterId);
-            if ((s.version != 2 && s.version != 3 && s.version != 4) || (s.version >= 3 && !SixKinAttributes.IsValidBuild(s.attributes)) || s.balanceVersion != r.balanceVersion || string.IsNullOrWhiteSpace(s.sessionId) || string.IsNullOrWhiteSpace(s.contextId) || s.round < 1 || s.actionSerial < 0 || d == null || p == null ||
+            if ((s.version != 2 && s.version != 3 && s.version != 4) || (s.version >= 3 && !SixKinAttributes.IsValidLegacyBuild(s.attributes)) || s.balanceVersion != r.balanceVersion || string.IsNullOrWhiteSpace(s.sessionId) || string.IsNullOrWhiteSpace(s.contextId) || s.round < 1 || s.actionSerial < 0 || d == null || p == null ||
                 !Enum.IsDefined(typeof(BattlePhase), s.phase) || s.phase == BattlePhase.Casting || s.pending != null ||
                 p.hp < 0 || p.hp > r.maxHP || p.mp < 0 || p.mp > r.maxMP || p.shield < 0 || p.shield > r.shieldCap || !Fraction(p.reduction, r.reductionCap) || !Fraction(p.weakness, 1) ||
                 !Fraction(p.exposure, r.exposure) || p.exposureUntilRound < 0 || p.exposureUntilRound > s.round + 1 || (p.exposure > 0 && p.exposureUntilRound < s.round) || ((p.exposure == 0) != (p.exposureUntilRound == 0)) ||

@@ -7,13 +7,15 @@ using Emerge.Checks.Divination;
 namespace Emerge.Checks
 {
     [RequireComponent(typeof(PropGameState)), DisallowMultipleComponent]
-    public sealed class CheckActorState : MonoBehaviour
+    public sealed partial class CheckActorState : MonoBehaviour
     {
         [Serializable] public sealed class Snapshot
         {
             public int version = 1;
             public int attributeRulesVersion;
             public ActorCheckAttributes attributes = new ActorCheckAttributes();
+            public List<PointEquipmentSlot> pointEquipment = new List<PointEquipmentSlot>();
+            public PointProgressionState progression = new PointProgressionState();
             public int contamination;
             public List<CheckSession> sessions = new List<CheckSession>();
         }
@@ -57,7 +59,8 @@ namespace Emerge.Checks
                 return existing;
             }
             if (pipeline == null) pipeline = new CheckPipeline();
-            var prepared = pipeline.Prepare(definition, attributes);
+            var prepared = pipeline.Prepare(definition, attributes, AttributeRulesVersion);
+            if (AttributeRulesVersion >= 3) prepared.pointEquipment = FreezePointEquipment();
             prepared.contextId = key;
             sessions.Add(prepared);
             RecordTrace(prepared, "事件入口", "事件 " + definition.eventId + "；上下文 " + key + "；冻结五亲角色基础值");
@@ -108,14 +111,14 @@ namespace Emerge.Checks
             session.modifiers = (int[])chart.behaviorModifiers.Clone();
             session.castingStatus = "六次铜币投掷完成，初爻至上爻输入已固定";
             session.chartStatus = "本卦 " + chart.benGuaName + " → 变卦 " + chart.bianGuaName;
-            session.modifierStatus = session.attributeRulesVersion >= SixKinAttributes.RulesVersion ? "采用文档评分：五亲同类取最高，缺类为0；认知归入父母" : "采用文档评分：同类六亲取最高，缺类为0；我取世爻得分";
+            session.modifierStatus = session.attributeRulesVersion == 2 ? "采用文档评分：五亲同类取最高，缺类为0；认知归入父母" : "采用文档评分：同类六亲取最高，缺类为0；我取世爻得分，保留正负检定点数";
             session.phase = CheckSessionPhase.Ready;
             RecordTrace(session, "排盘", session.chartStatus + "；" + chart.benGong + "宫 / " + chart.benGongWuxing +
                 "；世爻 " + (chart.shiYaoIndex + 1) + "、应爻 " + (chart.yingYaoIndex + 1));
             foreach (var line in chart.yaos)
                 RecordTrace(session, "爻加值", line.yaowei + " " + line.benGanzhi + " " + line.benWuxing + " " + line.benLiuqin +
                     "：" + string.Join("；", line.wangshuaiDetails) + " → " + line.wangshuaiScore);
-            for (int behavior = 0; behavior < (session.attributeRulesVersion >= SixKinAttributes.RulesVersion ? SixKinAttributes.Count : 6); behavior++)
+            for (int behavior = 0; behavior < (session.attributeRulesVersion == 2 ? 5 : 6); behavior++)
                 RecordTrace(session, "行为加值", CheckEncounter.BehaviorName((CheckBehavior)behavior) + " = " + session.modifiers[behavior]);
             return true;
         }
@@ -172,7 +175,7 @@ namespace Emerge.Checks
             int nextContamination;
             try
             {
-                int finalValue = checked(session.attributes.Get(behavior) + session.modifiers[(int)behavior]);
+                int finalValue = CheckResolver.Points(session, behavior).finalPoints;
                 outcome = finalValue >= option.targetValue ? option.success : option.failure;
                 nextContamination = Math.Max(0, checked(contamination + outcome.contaminationDelta));
                 if (!string.IsNullOrWhiteSpace(outcome.rewardItemKey))
@@ -193,6 +196,7 @@ namespace Emerge.Checks
                 return false;
             }
             session.outcomeApplied = true;
+            if (result.pointCalculation != null) RecordTrace(session, "点数链", result.pointCalculation.Describe());
             contamination = nextContamination;
             foreach (string flag in outcome.grantedFlags ?? Array.Empty<string>()) PropState.SetFlag(flag);
             if (!string.IsNullOrWhiteSpace(outcome.rewardItemKey))
@@ -215,7 +219,7 @@ namespace Emerge.Checks
         }
 
         public Snapshot CaptureSnapshot() => JsonUtility.FromJson<Snapshot>(JsonUtility.ToJson(new Snapshot
-        { attributeRulesVersion = AttributeRulesVersion, attributes = attributes, contamination = contamination, sessions = sessions }));
+        { attributeRulesVersion = AttributeRulesVersion, attributes = attributes, pointEquipment = pointEquipment, progression = progression, contamination = contamination, sessions = sessions }));
 
         public bool TrySetAllocatedAttributes(ActorCheckAttributes allocated)
         {
@@ -234,6 +238,8 @@ namespace Emerge.Checks
             var copy = JsonUtility.FromJson<Snapshot>(JsonUtility.ToJson(saved));
             GetComponent<PlayerInteractor>()?.CancelDialogue();
             attributes = copy.attributes;
+            pointEquipment = copy.pointEquipment ?? new List<PointEquipmentSlot>();
+            progression = copy.progression ?? new PointProgressionState();
             AttributeRulesVersion = copy.attributeRulesVersion;
             contamination = copy.contamination;
             sessions = copy.sessions;
@@ -244,8 +250,11 @@ namespace Emerge.Checks
         public static bool IsValidSnapshot(Snapshot saved)
         {
             if (saved == null || saved.version != 1 || saved.attributeRulesVersion < 0 || saved.attributeRulesVersion > SixKinAttributes.RulesVersion ||
-                (saved.attributeRulesVersion == SixKinAttributes.RulesVersion && !SixKinAttributes.IsValidBuild(saved.attributes)) || saved.attributes == null || saved.contamination < 0 ||
-                saved.sessions == null || saved.sessions.Count > 10000) return false;
+                (saved.attributeRulesVersion == SixKinAttributes.RulesVersion && !SixKinAttributes.IsValidBuild(saved.attributes)) ||
+                (saved.attributeRulesVersion == 2 && !SixKinAttributes.IsValidLegacyBuild(saved.attributes)) ||
+                (saved.attributeRulesVersion >= 3 && !PointCalculation.ValidSlots(saved.pointEquipment)) || saved.attributes == null || saved.contamination < 0 ||
+                saved.sessions == null || saved.sessions.Count > 10000 ||
+                (saved.progression != null && !saved.progression.Valid(saved.pointEquipment ?? new List<PointEquipmentSlot>()))) return false;
             var contexts = new HashSet<string>(StringComparer.Ordinal);
             var ids = new HashSet<string>(StringComparer.Ordinal);
             foreach (var session in saved.sessions)
@@ -255,7 +264,7 @@ namespace Emerge.Checks
                     session.attributeRulesVersion < 0 || session.attributeRulesVersion > SixKinAttributes.RulesVersion ||
                     session.attributes == null || session.modifiers == null || session.modifiers.Length != 6 ||
                     !Enum.IsDefined(typeof(CheckSessionPhase), session.phase)) return false;
-                if (!ValidDivination(session)) return false;
+                if (!ValidDivination(session) || (session.attributeRulesVersion >= 3 && !PointCalculation.ValidFrozenItems(session.pointEquipment))) return false;
                 if (session.logicTrace != null)
                     for (int i = 0; i < session.logicTrace.Count; i++)
                         if (session.logicTrace[i] == null || session.logicTrace[i].sequence != i + 1 || string.IsNullOrWhiteSpace(session.logicTrace[i].stage)) return false;
@@ -272,7 +281,15 @@ namespace Emerge.Checks
                 var result = session.result;
                 if (result == null || !session.outcomeApplied || string.IsNullOrWhiteSpace(result.optionId) ||
                     !Enum.IsDefined(typeof(CheckBehavior), result.behavior)) return false;
-                long sum = (long)session.attributes.Get(result.behavior) + session.modifiers[(int)result.behavior];
+                long sum;
+                PointCalculationResult calculation = null;
+                try
+                {
+                    if (session.attributeRulesVersion >= 3) { calculation = CheckResolver.Points(session, result.behavior); sum = calculation.finalPoints; }
+                    else sum = (long)session.attributes.Get(result.behavior) + session.modifiers[(int)result.behavior];
+                }
+                catch (Exception) { return false; }
+                if (calculation != null && (result.pointCalculation == null || JsonUtility.ToJson(calculation) != JsonUtility.ToJson(result.pointCalculation))) return false;
                 if (sum != result.finalValue || result.baseValue != session.attributes.Get(result.behavior) ||
                     result.modifier != session.modifiers[(int)result.behavior] ||
                     result.margin != (long)result.finalValue - result.targetValue || result.success != (result.finalValue >= result.targetValue)) return false;

@@ -14,6 +14,7 @@ namespace Emerge.GameFlow
         // Optional for older version-2 saves and actors without checks.
         [SerializeReference] public Emerge.Checks.CheckActorState.Snapshot checkState;
         [SerializeReference] public Emerge.Battle.BattleSnapshot battleState;
+        [SerializeReference] public Emerge.Battle.PointBattleSnapshot pointBattleState;
     }
     [Serializable] public sealed class SavedProp
     {

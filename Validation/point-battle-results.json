@@ -1,0 +1,872 @@
+{
+    "completedUtc": "2026-10-08T14:12:23.0172753Z",
+    "unityVersion": "2022.3.12f1",
+    "passed": true,
+    "checks": [
+        {
+            "name": "Installed point battle rules are valid",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Living supplies and all story draft items have growth definitions",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Latest five kin action mapping",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Final combat floor is zero; signed check and negative intermediate survive",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exactly one round roll gives 3 plus Self final AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real divination supplies signed modifiers for all six kin",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Self is automatic and cannot be used as a repeat action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ordinary actions repeat until AP runs out",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "No automatic end turn on AP exhaustion",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Only one leftover AP can carry",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actions are blocked in enemy phase",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Player block expires before own next turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Ending early carries at most one",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Deer doubles positive check points only",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Deer blocks zero and negative checks",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Deer never blocks the fixed 3 AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Anchor and roll never modify enemy base intent or numbers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Lin adds floor(x/2) corrosion and repeated applications stack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Lin limits sibling to twice per round",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Corrosion loses HP directly then decays once at round start",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Lin's action limit resets each round",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Damage applies fractional damage bonus and vulnerability",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Player action statuses clear at enemy-turn end",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Eight enemies all get exactly one action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Dead enemies are skipped",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy corrosion ticks at next round start",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy vulnerability survives into player's next turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Enemy weaken alters player damage in next turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Story copies receive unique persistent affixes on acquisition",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Equip a specific copy and reserve its physical inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Unequip retains instance and exact randomized effect",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Configuration denied outside bedroom/warehouse",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Story completion grants anchor once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Only owned anchor can be equipped",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Exactly one anchor is active",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Tang offers three distinct effects",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reopening Tang does not reroll offers",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "One refresh per story day",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Refit replaces original affix and retains item identity",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Daily limit is two refits",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Progression save keeps affixes, anchors, choices and daily quota",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Same day and rollback cannot reset refit quota",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Advancing story day resets both quotas",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Story item consumption removes its unequipped instance",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Reloading pre-affix saves cannot reroll migrated story items",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Equipped action addon actually executes",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Active battle freezes equipment effects",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Battle JSON round-trip validates all calculated point chains",
+            "observed": "original=True copied=True mismatches=0 chart=True",
+            "passed": true
+        },
+        {
+            "name": "Tampered final chain is rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Negative AP save rejected",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Mid-roll save restores the same coins and AP without rerolling",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Consumable costs two AP, consumes one copy, uses separate point power",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Absent consumable cannot be reused",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Victory records win round count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Victory outcome is idempotent",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Runtime equipped order and passive are ready",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Existing battle entry routes new characters to point combat",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "New combat locks exploration and displays UI",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual save accepts partial coin cast and nonrecursive world return point",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual scene reload restores exact locked coin seed",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Runtime action consumes exactly two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Mid-turn manual save succeeds",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual load resumes AP and does not grant Self AP twice",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-ui-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-ui-preview.png",
+            "passed": true
+        },
+        {
+            "name": "Flee restores full story, inventory and position",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Flee restores exact affix, passive and refit quota",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Retry keeps original seed after flee",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual victory updates story and round achievement",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Victory result can be saved",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Loading victory does not award again",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Closing result returns to exploration",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual battle supports more than the old three-enemy cap",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Shared UI supports the four-enemy queue",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-multiple-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-multiple-preview.png",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-loadout-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-loadout-preview.png",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-anchors-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-anchors-preview.png",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-refit-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-refit-preview.png",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: new-game build and test loadout station",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: original entry launches point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: original uGUI presentation and enemy count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: each original enemy has an explicit point profile",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-original-casting-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-original-casting-preview.png",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: coin button grants AP exactly once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: click selects and highlights the intended enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: action hover shows point chain and adjacent status help",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-original-tooltip-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-original-tooltip-preview.png",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: attack button spends AP and hits selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: multiple actions in the same player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: page button Skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: page button Backpack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: page button Negotiation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: page button Escape",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: intent tooltip matches fixed enemy action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: shared UI mid-turn save",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: reload restores shared UI and exact spent AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: end-turn button enters enemy phase and retains at most one AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: enemy pattern completes and next round grants AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: bag button consumes an item and two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleSingleDemo: escape button returns to the same original scene and restores inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: new-game build and test loadout station",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: original entry launches point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: original uGUI presentation and enemy count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: each original enemy has an explicit point profile",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: coin button grants AP exactly once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: click selects and highlights the intended enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: action hover shows point chain and adjacent status help",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: attack button spends AP and hits selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: multiple actions in the same player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: page button Skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: page button Backpack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: page button Negotiation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: page button Escape",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: intent tooltip matches fixed enemy action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: end-turn button enters enemy phase and retains at most one AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: enemy pattern completes and next round grants AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: bag button consumes an item and two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDualDemo: escape button returns to the same original scene and restores inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: new-game build and test loadout station",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: original entry launches point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: original uGUI presentation and enemy count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: each original enemy has an explicit point profile",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: coin button grants AP exactly once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: click selects and highlights the intended enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: action hover shows point chain and adjacent status help",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: attack button spends AP and hits selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: multiple actions in the same player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: page button Skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: page button Backpack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: page button Negotiation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: page button Escape",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: intent tooltip matches fixed enemy action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-original-triple-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-original-triple-preview.png",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: end-turn button enters enemy phase and retains at most one AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: enemy pattern completes and next round grants AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: bag button consumes an item and two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleTripleDemo: escape button returns to the same original scene and restores inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: new-game build and test loadout station",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: original entry launches point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: original uGUI presentation and enemy count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: each original enemy has an explicit point profile",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: coin button grants AP exactly once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: click selects and highlights the intended enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: action hover shows point chain and adjacent status help",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: attack button spends AP and hits selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: multiple actions in the same player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: page button Skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: page button Backpack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: page button Negotiation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: page button Escape",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: intent tooltip matches fixed enemy action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: end-turn button enters enemy phase and retains at most one AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: enemy pattern completes and next round grants AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: bag button consumes an item and two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleDefenseDemo: escape button returns to the same original scene and restores inventory",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: new-game build and test loadout station",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: original entry launches point rules",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: original uGUI presentation and enemy count",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: each original enemy has an explicit point profile",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: coin button grants AP exactly once",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: click selects and highlights the intended enemy",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: action hover shows point chain and adjacent status help",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: attack button spends AP and hits selected target",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: multiple actions in the same player turn",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: page button Skills",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: page button Backpack",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: page button Negotiation",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: page button Escape",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: intent tooltip matches fixed enemy action",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Actual UI screenshot: point-battle-original-boss-preview.png",
+            "observed": "C:\\Users\\liyao\\Desktop\\unity\\Light-GitHub\\Validation\\point-battle-original-boss-preview.png",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: end-turn button enters enemy phase and retains at most one AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: enemy pattern completes and next round grants AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: bag button consumes an item and two AP",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "BattleBossDemo: escape button returns to the same original scene and restores inventory",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

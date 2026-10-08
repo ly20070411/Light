@@ -1,0 +1,111 @@
+{
+    "passed": true,
+    "completedUtc": "2026-10-07T15:45:45.4660007Z",
+    "checks": [
+        {
+            "name": "Day1 references the new control room art",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Source art keeps its 5:6 aspect and original resolution",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Lower walls use independent fade segments",
+            "observed": "8",
+            "passed": true
+        },
+        {
+            "name": "Walls remain opaque away from the player silhouette",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Fade starts smoothly instead of popping",
+            "observed": "0.770",
+            "passed": true
+        },
+        {
+            "name": "A wall covering the player reaches the configured partial opacity",
+            "observed": "0.280",
+            "passed": true
+        },
+        {
+            "name": "Unrelated wall sections stay opaque while one section fades",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "A faded wall still blocks the real Rigidbody2D",
+            "observed": "(0.34, -7.86, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "The wall smoothly restores full opacity after the player leaves",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Buffer corridor into control room",
+            "observed": "(-2.13, 2.81, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Buffer corridor out of control room",
+            "observed": "(-7.47, 4.48, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Machine room corridor into control room",
+            "observed": "(-4.17, -1.73, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Machine room corridor out of control room",
+            "observed": "(-7.47, -0.53, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Living area corridor into control room",
+            "observed": "(2.00, 4.19, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Living area corridor out of control room",
+            "observed": "(2.00, 7.47, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Chemical laboratory corridor into control room",
+            "observed": "(2.00, -7.87, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Chemical laboratory corridor out of control room",
+            "observed": "(2.00, -9.47, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Storage corridor into control room",
+            "observed": "(8.19, -1.66, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Real Physics2D traversal: Storage corridor out of control room",
+            "observed": "(10.48, 0.45, 0.00)",
+            "passed": true
+        },
+        {
+            "name": "Painted devices replace only their local placeholder visuals",
+            "observed": "",
+            "passed": true
+        },
+        {
+            "name": "All story interaction identities survive the art installation",
+            "observed": "",
+            "passed": true
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee608615dbfc6f45b2cb5ff9e055bf9, type: 3}
+  m_Name: Talisman
+  m_EditorClassIdentifier: 
+  data:
+    key: points.talisman
+    displayName: "\u7B26\u5492"
+    description: "\u6210\u957F +1\uFF1B\u6267\u884C\u5230\u6B64\u9053\u5177\u65F6\uFF0C\u5F53\u524D\u70B9\u6570
+      +2\u3002"
+    modifiers:
+    - comparison: 0
+      left:
+        source: 5
+        constant: 0
+      right:
+        source: 3
+        constant: 0
+      operation: 0
+      operand:
+        source: 0
+        constant: 2
+    actionAddons: []

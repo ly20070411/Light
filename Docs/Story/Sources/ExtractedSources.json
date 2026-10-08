@@ -1,0 +1,2174 @@
+{
+  "docx": {
+    "path": "C:\\Users\\liyao\\Downloads\\细纲.docx",
+    "sha256": "8966e452c9fbd8de581a648ad94df94839788c10790cc513ee4bab62eadf5c74",
+    "blocks": [
+      {
+        "source": "细纲.docx/正文段落1",
+        "kind": "paragraph",
+        "text": "细纲"
+      },
+      {
+        "source": "细纲.docx/正文段落2",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落3",
+        "kind": "paragraph",
+        "text": "修改日志"
+      },
+      {
+        "source": "细纲.docx/正文段落4",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文表格5",
+        "kind": "table",
+        "rows": [
+          [
+            "时间",
+            "修改人",
+            "修改内容",
+            "备注"
+          ],
+          [
+            "10.3.18：04",
+            "侯景阳",
+            "创建人物表，故事背景，第一日1，2，3号事件，科考站布局",
+            "标记为次要的是可以不做，或留到最后做的内容"
+          ],
+          [
+            "10.3.23：49",
+            "侯景阳",
+            "补充人物势力，卦象的相关设定",
+            ""
+          ],
+          [
+            "10.4.3：34",
+            "侯景阳",
+            "修改3号事件演出要求，编写4号事件，补全安保人员杨应隆信息，修改了一个npc的性别（涉及到房间分配问题）",
+            ""
+          ],
+          [
+            "10.4.14：32",
+            "侯景阳",
+            "添加了结局分支判定条件，编写day2的5，6，7号事件",
+            ""
+          ],
+          [
+            "10.4.22：17",
+            "侯景阳",
+            "补全副队长林溪信息，编写day2的8，9号事件，day3的10，11号事件",
+            ""
+          ],
+          [
+            "10.5.15：42",
+            "侯景阳",
+            "考察了边狱巴士第十章剧情，学习了剧情向RPG游戏叙事经验",
+            ""
+          ],
+          [
+            "10.6.4：23",
+            "侯景阳",
+            "补全了（深泉司）收容部安保常月容的信息，编写day3的12到15号事件，并把大量时间用在练笔与对接需求上",
+            "先做NE，然后是HE"
+          ],
+          [
+            "10.6.15：14",
+            "侯景阳",
+            "编写主线Day3的15到18号事件，编写NE线Day4的19到21号事件",
+            "达成结局后，可以设计一个用来摆放代表不同结局物品的界面，以吸引玩家收集全结局（次要）"
+          ],
+          [
+            "10.07.2：18",
+            "侯景阳",
+            "为全部人物命名",
+            ""
+          ]
+        ]
+      },
+      {
+        "source": "细纲.docx/正文段落6",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落7",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落8",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落9",
+        "kind": "paragraph",
+        "text": "人物"
+      },
+      {
+        "source": "细纲.docx/正文段落10",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文表格11",
+        "kind": "table",
+        "rows": [
+          [
+            "人物",
+            "性别",
+            "定位",
+            "势力",
+            "身份",
+            "职能",
+            "卦象",
+            "备注"
+          ],
+          [
+            "桓玉鉴",
+            "男",
+            "玩家操控角色",
+            "罗天教",
+            "悬鉴司总管",
+            "队长",
+            "恒卦卦主",
+            "悬鉴司为逆模因部，负责一切认知，模因有关的工作，职能包括隐藏罗天教的存在，修改记忆，对抗信息类劫灾恒象征永恒，无类象，表现持恒的概念就行锚定，创建物质或概念上的“锚点”以维持事物的本质"
+          ],
+          [
+            "林溪",
+            "女",
+            "次要人物",
+            "太衍道",
+            "",
+            "副队长，随队卦者",
+            "比卦掌卦",
+            "太衍道对应道教，可以以道袍为基础，按照科考环境进行改造比卦象征水行地上，亲密无间，权能与“连接”有关能力为“整流”，串联高度复杂的信息流"
+          ],
+          [
+            "鹿见深",
+            "男",
+            "Npc",
+            "蓬莱馆",
+            "青龙馆教授",
+            "科研人员水文学家",
+            "屯卦天眼",
+            "青龙馆为蓬莱馆下属，研究生物，生态与医学的学院，掌握权能“屯”卦具有生命操纵的权能"
+          ],
+          [
+            "虞青",
+            "男",
+            "Npc",
+            "蓬莱馆",
+            "青龙馆教授",
+            "科研人员地质学家",
+            "屯卦天眼",
+            "屯卦为困难，与朝气蓬勃之意，象征草木破土而出"
+          ],
+          [
+            "杨应隆",
+            "男",
+            "次要人物",
+            "罗天教",
+            "青霆司华杨（特勤队队长职位）",
+            "安保人员",
+            "大过卦掌卦",
+            "青霆司为罗天教的执行部，负责直接执行劫灾的收容纯战士，按战斗人员设计比卦象征过度，物极必反，以高大的树木或房梁为象征树木过盛而衰，故权能与“凋亡”有关能力为“过衍化”，使事物快速衍化至衰亡状态"
+          ],
+          [
+            "常月容",
+            "女",
+            "Npc",
+            "罗天教",
+            "深泉司",
+            "安保人员孑遗研究员",
+            "井卦天眼",
+            "罗天教的收容部，深泉司，负责劫灾的收容管理与研究使用高科技装备战斗，偏文职井卦含义为稳定与可持续发展，以水井为象征，权能与“收容，保存有关”"
+          ],
+          [
+            "唐晦",
+            "男",
+            "Npc",
+            "蓬莱馆",
+            "白虎馆教授",
+            "机械师",
+            "丰卦天眼",
+            "白虎馆为蓬莱馆下属，研究工学的学院丰卦象征宏大威仪，以太阳，雷电为象征权能与“能量”有关"
+          ],
+          [
+            "谭礿",
+            "女",
+            "主要人物",
+            "无",
+            "流浪作家",
+            "前一支勘察队队长",
+            "萃卦卦主",
+            "萃为聚集，萃取之意，以聚集的水与祭祀为象征无势力所属，设计符合身份即可权能为收集，将物质，概念容纳入自己的精神，也可将其释放或使用"
+          ]
+        ]
+      },
+      {
+        "source": "细纲.docx/正文段落12",
+        "kind": "paragraph",
+        "text": "注：次要人物可以作为npc母体设计，但是要与npc有区分，参考世界观设定人物所属势力设计一套基础服饰，如需要更详细的信息联系策划"
+      },
+      {
+        "source": "细纲.docx/正文段落13",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落14",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落15",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落16",
+        "kind": "paragraph",
+        "text": "背景设定"
+      },
+      {
+        "source": "细纲.docx/正文段落17",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落18",
+        "kind": "paragraph",
+        "text": "蚀海"
+      },
+      {
+        "source": "细纲.docx/正文段落19",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落20",
+        "kind": "paragraph",
+        "text": "太衍陆数百海里外，存在着延绵数四万里，由特殊物质筑成，将内海合围起来的堤坝，被称为“绥海堰”"
+      },
+      {
+        "source": "细纲.docx/正文段落21",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落22",
+        "kind": "paragraph",
+        "text": "传说六神创世之时，虚神玄武因混沌而陨落，于是灵神勾陈赐先民卦象，令其玄武的残躯泄露出的虚无化为海水，再筑起长堤，阻挡玄武残躯的侵蚀。"
+      },
+      {
+        "source": "细纲.docx/正文段落23",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落24",
+        "kind": "paragraph",
+        "text": "经当代学者的研究，物体长期处于蚀海水的氛围中会被逐渐“抹消”——不仅是物质上的销蚀，还往往伴随着认知意义上的消除。受到蚀海水影响的物质会难以被感官与仪器观测，甚至有研究员表示“不知道自己在进行什么研究”。对于受试的丁级人员会出现意志消沉，记忆缺失，认知损害等现象。"
+      },
+      {
+        "source": "细纲.docx/正文段落25",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落26",
+        "kind": "paragraph",
+        "text": "这种现象最终被归结为“虚无的纯粹概念趋同”，简称“虚无效应”进一步印证了“蚀海由虚神产生”的观点"
+      },
+      {
+        "source": "细纲.docx/正文段落27",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落28",
+        "kind": "paragraph",
+        "text": "绥海堰"
+      },
+      {
+        "source": "细纲.docx/正文段落29",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落30",
+        "kind": "paragraph",
+        "text": "构成绥海堰的特殊物质被称为“息壤”，息壤具有自我修复与定义的能力，具有强大现实稳定功能"
+      },
+      {
+        "source": "细纲.docx/正文段落31",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落32",
+        "kind": "paragraph",
+        "text": "息壤实质为寄宿了人类意识的特殊物质。蚀海蔓延时，大量人类在卦主的引导下把自己的精神融入土壤，建立了绥海堰。息壤中的人类意识通过观测与定义现实的方式对抗蚀海的虚无效应"
+      },
+      {
+        "source": "细纲.docx/正文段落33",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落34",
+        "kind": "paragraph",
+        "text": "模因"
+      },
+      {
+        "source": "细纲.docx/正文段落35",
+        "kind": "paragraph",
+        "text": "模因（SCP基金会系列术语）_百度百科"
+      },
+      {
+        "source": "细纲.docx/正文段落36",
+        "kind": "paragraph",
+        "text": "逆模因_百度百科"
+      },
+      {
+        "source": "细纲.docx/正文段落37",
+        "kind": "paragraph",
+        "text": "故事沿用scp对模因，逆模因的设定，将boss设定为可以抹消人类存在的逆模因威胁，并遵循“能杀死理念的只有更好的理念”的原则"
+      },
+      {
+        "source": "细纲.docx/正文段落38",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落39",
+        "kind": "paragraph",
+        "text": "故事背景"
+      },
+      {
+        "source": "细纲.docx/正文段落40",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落41",
+        "kind": "paragraph",
+        "text": "为了检测绥海堰的状态，蓬莱馆每隔一定时间会派遣科考船，由卦主领导，对绥海堰进行为期数年的勘察作业，然而由萃卦卦主谭礿领导的，科考队在绥海堰□□段失去了联系。于是蓬莱馆巨子委托罗天教悬鉴司掌鉴，恒卦卦主桓玉鉴组织特别救援行动，前往绥海堰□□段搜寻谭礿与其船队的踪迹"
+      },
+      {
+        "source": "细纲.docx/正文段落42",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落43",
+        "kind": "paragraph",
+        "text": "谭礿带领的科考队在绥海堰遭遇逆模因劫灾。为保护队员，谭礿启用科考站内储备的模因掩体，暂时抹消整支勘察队的存在，并在这一过程中发现了绥海堰的真相。桓玉鉴的队伍到来时，通过隐秘方式引导桓玉鉴的队伍进行反击"
+      },
+      {
+        "source": "细纲.docx/正文段落44",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落45",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落46",
+        "kind": "paragraph",
+        "text": "结局设定："
+      },
+      {
+        "source": "细纲.docx/正文段落47",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落48",
+        "kind": "paragraph",
+        "text": "结局分为：HE，NE，BE，TE"
+      },
+      {
+        "source": "细纲.docx/正文段落49",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落50",
+        "kind": "paragraph",
+        "text": "由于前一支科考队处于模因掩体，主角队伍在登陆时被屏蔽了“本次任务以搜救为目标”的认知，需要玩家发现场景中的不协调之处，积累隐藏值，确保在第三日晚上达到一定的隐藏值，才能触发HE"
+      },
+      {
+        "source": "细纲.docx/正文段落51",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落52",
+        "kind": "paragraph",
+        "text": "包括任务隐藏值与额外隐藏值："
+      },
+      {
+        "source": "细纲.docx/正文段落53",
+        "kind": "paragraph",
+        "text": "任务隐藏值：在主线的引导下，达成特定条件获得隐藏值，获得隐藏值的事件有四个，隐藏值大于等于三进入HE/TE线，小于三进入NE/BE线"
+      },
+      {
+        "source": "细纲.docx/正文段落54",
+        "kind": "paragraph",
+        "text": "额外隐藏值：在场景中完成成功率极低的检定或较难的解密，获得额外线索积累隐藏值（次要）"
+      },
+      {
+        "source": "细纲.docx/正文段落55",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落56",
+        "kind": "paragraph",
+        "text": "Day1"
+      },
+      {
+        "source": "细纲.docx/正文段落57",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落58",
+        "kind": "paragraph",
+        "text": "Day1开放区域：科考站内部，科考站附近"
+      },
+      {
+        "source": "细纲.docx/正文段落59",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落60",
+        "kind": "paragraph",
+        "text": "1.勘察队入驻科考站，进行入站认知测试"
+      },
+      {
+        "source": "细纲.docx/正文段落61",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落62",
+        "kind": "paragraph",
+        "text": "场景：5.认知缓冲间（缓冲区），外界与科考站内部的连接区域"
+      },
+      {
+        "source": "细纲.docx/正文段落63",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落64",
+        "kind": "paragraph",
+        "text": "道具：5.身份认证卡"
+      },
+      {
+        "source": "细纲.docx/正文段落65",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落66",
+        "kind": "paragraph",
+        "text": "事件：开始游戏时玩家自动进入一个问答测试，玩家选择完毕会得到身份认证卡"
+      },
+      {
+        "source": "细纲.docx/正文段落67",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落68",
+        "kind": "paragraph",
+        "text": "说明：缓冲间是进入实验室前过用于消毒，更衣的，空间极小的房间。因为蚀海环境下有认知危害，需要认知缓冲间检测，校准精神状态，同时具有身份登记功能"
+      },
+      {
+        "source": "细纲.docx/正文段落69",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落70",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落71",
+        "kind": "paragraph",
+        "text": "2.全员进入科考站总控室，桓玉鉴开始宣读站内注意事项，宣读完毕后，全员解散进行入驻准备工作，主角前往监测台查阅环境信息"
+      },
+      {
+        "source": "细纲.docx/正文段落72",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落73",
+        "kind": "paragraph",
+        "text": "场景：4.总控室"
+      },
+      {
+        "source": "细纲.docx/正文段落74",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落75",
+        "kind": "paragraph",
+        "text": "道具：7.环境数据表"
+      },
+      {
+        "source": "细纲.docx/正文段落76",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落77",
+        "kind": "paragraph",
+        "text": "事件："
+      },
+      {
+        "source": "细纲.docx/正文段落78",
+        "kind": "paragraph",
+        "text": "·玩家查阅终端上的注意事项，并宣读给所有人"
+      },
+      {
+        "source": "细纲.docx/正文段落79",
+        "kind": "paragraph",
+        "text": "·玩家前往环境监测台收集环境数据，将数据档案作为物品收入背包"
+      },
+      {
+        "source": "细纲.docx/正文段落80",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落81",
+        "kind": "paragraph",
+        "text": "说明：以规则怪谈的方式呈现"
+      },
+      {
+        "source": "细纲.docx/正文段落82",
+        "kind": "paragraph",
+        "text": "包括："
+      },
+      {
+        "source": "细纲.docx/正文段落83",
+        "kind": "paragraph",
+        "text": "科考站内部绝对安全，不会出现任何幻象或认知污染"
+      },
+      {
+        "source": "细纲.docx/正文段落84",
+        "kind": "paragraph",
+        "text": "不得在蚀海近岸逗留超过n时辰"
+      },
+      {
+        "source": "细纲.docx/正文段落85",
+        "kind": "paragraph",
+        "text": "离站时，补满模因实验室储存的工业息壤"
+      },
+      {
+        "source": "细纲.docx/正文段落86",
+        "kind": "paragraph",
+        "text": "队友向你提及不存在的人时，相信他"
+      },
+      {
+        "source": "细纲.docx/正文段落87",
+        "kind": "paragraph",
+        "text": "科考站内观测到残影是正常现象，无视它"
+      },
+      {
+        "source": "细纲.docx/正文段落88",
+        "kind": "paragraph",
+        "text": "向死方生"
+      },
+      {
+        "source": "细纲.docx/正文段落89",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落90",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落91",
+        "kind": "paragraph",
+        "text": "3.查阅完成后，接收到安保人员取食堂领取生活物资的消息，前往食堂后看到了一个神秘的影子（谭礿）但因为某种原因未产生怀疑"
+      },
+      {
+        "source": "细纲.docx/正文段落92",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落93",
+        "kind": "paragraph",
+        "text": "场景：3.生活区走廊"
+      },
+      {
+        "source": "细纲.docx/正文段落94",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落95",
+        "kind": "paragraph",
+        "text": "道具：6.生活物资"
+      },
+      {
+        "source": "细纲.docx/正文段落96",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落97",
+        "kind": "paragraph",
+        "text": "事件："
+      },
+      {
+        "source": "细纲.docx/正文段落98",
+        "kind": "paragraph",
+        "text": "·与餐桌上物资交互，交互完毕后播放神秘影子经过的动画"
+      },
+      {
+        "source": "细纲.docx/正文段落99",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落100",
+        "kind": "paragraph",
+        "text": "说明：影子经过时，可以加点阴间特效，比如刺耳的噪声，雪花屏什么的，主要达到让玩家一激灵的效果"
+      },
+      {
+        "source": "细纲.docx/正文段落101",
+        "kind": "paragraph",
+        "text": "个人设想是让雪花屏填充人物剪影"
+      },
+      {
+        "source": "细纲.docx/正文段落102",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落103",
+        "kind": "paragraph",
+        "text": "注：不是每个房间都要绘制，细纲写了什么画什么即可。并且示意图中房间大小不代表实际大小，可以在实际绘制时按需缩放"
+      },
+      {
+        "source": "细纲.docx/正文段落104",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落105",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落106",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落107",
+        "kind": "paragraph",
+        "text": "玩家可进行自由探索，与其余六个科考队员交谈"
+      },
+      {
+        "source": "细纲.docx/正文段落108",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文表格109",
+        "kind": "table",
+        "rows": [
+          [
+            "角色",
+            "场景",
+            "道具",
+            "事件",
+            "领取任务",
+            "说明"
+          ],
+          [
+            "林溪",
+            "6机房",
+            "无",
+            "检查站内设备情况",
+            "检查总控室状况，设置三个交互点，全部检查后提交任务",
+            "采集任务，包含检定，可解锁终端功能"
+          ],
+          [
+            "鹿见深",
+            "8科研区走廊9化学分析室",
+            "无",
+            "分析水质",
+            "化学分析室接取任务，采集蚀海海水样本",
+            "前往蚀海侧会被杨应隆劝阻，任务顺延至第二天"
+          ],
+          [
+            "虞青",
+            "10科考站室外（野外草丛中）",
+            "4连理枝植株11连理枝标本",
+            "采集植物样本",
+            "采集地图中分布的4连理枝植株，提交后获得增益道具11连理枝标本",
+            "采集任务"
+          ],
+          [
+            "杨应隆",
+            "10科考站室外（地图蚀海方向边界）",
+            "16铜钱剑",
+            "巡逻",
+            "交谈后获得16铜钱剑，然后去清除周围威胁",
+            "战斗任务，用于熟悉六爻系统"
+          ],
+          [
+            "常月容",
+            "10科考站室外（内海侧码头，旁边停靠科考船）",
+            "12食材箱13工具箱14科研仪器箱15松茸干",
+            "搬运物资",
+            "前往码头拿起装备箱，12送至3生活区走廊，13送至仓储区，14送至8科研区走廊完成后获得15松茸干",
+            "搬运任务，熟悉地图"
+          ],
+          [
+            "唐晦",
+            "仓储区",
+            "无",
+            "检修码头供电系统",
+            "修复装备，完成后可找唐晦订制装备",
+            "维修任务，用于熟悉六爻系统"
+          ]
+        ]
+      },
+      {
+        "source": "细纲.docx/正文段落110",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落111",
+        "kind": "paragraph",
+        "text": "注：当前任务安排以“战斗系统可以应用于维修，研究等行为”"
+      },
+      {
+        "source": "细纲.docx/正文段落112",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落113",
+        "kind": "paragraph",
+        "text": "任务完成后，第一日流程结束"
+      },
+      {
+        "source": "细纲.docx/正文段落114",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落115",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落116",
+        "kind": "paragraph",
+        "text": "Day2"
+      },
+      {
+        "source": "细纲.docx/正文段落117",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落118",
+        "kind": "paragraph",
+        "text": "Day2开放区域：蚀海海岸"
+      },
+      {
+        "source": "细纲.docx/正文段落119",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落120",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落121",
+        "kind": "paragraph",
+        "text": "杨应隆初步清理了周边威胁，玩家与收容部安保，鹿见深前往蚀海采样，发现该区段绥海堰修复功能正在消退"
+      },
+      {
+        "source": "细纲.docx/正文段落122",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落123",
+        "kind": "paragraph",
+        "text": "场景：蚀海海岸，堰体受到严重侵蚀"
+      },
+      {
+        "source": "细纲.docx/正文段落124",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落125",
+        "kind": "paragraph",
+        "text": "事件："
+      },
+      {
+        "source": "细纲.docx/正文段落126",
+        "kind": "paragraph",
+        "text": "·玩家保护鹿见深采样，经历一场战斗"
+      },
+      {
+        "source": "细纲.docx/正文段落127",
+        "kind": "paragraph",
+        "text": "·鹿见深第一次采样后建议滞留一段时间进行二次采样，同意则进行第二场战斗，拒绝则返回"
+      },
+      {
+        "source": "细纲.docx/正文段落128",
+        "kind": "paragraph",
+        "text": "·第二次采样完成后，鹿见深建议进行第三次采样，同意则进行第三场战斗，拒绝则返回，完成采样后鹿见深会因精神损伤昏迷，主角对其使用能力，保护其不在受到认知损伤并护送其返回科考站"
+      },
+      {
+        "source": "细纲.docx/正文段落129",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落130",
+        "kind": "paragraph",
+        "text": "说明：完成三次采样后获得一点剧情隐藏值"
+      },
+      {
+        "source": "细纲.docx/正文段落131",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落132",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落133",
+        "kind": "paragraph",
+        "text": "将样本拿回化学分析室分析室，在走廊中等候等待鹿见深进行分析，谭礿的影子第二次闪过"
+      },
+      {
+        "source": "细纲.docx/正文段落134",
+        "kind": "paragraph",
+        "text": "若进行三次采样，鹿见深会因为精神损伤过大而被送往医务室，由林溪代为分析"
+      },
+      {
+        "source": "细纲.docx/正文段落135",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落136",
+        "kind": "paragraph",
+        "text": "场景：科研区走廊"
+      },
+      {
+        "source": "细纲.docx/正文段落137",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落138",
+        "kind": "paragraph",
+        "text": "事件："
+      },
+      {
+        "source": "细纲.docx/正文段落139",
+        "kind": "paragraph",
+        "text": "·将样品交给鹿见深/林溪，交互完毕后在门口等待，播放神秘影子经过的动画"
+      },
+      {
+        "source": "细纲.docx/正文段落140",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落141",
+        "kind": "paragraph",
+        "text": "说明：无"
+      },
+      {
+        "source": "细纲.docx/正文段落142",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落143",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落144",
+        "kind": "paragraph",
+        "text": "前往总控室，与林溪分析数据"
+      },
+      {
+        "source": "细纲.docx/正文段落145",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落146",
+        "kind": "paragraph",
+        "text": "场景：总控室"
+      },
+      {
+        "source": "细纲.docx/正文段落147",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落148",
+        "kind": "paragraph",
+        "text": "事件：在控制台上进行检定，成功得到额外增益道具"
+      },
+      {
+        "source": "细纲.docx/正文段落149",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落150",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落151",
+        "kind": "paragraph",
+        "text": "入夜，林溪联系主角，使其来到来到总控室，请求对她使用锚定稳定认知。主角检测了她的精神状态，指出这两天一直在透支能力。林溪表明科考站数据库遭到了大规模篡改，她一直在用整流能力修复"
+      },
+      {
+        "source": "细纲.docx/正文段落152",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落153",
+        "kind": "paragraph",
+        "text": "场景：总控室"
+      },
+      {
+        "source": "细纲.docx/正文段落154",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落155",
+        "kind": "paragraph",
+        "text": "事件："
+      },
+      {
+        "source": "细纲.docx/正文段落156",
+        "kind": "paragraph",
+        "text": "玩家对其进行锚定后，获得其谢礼，并选择是否让她继续工作"
+      },
+      {
+        "source": "细纲.docx/正文段落157",
+        "kind": "paragraph",
+        "text": "选择令其停止，林溪返回休息室，获得额外增益道具"
+      },
+      {
+        "source": "细纲.docx/正文段落158",
+        "kind": "paragraph",
+        "text": "选择令其继续，则得到数据系统的错误报告，获得一点剧情隐藏值"
+      },
+      {
+        "source": "细纲.docx/正文段落159",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落160",
+        "kind": "paragraph",
+        "text": "说明：无"
+      },
+      {
+        "source": "细纲.docx/正文段落161",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落162",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落163",
+        "kind": "paragraph",
+        "text": "主角正要返回房间时，在总控室看到了谭礿的影子，追上去后发现影子已经消失"
+      },
+      {
+        "source": "细纲.docx/正文段落164",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落165",
+        "kind": "paragraph",
+        "text": "场景：总控室"
+      },
+      {
+        "source": "细纲.docx/正文段落166",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落167",
+        "kind": "paragraph",
+        "text": "事件：播放动画：影子出现，主角靠近，影子消失"
+      },
+      {
+        "source": "细纲.docx/正文段落168",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落169",
+        "kind": "paragraph",
+        "text": "说明：无"
+      },
+      {
+        "source": "细纲.docx/正文段落170",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落171",
+        "kind": "paragraph",
+        "text": "Day3"
+      },
+      {
+        "source": "细纲.docx/正文段落172",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落173",
+        "kind": "paragraph",
+        "text": "10.早晨，常月容发来消息，称在内海畔远离科考站处发现一艘搁浅的  科考船，主角，唐晦，虞青前往调查"
+      },
+      {
+        "source": "细纲.docx/正文段落174",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落175",
+        "kind": "paragraph",
+        "text": "场景：搁浅科考船的海岸"
+      },
+      {
+        "source": "细纲.docx/正文段落176",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落177",
+        "kind": "paragraph",
+        "text": "事件：玩家自科考站出门，沿海岸向北方走一定距离，切换至搁浅科考船的海岸"
+      },
+      {
+        "source": "细纲.docx/正文段落178",
+        "kind": "paragraph",
+        "text": "地图（与科考站附近不属于同一张地图）"
+      },
+      {
+        "source": "细纲.docx/正文段落179",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落180",
+        "kind": "paragraph",
+        "text": "说明：无"
+      },
+      {
+        "source": "细纲.docx/正文段落181",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落182",
+        "kind": "paragraph",
+        "text": "主角带着常月容，唐晦，虞青进入船舱时，主角的天眼察觉到船舱内的认知危害，为众人创建了锚"
+      },
+      {
+        "source": "细纲.docx/正文段落183",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落184",
+        "kind": "paragraph",
+        "text": "场景：搁浅科考船的海岸"
+      },
+      {
+        "source": "细纲.docx/正文段落185",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落186",
+        "kind": "paragraph",
+        "text": "事件：主角进入船舱时停步并拦住众人，解释后为众人创建了锚，并且过一个灵感（成功率极低）未成功判断为蚀海水泄露，成功则意识到与逆模因有关"
+      },
+      {
+        "source": "细纲.docx/正文段落187",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落188",
+        "kind": "paragraph",
+        "text": "说明：设计主角使用权能锚定认知的动画（通俗来说是锁san值）（次要）"
+      },
+      {
+        "source": "细纲.docx/正文段落189",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落190",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落191",
+        "kind": "paragraph",
+        "text": "安保用绳索使众人登上甲板，玩家可进入船舱自由探索"
+      },
+      {
+        "source": "细纲.docx/正文段落192",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落193",
+        "kind": "paragraph",
+        "text": "场景：废弃科考船甲板，船舱"
+      },
+      {
+        "source": "细纲.docx/正文段落194",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落195",
+        "kind": "paragraph",
+        "text": "事件：四人一起行动，其中包含很多怪，密室与道具，爽打爽吃爽解密"
+      },
+      {
+        "source": "细纲.docx/正文段落196",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落197",
+        "kind": "paragraph",
+        "text": "说明：废弃科考船属于前一支勘测队，存在大量现实缺失，可以使用大量雪花屏或马赛克蒙版填充场景，同时降低美术成本（降啥啊，美术资源极大丰富了都）"
+      },
+      {
+        "source": "细纲.docx/正文段落198",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落199",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落200",
+        "kind": "paragraph",
+        "text": "玩家在场景中搜索船长室钥匙，进入船长室，修复数据损坏的航行日志，这时某个信息被扭曲的生物从背后冲进来，向主角袭来，虞青替主角挡下了攻击"
+      },
+      {
+        "source": "细纲.docx/正文段落201",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落202",
+        "kind": "paragraph",
+        "text": "场景：船长室"
+      },
+      {
+        "source": "细纲.docx/正文段落203",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落204",
+        "kind": "paragraph",
+        "text": "事件：主角，唐晦，常月容，虞青在船长室分头搜集数据，主角背对入口，"
+      },
+      {
+        "source": "细纲.docx/正文段落205",
+        "kind": "paragraph",
+        "text": "唐晦与常月容在隔间，扭曲生物自门口冲入，靠近门口的虞青为主角挡下攻击，进入精英怪战斗"
+      },
+      {
+        "source": "细纲.docx/正文段落206",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落207",
+        "kind": "paragraph",
+        "text": "说明：阶段性战斗"
+      },
+      {
+        "source": "细纲.docx/正文段落208",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落209",
+        "kind": "paragraph",
+        "text": "击倒扭曲生物后，生物恢复微弱意识，表明自己是这艘船的船员（实际是前一支科考队留守科考船的队员），存在被扭曲变成怪物，请求主角了结他"
+      },
+      {
+        "source": "细纲.docx/正文段落210",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落211",
+        "kind": "paragraph",
+        "text": "场景：船长室"
+      },
+      {
+        "source": "细纲.docx/正文段落212",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落213",
+        "kind": "paragraph",
+        "text": "事件：主角可以选择在他脑中种下信息锚收集其脑中记忆，获得储存记忆的信息锚，但他会痛苦死去，“不必自责，卦主阁下，如果存在扭曲的是我，也会希望您做出这样的抉择”"
+      },
+      {
+        "source": "细纲.docx/正文段落214",
+        "kind": "paragraph",
+        "text": "或者决定让他解脱，获得额外道具"
+      },
+      {
+        "source": "细纲.docx/正文段落215",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落216",
+        "kind": "paragraph",
+        "text": "四人回归，接到杨应隆报告，因为蚀海侵蚀加剧，绥海堰游荡劫灾有向内海畔迁徙的趋势，准备应对怪海冲击"
+      },
+      {
+        "source": "细纲.docx/正文段落217",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落218",
+        "kind": "paragraph",
+        "text": "场景：主控室，仓储区"
+      },
+      {
+        "source": "细纲.docx/正文段落219",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落220",
+        "kind": "paragraph",
+        "text": "事件：主控室与杨应隆交谈，得知劫灾侵袭，前往仓储区找唐晦领取装备（六选二）并为杨应隆钉锚"
+      },
+      {
+        "source": "细纲.docx/正文段落221",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落222",
+        "kind": "paragraph",
+        "text": "说明：大战之前，必有补给"
+      },
+      {
+        "source": "细纲.docx/正文段落223",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落224",
+        "kind": "paragraph",
+        "text": "入夜，劫灾来袭，主角与杨应隆，常月容前往科考站室外迎战劫灾"
+      },
+      {
+        "source": "细纲.docx/正文段落225",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落226",
+        "kind": "paragraph",
+        "text": "事件：经历战斗"
+      },
+      {
+        "source": "细纲.docx/正文段落227",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落228",
+        "kind": "paragraph",
+        "text": "说明：依旧蘸豆爽，可以做成防御战（怪物无限，坚持N个回合胜利）"
+      },
+      {
+        "source": "细纲.docx/正文段落229",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落230",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落231",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落232",
+        "kind": "paragraph",
+        "text": "怪海退去，杨应隆发现有劫灾携带着疑似制式装备的物品，请示桓玉鉴是否追击，"
+      },
+      {
+        "source": "细纲.docx/正文段落233",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落234",
+        "kind": "paragraph",
+        "text": "场景：科考站周围"
+      },
+      {
+        "source": "细纲.docx/正文段落235",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落236",
+        "kind": "paragraph",
+        "text": "事件：选择追击，进入高难战斗，获取道具“罗天教制式现实稳定锚”，剧情隐藏值加一"
+      },
+      {
+        "source": "细纲.docx/正文段落237",
+        "kind": "paragraph",
+        "text": "不进行追击，则打扫战场，获得增益道具"
+      },
+      {
+        "source": "细纲.docx/正文段落238",
+        "kind": "paragraph",
+        "text": "选择结束后回站休息"
+      },
+      {
+        "source": "细纲.docx/正文段落239",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落240",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落241",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落242",
+        "kind": "paragraph",
+        "text": "入夜，主角躺在床上整理三天内得到的线索"
+      },
+      {
+        "source": "细纲.docx/正文段落243",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落244",
+        "kind": "paragraph",
+        "text": "场景：科考站单人休息室"
+      },
+      {
+        "source": "细纲.docx/正文段落245",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落246",
+        "kind": "paragraph",
+        "text": "事件：进行剧情走向判定"
+      },
+      {
+        "source": "细纲.docx/正文段落247",
+        "kind": "paragraph",
+        "text": "若线索足够/剧情隐藏值大于3，则进入HE线，前往模因实验室揭开真相"
+      },
+      {
+        "source": "细纲.docx/正文段落248",
+        "kind": "paragraph",
+        "text": "若剧情隐藏值为0，则进入NE线，选择撤离"
+      },
+      {
+        "source": "细纲.docx/正文段落249",
+        "kind": "paragraph",
+        "text": "为1或2，则玩家可选择进入NE线（撤离）还是BE线（继续调查）"
+      },
+      {
+        "source": "细纲.docx/正文段落250",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落251",
+        "kind": "paragraph",
+        "text": "说明：剧情分歧点"
+      },
+      {
+        "source": "细纲.docx/正文段落252",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落253",
+        "kind": "paragraph",
+        "text": "NE线：飞鸿踏雪泥"
+      },
+      {
+        "source": "细纲.docx/正文段落254",
+        "kind": "paragraph",
+        "text": "Day4"
+      },
+      {
+        "source": "细纲.docx/正文段落255",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落256",
+        "kind": "paragraph",
+        "text": "凌晨，主角召集队员开会，与杨应隆，林溪共同认定为当下情况适用《蚀海预防管理紧急条例》，可被认定为国家紧急状态，决定立即撤离，并回去组建三位卦主以上的国家紧急状态特别行动组"
+      },
+      {
+        "source": "细纲.docx/正文段落257",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落258",
+        "kind": "paragraph",
+        "text": "场景：生活区餐厅位置"
+      },
+      {
+        "source": "细纲.docx/正文段落259",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落260",
+        "kind": "paragraph",
+        "text": "事件：全员坐在长椅上开会表决"
+      },
+      {
+        "source": "细纲.docx/正文段落261",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落262",
+        "kind": "paragraph",
+        "text": "说明：无"
+      },
+      {
+        "source": "细纲.docx/正文段落263",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落264",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落265",
+        "kind": "paragraph",
+        "text": "撤离前，桓玉鉴决定前往蚀海畔，创建大规模现实稳定锚延缓蚀海侵蚀，并请求林溪，杨应隆随同前往护卫"
+      },
+      {
+        "source": "细纲.docx/正文段落266",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落267",
+        "kind": "paragraph",
+        "text": "场景：蚀海海岸"
+      },
+      {
+        "source": "细纲.docx/正文段落268",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落269",
+        "kind": "paragraph",
+        "text": "事件：主角开始创建大规模现实稳定锚，杨应隆，林溪进行护卫战，直到主角完成建立，陷入虚弱状态，经过一段对话后画面直接切换至21"
+      },
+      {
+        "source": "细纲.docx/正文段落270",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落271",
+        "kind": "paragraph",
+        "text": "说明：杨应隆为主控，有固定面板，演出性质的防御战（怪物无限，坚持N个回合胜利）"
+      },
+      {
+        "source": "细纲.docx/正文段落272",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落273",
+        "kind": "paragraph",
+        "text": "全员登船撤离，离开前，主角回头看见神秘影子（谭礿）化作粒子消散"
+      },
+      {
+        "source": "细纲.docx/正文段落274",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落275",
+        "kind": "paragraph",
+        "text": "场景：科考站附近（码头上）"
+      },
+      {
+        "source": "细纲.docx/正文段落276",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落277",
+        "kind": "paragraph",
+        "text": "事件：播放动画，队员陆续通过舷梯登上科考船，主角最后一个上船，来到码头口时，主角回头看到了谭礿的影子化作粒子消散"
+      },
+      {
+        "source": "细纲.docx/正文段落278",
+        "kind": "paragraph",
+        "text": ""
+      },
+      {
+        "source": "细纲.docx/正文段落279",
+        "kind": "paragraph",
+        "text": "说明：NE结局最后的画面，主角的科考队受逆模因影响未能发现谭礿的队伍，因此谭礿队伍全员被抹消（怎么这个更像BE）不过这个信息在该结局内不向玩家明示，所以把气氛烘托的伤感一些"
+      },
+      {
+        "source": "细纲.docx/正文段落280",
+        "kind": "paragraph",
+        "text": ""
+      }
+    ],
+    "media": [
+      "word/media/",
+      "word/media/image1.png"
+    ]
+  },
+  "xlsx": {
+    "path": "C:\\Users\\liyao\\Downloads\\道具需求.xlsx",
+    "sha256": "a7b58caf46d481c5068a51cdda8b0439d014f427ac750341f393c8c50c922b06",
+    "sheets": [
+      {
+        "name": "Sheet1",
+        "rows": [
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": "A1",
+                "value": "道具id"
+              },
+              {
+                "cell": "B1",
+                "value": "道具名称"
+              },
+              {
+                "cell": "C1",
+                "value": "道具功能"
+              },
+              {
+                "cell": "D1",
+                "value": "道具简介"
+              },
+              {
+                "cell": "E1",
+                "value": "道具效果（面向程序）"
+              },
+              {
+                "cell": "F1",
+                "value": "获取条件"
+              },
+              {
+                "cell": "G1",
+                "value": "需求备注"
+              },
+              {
+                "cell": "H1",
+                "value": "修改时间"
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": "A2",
+                "value": 1
+              },
+              {
+                "cell": "B2",
+                "value": "铜钱"
+              },
+              {
+                "cell": "C2",
+                "value": "摇卦（检定）"
+              },
+              {
+                "cell": "D2",
+                "value": "正面印有“甲子”，反面印有“太极”字样的铜钱"
+              },
+              {
+                "cell": "E2",
+                "value": "摇卦检定用的铜钱"
+              },
+              {
+                "cell": "G2",
+                "value": "检定时播放动画，三枚铜钱同时掷出，掷六次，需要动效\n需要与ui，程序合作，目前不急着做"
+              },
+              {
+                "cell": "H2",
+                "value": "10.2.13：51"
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": "A3",
+                "value": 2
+              },
+              {
+                "cell": "B3",
+                "value": "散落的铜钱"
+              },
+              {
+                "cell": "C3",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D3",
+                "value": "散落在地上的三枚铜钱，\n正面印有“已丑”，反面印有“华盖”的字样"
+              },
+              {
+                "cell": "H3",
+                "value": "10.2.13：51"
+              }
+            ]
+          },
+          {
+            "row": 4,
+            "cells": [
+              {
+                "cell": "A4",
+                "value": 3
+              },
+              {
+                "cell": "B4",
+                "value": "现实稳定锚"
+              },
+              {
+                "cell": "C4",
+                "value": "增益道具"
+              },
+              {
+                "cell": "D4",
+                "value": "由恒卦权能制作的现实稳定装备"
+              },
+              {
+                "cell": "G4",
+                "value": "科幻/玄幻作品里“锚”是用于稳定自我认知与存在的装备，\n可为任意形态，要有科技感或玄幻感"
+              },
+              {
+                "cell": "H4",
+                "value": "10.2.13：51"
+              }
+            ]
+          },
+          {
+            "row": 5,
+            "cells": [
+              {
+                "cell": "A5",
+                "value": 4
+              },
+              {
+                "cell": "B5",
+                "value": "连理枝植株"
+              },
+              {
+                "cell": "C5",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D5",
+                "value": "生命力及其顽强的植物，恶劣环境下种子会将根系连接在一起，\n共同给养一颗植株"
+              },
+              {
+                "cell": "G5",
+                "value": "从土中采出，带有根系的植物样品，有并不艳丽花，要表现出“连理”的特点\n体现涌现主题的重要物品，会在场景中表现，建议与场景一同设计"
+              },
+              {
+                "cell": "H5",
+                "value": "10.2.13：51"
+              }
+            ]
+          },
+          {
+            "row": 6,
+            "cells": [
+              {
+                "cell": "A6",
+                "value": 5
+              },
+              {
+                "cell": "B6",
+                "value": "身份认证卡"
+              },
+              {
+                "cell": "C6",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D6",
+                "value": "科考站通行所需的凭证，同时具有终端功能"
+              },
+              {
+                "cell": "G6",
+                "value": "外形为卡带状的通讯器，拥有一个可变色的指示灯"
+              },
+              {
+                "cell": "H6",
+                "value": "10.3.19：06"
+              }
+            ]
+          },
+          {
+            "row": 7,
+            "cells": [
+              {
+                "cell": "A7",
+                "value": 6
+              },
+              {
+                "cell": "B7",
+                "value": "生活物资"
+              },
+              {
+                "cell": "C7",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D7",
+                "value": "一个包裹，包含了各种生活用品"
+              },
+              {
+                "cell": "H7",
+                "value": "10.3.19：06"
+              }
+            ]
+          },
+          {
+            "row": 8,
+            "cells": [
+              {
+                "cell": "A8",
+                "value": 7
+              },
+              {
+                "cell": "B8",
+                "value": "环境数据表"
+              },
+              {
+                "cell": "C8",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D8",
+                "value": "在现实不稳定的环境中，纸质文件往往比数据信息可靠一点"
+              },
+              {
+                "cell": "G8",
+                "value": "一沓表单"
+              },
+              {
+                "cell": "H8",
+                "value": "10.3.19：06"
+              }
+            ]
+          },
+          {
+            "row": 9,
+            "cells": [
+              {
+                "cell": "A9",
+                "value": 8
+              },
+              {
+                "cell": "B9",
+                "value": "一份蚀海水样"
+              },
+              {
+                "cell": "C9",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D9",
+                "value": "物质化的虚无，用感官只能观察到零碎的信息"
+              },
+              {
+                "cell": "G9",
+                "value": "容器封装的水样，尝试表现蚀海水“虚无”的特点"
+              },
+              {
+                "cell": "H9",
+                "value": "10.4.14：51"
+              }
+            ]
+          },
+          {
+            "row": 10,
+            "cells": [
+              {
+                "cell": "A10",
+                "value": 9
+              },
+              {
+                "cell": "B10",
+                "value": "分析结果"
+              },
+              {
+                "cell": "C10",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D10",
+                "value": "数据结果表明，蚀海侵蚀绥海堰的速率远高于正常值"
+              },
+              {
+                "cell": "G10",
+                "value": "可与道具7“环境数据表”素材复用"
+              },
+              {
+                "cell": "H10",
+                "value": "10.4.14：51"
+              }
+            ]
+          },
+          {
+            "row": 11,
+            "cells": [
+              {
+                "cell": "A11",
+                "value": 10
+              },
+              {
+                "cell": "B11",
+                "value": "精确的分析结果"
+              },
+              {
+                "cell": "C11",
+                "value": "任务道具\n增益道具"
+              },
+              {
+                "cell": "D11",
+                "value": "更精确的分析结果，数据结果表明，蚀海侵蚀绥海堰的速率远高于正常值"
+              },
+              {
+                "cell": "G11",
+                "value": "可与道具7“环境数据表”素材复用"
+              },
+              {
+                "cell": "H11",
+                "value": "10.4.14：51"
+              }
+            ]
+          },
+          {
+            "row": 12,
+            "cells": [
+              {
+                "cell": "A12",
+                "value": 11
+              },
+              {
+                "cell": "B12",
+                "value": "连理枝标本"
+              },
+              {
+                "cell": "C12",
+                "value": "增益道具"
+              },
+              {
+                "cell": "D12",
+                "value": "保存完好的连理枝花朵标本，并不秾艳，但是充满生命的意志"
+              },
+              {
+                "cell": "G12",
+                "value": "与道具4共同设计"
+              },
+              {
+                "cell": "H12",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 13,
+            "cells": [
+              {
+                "cell": "A13",
+                "value": 12
+              },
+              {
+                "cell": "B13",
+                "value": "食材箱"
+              },
+              {
+                "cell": "C13",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D13",
+                "value": "各色食材，送往生活区的厨房储存"
+              },
+              {
+                "cell": "G13",
+                "value": "一个箱子，12，13，14素材可复用"
+              },
+              {
+                "cell": "H13",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 14,
+            "cells": [
+              {
+                "cell": "A14",
+                "value": 13
+              },
+              {
+                "cell": "B14",
+                "value": "工具箱"
+              },
+              {
+                "cell": "C14",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D14",
+                "value": "维修用的工具，送往仓储区"
+              },
+              {
+                "cell": "H14",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 15,
+            "cells": [
+              {
+                "cell": "A15",
+                "value": 14
+              },
+              {
+                "cell": "B15",
+                "value": "科研仪器箱"
+              },
+              {
+                "cell": "C15",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D15",
+                "value": "各式实验仪器，送往科研区"
+              },
+              {
+                "cell": "H15",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 16,
+            "cells": [
+              {
+                "cell": "A16",
+                "value": 15
+              },
+              {
+                "cell": "B16",
+                "value": "松茸干"
+              },
+              {
+                "cell": "C16",
+                "value": "增益道具"
+              },
+              {
+                "cell": "D16",
+                "value": "深泉司常见的小零食，因“茸”同“容”，有劫灾不突破收容的寓意"
+              },
+              {
+                "cell": "G16",
+                "value": "密封袋包装的小零食"
+              },
+              {
+                "cell": "H16",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 17,
+            "cells": [
+              {
+                "cell": "A17",
+                "value": 16
+              },
+              {
+                "cell": "B17",
+                "value": "铜钱剑"
+              },
+              {
+                "cell": "C17",
+                "value": "增益道具"
+              },
+              {
+                "cell": "D17",
+                "value": "古代罗天教常将法器作为铜钱剑的形式，如今它的象征意义大于实用意义"
+              },
+              {
+                "cell": "G17",
+                "value": "一小把铜钱剑，用作护身符"
+              },
+              {
+                "cell": "H17",
+                "value": "10.6.18：03"
+              }
+            ]
+          },
+          {
+            "row": 18,
+            "cells": [
+              {
+                "cell": "A18",
+                "value": 17
+              },
+              {
+                "cell": "B18",
+                "value": "息壤样本"
+              },
+              {
+                "cell": "C18",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D18",
+                "value": "袋装的息壤，也是构成绥海堰的物质"
+              }
+            ]
+          },
+          {
+            "row": 19,
+            "cells": [
+              {
+                "cell": "A19",
+                "value": 18
+              },
+              {
+                "cell": "B19",
+                "value": "岩石样本"
+              },
+              {
+                "cell": "C19",
+                "value": "任务道具"
+              },
+              {
+                "cell": "D19",
+                "value": "袋装岩石样本"
+              }
+            ]
+          }
+        ],
+        "merged": []
+      },
+      {
+        "name": "Sheet2",
+        "rows": [],
+        "merged": []
+      },
+      {
+        "name": "Sheet3",
+        "rows": [],
+        "merged": []
+      }
+    ]
+  }
+}
